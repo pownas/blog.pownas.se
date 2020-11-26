@@ -10,6 +10,9 @@ Min kanal hittar du via länken: https://www.youtube.com/channel/UCHbDLlJEZ_PRJA
 
 På denna kanalen kommer jag att publicera olika tips och trix, som kan vara bra guider på svenska hur man genomför olika saker som programmerare eller allmänt i arbetslivet. 
 
+![Nya Youtube-kanalen: "Pownas lär dig"](./img/blogposts/2020-11-25--YoutubeKanal-PownasLärDig.png)
+
+
 Hoppas ni lär er något av att kolla på mina filmer. 😊
 
-Ha det gott! 
+Ha det gott!
