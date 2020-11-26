@@ -4,7 +4,7 @@ date: 2020-11-25
 category: "Youtube"
 ---
 
-Idag tog jag och gjorde det. Jag skapade min nya Youtube kanal: "Pownas lär dig". 
+Idag tog jag och gjorde det. Jag skapade min egna Youtube kanal: "Pownas lär dig". 
 
 Min kanal hittar du via länken: https://www.youtube.com/channel/UCHbDLlJEZ_PRJADbNZiR_2A 
 
