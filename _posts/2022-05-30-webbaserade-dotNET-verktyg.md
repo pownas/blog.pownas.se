@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Webbaserade verktyg för .NET!"
 date: 2022-05-30
 category: ".NET"

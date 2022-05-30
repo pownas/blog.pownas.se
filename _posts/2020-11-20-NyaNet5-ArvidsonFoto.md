@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Nya sidan blev dock inte min egen..."
 date: 2020-11-20
 category: "ArvidsonFoto"

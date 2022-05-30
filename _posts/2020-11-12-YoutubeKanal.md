@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Youtube kanal"
 date: 2020-11-12
 category: "Youtube"

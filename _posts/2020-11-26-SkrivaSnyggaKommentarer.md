@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Skriva snygga kod-kommentarer"
 date: 2020-11-26
 category: "Visual Studio"

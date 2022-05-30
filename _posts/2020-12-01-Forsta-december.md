@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Första december - ny Advent of Code!"
 date: 2020-12-01
 category: "Advent-of-Code"
