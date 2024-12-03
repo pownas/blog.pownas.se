@@ -13,12 +13,12 @@ Då får du en snyggt formaterad kommentar till den metoden du har.
 
 Däremot är det JÄTTEVIKTIGT, att kolla kommentarerna varje gång du petar på en parameter i metoden vid refaktorisering, så att kommentaren stämmer överens med det du faktiskt gör i metoden. 
 
-### Resultatet
-'''
+## Resultatet
+```
     /// <summary>
     /// 
     /// </summary>
     /// <returns></returns>
-'''
+```
 
 Ha det gott! 
