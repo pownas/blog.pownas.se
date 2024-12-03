@@ -11,7 +11,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 Hur man skulle kunna formatera datum i JavaScript format:
 
 
-''' 
+```js
 const event = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
 const options = {
   weekday: 'long',
@@ -29,5 +29,5 @@ console.log(event.toLocaleDateString('sv-SE', options));
 console.log(event.toLocaleDateString(undefined, options));
 // Expected output (varies according to local timezone and default locale): Thursday, December 20, 2012
 
-'''
+```
  
