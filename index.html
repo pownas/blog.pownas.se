@@ -4,4 +4,37 @@ title: Välkommen till min blogg
 list_title: Senaste inläggen
 ---
 
-<p>Så kul att just du är här! Jag har tänkt att skriva några ord här om min resa på GitHub. Hoppas det kan bli en rolig läsning för dig.</p>
+<div class="home-page-intro">
+  <h2>Välkommen till min blogg!</h2>
+  <p>Så kul att just du är här! Jag har tänkt att skriva några ord här om min resa på GitHub, programmering och teknik. Hoppas det kan bli en rolig läsning för dig.</p>
+  <p>Här hittar du inlägg om olika programmeringsspråk, webbutveckling, och mina projekt. Använd navigeringen ovan för att utforska bloggen!</p>
+</div>
+
+<h2>Senaste bloggposter</h2>
+<div class="featured-posts">
+  {% for post in site.posts limit:3 %}
+    <div class="featured-post">
+      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+      <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+      {% if post.category %}
+        <div class="post-categories">
+          <span>Kategorier: </span>
+          {% assign categories = post.category | split: "," %}
+          {% for category in categories %}
+            {% assign trimmed_category = category | strip %}
+            {% assign category_slug = trimmed_category | slugify %}
+            <a href="{{ site.baseurl }}/kategori/{{ category_slug }}/">{{ trimmed_category }}</a>{% if forloop.last == false %}, {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+      <div class="post-excerpt">
+        {{ post.excerpt }}
+      </div>
+      <a href="{{ post.url | relative_url }}" class="read-more">Läs mer &raquo;</a>
+    </div>
+  {% endfor %}
+</div>
+
+<p class="all-posts-link">
+  <a href="{{ site.baseurl }}/alla-inlagg/" class="btn">Visa alla bloggposter</a>
+</p>

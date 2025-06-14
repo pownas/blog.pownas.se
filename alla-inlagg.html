@@ -1,0 +1,36 @@
+---
+layout: page
+title: Alla inlägg
+permalink: /alla-inlagg/
+---
+
+<div class="all-posts">
+  <h1 class="page-heading">Alla bloggposter</h1>
+
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</span>
+        <h3>
+          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+        </h3>
+        {% if post.category %}
+        <div class="post-categories">
+          <span>Kategorier: </span>
+          {% assign categories = post.category | split: "," %}
+          {% for category in categories %}
+            {% assign trimmed_category = category | strip %}
+            {% assign category_slug = trimmed_category | slugify %}
+            <a href="{{ site.baseurl }}/kategori/{{ category_slug }}/">{{ trimmed_category }}</a>{% if forloop.last == false %}, {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if site.show_excerpts %}
+          <div class="post-excerpt">
+            {{ post.excerpt }}
+          </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

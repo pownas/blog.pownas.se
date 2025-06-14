@@ -2,6 +2,25 @@
 
 Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 
+## 2025-06-14 - Förbättrad navigering och startsida (del 4)
+
+### Fixat
+- Åtgärdat problem med visning av blogg på GitHub Pages där bara en bild visades
+- Korrigerat baseurl och url i _config.yml för att matcha GitHub Pages struktur
+- Tagit bort konflikerande --index.html från rot-mappen
+- Flyttat bilden IMG_1903.jpeg till img-mappen för bättre organisation
+
+### Tillagt
+- Förbättrad navigeringsmeny med dropdown-menyer för kategorier och senaste inlägg
+- Sida för att visa alla bloggposter (/alla-inlagg/)
+- Bättre styling av startsidan med presentation och framhävda inlägg
+- Responsiv design för dropdown-menyer på mobila enheter
+
+### Ändrat
+- Omdesignad startsida som visar de tre senaste bloggposterna
+- Förbättrat utseende på bloggpostlistan
+- Mer användarvänlig navigering med dropdown-menyer
+
 ## 2025-06-14 - Buggfixar och startsidekorrigering (del 3)
 
 ### Fixat

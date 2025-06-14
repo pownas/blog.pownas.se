@@ -17,17 +17,39 @@
 
         <div class="trigger">
           <a class="page-link" href="{{ site.baseurl }}/">Hem</a>
-          <a class="page-link" href="{{ site.baseurl }}/kategori/hemsidan/">Hemsidan</a>
-          <a class="page-link" href="{{ site.baseurl }}/kategori/html-code/">HTML-kod</a>
-          <a class="page-link" href="{{ site.baseurl }}/kategori/javascript-code/">JavaScript-kod</a>
+          
+          <!-- Dropdown för kategorier -->
+          <div class="dropdown">
+            <a class="page-link dropdown-toggle">Kategorier</a>
+            <div class="dropdown-content">
+              {% for category in site.category %}
+                <a href="{{ category.url | relative_url }}">{{ category.title }}</a>
+              {% endfor %}
+            </div>
+          </div>
+          
+          <!-- Dropdown för senaste inlägg -->
+          <div class="dropdown">
+            <a class="page-link dropdown-toggle">Senaste inlägg</a>
+            <div class="dropdown-content">
+              {% for post in site.posts limit:5 %}
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              {% endfor %}
+              <a href="{{ site.baseurl }}/alla-inlagg/">Alla inlägg</a>
+            </div>
+          </div>
+          
           {%- for path in page_paths -%}
             {%- assign my_page = site.pages | where: "path", path | first -%}
-            {%- if my_page.title and my_page.title != "Välkommen till min blogg" -%}
-            <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
+            {%- if my_page.title and my_page.title != "Välkommen till min blogg" and my_page.title != "Alla inlägg" -%}
+              <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
             {%- endif -%}
           {%- endfor -%}
         </div>
       </nav>
+    {%- endif -%}
+  </div>
+</header>
     {%- endif -%}
   </div>
 </header>

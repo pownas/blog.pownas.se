@@ -5,8 +5,8 @@ author: Pownas
 email: pownas@outlook.com
 description: > # this means to ignore newlines until "baseurl:"
   En kort test för att se hur blogg funktionen fungerar. 
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://blog.pownas.se" # the base hostname & protocol for your site
+baseurl: "/blog.pownas.se" # the subpath of your site, e.g. /blog
+url: "https://pownas.github.io" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
