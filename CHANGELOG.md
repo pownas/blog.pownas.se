@@ -2,6 +2,29 @@
 
 Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 
+## 2025-06-14 - Prestandaoptimering (del 6)
+
+### Tillagt
+- Aktiverat inkrementell byggning (incremental: true) i _config.yml
+- Detta gör byggprocessen snabbare genom att endast bygga om ändrade filer
+
+### Tekniska detaljer
+- Inkrementell byggning (--incremental) i Jekyll håller reda på vilka filer som har ändrats
+- Det minskar byggtiden avsevärt för större webbplatser
+- Särskilt användbart under lokal utveckling för snabbare förhandsgranskning
+- Inga negativa effekter på slutlig webbplats, bara en prestandaförbättring
+
+## 2025-06-14 - Syntax buggfix (del 5)
+
+### Fixat
+- Åtgärdat Liquid-syntaxfel i header.html där det fanns duplicerade HTML-taggar och en obalanserad `endif`-tag
+- Borttaget onödiga extra stängningstaggar för att möjliggöra korrekt Liquid-rendering
+
+### Tekniska detaljer
+- Jekyll/Liquid är känslig för korrekt syntax i mallfilerna
+- Felet "Unknown tag 'endif'" uppstår när det finns obalanserade Liquid-kontrollstrukturer
+- Duplicerade HTML-taggar kan också orsaka oväntade renderingsproblem
+
 ## 2025-06-14 - Förbättrad navigering och startsida (del 4)
 
 ### Fixat

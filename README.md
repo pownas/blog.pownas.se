@@ -73,6 +73,11 @@ För att köra denna blogg lokalt behöver du Ruby och Jekyll. Följ dessa steg:
    bundle exec jekyll serve
    ```
 
+   För snabbare byggning under utveckling:
+   ```bash
+   bundle exec jekyll serve --incremental
+   ```
+
 4. Besök [http://localhost:4000](http://localhost:4000) i din webbläsare.
 
 ### För snabb start med Docker
