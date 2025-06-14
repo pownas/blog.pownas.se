@@ -45,6 +45,26 @@
       </div>
     </div>
 
+    <div class="footer-toggle-theme">
+      <button class="theme-toggle" onclick="toggleTheme()">Byt tema</button>
+    </div>
+    <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    }
+    (function() {
+      const saved = localStorage.getItem('theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+    </script>
+
     <div class="footer-copyright">
       <p>&copy; {{ site.time | date: '%Y' }} {{ site.author | escape }}. Alla rättigheter reserverade.</p>
     </div>

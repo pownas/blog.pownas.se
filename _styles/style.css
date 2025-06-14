@@ -40,7 +40,7 @@ body {
   cursor: pointer;
   position: absolute;
   top: 10px;
-  right: 10px;
+  left: 10px;
   z-index: 2001;
 }
 
@@ -53,18 +53,25 @@ body {
 @media (max-width: 700px) {
   .nav-toggle-label {
     display: block;
+    left: 10px;
+    right: auto;
   }
   .trigger {
     display: none;
     flex-direction: column;
+    align-items: flex-start;
     background: var(--bg-color, #fff);
     position: absolute;
     top: 40px;
     left: 0;
-    width: 100%;
+    width: 80vw;
+    max-width: 320px;
+    min-width: 180px;
     z-index: 2000;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    border-radius: 0 0 8px 8px;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.08);
+    border-radius: 0 8px 8px 0;
+    height: calc(100vh - 40px);
+    overflow-y: auto;
   }
   .nav-trigger:checked ~ .trigger {
     display: flex;
@@ -79,15 +86,32 @@ body {
   .dropdown-toggle::after {
     content: '';
   }
+  .page-link {
+    width: 100%;
+    text-align: left;
+    padding: 14px 20px;
+    border-bottom: 1px solid #eee;
+  }
 }
 
-/* Dropdown förbättringar för desktop */
 @media (min-width: 701px) {
+  .nav-toggle-label {
+    display: none;
+  }
   .trigger {
     display: flex !important;
     flex-direction: row;
+    align-items: center;
     background: none;
     position: static;
     box-shadow: none;
+    height: auto;
+    width: auto;
+  }
+  .page-link {
+    padding: 10px 18px;
+    border-bottom: none;
+    width: auto;
+    text-align: center;
   }
 }
