@@ -5,9 +5,28 @@ author: Pownas
 email: pownas@outlook.com
 description: > # this means to ignore newlines until "baseurl:"
   En kort test för att se hur blogg funktionen fungerar. 
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://blog.pownas.se" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+paginate: 10
+paginate_path: "/sida/:num/"
+show_excerpts: true # set to true to show excerpts on the homepage
+
+# Categories
+collections:
+  category:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: category
+    values:
+      layout: "category"
 
 # social links
 twitter_username: pownas # DO NOT include the @ character, or else the build will fail!
 github_username:  pownas # DO NOT include the @ character, or else the build will fail!
-
-#show_excerpts: true # set to false to remove excerpts on the homepage

@@ -1,0 +1,113 @@
+---
+---
+
+@import "minima";
+
+/* Egna stilar för bloggen */
+.post-categories {
+  margin-top: 10px;
+  font-size: 0.9em;
+}
+
+.post-categories a {
+  text-decoration: none;
+  padding: 2px 5px;
+  background-color: #f0f0f0;
+  border-radius: 3px;
+}
+
+.post-categories a:hover {
+  background-color: #e0e0e0;
+}
+
+.categories-section {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.categories-section .categories-heading {
+  margin-top: 0;
+  font-size: 1.5em;
+}
+
+.categories-section .categories-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.categories-section .categories-list .category-item {
+  margin: 5px;
+}
+
+.categories-section .categories-list .category-item .category-link {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.categories-section .categories-list .category-item .category-link:hover {
+  background-color: #d0d0d0;
+}
+
+.category-page .post-item {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.category-page .category-description {
+  margin-bottom: 30px;
+  font-style: italic;
+  color: #666;
+}
+
+.category-page .all-categories {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.category-page .all-categories .category-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.category-page .all-categories .category-list li {
+  margin: 5px;
+}
+
+.category-page .all-categories .category-list li a {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.category-page .all-categories .category-list li a:hover {
+  background-color: #d0d0d0;
+}
+
+.category-page .home-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 5px 10px;
+  background-color: #4078c0;
+  color: white;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.category-page .home-link:hover {
+  background-color: #3066b0;
+}

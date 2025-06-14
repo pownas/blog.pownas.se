@@ -1,0 +1,59 @@
+# Ändringslogg för blog.pownas.se
+
+Denna fil innehåller en historik över ändringar som gjorts i bloggen.
+
+## 2025-06-14 - Stor omstrukturering av bloggplattformen
+
+### Tillagt
+- Stöd för kategorisering av bloggposter
+- Kategorilistning på startsidan
+- Kategorisidor för alla tillgängliga kategorier
+- Förbättrad styling för bloggen
+- Bättre navigering mellan olika delar av bloggen
+- Uppdaterad layout för bloggposter med kategori-taggar
+
+### Ändrat
+- Förbättrad konfiguration i `_config.yml`
+- Uppdaterade Gemfile för att inkludera nödvändiga paket
+- Omstrukturerade layoutfiler för att stödja kategorier
+- Förbättrade header- och footer-element
+- Ändrade strukturen på index.md för att använda korrekt layout
+
+### Tekniska detaljer
+- Bloggen använder nu Jekyll som statisk webbplattform
+- Minima-temat används som bas men med anpassningar
+- Kategorierna sparas i markdown-filer under mappen `_category`
+- Bloggposter sparas i markdown-filer under mappen `_posts`
+- Bloggposter kan taggas med flera kategorier genom att använda kommaseparerade värden i front matter
+- Exempel på kategoritaggning i front matter: `category: "HTML-Code,JavaScript-Code"`
+
+### Hur man lägger till en ny bloggpost
+1. Skapa en ny fil i mappen `_posts` med namnformatet: `YYYY-MM-DD-titel-för-posten.md`
+2. Lägg till front matter med layout, titel, datum och kategori:
+   ```yaml
+   ---
+   layout: post
+   title: "Din titeln på posten"
+   date: 2025-06-14
+   category: "Kategorinamn"
+   ---
+   ```
+3. För flera kategorier, använd kommaseparering: 
+   ```yaml
+   category: "Kategori1,Kategori2"
+   ```
+4. Skriv innehållet i markdown-format
+
+### Hur man lägger till en ny kategori
+1. Skapa en ny fil i mappen `_category` med filnamnet: `kategorinamn.md`
+2. Lägg till front matter:
+   ```yaml
+   ---
+   layout: category
+   title: Visningsnamn för kategorin
+   category_name: KategorinamnetSomAnvändsIBloggposter
+   permalink: /kategori/kategorinamn/
+   description: Beskrivning av kategorin
+   ---
+   ```
+3. Se till att `category_name` matchar det som används i bloggposterna

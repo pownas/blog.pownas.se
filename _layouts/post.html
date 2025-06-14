@@ -23,7 +23,20 @@ layout: default
             <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
             {%- if forloop.last == false %}, {% endif -%}
         {% endfor %}
-      {%- endif -%}</p>
+      {%- endif -%}
+    </p>
+    
+    {% if page.category %}
+    <div class="post-categories">
+      <span>Kategorier: </span>
+      {% assign categories = page.category | split: "," %}
+      {% for category in categories %}
+        {% assign trimmed_category = category | strip %}
+        {% assign category_slug = trimmed_category | slugify %}
+        <a href="{{ site.baseurl }}/kategori/{{ category_slug }}/">{{ trimmed_category }}</a>{% if forloop.last == false %}, {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">

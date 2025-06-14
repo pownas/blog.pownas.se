@@ -9,6 +9,16 @@ layout: default
 
   {{ content }}
 
+  <div class="categories-section">
+    <h2 class="categories-heading">Kategorier</h2>
+    <ul class="categories-list">
+      {% for category in site.category %}
+        <li class="category-item">
+          <a href="{{ category.url | relative_url }}" class="category-link">{{ category.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
 
   {% if site.paginate %}
     {% assign posts = paginator.posts %}
@@ -31,6 +41,17 @@ layout: default
             {{ post.title | escape }}
           </a>
         </h3>
+        {% if post.category %}
+        <div class="post-categories">
+          <span>Kategorier: </span>
+          {% assign categories = post.category | split: "," %}
+          {% for category in categories %}
+            {% assign trimmed_category = category | strip %}
+            {% assign category_slug = trimmed_category | slugify %}
+            <a href="{{ site.baseurl }}/kategori/{{ category_slug }}/">{{ trimmed_category }}</a>{% if forloop.last == false %}, {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
         {%- if site.show_excerpts -%}
           {{ post.excerpt }}
         {%- endif -%}

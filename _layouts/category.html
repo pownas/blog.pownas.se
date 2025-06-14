@@ -1,0 +1,40 @@
+---
+layout: default
+---
+
+<div class="category-page">
+  <h1 class="page-heading">{{ page.title }}</h1>
+  
+  <p class="category-description">{{ page.description }}</p>
+  
+  <div class="post-list">
+    {% for post in site.posts %}
+      {% assign post_categories = post.category | split: "," %}
+      {% for cat in post_categories %}
+        {% assign trimmed_cat = cat | strip %}
+        {% if trimmed_cat == page.category_name %}
+          <div class="post-item">
+            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+            <h3>
+              <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+            </h3>
+            {% if site.show_excerpts %}
+              <div class="post-excerpt">{{ post.excerpt }}</div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+  
+  <div class="all-categories">
+    <h3>Alla kategorier</h3>
+    <ul class="category-list">
+      {% for category in site.category %}
+        <li><a href="{{ category.url | relative_url }}">{{ category.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+  <a href="{{ site.baseurl }}/" class="home-link">Tillbaka till startsidan</a>
+</div>
