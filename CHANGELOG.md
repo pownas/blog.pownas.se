@@ -135,3 +135,14 @@ Denna fil innehåller en historik över ändringar som gjorts i bloggen.
    ---
    ```
 3. Se till att `category_name` matchar det som används i bloggposterna
+
+## 2025-06-14 - Temabyte och mörkt läge
+
+### Tillagt
+- Lagt till stöd för ljust/mörkt tema (dark mode) med dark som standard och en knapp för att byta tema.
+
+### Tekniska detaljer
+- Temat växlar mellan ljust och mörkt läge baserat på användarens val
+- Standardläget är mörkt för att minska ögonbelastning i svagt ljus
+- En knapp har lagts till i sidfoten för att enkelt byta tema
+- Valet av tema sparas i webbläsarens lokal lagring så att det kvarstår vid uppdatering av sidan

@@ -38,3 +38,23 @@ list_title: Senaste inläggen
 <p class="all-posts-link">
   <a href="{{ site.baseurl }}/alla-inlagg/" class="btn">Visa alla bloggposter</a>
 </p>
+
+<button class="theme-toggle" onclick="toggleTheme()">Byt tema</button>
+<script>
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+}
+
+// Sätt dark som default, men använd sparat tema om det finns
+(function() {
+  const saved = localStorage.getItem('theme');
+  if (saved) {
+    document.documentElement.setAttribute('data-theme', saved);
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
