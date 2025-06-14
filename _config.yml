@@ -15,6 +15,12 @@ paginate: 10
 paginate_path: "/sida/:num/"
 show_excerpts: true # set to true to show excerpts on the homepage
 
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
+  - jekyll-seo-tag
+
 # Categories
 collections:
   category:

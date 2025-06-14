@@ -2,6 +2,18 @@
 
 Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 
+## 2025-06-14 - Buggfixar och startsidekorrigering (del 3)
+
+### Fixat
+- Åtgärdat problem med pagination genom att byta från index.md till index.html
+- Lagt till explicit konfiguration för Jekyll plugins i _config.yml
+- Förbättrat startsidan för att visa bloggposter och kategorier korrekt
+
+### Tekniska detaljer
+- Jekyll kräver en index.html-fil (inte index.md) för att pagination ska fungera
+- Plugins-konfiguration i _config.yml behöver inkludera jekyll-paginate explicit
+- Dessa ändringar säkerställer att bloggposter och kategorier visas korrekt på GitHub Pages
+
 ## 2025-06-14 - Buggfixar och kompletteringar (del 2)
 
 ### Fixat
