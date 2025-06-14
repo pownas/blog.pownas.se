@@ -2,7 +2,31 @@
 
 Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 
-## 2025-06-14 - Stor omstrukturering av bloggplattformen
+## 2025-06-14 - Buggfixar och kompletteringar (del 2)
+
+### Fixat
+- Korrigerat YAML-syntaxfel i bloggposten `2025-01-09-comparing-lists.md`
+- Lagt till filändelse (.md) på bloggposten om DevSum 2025
+- Skapade ytterligare kategorifiler för alla befintliga kategorier som används i bloggposterna:
+  - C-Sharp-Code
+  - C#
+  - Advent-of-Code
+  - Visual Studio
+  - Youtube
+  - ArvidsonFoto
+  - .NET
+  - Konferens
+
+### Tillagt
+- Uppdaterad README.md med detaljerade instruktioner för projektet
+- Tydligare anvisningar för lokal utveckling och deployment
+- Dokumentation för hur man hanterar kategorier korrekt
+
+### Viktiga noteringar
+- Kategoriformat i front matter ska vara kommaseparerade inom samma sträng: `category: "Kategori1,Kategori2"`
+- Inte: `category: "Kategori1", "Kategori2"` (fel format som orsakar YAML-fel)
+
+## 2025-06-14 - Stor omstrukturering av bloggplattformen (del 1)
 
 ### Tillagt
 - Stöd för kategorisering av bloggposter
