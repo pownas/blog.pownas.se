@@ -2,6 +2,18 @@
 
 Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 
+## 2025-06-14 - CSS-konsolidering (del 7)
+
+### Ändrat
+- Konsoliderat alla CSS-stilar till en enda fil (assets/main.scss)
+- Tagit bort den oanvända _styles/style.css filen
+- Säkerställt att alla stilar finns bevarade i main.scss
+
+### Tekniska detaljer
+- Jekyll kompilerar main.scss till main.css, vilket är den enda stilfilen som refereras i head.html
+- Detta gör att webbplatsen har färre HTTP-förfrågningar och därmed snabbare laddningstider
+- Enklare underhåll när alla stilar finns på ett ställe
+
 ## 2025-06-14 - Prestandaoptimering (del 6)
 
 ### Tillagt

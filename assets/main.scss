@@ -3,6 +3,36 @@
 
 @import "minima";
 
+/* Huvudstilar med tema-stöd */
+:root {
+  --bg-color: #fff;
+  --text-color: #222;
+}
+
+[data-theme="dark"] {
+  --bg-color: #181818;
+  --text-color: #eee;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
 /* Egna stilar för bloggen */
 .post-categories {
   margin-top: 10px;
@@ -72,6 +102,290 @@
   margin-top: 40px;
   padding-top: 20px;
   border-top: 1px solid #e0e0e0;
+}
+
+.category-page .all-categories .category-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.category-page .all-categories .category-list li {
+  margin: 5px;
+}
+
+.category-page .all-categories .category-list li a {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.category-page .all-categories .category-list li a:hover {
+  background-color: #d0d0d0;
+}
+
+.category-page .home-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 5px 10px;
+  background-color: #4078c0;
+  color: white;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.category-page .home-link:hover {
+  background-color: #3066b0;
+}
+
+/* Dropdown-menyer */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 3px;
+  margin-top: 5px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.dropdown-content a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-toggle::after {
+  content: " ▼";
+  font-size: 0.7em;
+  vertical-align: 2px;
+}
+
+/* Förbättringar för senaste inlägg */
+.post-list {
+  margin-left: 0;
+  list-style: none;
+}
+
+.post-list li {
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.post-list li:last-child {
+  border-bottom: none;
+}
+
+.post-meta {
+  font-size: 0.9em;
+  color: #828282;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.post-excerpt {
+  margin-top: 10px;
+  color: #444;
+}
+
+.all-posts .post-list {
+  margin-left: 0;
+}
+
+.all-posts .post-list li {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.home-page-intro {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  border-left: 4px solid #4078c0;
+}
+
+/* Förbättringar för startsidan */
+.featured-posts {
+  margin-bottom: 40px;
+}
+
+.featured-post {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.featured-post:last-child {
+  border-bottom: none;
+}
+
+.featured-post h3 {
+  margin-bottom: 5px;
+}
+
+.featured-post .post-date {
+  font-size: 0.9em;
+  color: #828282;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 10px;
+  color: #4078c0;
+  font-weight: bold;
+}
+
+.all-posts-link {
+  text-align: center;
+  margin: 40px 0 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #4078c0;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #3066b0;
+  text-decoration: none;
+  color: white;
+}
+
+/* Responsiv design för navigering */
+.site-nav {
+  position: relative;
+}
+
+.nav-trigger {
+  display: none;
+}
+
+.nav-toggle-label {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2001;
+}
+
+.trigger {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+@media (max-width: 700px) {
+  .nav-toggle-label {
+    display: block;
+    left: 10px;
+    right: auto;
+  }
+  .trigger {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    background: var(--bg-color, #fff);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    min-width: 0;
+    z-index: 2000;
+    box-shadow: none;
+    border-radius: 0;
+    overflow-y: auto;
+    padding-top: 60px;
+  }
+  .nav-trigger:checked ~ .trigger {
+    display: flex;
+  }
+  .dropdown-content {
+    position: static;
+    min-width: 100%;
+    box-shadow: none;
+    margin-left: 0;
+    background: var(--bg-color, #fff);
+  }
+  .dropdown-toggle::after {
+    content: '';
+  }
+  .page-link {
+    width: 100%;
+    text-align: left;
+    padding: 18px 24px;
+    border-bottom: 1px solid #eee;
+    font-size: 1.2em;
+  }
+}
+
+@media (min-width: 701px) {
+  .nav-toggle-label {
+    display: none;
+  }
+  .trigger {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    background: none;
+    position: static;
+    box-shadow: none;
+    height: auto;
+    width: auto;
+  }
+  .page-link {
+    padding: 10px 18px;
+    border-bottom: none;
+    width: auto;
+    text-align: center;
+  }
+}
+
+/* Bättre textstilar för responsivitet */
+a, .page-link, .post-link, .category-link, .dropdown-content a {
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+
+p, .post-content p {
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .category-page .all-categories .category-list {

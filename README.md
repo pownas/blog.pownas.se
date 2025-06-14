@@ -34,13 +34,13 @@ blog.pownas.se/
 │   ├── YYYY-MM-DD-titel.md
 │   └── ...
 ├── assets/                 # CSS, JavaScript, bilder
-│   └── main.scss
+│   └── main.scss           # Enda stilfilen för hela sidan
 ├── img/                    # Bilder för bloggposter
 │   └── blogposts/
 ├── _config.yml             # Jekyll-konfiguration
 ├── CHANGELOG.md            # Ändringslogg
 ├── Gemfile                 # Ruby gem-beroenden
-├── index.md                # Startsidan
+├── index.html              # Startsidan
 ├── POSTING-GUIDE.md        # Guide för att skapa inlägg
 └── README.md               # Denna fil
 ```
