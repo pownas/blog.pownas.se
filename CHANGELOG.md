@@ -146,3 +146,14 @@ Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 - Standardläget är mörkt för att minska ögonbelastning i svagt ljus
 - En knapp har lagts till i sidfoten för att enkelt byta tema
 - Valet av tema sparas i webbläsarens lokal lagring så att det kvarstår vid uppdatering av sidan
+
+## 2025-06-14 - Förbättrad navigering (del 7)
+
+### Fixat
+- Förbättrad responsivitet och användarupplevelse för navigeringsmenyn (navbar) på både mobil och desktop. Hamburger-meny och dropdowns fungerar nu bättre på alla enheter.
+
+### Tekniska detaljer
+- Navigeringsmenyn använder nu CSS Flexbox för bättre layoutkontroll
+- Dropdown-menyerna är mer stabila och följer med vid scrollning
+- Mobilmenyn (hamburger-meny) är förbättrad för enklare användning
+- Dessa ändringar säkerställer en mer enhetlig och användarvänlig navigering på hela webbplatsen

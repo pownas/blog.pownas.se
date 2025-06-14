@@ -26,3 +26,68 @@ body {
   border-radius: 5px;
   z-index: 1000;
 }
+
+.site-nav {
+  position: relative;
+}
+
+.nav-trigger {
+  display: none;
+}
+
+.nav-toggle-label {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2001;
+}
+
+.trigger {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+@media (max-width: 700px) {
+  .nav-toggle-label {
+    display: block;
+  }
+  .trigger {
+    display: none;
+    flex-direction: column;
+    background: var(--bg-color, #fff);
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 0 0 8px 8px;
+  }
+  .nav-trigger:checked ~ .trigger {
+    display: flex;
+  }
+  .dropdown-content {
+    position: static;
+    min-width: 100%;
+    box-shadow: none;
+    margin-left: 0;
+    background: var(--bg-color, #fff);
+  }
+  .dropdown-toggle::after {
+    content: '';
+  }
+}
+
+/* Dropdown förbättringar för desktop */
+@media (min-width: 701px) {
+  .trigger {
+    display: flex !important;
+    flex-direction: row;
+    background: none;
+    position: static;
+    box-shadow: none;
+  }
+}
