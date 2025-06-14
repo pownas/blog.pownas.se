@@ -1,11 +1,35 @@
 ---
 ---
+/*
+ * main.scss
+ * 
+ * Detta är huvud-Sass-filen för vår webbplats.
+ * Den innehåller alla stilar och anpassningar som behövs
+ * för att skapa en responsiv, mörkt och ljust tema,
+ * samt ett kategorisystem för bloggposter.
+ */
 
+/* 
+ * Ovanstående "---" är Jekyll front matter.
+ * Detta är ett krav för att Jekyll ska behandla denna fil som en Sass-fil
+ * och kompilera den till CSS. Lämna det tomt om du inte behöver definiera variabler.
+ */
+
+/* 
+ * Importerar basstilen från Minima-temat.
+ * Detta ger oss grundläggande layout och typografi
+ * som vi sedan anpassar med våra egna stilar.
+ */
 @import "minima";
 
 /* =========================================
    1. TEMA-VARIABLER OCH MÖRKT LÄGE
    ========================================= */
+/* 
+ * Detta avsnitt definierar färger och teman för hela sidan.
+ * Genom att använda CSS-variabler kan vi enkelt växla mellan
+ * ljust och mörkt tema, samt se till att designen är konsekvent.
+ */
 
 /* Bas-färgschema för ljust tema (standard) */
 :root {
@@ -21,6 +45,11 @@
 }
 
 /* Färgschema för mörkt tema */
+/* 
+ * Aktiveras när elementet <html> eller <body> har attributet 
+ * data-theme="dark". Skript kan växla detta attribut för att
+ * ändra mellan ljust och mörkt tema.
+ */
 [data-theme="dark"] {
   --bg-color: #181818;
   --text-color: #eee;
@@ -57,6 +86,15 @@ body {
 /* =========================================
    2. KATEGORI-SYSTEM
    ========================================= */
+/*
+ * Stilar för kategorisystemet som låter användare bläddra
+ * genom bloggposter efter ämne.
+ * 
+ * Kategorierna visas som taggar och används i:
+ * - Listor med bloggposter
+ * - Kategori-arkivsidor
+ * - Navigeringen
+ */
 
 /* Kategorier i bloggpostlistor */
 .post-categories {
@@ -115,6 +153,10 @@ body {
 }
 
 /* Stil för kategorisidor */
+/* 
+ * Specifika stilar för kategorisidor som visar en lista med
+ * alla inlägg i en specifik kategori samt relaterad information.
+ */
 .category-page .post-item {
   margin-bottom: 30px;
   padding-bottom: 20px;
@@ -175,6 +217,13 @@ body {
 /* =========================================
    3. NAVIGATION OCH DROPDOWNS
    ========================================= */
+/* 
+ * Navigation och menyer för hela webbplatsen.
+ * Inkluderar både huvudnavigeringen och dropdown-menyer
+ * för kategorier och senaste inlägg.
+ * 
+ * Navigationen är responsiv och anpassar sig för mobila enheter.
+ */
 
 /* Dropdown-menyer */
 .dropdown {
@@ -220,6 +269,11 @@ body {
 }
 
 /* Huvudnavigeringen */
+/* 
+ * Huvudnavigeringen för webbplatsen med stöd för
+ * både desktop och mobila enheter (hamburger-meny).
+ * På mobil blir denna en fullskärmsmeny.
+ */
 .site-nav {
   position: relative;
 }
@@ -246,6 +300,14 @@ body {
 /* =========================================
    4. BLOGGPOST-LISTOR OCH STILAR
    ========================================= */
+/*
+ * Stilar för olika typer av bloggpost-listor och artiklar.
+ * Inkluderar stilar för:
+ * - Startsidans inläggslista
+ * - Alla-inlägg sidan
+ * - Utdrag och metadata
+ * - Framhävda inlägg
+ */
 
 /* Listor med bloggposter */
 .post-list {
@@ -334,6 +396,10 @@ body {
 }
 
 /* Knappar */
+/* 
+ * Stilar för knappar och CTA-element (Call To Action).
+ * Används för navigation, "Läs mer", och andra interaktiva element.
+ */
 .btn {
   display: inline-block;
   padding: 8px 16px;
@@ -353,6 +419,15 @@ body {
 /* =========================================
    5. RESPONSIV DESIGN
    ========================================= */
+/*
+ * Alla responsiva stilar som anpassar sidan för olika
+ * skärmstorlekar, från mobil till desktop.
+ * 
+ * Inkluderar:
+ * - Mobilnavigeringen (hamburgermenyn)
+ * - Textbrytning för små skärmar
+ * - Anpassade layouter för olika enheter
+ */
 
 /* Responsiv text */
 a, .page-link, .post-link, .category-link, .dropdown-content a {
@@ -366,6 +441,11 @@ p, .post-content p {
 }
 
 /* Responsiv navigering för mobila enheter */
+/* 
+ * Media queries och specifika anpassningar för
+ * mobila enheter med skärmar upp till 700px bredd.
+ * Aktiverar hamburger-menyn och fullskärmsnavigation.
+ */
 @media (max-width: 700px) {
   .nav-toggle-label {
     display: block;
@@ -418,6 +498,11 @@ p, .post-content p {
 }
 
 /* Desktop-navigering */
+/* 
+ * Stilar för navigering på större skärmar (>700px).
+ * Återställer mobila anpassningar och säkerställer att
+ * menyn alltid visas horisontellt.
+ */
 @media (min-width: 701px) {
   .nav-toggle-label {
     display: none;
