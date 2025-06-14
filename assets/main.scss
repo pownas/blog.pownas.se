@@ -60,6 +60,9 @@
   --tag-bg: #333;
   --tag-hover-bg: #444;
   --meta-color: #aaa;
+  --nav-bg: #222;
+  --dropdown-bg: #282828;
+  --dropdown-hover-bg: #333;
 }
 
 /* Grundläggande stilar som använder tema-variabler */
@@ -237,7 +240,7 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: var(--light-bg);
+  background-color: var(--dropdown-bg, var(--light-bg));
   min-width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -258,7 +261,7 @@ body {
 }
 
 .dropdown-content a:hover {
-  background-color: var(--tag-hover-bg);
+  background-color: var(--dropdown-hover-bg, var(--tag-hover-bg));
 }
 
 .dropdown:hover .dropdown-content {
@@ -452,7 +455,7 @@ p, .post-content p {
     display: none;
     flex-direction: column;
     align-items: flex-start;
-    background: var(--bg-color);
+    background: var(--nav-bg, var(--bg-color));
     position: fixed;
     top: 0;
     left: 0;
@@ -476,7 +479,7 @@ p, .post-content p {
     min-width: 100%;
     box-shadow: none;
     margin-left: 0;
-    background: var(--bg-color);
+    background: var(--dropdown-bg, var(--bg-color));
   }
   
   .dropdown-toggle::after {
@@ -520,4 +523,67 @@ p, .post-content p {
     width: auto;
     text-align: center;
   }
+}
+
+/* =========================================
+   6. PAGINATION
+   ========================================= */
+/*
+ * Stilar för sidpaginering.
+ * Mer visuellt tilltalande knappar istället för en enkel lista.
+ */
+
+.pager {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination li {
+  margin: 0 0.3rem;
+}
+
+.pagination a, 
+.pagination .current-page,
+.pagination .pager-edge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  min-width: 2.5rem;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.pagination a {
+  background-color: var(--tag-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.pagination a:hover {
+  background-color: var(--tag-hover-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pagination .current-page {
+  background-color: var(--link-color);
+  color: white;
+  border: 1px solid var(--link-color);
+}
+
+.pagination .pager-edge {
+  color: var(--meta-color);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
 }

@@ -2,6 +2,23 @@
 
 Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 
+## 2025-06-14 - Förbättrad paginering och mörkt tema (del 12)
+
+### Tillagt
+- Ny styling för paginering som liknar knappar istället för enkel lista
+- Förbättrad visuell feedback vid hover-effekter på pagineringsknappar
+- Nya CSS-variabler för bättre stöd av mörkt tema i navigering
+
+### Fixat
+- Åtgärdat problem med svart text på svart bakgrund i navigeringen i mörkt läge
+- Förbättrat kontrasten i dropdown-menyer för bättre läsbarhet
+- Optimerat mobilnavigering för mörkt tema
+
+### Tekniska detaljer
+- Implementerat CSS-variabler för navigerings- och dropdown-bakgrunder
+- Lagt till dedikerad sektion för pagineringsstilar i CSS-filen
+- Säkerställt konsekvent design över både ljust och mörkt tema
+
 ## 2025-06-14 - Återställning av SCSS-kommentarer (del 11)
 
 ### Tillagt
