@@ -2,6 +2,30 @@
 
 Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 
+## 2025-06-14 - Återställning av SCSS-kommentarer (del 11)
+
+### Tillagt
+- Återställt detaljerade kommentarer i main.scss filen
+- Förbättrat dokumentationen för varje sektion i stilfilen
+- Lagt till beskrivande kommentarer för alla huvudkomponenter
+
+### Tekniska detaljer
+- Kommentarer förklarar nu syftet med varje CSS-sektion
+- Dokumenterat hur mörkt/ljust tema-systemet fungerar
+- Förbättrat förståelsen för hur responsiva stilar är organiserade
+
+## 2025-06-14 - Syntax- och byggkorrigeringar (del 10)
+
+### Fixat
+- Åtgärdat syntaxfel i SCSS-filen som förhindrade korrekt byggande
+- Omorganiserat och rengjort hela SCSS-koden för bättre struktur
+- Säkerställt att alla stilar kompileras korrekt av Jekyll
+
+### Tekniska detaljer
+- Korrekt front matter-syntax i SCSS-filen
+- Förbättrad organisation med tydlig sektionsuppdelning
+- Konsekvent formatering och indrag för bättre läsbarhet
+
 ## 2025-06-14 - Förbättrad navigation och layout (del 9)
 
 ### Ändrat

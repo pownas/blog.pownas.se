@@ -72,26 +72,19 @@ body {
 /* Tema-växlare knapp */
 /*
  * Knapp för att växla mellan ljust och mörkt tema.
- * Placerad i sidfoten istället för att blockera innehåll.
+ * Placerad i det övre högra hörnet för enkel åtkomst.
  */
 .theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
   background: none;
   border: 1px solid var(--text-color);
   color: var(--text-color);
   padding: 0.5rem 1rem;
   cursor: pointer;
   border-radius: 5px;
-  margin: 1rem 0;
-}
-
-.theme-toggle:hover {
-  background-color: var(--tag-hover-bg);
-}
-
-/* Placering för tema-knappen i sidfoten */
-.footer-toggle-theme {
-  text-align: center;
-  margin: 1rem 0;
+  z-index: 1000;
 }
 
 /* =========================================
@@ -164,10 +157,6 @@ body {
 }
 
 /* Stil för kategorisidor */
-/* 
- * Specifika stilar för kategorisidor som visar en lista med
- * alla inlägg i en specifik kategori samt relaterad information.
- */
 .category-page .post-item {
   margin-bottom: 30px;
   padding-bottom: 20px;
@@ -228,12 +217,15 @@ body {
 /* =========================================
    3. NAVIGATION OCH DROPDOWNS
    ========================================= */
-/* 
- * Navigation och menyer för hela webbplatsen.
- * Inkluderar både huvudnavigeringen och dropdown-menyer
- * för kategorier och senaste inlägg.
- * 
- * Navigationen är responsiv och anpassar sig för mobila enheter.
+/*
+ * Navigeringsmeny och dropdowns för kategorier och senaste inlägg.
+ * Skapar en responsiv och användarvänlig navigering som fungerar
+ * bra på både skrivbord och mobila enheter.
+ *
+ * Inkluderar stilar för:
+ * - Huvudmenyn
+ * - Dropdown-menyer
+ * - Mobil navigation (hamburger-meny)
  */
 
 /* Dropdown-menyer */
@@ -280,11 +272,6 @@ body {
 }
 
 /* Huvudnavigeringen */
-/* 
- * Huvudnavigeringen för webbplatsen med stöd för
- * både desktop och mobila enheter (hamburger-meny).
- * På mobil blir denna en fullskärmsmeny.
- */
 .site-nav {
   position: relative;
 }
@@ -312,12 +299,13 @@ body {
    4. BLOGGPOST-LISTOR OCH STILAR
    ========================================= */
 /*
- * Stilar för olika typer av bloggpost-listor och artiklar.
- * Inkluderar stilar för:
- * - Startsidans inläggslista
- * - Alla-inlägg sidan
- * - Utdrag och metadata
- * - Framhävda inlägg
+ * Stilar för visning av bloggposter i olika sammanhang:
+ * - På startsidan (senaste inlägg)
+ * - På kategori-sidor
+ * - På "Alla inlägg"-sidan
+ * 
+ * Inkluderar stilar för utdrag, metadata, datum och andra
+ * element relaterade till bloggposterna.
  */
 
 /* Listor med bloggposter */
@@ -407,10 +395,6 @@ body {
 }
 
 /* Knappar */
-/* 
- * Stilar för knappar och CTA-element (Call To Action).
- * Används för navigation, "Läs mer", och andra interaktiva element.
- */
 .btn {
   display: inline-block;
   padding: 8px 16px;
@@ -472,73 +456,39 @@ p, .post-content p {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
+    max-width: 100vw;
+    min-width: 0;
     z-index: 2000;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    box-shadow: none;
+    border-radius: 0;
     overflow-y: auto;
-    padding: 60px 0 20px;
+    padding-top: 60px;
   }
   
   .nav-trigger:checked ~ .trigger {
     display: flex;
   }
   
-  .dropdown {
-    width: 100%;
-  }
-  
   .dropdown-content {
     position: static;
-    width: 100%;
     min-width: 100%;
     box-shadow: none;
-    margin: 0;
-    padding-left: 20px;
+    margin-left: 0;
     background: var(--bg-color);
-    display: none;
   }
   
   .dropdown-toggle::after {
-    content: ' ▼';
-    font-size: 0.7em;
-    vertical-align: middle;
-  }
-  
-  .dropdown-toggle[aria-expanded="true"]::after {
-    content: ' ▲';
+    content: '';
   }
   
   .page-link {
     width: 100%;
     text-align: left;
-    padding: 15px 20px;
+    padding: 18px 24px;
     border-bottom: 1px solid var(--border-color);
-    font-size: 1.1em;
-    box-sizing: border-box;
-  }
-  
-  /* Förbättrad synlighet för aktiva element på mobil */
-  .page-link:active,
-  .dropdown-content a:active {
-    background-color: var(--tag-hover-bg);
-  }
-  
-  /* Förtydliga dropdowns på mobil */
-  .dropdown-toggle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  /* Tydligare stängknapp för mobil-menyn */
-  .menu-icon {
-    margin-right: 10px;
-  }
-  
-  /* Förhindra scrollning av bakgrund när menyn är öppen */
-  body.menu-open {
-    overflow: hidden;
+    font-size: 1.2em;
   }
 }
 
