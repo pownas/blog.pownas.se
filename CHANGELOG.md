@@ -2,6 +2,20 @@
 
 Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 
+## 2025-06-14 - CSS-optimering och kommentering (del 8)
+
+### Ändrat
+- Optimerat CSS-filens struktur med förbättrad organisation
+- Lagt till omfattande kommentarer i CSS-filen för enklare underhåll
+- Infört förbättrat temastöd för ljust/mörkt läge med CSS-variabler
+- Fixat potentiella stilproblem i olika webbläsare
+
+### Tekniska detaljer
+- CSS-filen är nu organiserad i logiska sektioner (tema, kategorier, navigation, bloggposter, responsiv design)
+- Konverterat hårdkodade färgvärden till CSS-variabler för konsekvent utseende
+- Säkerställt att både ljust och mörkt tema fungerar korrekt
+- Eliminerat kodduplicering som tidigare fanns i filen
+
 ## 2025-06-14 - CSS-konsolidering (del 7)
 
 ### Ändrat

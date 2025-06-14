@@ -3,23 +3,44 @@
 
 @import "minima";
 
-/* Huvudstilar med tema-stöd */
+/* =========================================
+   1. TEMA-VARIABLER OCH MÖRKT LÄGE
+   ========================================= */
+
+/* Bas-färgschema för ljust tema (standard) */
 :root {
   --bg-color: #fff;
   --text-color: #222;
+  --link-color: #4078c0;
+  --link-hover-color: #3066b0;
+  --border-color: #e0e0e0;
+  --light-bg: #f9f9f9;
+  --tag-bg: #f0f0f0;
+  --tag-hover-bg: #e0e0e0;
+  --meta-color: #828282;
 }
 
+/* Färgschema för mörkt tema */
 [data-theme="dark"] {
   --bg-color: #181818;
   --text-color: #eee;
+  --link-color: #6a9ee1;
+  --link-hover-color: #8ab4eb;
+  --border-color: #444;
+  --light-bg: #222;
+  --tag-bg: #333;
+  --tag-hover-bg: #444;
+  --meta-color: #aaa;
 }
 
+/* Grundläggande stilar som använder tema-variabler */
 body {
   background: var(--bg-color);
   color: var(--text-color);
   transition: background 0.3s, color 0.3s;
 }
 
+/* Tema-växlare knapp */
 .theme-toggle {
   position: fixed;
   top: 1rem;
@@ -33,7 +54,11 @@ body {
   z-index: 1000;
 }
 
-/* Egna stilar för bloggen */
+/* =========================================
+   2. KATEGORI-SYSTEM
+   ========================================= */
+
+/* Kategorier i bloggpostlistor */
 .post-categories {
   margin-top: 10px;
   font-size: 0.9em;
@@ -42,18 +67,20 @@ body {
 .post-categories a {
   text-decoration: none;
   padding: 2px 5px;
-  background-color: #f0f0f0;
+  background-color: var(--tag-bg);
   border-radius: 3px;
+  color: var(--text-color);
 }
 
 .post-categories a:hover {
-  background-color: #e0e0e0;
+  background-color: var(--tag-hover-bg);
 }
 
+/* Kategori-sektion med listor */
 .categories-section {
   margin: 20px 0;
   padding: 15px;
-  background-color: #f9f9f9;
+  background-color: var(--light-bg);
   border-radius: 5px;
 }
 
@@ -77,31 +104,33 @@ body {
 .categories-section .categories-list .category-item .category-link {
   display: inline-block;
   padding: 5px 10px;
-  background-color: #e0e0e0;
+  background-color: var(--tag-bg);
   border-radius: 3px;
   text-decoration: none;
+  color: var(--text-color);
 }
 
 .categories-section .categories-list .category-item .category-link:hover {
-  background-color: #d0d0d0;
+  background-color: var(--tag-hover-bg);
 }
 
+/* Stil för kategorisidor */
 .category-page .post-item {
   margin-bottom: 30px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .category-page .category-description {
   margin-bottom: 30px;
   font-style: italic;
-  color: #666;
+  color: var(--meta-color);
 }
 
 .category-page .all-categories {
   margin-top: 40px;
   padding-top: 20px;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--border-color);
 }
 
 .category-page .all-categories .category-list {
@@ -119,28 +148,33 @@ body {
 .category-page .all-categories .category-list li a {
   display: inline-block;
   padding: 5px 10px;
-  background-color: #e0e0e0;
+  background-color: var(--tag-bg);
   border-radius: 3px;
   text-decoration: none;
+  color: var(--text-color);
 }
 
 .category-page .all-categories .category-list li a:hover {
-  background-color: #d0d0d0;
+  background-color: var(--tag-hover-bg);
 }
 
 .category-page .home-link {
   display: inline-block;
   margin-top: 20px;
   padding: 5px 10px;
-  background-color: #4078c0;
+  background-color: var(--link-color);
   color: white;
   border-radius: 3px;
   text-decoration: none;
 }
 
 .category-page .home-link:hover {
-  background-color: #3066b0;
+  background-color: var(--link-hover-color);
 }
+
+/* =========================================
+   3. NAVIGATION OCH DROPDOWNS
+   ========================================= */
 
 /* Dropdown-menyer */
 .dropdown {
@@ -151,7 +185,7 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: var(--light-bg);
   min-width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -160,11 +194,11 @@ body {
 }
 
 .dropdown-content a {
-  color: black;
+  color: var(--text-color);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .dropdown-content a:last-child {
@@ -172,7 +206,7 @@ body {
 }
 
 .dropdown-content a:hover {
-  background-color: #f1f1f1;
+  background-color: var(--tag-hover-bg);
 }
 
 .dropdown:hover .dropdown-content {
@@ -185,107 +219,7 @@ body {
   vertical-align: 2px;
 }
 
-/* Förbättringar för senaste inlägg */
-.post-list {
-  margin-left: 0;
-  list-style: none;
-}
-
-.post-list li {
-  margin-bottom: 30px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #e8e8e8;
-}
-
-.post-list li:last-child {
-  border-bottom: none;
-}
-
-.post-meta {
-  font-size: 0.9em;
-  color: #828282;
-  display: block;
-  margin-bottom: 5px;
-}
-
-.post-excerpt {
-  margin-top: 10px;
-  color: #444;
-}
-
-.all-posts .post-list {
-  margin-left: 0;
-}
-
-.all-posts .post-list li {
-  margin-bottom: 25px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.home-page-intro {
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  border-left: 4px solid #4078c0;
-}
-
-/* Förbättringar för startsidan */
-.featured-posts {
-  margin-bottom: 40px;
-}
-
-.featured-post {
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.featured-post:last-child {
-  border-bottom: none;
-}
-
-.featured-post h3 {
-  margin-bottom: 5px;
-}
-
-.featured-post .post-date {
-  font-size: 0.9em;
-  color: #828282;
-  display: block;
-  margin-bottom: 10px;
-}
-
-.read-more {
-  display: inline-block;
-  margin-top: 10px;
-  color: #4078c0;
-  font-weight: bold;
-}
-
-.all-posts-link {
-  text-align: center;
-  margin: 40px 0 20px;
-}
-
-.btn {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #4078c0;
-  color: white;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.btn:hover {
-  background-color: #3066b0;
-  text-decoration: none;
-  color: white;
-}
-
-/* Responsiv design för navigering */
+/* Huvudnavigeringen */
 .site-nav {
   position: relative;
 }
@@ -309,17 +243,141 @@ body {
   align-items: center;
 }
 
+/* =========================================
+   4. BLOGGPOST-LISTOR OCH STILAR
+   ========================================= */
+
+/* Listor med bloggposter */
+.post-list {
+  margin-left: 0;
+  list-style: none;
+}
+
+.post-list li {
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.post-list li:last-child {
+  border-bottom: none;
+}
+
+.post-meta {
+  font-size: 0.9em;
+  color: var(--meta-color);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.post-excerpt {
+  margin-top: 10px;
+  color: var(--text-color);
+}
+
+/* Alla-inlägg sidan */
+.all-posts .post-list {
+  margin-left: 0;
+}
+
+.all-posts .post-list li {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Introduktionssektion på hemsidan */
+.home-page-intro {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: var(--light-bg);
+  border-radius: 5px;
+  border-left: 4px solid var(--link-color);
+}
+
+/* Framhävda inlägg på startsidan */
+.featured-posts {
+  margin-bottom: 40px;
+}
+
+.featured-post {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.featured-post:last-child {
+  border-bottom: none;
+}
+
+.featured-post h3 {
+  margin-bottom: 5px;
+}
+
+.featured-post .post-date {
+  font-size: 0.9em;
+  color: var(--meta-color);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--link-color);
+  font-weight: bold;
+}
+
+.all-posts-link {
+  text-align: center;
+  margin: 40px 0 20px;
+}
+
+/* Knappar */
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: var(--link-color);
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: var(--link-hover-color);
+  text-decoration: none;
+  color: white;
+}
+
+/* =========================================
+   5. RESPONSIV DESIGN
+   ========================================= */
+
+/* Responsiv text */
+a, .page-link, .post-link, .category-link, .dropdown-content a {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+p, .post-content p {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Responsiv navigering för mobila enheter */
 @media (max-width: 700px) {
   .nav-toggle-label {
     display: block;
     left: 10px;
     right: auto;
   }
+  
   .trigger {
     display: none;
     flex-direction: column;
     align-items: flex-start;
-    background: var(--bg-color, #fff);
+    background: var(--bg-color);
     position: fixed;
     top: 0;
     left: 0;
@@ -333,32 +391,38 @@ body {
     overflow-y: auto;
     padding-top: 60px;
   }
+  
   .nav-trigger:checked ~ .trigger {
     display: flex;
   }
+  
   .dropdown-content {
     position: static;
     min-width: 100%;
     box-shadow: none;
     margin-left: 0;
-    background: var(--bg-color, #fff);
+    background: var(--bg-color);
   }
+  
   .dropdown-toggle::after {
     content: '';
   }
+  
   .page-link {
     width: 100%;
     text-align: left;
     padding: 18px 24px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
     font-size: 1.2em;
   }
 }
 
+/* Desktop-navigering */
 @media (min-width: 701px) {
   .nav-toggle-label {
     display: none;
   }
+  
   .trigger {
     display: flex !important;
     flex-direction: row;
@@ -369,286 +433,11 @@ body {
     height: auto;
     width: auto;
   }
+  
   .page-link {
     padding: 10px 18px;
     border-bottom: none;
     width: auto;
     text-align: center;
-  }
-}
-
-/* Bättre textstilar för responsivitet */
-a, .page-link, .post-link, .category-link, .dropdown-content a {
-  word-break: break-all;
-  overflow-wrap: anywhere;
-}
-
-p, .post-content p {
-  word-break: break-word;
-  overflow-wrap: anywhere;
-}
-
-.category-page .all-categories .category-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.category-page .all-categories .category-list li {
-  margin: 5px;
-}
-
-.category-page .all-categories .category-list li a {
-  display: inline-block;
-  padding: 5px 10px;
-  background-color: #e0e0e0;
-  border-radius: 3px;
-  text-decoration: none;
-}
-
-.category-page .all-categories .category-list li a:hover {
-  background-color: #d0d0d0;
-}
-
-.category-page .home-link {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 5px 10px;
-  background-color: #4078c0;
-  color: white;
-  border-radius: 3px;
-  text-decoration: none;
-}
-
-.category-page .home-link:hover {
-  background-color: #3066b0;
-}
-
-/* Dropdown-menyer */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 200px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  border-radius: 3px;
-  margin-top: 5px;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.dropdown-content a:last-child {
-  border-bottom: none;
-}
-
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown-toggle::after {
-  content: " ▼";
-  font-size: 0.7em;
-  vertical-align: 2px;
-}
-
-/* Responsiv design för dropdown */
-@media screen and (max-width: 600px) {
-  .dropdown-content {
-    position: static;
-    display: block;
-    min-width: 100%;
-    box-shadow: none;
-    margin-left: 20px;
-  }
-  
-  .dropdown-toggle::after {
-    content: "";
-  }
-  
-  .dropdown {
-    display: block;
-  }
-}
-
-/* Förbättringar för senaste inlägg */
-.post-list {
-  margin-left: 0;
-  list-style: none;
-}
-
-.post-list li {
-  margin-bottom: 30px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #e8e8e8;
-}
-
-.post-list li:last-child {
-  border-bottom: none;
-}
-
-.post-meta {
-  font-size: 0.9em;
-  color: #828282;
-  display: block;
-  margin-bottom: 5px;
-}
-
-.post-excerpt {
-  margin-top: 10px;
-  color: #444;
-}
-
-.all-posts .post-list {
-  margin-left: 0;
-}
-
-.all-posts .post-list li {
-  margin-bottom: 25px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.home-page-intro {
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  border-left: 4px solid #4078c0;
-}
-
-/* Förbättringar för startsidan */
-.featured-posts {
-  margin-bottom: 40px;
-}
-
-.featured-post {
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.featured-post:last-child {
-  border-bottom: none;
-}
-
-.featured-post h3 {
-  margin-bottom: 5px;
-}
-
-.featured-post .post-date {
-  font-size: 0.9em;
-  color: #828282;
-  display: block;
-  margin-bottom: 10px;
-}
-
-.read-more {
-  display: inline-block;
-  margin-top: 10px;
-  color: #4078c0;
-  font-weight: bold;
-}
-
-.all-posts-link {
-  text-align: center;
-  margin: 40px 0 20px;
-}
-
-.btn {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #4078c0;
-  color: white;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.btn:hover {
-  background-color: #3066b0;
-  text-decoration: none;
-  color: white;
-}
-
-/* Förbättrad navbar och dropdown för mobil och desktop */
-.site-nav {
-  position: relative;
-}
-
-.nav-trigger {
-  display: none;
-}
-
-.nav-toggle-label {
-  display: none;
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 2001;
-}
-
-.trigger {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-@media (max-width: 700px) {
-  .nav-toggle-label {
-    display: block;
-  }
-  .trigger {
-    display: none;
-    flex-direction: column;
-    background: var(--bg-color, #fff);
-    position: absolute;
-    top: 40px;
-    left: 0;
-    width: 100%;
-    z-index: 2000;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    border-radius: 0 0 8px 8px;
-  }
-  .nav-trigger:checked ~ .trigger {
-    display: flex;
-  }
-  .dropdown-content {
-    position: static;
-    min-width: 100%;
-    box-shadow: none;
-    margin-left: 0;
-    background: var(--bg-color, #fff);
-  }
-  .dropdown-toggle::after {
-    content: '';
-  }
-}
-
-@media (min-width: 701px) {
-  .trigger {
-    display: flex !important;
-    flex-direction: row;
-    background: none;
-    position: static;
-    box-shadow: none;
   }
 }
