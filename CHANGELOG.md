@@ -2,6 +2,20 @@
 
 Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 
+## 2025-06-14 - Förbättrad navigation och layout (del 9)
+
+### Ändrat
+- Flyttat tema-växlarknappen från övre högra hörnet till sidfoten för att undvika överlappning med navigationen
+- Förbättrat den mobila navigationens funktion och användbarhet
+- Lagt till tydligare visuella indikatorer för dropdown-menyer på mobila enheter
+- Optimerat JavaScript för menyer för bättre prestanda och användarupplevelse
+
+### Tekniska detaljer
+- Tagit bort position: fixed från tema-knappen för att frigöra skärmutrymme
+- Förbättrat mobilmenyn med bättre stängningslogik och tydligare interaktioner
+- Lagt till ARIA-attribut för bättre tillgänglighet på dropdown-menyer
+- Förhindrar scrollning av bakgrund när menyn är öppen på mobila enheter
+
 ## 2025-06-14 - CSS-optimering och kommentering (del 8)
 
 ### Ändrat
