@@ -2,6 +2,20 @@
 
 Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 
+## 2025-06-24 - Fixade pagineringsbuggar och förbättrad temabyte (del 19)
+
+### Fixat
+- Åtgärdat 404-fel vid navigering till /sida/1 genom att dirigera om till startsidan
+- Förbättrat mörkt tema-hantering för att förhindra "flimmer" vid sidladdning
+- Säkerställt att temainställningen läses från localStorage direkt vid sidladdning
+- Förbättrat pagineringslogiken för att korrekt hantera alla sidnummer
+
+### Tekniska detaljer
+- Lagt till tidigt script i head-taggen som tillämpar tema innan sidladdning
+- Förbättrat pagineringslogiken för att använda hemsidans rot för första sidan
+- Optimerat localStorage-funktionalitet för att säkerställa enhetlig temakänsla
+- Säkerställt sömlös navigering mellan alla pagineringssidor
+
 ## 2025-06-24 - Förbättrad paginering med modern design (del 18)
 
 ### Tillagt

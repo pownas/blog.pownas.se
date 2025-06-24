@@ -85,7 +85,7 @@ layout: default
           {%- endif -%}
           
           {%- if page_start > 1 -%}
-            <li><a href="{{ site.paginate_path | relative_url | replace: ':num', '1' }}" class="page-number">1</a></li>
+            <li><a href="{{ site.baseurl }}/" class="page-number">1</a></li>
             {%- if page_start > 2 -%}
               <li><span class="pagination-ellipsis">&hellip;</span></li>
             {%- endif -%}
@@ -95,7 +95,11 @@ layout: default
             {%- if page == paginator.page -%}
               <li><div class="current-page">{{ page }}</div></li>
             {%- else -%}
-              <li><a href="{{ site.paginate_path | relative_url | replace: ':num', page }}" class="page-number">{{ page }}</a></li>
+              {%- if page == 1 -%}
+                <li><a href="{{ site.baseurl }}/" class="page-number">{{ page }}</a></li>
+              {%- else -%}
+                <li><a href="{{ site.paginate_path | relative_url | replace: ':num', page }}" class="page-number">{{ page }}</a></li>
+              {%- endif -%}
             {%- endif -%}
           {%- endfor -%}
           
