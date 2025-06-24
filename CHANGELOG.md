@@ -2,6 +2,24 @@
 
 Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 
+## 2025-06-24 - WCAG 2 förbättringar för färger och kontrast (del 13)
+
+### Tillagt
+- Förbättrade färgkontraster i både ljust och mörkt tema för att möta WCAG 2 riktlinjer
+- Fokus-stilar för alla interaktiva element för förbättrad tangentbordsnavigering
+- Nya CSS-variabler för fokus-markering med hög kontrast
+
+### Fixat
+- Uppdaterat textfärger för bättre läsbarhet och kontrast
+- Förbättrat kontrastförhållanden i länkar, knappar och navigeringselement
+- Säkerställt tydliga visuella indikationer när element är i fokus
+- Standardiserat färgschema för konsekvent design och tillgänglighet
+
+### Tekniska detaljer
+- Uppgraderat färgpaletten i CSS-variabler för att uppfylla WCAG 2 AA-standard
+- Lagt till dedikerade fokus-stilar för tillgänglighet vid tangentbordsnavigering
+- Optimerat kontrast i kategoritaggar, knappar och navigeringselement
+
 ## 2025-06-14 - Förbättrad paginering och mörkt tema (del 12)
 
 ### Tillagt

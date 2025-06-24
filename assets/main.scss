@@ -34,14 +34,15 @@
 /* Bas-färgschema för ljust tema (standard) */
 :root {
   --bg-color: #fff;
-  --text-color: #222;
-  --link-color: #4078c0;
-  --link-hover-color: #3066b0;
-  --border-color: #e0e0e0;
-  --light-bg: #f9f9f9;
-  --tag-bg: #f0f0f0;
-  --tag-hover-bg: #e0e0e0;
-  --meta-color: #828282;
+  --text-color: #181818; // darker for better contrast
+  --link-color: #0053a6; // WCAG AA compliant blue
+  --link-hover-color: #003366; // darker blue for hover
+  --border-color: #bdbdbd; // more visible border
+  --light-bg: #f5f5f5;
+  --tag-bg: #e5e5e5;
+  --tag-hover-bg: #cccccc;
+  --meta-color: #555;
+  --focus-outline: #ffbf47; // high-contrast focus color
 }
 
 /* Färgschema för mörkt tema */
@@ -52,14 +53,15 @@
  */
 [data-theme="dark"] {
   --bg-color: #181818;
-  --text-color: #eee;
-  --link-color: #6a9ee1;
-  --link-hover-color: #8ab4eb;
+  --text-color: #fff; // white for best contrast
+  --link-color: #8ab4f8; // lighter blue for dark bg
+  --link-hover-color: #e8eaed; // near-white for hover
   --border-color: #444;
   --light-bg: #222;
   --tag-bg: #333;
   --tag-hover-bg: #444;
-  --meta-color: #aaa;
+  --meta-color: #bbb;
+  --focus-outline: #ffbf47;
   --nav-bg: #222;
   --dropdown-bg: #282828;
   --dropdown-hover-bg: #333;
@@ -262,6 +264,7 @@ body {
 
 .dropdown-content a:hover {
   background-color: var(--dropdown-hover-bg, var(--tag-hover-bg));
+  color: var(--text-color);
 }
 
 .dropdown:hover .dropdown-content {
@@ -586,4 +589,54 @@ p, .post-content p {
   color: var(--meta-color);
   border: 1px solid var(--border-color);
   background-color: var(--bg-color);
+}
+
+// Add accessible focus styles for all interactive elements
+:focus {
+  outline: 3px solid var(--focus-outline);
+  outline-offset: 2px;
+}
+
+button:focus, a:focus, .btn:focus, .theme-toggle:focus {
+  outline: 3px solid var(--focus-outline);
+  outline-offset: 2px;
+}
+
+// Improve button and link contrast
+.btn, .theme-toggle, .category-page .home-link, .pagination .current-page {
+  background-color: var(--link-color);
+  color: #fff;
+  border: none;
+}
+
+.btn:hover, .theme-toggle:hover, .category-page .home-link:hover, .pagination .current-page:hover {
+  background-color: var(--link-hover-color);
+  color: #fff;
+}
+
+// Improve tag and category contrast
+.post-categories a, .categories-section .categories-list .category-item .category-link, .category-page .all-categories .category-list li a {
+  background-color: var(--tag-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.post-categories a:hover, .categories-section .categories-list .category-item .category-link:hover, .category-page .all-categories .category-list li a:hover {
+  background-color: var(--tag-hover-bg);
+  color: var(--text-color);
+}
+
+// Ensure dropdowns and navigation have good contrast
+.dropdown-content {
+  background-color: var(--dropdown-bg, var(--light-bg));
+  color: var(--text-color);
+}
+
+.dropdown-content a {
+  color: var(--text-color);
+}
+
+.dropdown-content a:hover {
+  background-color: var(--dropdown-hover-bg, var(--tag-hover-bg));
+  color: var(--text-color);
 }
