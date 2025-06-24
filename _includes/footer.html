@@ -54,46 +54,26 @@
     function toggleTheme() {
       const current = document.documentElement.getAttribute('data-theme');
       const next = current === 'dark' ? 'light' : 'dark';
+      
+      // Uppdatera temainställningen
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
       
       // Uppdatera knappens ikon baserat på temat
+      updateThemeIcon(next);
+    }
+    
+    function updateThemeIcon(theme) {
       const themeIcon = document.querySelector('.theme-icon');
       if (themeIcon) {
-        themeIcon.textContent = next === 'dark' ? '🌙' : '☀️';
+        themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
       }
     }
+    
+    // Initialisera ikonens utseende vid sidladdning
     (function() {
-      const saved = localStorage.getItem('theme');
-      if (saved) {
-        document.documentElement.setAttribute('data-theme', saved);
-        
-        // Uppdatera knappens ikon vid laddning
-        const themeIcon = document.querySelector('.theme-icon');
-        if (themeIcon) {
-          themeIcon.textContent = saved === 'dark' ? '🌙' : '☀️';
-        }
-      } else {
-        // Kontrollera om användaren föredrar mörkt läge
-        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (prefersDarkMode) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-          
-          // Uppdatera knappens ikon för mörkt läge
-          const themeIcon = document.querySelector('.theme-icon');
-          if (themeIcon) {
-            themeIcon.textContent = '🌙';
-          }
-        } else {
-          document.documentElement.setAttribute('data-theme', 'light');
-          
-          // Uppdatera knappens ikon för ljust läge
-          const themeIcon = document.querySelector('.theme-icon');
-          if (themeIcon) {
-            themeIcon.textContent = '☀️';
-          }
-        }
-      }
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      updateThemeIcon(currentTheme);
     })();
     </script>
 

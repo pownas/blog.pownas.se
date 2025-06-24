@@ -8,11 +8,17 @@
   <!-- Förhindra tema-flimmer genom att använda sparad inställning direkt vid sidladdning -->
   <script>
     (function() {
+      // Hämta sparad temainställning eller använd systemets inställning
       const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.setAttribute('data-theme', 'dark');
+      const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (prefersDarkMode ? 'dark' : 'light');
+      
+      // Tillämpa temat direkt vid laddning för att undvika flimmer
+      document.documentElement.setAttribute('data-theme', theme);
+      
+      // Spara temat om det inte redan är sparat och baseras på systemet
+      if (!savedTheme) {
+        localStorage.setItem('theme', theme);
       }
     })();
   </script>
