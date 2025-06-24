@@ -633,6 +633,12 @@ p, .post-content p {
     padding-top: 70px;
     overflow-y: auto;
     overscroll-behavior: contain;
+    color: var(--text-color); // Använd temats textfärg
+  }
+  
+  // Säkerställ korrekt kontrast i mörkt läge
+  [data-theme="dark"] .page-link {
+    color: #ffffff;
   }
   
   // Anpassad stil för dropdown-innehåll på mobil
@@ -643,6 +649,7 @@ p, .post-content p {
     overflow: hidden;
     box-shadow: none;
     display: block !important;
+    background-color: var(--dropdown-bg); // Använd temats bakgrundsfärg
   }
   
   .dropdown-content.expanded {
@@ -656,6 +663,11 @@ p, .post-content p {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    color: var(--text-color); // Använd temats textfärg
+  }
+  
+  [data-theme="dark"] .page-link.dropdown-toggle {
+    color: #ffffff; // Vit text i mörkt läge
   }
   
   .page-link.dropdown-toggle::after {
@@ -672,6 +684,12 @@ p, .post-content p {
   .dropdown-content a {
     padding-left: 30px;
     border-left: 3px solid var(--border-color);
+    color: var(--text-color); // Använd temats textfärg
+  }
+  
+  [data-theme="dark"] .dropdown-content a {
+    color: #ffffff; // Vit text i mörkt läge
+    border-left: 3px solid #555; // Synligare border i mörkt läge
   }
 }
 
@@ -691,4 +709,49 @@ body.menu-open {
   position: fixed;
   width: 100%;
   height: 100%;
+}
+
+/* 
+ * Säkerställer att navigationsmeny har korrekt kontrast i både
+ * ljust och mörkt läge enligt WCAG riktlinjer.
+ * För mörkt läge används ljusa färger på text och länkar för att
+ * uppnå en kontrastkvot på minst 4.5:1
+ */
+
+// Navtext färg i mörkt läge
+[data-theme="dark"] .site-nav .page-link {
+  color: #ffffff; // Vit text i mörkt läge för bästa kontrast
+}
+
+[data-theme="dark"] .dropdown-content a {
+  color: #ffffff; // Vit text i mörkt läge för bästa kontrast
+}
+
+// Förbättrad synlighet av aktiva/hover-tillstånd i mörkt läge
+[data-theme="dark"] .site-nav .page-link:hover,
+[data-theme="dark"] .site-nav .page-link:focus {
+  color: var(--link-hover-color);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .dropdown-content a:hover,
+[data-theme="dark"] .dropdown-content a:focus {
+  background-color: #444;
+  color: #ffffff;
+}
+
+// Säkerställ att dropdown-bakgrund ger tillräcklig kontrast
+[data-theme="dark"] .dropdown-content {
+  background-color: #282828;
+  border: 1px solid #444;
+}
+
+// Förbättrad kontrast för hamburger-menyn i mörkt läge
+[data-theme="dark"] .menu-icon svg path {
+  fill: #ffffff;
+}
+
+// Säkerställ att triggermenyn i mobilt läge har korrekt färg
+[data-theme="dark"] .trigger {
+  background-color: #222;
 }

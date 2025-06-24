@@ -47,6 +47,17 @@
 <script>
   // Vänta på att DOM laddas
 document.addEventListener('DOMContentLoaded', function() {
+  // Kontrollera om användaren föredrar mörkt läge
+  function checkDarkModePreference() {
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (prefersDarkMode) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  }
+  
+  // Kör kontroll av mörkt läge
+  checkDarkModePreference();
+  
   // Funktion för att stänga menyn när användaren klickar på en länk
   function setupMobileMenu() {
     const navTrigger = document.getElementById('nav-trigger');

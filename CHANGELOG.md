@@ -2,6 +2,24 @@
 
 Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 
+## 2025-06-24 - Förbättrat mörkt tema och kontrastförhållande (del 15)
+
+### Tillagt
+- Automatisk detektering av systemets mörkt läge-inställning
+- Ökad kontrast i navigationsmenyn för mörkt läge enligt WCAG riktlinjer
+- Anpassade färger för dropdown-menyer i mörkt läge
+
+### Fixat
+- Löst problemet med svart text på mörk bakgrund i navigationsmenyn
+- Förbättrat kontrastförhållande i mörkt läge från 1.06:1 till över 4.5:1
+- Säkerställt att alla interaktiva element har tillräckligt med kontrast
+- Förbättrat synligheten av dropdown-innehåll i mörkt läge
+
+### Tekniska detaljer
+- Lagt till [data-theme="dark"] CSS-selektorer för navigationsmenyn
+- Implementerat automatisk lägesinställning baserat på användarens systeminställningar
+- Förbättrat UI/UX i mörkt läge med bättre visuella indikatorer för interaktiva element
+
 ## 2025-06-24 - Förbättrad mobilnavigering och tillgänglighet (del 14)
 
 ### Tillagt
@@ -235,7 +253,7 @@ Denna fil innehåller en historik över ändringar som gjorts i bloggen.
    category: "Kategorinamn"
    ---
    ```
-3. För flera kategorier, använd kommaseparering: 
+3. För flera kategorier, använd kommasepering: 
    ```yaml
    category: "Kategori1,Kategori2"
    ```
