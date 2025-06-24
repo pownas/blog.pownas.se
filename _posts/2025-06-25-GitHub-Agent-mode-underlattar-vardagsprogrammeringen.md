@@ -5,9 +5,7 @@ date: 2025-06-25 00:57:32 +0200
 category: "Ai, GitHub, Copilot, Programmering, Verktyg, Produktivitet"
 ---
 
-# GitHub Agent-Mode: Kodglädje in på småtimmarna
-
-De senaste veckorna har jag upptäckt något som totalt förändrat mitt sätt att programmera. GitHub Copilot Agent-Mode har inte bara förvandlat min produktivitet – den har återväckt min passion för kodning.
+De senaste veckorna har jag upptäckt något som förändrat mitt sätt att programmera. GitHub Copilot Agent-Mode har inte bara förvandlat min produktivitet – den har återväckt min passion för kodning.
 
 ## Nattliga kodsessioner av ren glädje
 
