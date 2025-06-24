@@ -52,28 +52,47 @@
     </div>
     <script>
     function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      
-      // Uppdatera temainställningen
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      
-      // Uppdatera knappens ikon baserat på temat
-      updateThemeIcon(next);
+      try {
+        // Hämta nuvarande tema
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        
+        // Uppdatera temainställningen i DOM
+        document.documentElement.setAttribute('data-theme', next);
+        
+        // Spara i localStorage (med felhantering)
+        if (window.localStorage) {
+          localStorage.setItem('theme', next);
+          console.log('Theme toggled and saved:', next);
+        }
+        
+        // Uppdatera knappens ikon
+        updateThemeIcon(next);
+      } catch (e) {
+        console.error('Error toggling theme:', e);
+      }
     }
     
     function updateThemeIcon(theme) {
-      const themeIcon = document.querySelector('.theme-icon');
-      if (themeIcon) {
-        themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+      try {
+        const themeIcon = document.querySelector('.theme-icon');
+        if (themeIcon) {
+          themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+        }
+      } catch (e) {
+        console.error('Error updating theme icon:', e);
       }
     }
     
     // Initialisera ikonens utseende vid sidladdning
     (function() {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      updateThemeIcon(currentTheme);
+      try {
+        // Hämta aktuellt tema från DOM
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+        updateThemeIcon(currentTheme);
+      } catch (e) {
+        console.error('Error initializing theme icon:', e);
+      }
     })();
     </script>
 

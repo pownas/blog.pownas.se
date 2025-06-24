@@ -2,6 +2,20 @@
 
 Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 
+## 2025-06-24 - Fixade tema-persistens mellan sidnavigeringar (del 20)
+
+### Fixat
+- Åtgärdat problem där temat återställdes vid navigering mellan sidor
+- Förbättrat felhantering för localStorage-användning 
+- Säkerställt att temat konsekvent sparas och läses från localStorage
+- Lagt till loggning för att underlätta framtida felsökning
+
+### Tekniska detaljer
+- Förbättrat script i head-taggen för att korrekt läsa och validera temainställning
+- Implementerat robustare typkontroll för sparade temavärden
+- Lagt till try-catch-block för att hantera eventuella localStorage-fel
+- Förbättrat logiken för att konsistent tillämpa samma tema mellan sidnavigeringar
+
 ## 2025-06-24 - Fixade pagineringsbuggar och förbättrad temabyte (del 19)
 
 ### Fixat

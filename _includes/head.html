@@ -8,17 +8,30 @@
   <!-- Förhindra tema-flimmer genom att använda sparad inställning direkt vid sidladdning -->
   <script>
     (function() {
-      // Hämta sparad temainställning eller använd systemets inställning
-      const savedTheme = localStorage.getItem('theme');
-      const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const theme = savedTheme || (prefersDarkMode ? 'dark' : 'light');
-      
-      // Tillämpa temat direkt vid laddning för att undvika flimmer
-      document.documentElement.setAttribute('data-theme', theme);
-      
-      // Spara temat om det inte redan är sparat och baseras på systemet
-      if (!savedTheme) {
-        localStorage.setItem('theme', theme);
+      try {
+        // Hämta sparad temainställning (garantera att vi faktiskt läser från localStorage)
+        const savedTheme = window.localStorage ? localStorage.getItem('theme') : null;
+        
+        // Kontrollera om vi har ett sparat tema och använd det direkt
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+          console.log('Applied saved theme:', savedTheme);
+        } 
+        // Annars använd systemets inställning
+        else {
+          const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const defaultTheme = prefersDarkMode ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', defaultTheme);
+          
+          // Spara systemets inställning som default
+          if (window.localStorage) {
+            localStorage.setItem('theme', defaultTheme);
+            console.log('Saved system preference as default theme:', defaultTheme);
+          }
+        }
+      } catch (e) {
+        // Fallback om localStorage inte är tillgängligt
+        console.error('Theme setting error:', e);
       }
     })();
   </script>
