@@ -2,6 +2,23 @@
 
 Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 
+## 2025-06-24 - Förbättrad läsbarhet för kodblock i mörkt läge (del 17)
+
+### Tillagt
+- Dedikerade stilar för kodblock och syntaxmarkering i både ljust och mörkt tema
+- Förbättrad kontrast för `.language-plaintext.highlighter-rouge` kodblock
+- Konsekvent typografi för alla kodblock på sidan
+
+### Fixat
+- Åtgärdat kontrastproblem där kod var oläslig i mörkt läge (ljus text på ljus bakgrund)
+- Förbättrad synlighet för kodblock med språkspecifika stilar
+- Säkerställt att alla kodblock uppfyller WCAG kontrastkrav i båda teman
+
+### Tekniska detaljer
+- Lagt till en ny sektion för kodblock och syntaxmarkering i stilmallen
+- Anpassat kodblock för både inline-kod och större kodblock
+- Förbättrat utseendet på kodblock med mer konsekvent stil och bättre kantlinje
+
 ## 2025-06-24 - Förbättrad temaväxlare och fixad mobilmeny (del 16)
 
 ### Tillagt

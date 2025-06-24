@@ -816,3 +816,107 @@ body.menu-open {
   color: #fff;
   border-color: #555;
 }
+
+/* =========================================
+   8. CODE HIGHLIGHTING & SYNTAX
+   ========================================= */
+/*
+ * Stilar för kodblock och syntaxmarkering.
+ * Förbättrar läsbarheten för kod med lämplig bakgrund och kontrast.
+ * Säkerställer att kodblock har god kontrast i både ljust och mörkt läge.
+ */
+
+// Grundläggande kodblock stil
+code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  padding: 0.2em 0.4em;
+  font-size: 0.9em;
+  border-radius: 3px;
+  background-color: var(--light-bg);
+  color: var(--text-color);
+}
+
+// Kod i stycken
+p code {
+  word-break: break-word;
+}
+
+// Kodblock stilar (pre)
+pre {
+  padding: 1em;
+  overflow-x: auto;
+  border-radius: 5px;
+  background-color: var(--light-bg);
+  border: 1px solid var(--border-color);
+  margin: 1.5em 0;
+}
+
+pre code {
+  padding: 0;
+  background-color: transparent;
+  border-radius: 0;
+  word-break: normal;
+  white-space: pre;
+}
+
+// Rouge highlighter (standardstil för ljust tema)
+.highlighter-rouge {
+  margin: 1em 0;
+}
+
+.highlighter-rouge pre.highlight,
+.highlight {
+  background-color: #eef;
+  color: #333;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+// Språkspecifika stilar
+.language-plaintext {
+  padding: 0.2em 0.4em;
+  background-color: #eef;
+  color: #333;
+  border-radius: 3px;
+}
+
+// Mörkt läge för kodblock
+[data-theme="dark"] code {
+  background-color: #2d2d2d;
+  color: #e6e6e6;
+}
+
+[data-theme="dark"] pre {
+  background-color: #2d2d2d;
+  border-color: #444;
+}
+
+[data-theme="dark"] .highlighter-rouge pre.highlight,
+[data-theme="dark"] .highlight {
+  background-color: #2d2d2d;
+  color: #e6e6e6;
+}
+
+[data-theme="dark"] .language-plaintext {
+  background-color: #2d2d2d;
+  color: #e6e6e6;
+}
+
+// Speciellt för plaintext kod
+.language-plaintext.highlighter-rouge {
+  background-color: #eef;
+  color: #333;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+[data-theme="dark"] .language-plaintext.highlighter-rouge {
+  background-color: #2d2d2d;
+  color: #e6e6e6;
+}
+
+// Inline kod
+code.highlighter-rouge {
+  padding: 0.2em 0.4em;
+}
