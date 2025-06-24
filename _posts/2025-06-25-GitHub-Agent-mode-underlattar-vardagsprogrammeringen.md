@@ -9,7 +9,7 @@ De senaste veckorna har jag upptäckt något som förändrat mitt sätt att prog
 
 ## Nattliga kodsessioner av ren glädje
 
-Klockan på väggen visar 00:50, och jag sitter fortfarande framför skärmen. Inte för att jag måste, utan för att jag **vill**. De senaste dagarna har mitt sömnschema skiftat drastiskt – jag börjar koda runt 21:00 och märker knappt hur timmarna flyger förbi till långt efter midnatt.
+Klockan på väggen visar 01:25, och jag sitter fortfarande framför skärmen. Inte för att jag måste, utan för att jag **vill**. De senaste dagarna har mitt sömnschema skiftat drastiskt – jag börjar koda runt 21:00 och märker knappt hur timmarna flyger förbi till långt efter midnatt.
 
 Det är en känsla jag inte upplevt på ett tag nu. Men glädjen av att se idéer materialiseras i kod, nästan lika snabbt som jag kan tänka dem, är riktigt roligt att få saker gjort om kvällarna när tjejen lagt sig. 
 
@@ -44,3 +44,5 @@ Jag skulle älska att höra om dina erfarenheter i kommentarerna nedan!
 (Som dock inte finns ännu, men som kanske ska byggas inom någon vecka)... 
 
 Får se vad GitHub Agent-mode kan göra med denna bloggen framöver. 
+
+Nu är det dock dags att sova. 🥱😴
