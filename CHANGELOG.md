@@ -2,6 +2,25 @@
 
 Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 
+## 2025-06-24 - Förbättrad temaväxlare och fixad mobilmeny (del 16)
+
+### Tillagt
+- Flyttat temaväxlaren från övre höger hörn till sidfoten
+- Lagt till ikonbaserad visning för mörkt/ljust läge (sol/måne)
+- Förbättrad tooltip för temaväxlarknappen
+- Automatisk anpassning av ikonen baserat på aktuellt tema
+
+### Fixat
+- Åtgärdat överlappning mellan hamburgermenyn och temaväxlaren på mobila enheter
+- Förbättrat utseendet på temaväxlarknappen med bättre kontrast
+- Konsekvent temastöd i hela gränssnittet 
+- Animeringar och visuell feedback för bättre användarupplevelse
+
+### Tekniska detaljer
+- Centraliserat temaväxlarfunktionaliteten till footern
+- Lagt till CSS för att styra temaväxlarens utseende i olika lägen
+- Förbättrat JavaScript för automatisk anpassning av ikoner
+
 ## 2025-06-24 - Förbättrat mörkt tema och kontrastförhållande (del 15)
 
 ### Tillagt

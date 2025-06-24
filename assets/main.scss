@@ -77,19 +77,55 @@ body {
 /* Tema-växlare knapp */
 /*
  * Knapp för att växla mellan ljust och mörkt tema.
- * Placerad i det övre högra hörnet för enkel åtkomst.
+ * Placerad i det nedre högra hörnet för enkel åtkomst
+ * och för att undvika överlappning med hamburgermenyn.
  */
 .theme-toggle {
   position: fixed;
-  top: 1rem;
+  bottom: 1rem;
   right: 1rem;
-  background: none;
-  border: 1px solid var(--text-color);
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
   color: var(--text-color);
   padding: 0.5rem 1rem;
   cursor: pointer;
   border-radius: 5px;
   z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  margin-bottom: 5px;
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle:hover::before {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* =========================================
@@ -754,4 +790,29 @@ body.menu-open {
 // Säkerställ att triggermenyn i mobilt läge har korrekt färg
 [data-theme="dark"] .trigger {
   background-color: #222;
+}
+
+// Stilar för tema-växlare i footern
+.footer-toggle-theme {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+}
+
+// Anpassa tema-knappen
+.theme-toggle {
+  padding: 8px 16px;
+  font-size: 1rem;
+}
+
+.theme-toggle .theme-icon {
+  margin-right: 8px;
+  font-size: 1.2rem;
+}
+
+[data-theme="dark"] .theme-toggle {
+  background-color: #333;
+  color: #fff;
+  border-color: #555;
 }

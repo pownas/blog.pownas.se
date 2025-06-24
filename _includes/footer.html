@@ -46,7 +46,9 @@
     </div>
 
     <div class="footer-toggle-theme">
-      <button class="theme-toggle" onclick="toggleTheme()">Byt tema</button>
+      <button class="theme-toggle" onclick="toggleTheme()" data-tooltip="Växla mellan ljust och mörkt tema">
+        <span class="theme-icon">🌓</span> <span class="theme-text">Byt tema</span>
+      </button>
     </div>
     <script>
     function toggleTheme() {
@@ -54,13 +56,43 @@
       const next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
+      
+      // Uppdatera knappens ikon baserat på temat
+      const themeIcon = document.querySelector('.theme-icon');
+      if (themeIcon) {
+        themeIcon.textContent = next === 'dark' ? '🌙' : '☀️';
+      }
     }
     (function() {
       const saved = localStorage.getItem('theme');
       if (saved) {
         document.documentElement.setAttribute('data-theme', saved);
+        
+        // Uppdatera knappens ikon vid laddning
+        const themeIcon = document.querySelector('.theme-icon');
+        if (themeIcon) {
+          themeIcon.textContent = saved === 'dark' ? '🌙' : '☀️';
+        }
       } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
+        // Kontrollera om användaren föredrar mörkt läge
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDarkMode) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          
+          // Uppdatera knappens ikon för mörkt läge
+          const themeIcon = document.querySelector('.theme-icon');
+          if (themeIcon) {
+            themeIcon.textContent = '🌙';
+          }
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+          
+          // Uppdatera knappens ikon för ljust läge
+          const themeIcon = document.querySelector('.theme-icon');
+          if (themeIcon) {
+            themeIcon.textContent = '☀️';
+          }
+        }
       }
     })();
     </script>
