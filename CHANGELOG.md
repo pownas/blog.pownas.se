@@ -2,6 +2,26 @@
 
 Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 
+## 2025-06-24 - Förbättrad mobilnavigering och tillgänglighet (del 14)
+
+### Tillagt
+- Förbättrat mobilgränssnitt för navigationsmeny med smidigare interaktioner
+- Tangentbordsnavigering för dropdown-menyer på mobila enheter
+- Stöd för att stänga menyn med Escape-tangenten
+- Visuella indikatorer för aktiva/expanderade tillstånd på mobilmeny
+
+### Fixat
+- Förbättrad tillgänglighet i navigationsmenyn med korrekt ARIA-attribut
+- Förhindrat scrollning av bakgrunden när mobilmenyn är öppen
+- Tydligare visuell indikering av dropdown-menyer på mobila enheter
+- Förbättrat fokustillstånd för tangentbordsnavigation
+
+### Tekniska detaljer
+- Lagt till en ny CSS-sektion för tillgänglighetsförbättringar
+- Förbättrat JavaScript för menyhantering på mobila enheter
+- Lagt till hantering av aria-expanded och aria-controls attribut
+- Implementerat animationer för dropdown-menyer för bättre användarupplevelse
+
 ## 2025-06-24 - WCAG 2 förbättringar för färger och kontrast (del 13)
 
 ### Tillagt
@@ -249,7 +269,7 @@ Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 ## 2025-06-14 - Förbättrad navigering (del 7)
 
 ### Fixat
-- Förbättrad responsivitet och användarupplevelse för navigeringsmenyn (navbar) på både mobil och desktop. Hamburger-meny och dropdowns fungerar nu bättre på alla enheter.
+- Förbättrad responsivitet och användarupplevelse för navigeringsmenyn (navbar) på både mobil och desktop. Hamburger-meny och dropdowns fungerar nu bättre på alla enheter
 
 ### Tekniska detaljer
 - Navigeringsmenyn använder nu CSS Flexbox för bättre layoutkontroll

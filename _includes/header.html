@@ -9,24 +9,24 @@
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
         <label for="nav-trigger" class="nav-toggle-label" aria-label="Öppna meny">
           <span class="menu-icon">
-            <svg viewBox="0 0 18 15" width="18px" height="15px">
+            <svg viewBox="0 0 18 15" width="18px" height="15px" aria-hidden="true" focusable="false">
               <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
             </svg>
           </span>
         </label>
-        <div class="trigger">
+        <div class="trigger" id="site-navigation">
           <a class="page-link" href="{{ site.baseurl }}/">Hem</a>
           <div class="dropdown">
-            <a class="page-link dropdown-toggle" tabindex="0">Kategorier</a>
-            <div class="dropdown-content">
+            <a class="page-link dropdown-toggle" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="category-dropdown">Kategorier</a>
+            <div class="dropdown-content" id="category-dropdown">
               {% for category in site.category %}
                 <a href="{{ category.url | relative_url }}">{{ category.title }}</a>
               {% endfor %}
             </div>
           </div>
           <div class="dropdown">
-            <a class="page-link dropdown-toggle" tabindex="0">Senaste inlägg</a>
-            <div class="dropdown-content">
+            <a class="page-link dropdown-toggle" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="recent-posts-dropdown">Senaste inlägg</a>
+            <div class="dropdown-content" id="recent-posts-dropdown">
               {% for post in site.posts limit:5 %}
                 <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
               {% endfor %}
@@ -45,18 +45,42 @@
   </div>
 </header>
 <script>
-// Vänta på att DOM laddas
+  // Vänta på att DOM laddas
 document.addEventListener('DOMContentLoaded', function() {
   // Funktion för att stänga menyn när användaren klickar på en länk
   function setupMobileMenu() {
     const navTrigger = document.getElementById('nav-trigger');
+    const navLabel = document.querySelector('.nav-toggle-label');
     const menuLinks = document.querySelectorAll('.site-nav .page-link:not(.dropdown-toggle), .dropdown-content a');
+    const siteNavigation = document.getElementById('site-navigation');
+    
+    // Uppdatera aria-label baserat på menyns tillstånd
+    navTrigger.addEventListener('change', function() {
+      if (this.checked) {
+        navLabel.setAttribute('aria-label', 'Stäng meny');
+        navTrigger.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('menu-open');
+        document.body.style.overflow = 'hidden'; // Förhindra scrollning när menyn är öppen
+      } else {
+        navLabel.setAttribute('aria-label', 'Öppna meny');
+        navTrigger.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+        document.body.style.overflow = ''; // Återställ scrollning
+      }
+    });
+    
+    // Initiera aria-expanded för hamburgermenyn
+    navTrigger.setAttribute('aria-expanded', 'false');
+    navTrigger.setAttribute('aria-controls', 'site-navigation');
     
     // Stäng meny när en länk klickas
     menuLinks.forEach(function(link) {
       link.addEventListener('click', function() {
         navTrigger.checked = false;
+        navTrigger.setAttribute('aria-expanded', 'false');
+        navLabel.setAttribute('aria-label', 'Öppna meny');
         document.body.classList.remove('menu-open');
+        document.body.style.overflow = ''; // Återställ scrollning
       });
     });
     
@@ -83,15 +107,32 @@ document.addEventListener('DOMContentLoaded', function() {
           
           // Toggle dropdown-innehåll
           const content = this.nextElementSibling;
-          content.style.display = isExpanded ? 'none' : 'block';
+          if (isExpanded) {
+            content.style.display = 'none';
+            content.classList.remove('expanded');
+          } else {
+            content.style.display = 'block';
+            content.classList.add('expanded');
+          }
           
           // Stäng andra öppna dropdowns
           dropdownToggles.forEach(function(otherToggle) {
             if (otherToggle !== toggle) {
               otherToggle.setAttribute('aria-expanded', 'false');
-              otherToggle.nextElementSibling.style.display = 'none';
+              const otherContent = otherToggle.nextElementSibling;
+              otherContent.style.display = 'none';
+              otherContent.classList.remove('expanded');
             }
           });
+        }
+      });
+      
+      // Lägg till tangentbordsnavigering för dropdowns
+      toggle.addEventListener('keydown', function(e) {
+        // Öppna dropdown vid Enter eller Mellanslag
+        if ((e.key === 'Enter' || e.key === ' ') && window.innerWidth <= 700) {
+          e.preventDefault();
+          this.click();
         }
       });
     });
@@ -119,17 +160,53 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (window.innerWidth > 700) {
       // Desktop: återställ allt till default
-      dropdownContents.forEach(dropdown => dropdown.style.display = '');
+      dropdownContents.forEach(dropdown => {
+        dropdown.style.display = '';
+        dropdown.classList.remove('expanded');
+      });
       dropdownToggles.forEach(toggle => toggle.setAttribute('aria-expanded', 'false'));
     } else {
       // Mobil: stäng alla dropdowns
-      dropdownContents.forEach(dropdown => dropdown.style.display = 'none');
+      dropdownContents.forEach(dropdown => {
+        dropdown.style.display = 'none';
+        dropdown.classList.remove('expanded');
+      });
       dropdownToggles.forEach(toggle => toggle.setAttribute('aria-expanded', 'false'));
     }
     
     // Stäng hamburgermenyn vid storleksändring
-    document.getElementById('nav-trigger').checked = false;
+    const navTrigger = document.getElementById('nav-trigger');
+    const navLabel = document.querySelector('.nav-toggle-label');
+    
+    navTrigger.checked = false;
+    navTrigger.setAttribute('aria-expanded', 'false');
+    navLabel.setAttribute('aria-label', 'Öppna meny');
     document.body.classList.remove('menu-open');
+    document.body.style.overflow = ''; // Återställ scrollning
+  });
+  
+  // Lägg till escape-tangent för att stänga menyn
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const navTrigger = document.getElementById('nav-trigger');
+      const navLabel = document.querySelector('.nav-toggle-label');
+      
+      if (navTrigger.checked) {
+        navTrigger.checked = false;
+        navTrigger.setAttribute('aria-expanded', 'false');
+        navLabel.setAttribute('aria-label', 'Öppna meny');
+        document.body.classList.remove('menu-open');
+        document.body.style.overflow = '';
+        
+        // Stäng alla dropdowns
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        dropdownToggles.forEach(toggle => {
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.nextElementSibling.style.display = 'none';
+          toggle.nextElementSibling.classList.remove('expanded');
+        });
+      }
+    }
   });
 });
 </script>
