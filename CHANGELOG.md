@@ -2,6 +2,26 @@
 
 Denna fil innehåller en historik över ändringar som gjorts i bloggen.
 
+## 2025-06-24 - Förbättrad paginering med modern design (del 18)
+
+### Tillagt
+- Helt omdesignad paginering med tydliga navigeringsknappar
+- Visuell indikator för föregående/nästa med pilar istället för punkter
+- Sidonumrering som visar flera sidor samtidigt för enklare navigation
+- Ellipsis (...) för att indikera att det finns fler sidor
+
+### Fixat
+- Ersatt enkla punkter (•) med tydliga "Föregående" och "Nästa" knappar
+- Förbättrat tillgänglighet med aria-attribut för skärmläsare
+- Lagt till responsiv design som anpassar sig till mobilskärmar
+- Konsekvent design i både ljust och mörkt tema
+
+### Tekniska detaljer
+- Förbättrad Liquid-logik för att visa relevanta sidonummer
+- Intelligent hantering av första/sista sidan och ellipsis
+- Förbättrad stilsättning med flexbox för bättre layout
+- Tydligare visuellt tillstånd för inaktiva navigeringsknappar
+
 ## 2025-06-24 - Förbättrad läsbarhet för kodblock i mörkt läge (del 17)
 
 ### Tillagt

@@ -63,15 +63,54 @@ layout: default
       <div class="pager">
         <ul class="pagination">
         {%- if paginator.previous_page %}
-          <li><a href="{{ paginator.previous_page_path | relative_url }}" class="previous-page">{{ paginator.previous_page }}</a></li>
+          <li><a href="{{ paginator.previous_page_path | relative_url }}" class="previous-page" aria-label="Föregående sida"><span aria-hidden="true">←</span><span class="pagination-text"> Föregående</span></a></li>
         {%- else %}
-          <li><div class="pager-edge">•</div></li>
+          <li><div class="pager-edge disabled" aria-label="Ingen föregående sida"><span aria-hidden="true">←</span><span class="pagination-text"> Föregående</span></div></li>
         {%- endif %}
-          <li><div class="current-page">{{ paginator.page }}</div></li>
+          
+        {%- if paginator.total_pages > 1 -%}
+          {%- assign page_start = paginator.page | minus: 2 -%}
+          {%- if page_start < 1 -%}
+            {%- assign page_start = 1 -%}
+          {%- endif -%}
+          
+          {%- assign page_end = page_start | plus: 4 -%}
+          {%- if page_end > paginator.total_pages -%}
+            {%- assign page_end = paginator.total_pages -%}
+            {%- assign page_start = page_end | minus: 4 -%}
+          {%- endif -%}
+          
+          {%- if page_start < 1 -%}
+            {%- assign page_start = 1 -%}
+          {%- endif -%}
+          
+          {%- if page_start > 1 -%}
+            <li><a href="{{ site.paginate_path | relative_url | replace: ':num', '1' }}" class="page-number">1</a></li>
+            {%- if page_start > 2 -%}
+              <li><span class="pagination-ellipsis">&hellip;</span></li>
+            {%- endif -%}
+          {%- endif -%}
+          
+          {%- for page in (page_start..page_end) -%}
+            {%- if page == paginator.page -%}
+              <li><div class="current-page">{{ page }}</div></li>
+            {%- else -%}
+              <li><a href="{{ site.paginate_path | relative_url | replace: ':num', page }}" class="page-number">{{ page }}</a></li>
+            {%- endif -%}
+          {%- endfor -%}
+          
+          {%- if page_end < paginator.total_pages -%}
+            {%- if page_end < paginator.total_pages | minus: 1 -%}
+              <li><span class="pagination-ellipsis">&hellip;</span></li>
+            {%- endif -%}
+            <li><a href="{{ site.paginate_path | relative_url | replace: ':num', paginator.total_pages }}" class="page-number">{{ paginator.total_pages }}</a></li>
+          {%- endif -%}
+        {%- endif -%}
+          
         {%- if paginator.next_page %}
-          <li><a href="{{ paginator.next_page_path | relative_url }}" class="next-page">{{ paginator.next_page }}</a></li>
+          <li><a href="{{ paginator.next_page_path | relative_url }}" class="next-page" aria-label="Nästa sida"><span class="pagination-text">Nästa </span><span aria-hidden="true">→</span></a></li>
         {%- else %}
-          <li><div class="pager-edge">•</div></li>
+          <li><div class="pager-edge disabled" aria-label="Ingen nästa sida"><span class="pagination-text">Nästa </span><span aria-hidden="true">→</span></div></li>
         {%- endif %}
         </ul>
       </div>
