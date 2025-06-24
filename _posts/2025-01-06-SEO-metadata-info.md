@@ -2,7 +2,7 @@
 layout: post
 title: "SEO - Search Engine Optimizing - Metadata taggar"
 date: 2025-01-06
-category: "HTML-Code"
+category: "HTML-Code,Programmering"
 ---
 
 Info om vilka meta-data taggar man kan använda på en webbsida.

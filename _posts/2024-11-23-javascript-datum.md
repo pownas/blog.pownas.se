@@ -2,7 +2,7 @@
 layout: post
 title: "JavaScript formatering av datum med toLocaleDateString()"
 date: 2024-11-23
-category: "JavaScript-Code"
+category: "JavaScript-Code,Programmering"
 ---
 
 Info om datum och tid, formatering i JavaScript (för t.ex. Api användning):

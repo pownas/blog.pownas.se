@@ -2,7 +2,7 @@
 layout: post
 title: "Använda HTML attribut data-* och dess DOM dataset.property"
 date: 2024-12-03
-category: "HTML-Code,JavaScript-Code"
+category: "HTML-Code,JavaScript-Code,Programmering"
 ---
 
 Info om hur man kan använda HTML attributen ```data-*``` och dess DOM property ```dataset.property```.

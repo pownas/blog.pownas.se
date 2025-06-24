@@ -2,7 +2,7 @@
 layout: post
 title: "Massor av ny kunskap och inspiration efter DevSum 2025"
 date: 2025-06-14
-category: "Konferens"
+category: "Konferens,Programmering"
 ---
 
 ### En inspirerande konferensupplevelse

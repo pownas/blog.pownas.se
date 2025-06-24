@@ -2,7 +2,7 @@
 layout: post
 title: "Webbaserade verktyg för .NET!"
 date: 2022-05-30
-category: ".NET"
+category: ".NET,Programmering"
 ---
 
 Det senaste året har varit väldigt mycket pluggande och lära känna .NET och React. 

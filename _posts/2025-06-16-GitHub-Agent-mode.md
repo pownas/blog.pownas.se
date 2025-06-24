@@ -2,7 +2,7 @@
 layout: post
 title: "GitHub Agent mode inspiration i helgen"
 date: 2025-06-16
-category: "Ai,GitHub"
+category: "Ai,GitHub,Copilot,Programmering"
 ---
 
 ### En inspirerande helg med GitHub Agent Mode

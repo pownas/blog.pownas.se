@@ -2,7 +2,7 @@
 layout: post
 title: "Första december - ny Advent of Code!"
 date: 2020-12-01
-category: "Advent-of-Code"
+category: "Advent-of-Code,Programmering"
 ---
 
 Idag öppnades julkalendern! Både "Advent of code" (https://adventofcode.com/2020) , samt min goda Johan Bülow Lakrids kalender! 😋
