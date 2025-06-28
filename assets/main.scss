@@ -453,6 +453,24 @@ body {
   color: white;
 }
 
+/* Bildhantering i bloggposter */
+article div p img
+{
+  max-width: 90%;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+}
+
+.image-description
+{
+  font-size: 0.9em;
+  color: var(--meta-color);
+  text-align: center;
+  margin-top: 5px;
+}
+
+
 /* =========================================
    5. RESPONSIV DESIGN
    ========================================= */
