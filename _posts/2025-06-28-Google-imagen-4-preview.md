@@ -7,6 +7,7 @@ category: "Ai"
 
 Idag ramlade jag via [Feber](https://feber.se/internet/google-slapper-imagen-4/481021/) över Googles nya imagen 4 preview. 
 Det är galet vad man nu kan skapa med prompts, så som exemplet de hade själva på Google en prompt:
+
 ```
 A 3-panel cosmic epic comic. Panel 1: Tiny 'Stardust' in nebula; radar shows anomaly (text 'ANOMALY DETECTED'), hull text 'stardust'. Pilot whispers. Panel 2: Bioluminescent leviathan emerges; console red text 'WARNING!. Panel 3: Leviathan chases ship through asteroids; console re text 'SHIELD CRITICAL!', screen text 'EVADE!'. Pilot screams, SFX 'CRUNCH!', 'ROOOOAAARR!'.
 ```
