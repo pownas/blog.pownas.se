@@ -7,8 +7,13 @@ category: "Ai"
 
 Idag ramlade jag via [Feber](https://feber.se/internet/google-slapper-imagen-4/481021/) över Googles nya imagen 4 preview. 
 
-Det är galet vad man nu kan skapa med prompts, så som:
+Det är galet vad man nu kan skapa med prompts, 
+så som exemplet de hade själva på Google:
+```
 
+```
+
+Gjorde att jag ville testa att skapa en egen med en enhörning och ekorre via:  
 ```
 A 3-panel cosmic epic comic. 
 Panel 1: A unicorn walking into a Forrest saying 
