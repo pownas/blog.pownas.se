@@ -14,7 +14,7 @@ A 3-panel cosmic epic comic. Panel 1: Tiny 'Stardust' in nebula; radar shows ano
 
 Som gav resultatet:
 
-![Imagen 4 Ultra - A 3-panel cosmic epic comic](/img/blogposts/2025-06-28-Google-imagen-4-exempel.png)  
+![Imagen 4 Ultra - A 3-panel cosmic epic comic](/img/blogposts/2025-06-28-Google-imagen-4-exempel.jpg)  
 <div class="image-description">Imagen 4 Ultra - A 3-panel cosmic epic comic</div>
 
 
