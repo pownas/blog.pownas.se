@@ -81,8 +81,8 @@ Men sätt gärna igång och testa du med för att lära dig skapa bra Ai-promts.
 
 
 Länk till Google imagen 4 preview:  
-https://aistudio.google.com/app/prompts/new_image?model=imagen-4.0-generate-preview-06-06
+[https://aistudio.google.com/app/prompts/new_image?model=imagen-4.0-generate-preview-06-06](https://aistudio.google.com/app/prompts/new_image?model=imagen-4.0-generate-preview-06-06)
 
 
 Källa från Feber:  
-https://feber.se/internet/google-slapper-imagen-4/481021/
+[https://feber.se/internet/google-slapper-imagen-4/481021](https://feber.se/internet/google-slapper-imagen-4/481021)
