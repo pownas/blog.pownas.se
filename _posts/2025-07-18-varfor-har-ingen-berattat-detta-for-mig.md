@@ -1,11 +1,9 @@
 ---
 layout: post
-title: "Varför har ingen berättat detta för mig?"
+title: "📘 Varför har ingen berättat detta för mig? — En bok som förändrade mitt sätt att tänka"
 date: 2025-07-18 12:04:53 +0200
 category: "livsstil"
 ---
-
-# 📘 Varför har ingen berättat detta för mig? — En bok som förändrade mitt sätt att tänka
 
 *"Varför har ingen berättat detta för mig?"* av Dr. Julie Smith är en bok som verkligen lever upp till sin titel. Det är inte bara en samling psykologiska insikter, utan en handbok för hur man tar hand om sitt mentala välmående — för alla, inte bara de som mår dåligt.
 
