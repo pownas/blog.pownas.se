@@ -303,8 +303,16 @@ body {
   color: var(--text-color);
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
+/* Desktop hover behavior - endast för större skärmar och när dropdown inte är aktivt klickad */
+@media (min-width: 701px) {
+  .dropdown:hover .dropdown-content:not(.expanded) {
+    display: block;
+  }
+}
+
+/* När dropdown är aktivt klickad, visa den */
+.dropdown-content.expanded {
+  display: block !important;
 }
 
 .dropdown-toggle::after {
@@ -524,7 +532,7 @@ p, .post-content p {
     box-shadow: none;
     border-radius: 0;
     overflow-y: auto;
-    padding-top: 60px;
+    padding-top: 50px;
   }
   
   .nav-trigger:checked ~ .trigger {
@@ -546,9 +554,9 @@ p, .post-content p {
   .page-link {
     width: 100%;
     text-align: left;
-    padding: 18px 24px;
+    padding: 12px 20px;
     border-bottom: 1px solid var(--border-color);
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
 }
 
