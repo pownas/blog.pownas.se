@@ -23,6 +23,24 @@
 @import "minima";
 
 /* =========================================
+   0. GRUNDLÄGGANDE LAYOUT OCH RESPONSIVITET
+   ========================================= */
+/*
+ * Grundläggande inställningar för att förhindra horisontellt scrollande
+ * och säkerställa korrekt box-sizing på alla element.
+ */
+
+/* Förhindra horisontellt scrollande och säkerställ korrekt box-sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* =========================================
    1. TEMA-VARIABLER OCH MÖRKT LÄGE
    ========================================= */
 /* 
@@ -279,7 +297,7 @@ body {
   display: none;
   position: absolute;
   background-color: var(--dropdown-bg, var(--light-bg));
-  min-width: 200px;
+  min-width: min(200px, 90vw);
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   border-radius: 3px;
@@ -464,7 +482,7 @@ body {
 /* Bildhantering i bloggposter */
 article div p img
 {
-  max-width: 90%;
+  max-width: 100%;
   height: auto;
   display: block;
   margin: 10px auto;
@@ -524,9 +542,9 @@ p, .post-content p {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
-    max-width: 100vw;
+    max-width: 100%;
     min-width: 0;
     z-index: 2000;
     box-shadow: none;
