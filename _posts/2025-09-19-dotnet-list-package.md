@@ -39,10 +39,10 @@ Project `ArvidsonFoto.Tests.Unit` has the following updates to its packages
 
 Då kan man enkelt se vilka paket man har som behöver uppdateras och vad som är senaste versionen. 
 
--------------------------
 
 Mer info om `dotnet list package` på engelska: 
 
+-------------------------
 
 The dotnet list package command is used to list NuGet package references for a project or solution. It provides details about installed packages, their versions, and can also identify outdated or vulnerable packages.
 
@@ -81,8 +81,8 @@ This command is highly useful for maintaining and auditing NuGet dependencies in
 ------------
 
 Läs mer via Microsoft Learn:  
-https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-dotnet-cli
+[https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-dotnet-cli](https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-dotnet-cli)
 
 Och även:  
-https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-package-list
+[https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-package-list](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-package-list)
 
