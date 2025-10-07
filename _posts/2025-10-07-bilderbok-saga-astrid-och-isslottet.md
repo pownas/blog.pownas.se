@@ -47,12 +47,12 @@ Projektet består av tre filer:
 
 <pre class="mermaid">
 graph TD
-    A[index.html<br/>Grundstruktur: bild, text, knappar för att bläddra]
-    B[style.css<br/>Bokdesign: mjuka färger, ram runt bilder, stor läsbar text]
-    C[script.js<br/>Berättelse (JS-array/JSON) och logik för att byta sida, visa bild och text]
+    html[<b>index.html</b><br/>Grundstruktur: bild, text, knappar för att bläddra]
+    css[<b>style.css</b><br/>Bokdesign: mjuka färger, ram runt bilder, stor läsbar text]
+    js[<b>script.js</b><br/>Berättelse JS-array/JSON och logik för att byta sida, visa bild och text]
 
-    A --> B
-    A --> C
+    html --> css
+    html --> js
 </pre>
 
 Allt hostas statiskt, så du kan läsa boken direkt utan installation eller backend.
