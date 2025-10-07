@@ -2,7 +2,7 @@
 layout: post
 title: "Bilderbok: Astrid och isslottens värld"
 date: 2025-10-07 23:44:22 +0200
-category: "livsstil,ai,c-sharp,.NET,programmering"
+category: "livsstil,ai,HTML-code,JavaScript-code,css,programmering"
 ---
 
 # Hur jag skapade "Astrid och Isslottens värld" – en AI-genererad bilderbok med bara HTML, JavaScript och CSS
