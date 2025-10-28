@@ -1,4 +1,11 @@
-# Så byggde jag appen Privatekonomi – från idé till komplett privatekonomi-app i .NET
+---
+layout: post
+title: "Så byggde jag appen Privatekonomi"
+date: 2025-10-28 07:55:32 +0200
+category: "Ai"
+---
+
+– från idé till komplett privatekonomi-app i .NET
 
 Jag har länge velat ha ett verktyg som ger mig verklig kontroll över min 
 privatekonomi – något som är snabbt, privat, körs lokalt eller i mitt eget moln
