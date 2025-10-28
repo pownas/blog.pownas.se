@@ -2,7 +2,7 @@
 layout: post
 title: "Så byggde jag appen Privatekonomi"
 date: 2025-10-28 07:55:32 +0200
-category: "Ai"
+category: "Ai,c-sharp,.NET,programmering"
 ---
 
 – från idé till komplett privatekonomi-app i .NET
