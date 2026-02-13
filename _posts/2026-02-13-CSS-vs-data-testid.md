@@ -53,25 +53,28 @@ De största fördelarna
 1. Frippling (Decoupling) och Stabilitet
 Detta är den största vinsten. Du kan göra en total redesign av din sajt, byta från Bootstrap till Tailwind, och ändra hela HTML-strukturen. Så länge knappen fortfarande har kvar sitt data-testid="purchase-btn", kommer testet att passera. Dina tester blir motståndskraftiga mot förändring.
 2. Tydlighet och Intention
-Jämför dessa två selectors i en testfil:
- * `page.Locator(".modal-footer > .btn-success").Click()` (eller i Cypress: `cy.get('.modal-footer > .btn-success').click()`)
- * `page.GetByTestId("accept-terms-modal-button").Click()` (eller i Cypress: `cy.get('[data-testid="accept-terms-modal-button"]').click()`)
-Vilken är av dessa lättast att förstå sex månader senare? Det dedikerade attributet beskriver vad elementet är till för, inte var det råkar befinna sig just nu.
+Jämför dessa två selectors i en testfil för PlayWright (C#):
+ * `page.Locator(".modal-footer > .btn-success").Click()`
+ * `page.GetByTestId("accept-terms-modal-button").Click()`
+ eller i Cypress testfil:
+ * `cy.get('.modal-footer > .btn-success').click()`
+ * `cy.get('[data-testid="accept-terms-modal-button"]').click()`
+Vilken är av dessa lättast att förstå sex månader senare? `'.modal-footer > .btn-success'` eller `"accept-terms-modal-button"` Det dedikerade attributet beskriver vad elementet är till för, inte var det råkar befinna sig just nu.
 3. Snabbare testutveckling
 Testare/QA-ingenjörer behöver inte gissa sig till komplexa CSS-selectors eller be utvecklare lägga till unika ID:n. De kan enkelt hitta elementen de behöver, och om de saknas är det tydligt vad som behöver läggas till.
-Men vänta... vad hände med tillgänglighet (A11y)?
+Men vänta... vad hände med tillgänglighet (A11y/WCAG)?
 Det finns en viktig nyans här. I den moderna testskolan (särskilt populäriserad av Kent C. Dodds och Testing Library) finns det en hierarki av selectors.
 Attributet data-testid är fantastiskt, men det ska faktiskt inte vara ditt förstaval.
 Den gyllene regeln är: Testa din applikation så som en användare använder den.
 En användare (särskilt de som använder skärmläsare) letar inte efter CSS-klasser eller dolda data-attribut. De letar efter knappar med texten "Spara", eller formulärfält med etiketten "E-post".
 Prioriteringsordningen för selectors:
  * Använd semantiska roller och labels (BÄST):
-   * getByRole('button', { name: /spara/i })
-   * getByLabelText('Användarnamn')
+   * `getByRole('button', { name: /spara/i })`
+   * `getByLabelText('Användarnamn')`
    * Varför? Om du kan välja elementet baserat på dess tillgänglighetsroll, vet du att ditt test fungerar OCH att din app är tillgänglig. Två flugor i en smäll.
- * Använd data-testid (NÄST BÄST):
-   * Ibland går det inte att använda semantiska roller. Du kanske måste klicka på en <div> som agerar som en custom dropdown, eller en <span> som visar ett felmeddelande utan en tydlig roll.
-   * Det är här data-testid skiner. Det är din "escape hatch" när semantisk HTML inte räcker till.
+ * Använd `data-testid` (NÄST BÄST):
+   * Ibland går det inte att använda semantiska roller. Du kanske måste klicka på en `<div>` som agerar som en custom dropdown, eller en `<span>` som visar ett felmeddelande utan en tydlig roll.
+   * Det är här `data-testid` skiner. Det är din "escape hatch" när semantisk HTML inte räcker till.
 
 ## Hur kan vi visualisera sidans `data-testid`?
 Det finns flera sätt att göra detta på, beroende på om du vill ha ett dedikerat verktyg (extension) eller en snabb lösning direkt i webbläsaren.
@@ -168,3 +171,7 @@ Det är en liten investering i tid när du skriver HTML-koden, men det betalar s
 
 Börja gärna använda det idag. Ditt framtida jag (och din Test(/QA)-avdelning) kommer att tacka dig.
 
+### Mer information
+* PlayWright - Locators: https://playwright.dev/docs/locators
+* Cypress - Find/Get: https://docs.cypress.io/api/commands/find
+* Testing Library - Queries: https://testing-library.com/docs/queries/about
