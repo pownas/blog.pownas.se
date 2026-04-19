@@ -88,6 +88,39 @@ Om du föredrar Docker:
 docker run --rm -p 4000:4000 -v $(pwd):/site bretfisher/jekyll-serve
 ```
 
+### Windows: PowerShell + Podman (utan Docker Desktop)
+
+Följande steg fungerar på en ren Windows-maskin med PowerShell:
+
+1. Installera Podman Desktop (inkluderar Podman CLI):
+   ```powershell
+   winget install -e --id RedHat.Podman-Desktop
+   ```
+   Om `winget` inte finns, installera manuellt från https://podman-desktop.io/downloads
+
+2. Starta/initialisera Podman Machine:
+   ```powershell
+   podman machine init
+   podman machine start
+   ```
+
+3. Gå till repot i PowerShell och starta bloggen i container:
+   ```powershell
+   cd C:\path\to\blog.pownas.se
+   podman run --rm -it -p 4000:4000 -v "${PWD}:/site" docker.io/bretfisher/jekyll-serve
+   ```
+
+4. Öppna sajten i webbläsaren:
+   - http://localhost:4000
+   - Om porten är upptagen, byt till t.ex. `-p 4001:4000` och öppna http://localhost:4001
+
+#### Vanlig felsökning (Windows/Podman)
+
+- `podman machine` hittas inte: starta om PowerShell efter installation, eller kontrollera att Podman ligger i `PATH`.
+- Fel vid första start av machine: kör `podman machine rm -f` och sedan `podman machine init` igen.
+- Volymmontering fungerar inte: kontrollera att du kör kommandot i rätt mapp och att `${PWD}` pekar på repo-roten.
+- Sidan laddar inte: verifiera att containern körs och att rätt port är publicerad med `podman ps`.
+
 ## Skapa innehåll
 
 ### Bloggposter
