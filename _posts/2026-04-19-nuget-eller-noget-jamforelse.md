@@ -1,58 +1,91 @@
 ---
 layout: post
-title: "NuGet eller NoGet (No Get) – en jämförelse"
+title: "NuGet eller NoGet: En policy för hantering av paketberoenden i .NET-projekt"
 date: 2026-04-19 10:37:14 +0200
 category: "c-sharp,.NET,programmering"
 ---
 
-I två tidigare poster diskuteras samma kärnfråga från olika håll:
+Inom modern .NET-utveckling är lösningen ofta ett `dotnet add package` bort. Det är fantastiskt för produktiviteten, men varje ny dependency är också ett långsiktigt åtagande.
 
-1. [NuGet eller Noget – det är frågan?](https://blogg.thomasbjork.net/nuget-eller-noget-det-ar-fragan/)
-2. [Ersätt NuGet med Noget?](https://blogg.thomasbjork.net/ersatt-nuget-med-noget/)
+Så frågan är inte "NuGet eller NoGet" som ett svartvitt val, utan hur vi gör medvetna val.
 
-Här är en sammanfattning för dig som vill förstå resonemanget snabbt.
+Inspirerad av:
 
-## Vad menas med NoGet?
+1. [NuGet eller NoGet, det är frågan](https://blogg.thomasbjork.net/nuget-eller-noget-det-ar-fragan/)
+2. [Ersätt NuGet med NoGet: Priset vi betalar för Install-Package](https://blogg.thomasbjork.net/ersatt-nuget-med-noget/)
 
-**NoGet ("no get")** handlar om att medvetet minimera eller undvika externa paketberoenden. Tanken är att i större utsträckning bygga och förvalta funktionalitet i den egna källkoden, istället för att hämta in många tredjepartsbibliotek.
+Här är en praktisk policy/checklista att använda i teamet innan ni tar in ett nytt paket.
 
-## NuGet – styrkor
+## 1. Underhåll och Lindy-effekten
 
-NuGet är effektivt när du vill:
+- **Senaste uppdatering:** Har paketet uppdaterats senaste året?
+- **Community-aktivitet:** Svarar maintainers på issues och PR:er?
+- **Nedladdningar:** Många användare är ingen garanti, men ett tecken på att paketet testats brett.
 
-- komma igång snabbt
-- återanvända välbeprövade lösningar
-- slippa uppfinna hjulet
-- dra nytta av ett stort ekosystem
+Ett paket som stått still i flera år i en aktiv teknikstack är en tydlig varningssignal.
 
-För mycket som är standardiserat eller icke-affärskritiskt är NuGet ofta ett rimligt val.
+## 2. Kartlägg transitiva beroenden
 
-## NoGet – argumenten för bytet
+Ett litet paket kommer sällan ensamt. I praktiken får du ofta med dig flera lager av transitiva beroenden.
 
-I resonemanget kring "ersätt NuGet med NoGet" lyfts särskilt att du får bättre kontroll över:
+- **Regel:** Om ett enkelt hjälpbibliotek drar in ett stort träd av dependencies, leta alternativ.
+- **Kommando:**  
+  ```bash
+  dotnet list package --include-transitive
+  ```
 
-- **källkoden** (du vet exakt vad som körs)
-- **säkerhet och leveranskedja** (färre externa beroenden att granska)
-- **förutsägbarhet över tid** (mindre risk att externa uppdateringar bryter din lösning)
-- **underhåll av affärskritisk logik** (kunskapen stannar i teamet)
+Dependency hell börjar ofta här: versionskonflikter, svårdebuggade runtime-problem och högre attackyta.
 
-Kort sagt: mindre beroende av andras roadmap och releasecykler.
+## 3. Licensgranskning (ingen kompromiss)
 
-## Nackdelar att väga in
+- **Grönt ljus:** MIT, Apache 2.0, BSD.
+- **Rött ljus (granska extra noga):** GPL/LGPL i kommersiella sammanhang.
 
-NoGet är inte gratis. Du byter beroenderisk mot eget ansvar:
+Licensfrågan är inte teknikromantik. Den är juridik.
 
-- mer kod att skriva och testa själv
-- större krav på intern kompetens
-- högre initial utvecklingskostnad
+## 4. Kompatibilitet och lock-in
 
-Därför blir den praktiska frågan sällan "allt NuGet" eller "allt NoGet", utan **var gränsen ska dras**.
+- Stödjer paketet era target frameworks (t.ex. moderna .NET-versioner)?
+- Fungerar det på Linux och Windows om ni kör blandat?
+- Har det dolda kopplingar till plattformsspecifika API:er?
 
-## En pragmatisk tumregel
+Ett enda paket som släpar efter kan blockera en hel uppgradering av plattformen.
 
-Ett balanserat arbetssätt kan vara:
+## 5. Make vs Buy: 60-minutersregeln
 
-- använd NuGet för generiska, mogna och utbytbara funktioner
-- överväg NoGet för central domänlogik och kritiska delar där kontroll är viktigast
+Ställ alltid frågan:
 
-Poängen i de två inläggen är just detta vägval: gör beroenden till ett aktivt arkitekturbeslut, inte en vana.
+> "Kan vi implementera detta själva på under en timme?"
+
+Om svaret är ja för en nischad funktion är NoGet ofta det bättre valet långsiktigt.
+
+## 6. Bus factor och säkerhet
+
+- Är projektet beroende av en enda maintainer?
+- Finns kända sårbarheter (CVEs)?
+- Har ni verktyg i pipeline för att upptäcka risker tidigt?
+
+Varje externt paket är ett förtroende till en främmande leveranskedja.
+
+## Praktiska verktyg i vardagen
+
+- **NuGetTrends.com** – se om ett paket växer eller dör ut.
+- **Fuget.org** – inspektera API och implementation innan installation.
+- **dotnet-outdated** – hitta paket som halkat efter.
+- **Dependabot/GitHub Security** – fånga kända sårbarheter.
+
+## En enkel teampolicy (förslag)
+
+Inga nya paket tas in utan att PR:n beskriver:
+
+1. Varför paketet behövs.
+2. Alternativ som övervägts (inklusive NoGet).
+3. Licens.
+4. Transitiva beroenden.
+5. Exit-strategi om paketet blir övergivet.
+
+## Sammanfattning
+
+NuGet är ett kraftfullt verktyg, men NoGet är en nyttig motvikt. Målet är inte att undvika alla beroenden, utan att välja rätt beroenden av rätt skäl.
+
+Gör beroenden till ett arkitekturbeslut, inte en reflex.
