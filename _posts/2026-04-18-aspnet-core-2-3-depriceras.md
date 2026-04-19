@@ -33,6 +33,8 @@ Varför .NET 10 är ett bättre mål:
 
 Att gå mot .NET Framework 4.8 kan kännas tryggt kortsiktigt, men blir ofta dyrare långsiktigt.
 
+- ASP.NET Core 2.3 har bara haft ett tidsbegränsat stöd på .NET Framework. Vid end of support 2027-04-07 upphör även det.
+- För att köra supportad **ASP.NET Core på .NET 10** behöver du modern .NET, inte .NET Framework 4.8.
 - .NET Framework 4.8 är i praktiken en slutstation, inte framtidsplattformen.
 - Plattformen är Windows-bunden, vilket minskar flexibiliteten i driftmiljö.
 - Du riskerar en dubbel migrering: först till 4.8, sedan ändå till modern .NET.
