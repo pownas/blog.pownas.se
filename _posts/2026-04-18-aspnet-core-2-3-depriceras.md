@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "ASP.NET Core 2.3 blir depricerad – planera migration innan 2027-04-07"
+title: "ASP.NET Core 2.3 blir deprecierad – planera migration innan 2027-04-07"
 date: 2026-04-18 09:00:00 +0200
 category: "c-sharp,.NET,programmering"
 ---
 
 ASP.NET Core utvecklades som den moderna, öppna och plattformsoberoende efterföljaren till klassisk ASP.NET. Nu är det dags att agera för team som fortfarande använder ASP.NET Core 2.3.
 
-## 1. ASP.NET Core 2.3 blir depricerad
+## 1. ASP.NET Core 2.3 blir deprecierad
 
 Microsoft har annonserat att ASP.NET Core 2.3 når **end of support 2027-04-07**. Efter det datumet ska man räkna med att versionen inte längre får support eller säkerhetsuppdateringar.
 
