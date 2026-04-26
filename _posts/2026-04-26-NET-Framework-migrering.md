@@ -1,11 +1,9 @@
 ---
 layout: post
-title: "Från .NET och Windows Server legacy till framtid"
+title: "Från legacy till framtid: Låt Windows Servers livscykel bli språngbrädan till .NET 10"
 date: 2026-04-26 07:37:14 +0200
 category: "c-sharp,.NET,programmering"
 ---
-
-## Från legacy till framtid: Låt Windows Servers livscykel bli språngbrädan till .NET 10
 
 Att hålla koll på livscykeln för sina servrar är en klassisk IT-utmaning. Windows Server styrs av Microsofts **Fixed Lifecycle Policy**, vilket innebär 10 års total support innan systemet når sitt End of Life (EOL) och kranen för säkerhetsuppdateringar stängs helt. 
 
