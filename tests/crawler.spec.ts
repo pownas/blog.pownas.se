@@ -16,6 +16,12 @@ async function crawl(page: Page, url: string) {
 
   try {
     const response = await page.goto(normalizedUrl, { waitUntil: 'domcontentloaded' });
+    
+    // Kontrollera att vi faktiskt fick ett svar
+    if (!response) {
+      throw new Error(`Fick inget svar från sidan: ${normalizedUrl}`);
+    }
+
     // Vi accepterar inte serverfel (5xx) eller clientfel (4xx), förutom 404 som vi loggar separat.
     if (response.status() >= 400) {
       console.error(`Felstatus ${response.status()} för ${normalizedUrl}`);
@@ -40,14 +46,18 @@ async function crawl(page: Page, url: string) {
 }
 
 test.describe('Crawler för trasiga länkar', () => {
-    test('ska crawla alla interna länkar utan att hitta fel', async ({ page }) => {
-      baseUrl = page.context()._options.baseURL;
+    test('ska crawla alla interna länkar utan att hitta fel', async ({ page, baseURL }) => {
+      if (!baseURL) {
+        throw new Error("baseURL är inte definierat i Playwright-konfigurationen.");
+      }
+      baseUrl = baseURL;
       const startUrl = baseUrl;
       internalLinks.add(startUrl);
 
       // Använd en while-loop för att hantera dynamiskt upptäckta länkar
       while (internalLinks.size > 0) {
-        const nextUrl = internalLinks.values().next().value;
+        // Hämta första elementet från Set på ett typsäkert sätt
+        const [nextUrl] = [...internalLinks]; 
         internalLinks.delete(nextUrl);
         await crawl(page, nextUrl);
       }

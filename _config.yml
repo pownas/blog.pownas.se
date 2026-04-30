@@ -5,7 +5,7 @@ author: Pownas
 email: pownas@outlook.com
 description: > # this means to ignore newlines until "baseurl:"
   En kort blogg skapad med hjälp av GitHub Copilot AI Agent och GitHub Pages för att få en fungerande blogg.
-baseurl: "/" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://blog.pownas.se" # the base hostname & protocol for your site
 
 # Build settings

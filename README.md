@@ -101,27 +101,54 @@ För att köra denna blogg lokalt utan containrar behöver du Ruby och Jekyll. F
 #### Installation
 
 1. Klona repot:
-   ```bash
+   ```powershell
    git clone https://github.com/pownas/blog.pownas.se.git
    cd blog.pownas.se
    ```
 
 2. Installera beroenden:
-   ```bash
+   ```powershell
    bundle install
    ```
 
 3. Starta Jekyll-servern:
-   ```bash
+   ```powershell
    bundle exec jekyll serve
    ```
 
    För snabbare byggning under utveckling:
-   ```bash
+   ```powershell
    bundle exec jekyll serve --incremental
    ```
 
 4. Besök [http://localhost:4000](http://localhost:4000) i din webbläsare.
+
+## Köra projektet lokalt
+
+Det rekommenderade sättet att köra bloggen lokalt är via Podman. Detta säkerställer att du använder samma Ruby-miljö som i produktion utan att behöva installera Ruby på din egen dator.
+
+### 1. Bygg containern
+Första gången, eller om du ändrat `Gemfile`, behöver du bygga din container-image. Kör detta från projektets rot:
+```powershell
+podman build -t localhost/blog-site .
+```
+
+### 2. Starta bloggen
+Kör följande kommando för att starta en webbserver på `http://localhost:4000`:
+```powershell
+podman run --rm -p 4000:4000 -v "${PWD}:/usr/src/app" localhost/blog-site
+```
+Bloggen kommer nu att vara tillgänglig i din webbläsare.
+
+**Angående inkrementell uppdatering:**  
+Du behöver **inte** bygga om din container (`podman build`) för varje text- eller designändring. Tack vare volymmonteringen (`-v`) och Jekylls `--watch`-läge kommer din sajt att **automatiskt och inkrementellt uppdateras** så fort du sparar en fil. Bygg bara om containern om du har ändrat i `Gemfile`.
+
+### 3. Uppdatera `Gemfile.lock` (viktigt)
+Om du har ändrat din `Gemfile` och behöver uppdatera `Gemfile.lock`, behöver du *inte* installera Ruby lokalt. Kör istället följande kommando. Det startar en tillfällig container som bara kör `bundle install` och sedan stänger ner sig.
+```powershell
+podman run --rm -v "${PWD}:/usr/src/app" localhost/blog-site bundle install
+```
+Detta kommer att uppdatera `Gemfile.lock` i din lokala projektmapp. Checka in den uppdaterade filen i Git efteråt.
 
 ## Skapa innehåll
 

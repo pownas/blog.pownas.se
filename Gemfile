@@ -4,9 +4,6 @@ gem "jekyll", "~> 4.4.1"
 gem "jekyll-sass-converter", "~> 2.0"
 gem "minima", "~> 2.5.1"
 gem "kramdown-parser-gfm", "~> 1.1.0"
-gem "jekyll-feed", "~> 0.15.1"
-gem "jekyll-paginate", "~> 1.1.0"
-gem "jekyll-seo-tag", "~> 2.7.1"
 gem "webrick", "~> 1.7"
 
 group :jekyll_plugins do
