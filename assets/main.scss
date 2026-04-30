@@ -1,103 +1,244 @@
 ---
 ---
-/*
- * main.scss
- * 
- * Detta är huvud-Sass-filen för vår webbplats.
- * Den innehåller alla stilar och anpassningar som behövs
- * för att skapa en responsiv, mörkt och ljust tema,
- * samt ett kategorisystem för bloggposter.
- */
-
-/* 
- * Ovanstående "---" är Jekyll front matter.
- * Detta är ett krav för att Jekyll ska behandla denna fil som en Sass-fil
- * och kompilera den till CSS. Lämna det tomt om du inte behöver definiera variabler.
- */
-
-/* 
- * Importerar basstilen från Minima-temat.
- * Detta ger oss grundläggande layout och typografi
- * som vi sedan anpassar med våra egna stilar.
- */
 @import "minima";
 
 /* =========================================
-   0. GRUNDLÄGGANDE LAYOUT OCH RESPONSIVITET
+   1. GRUNDLÄGGANDE DESIGN, TEMA VARIABLER OCH TYPSNITT
    ========================================= */
-/*
- * Grundläggande inställningar för att förhindra horisontellt scrollande
- * och säkerställa korrekt box-sizing på alla element.
- */
 
-/* Förhindra horisontellt scrollande och säkerställ korrekt box-sizing */
-*, *::before, *::after {
-  box-sizing: border-box;
+:root, [data-theme="light"] {
+  --bg-color: #f4f4f9;
+  --surface-color: #ffffff;
+  --text-color: #1a1a1a;
+  --heading-color: #000000;
+  --link-color: #0056b3;
+  --link-hover-color: #003d82;
+  --border-color: #e0e0e0;
+  --meta-color: #555555;
+  --accent-color: #007bff;
 }
 
-html, body {
-  overflow-x: hidden;
-  width: 100%;
-}
-
-/* =========================================
-   1. TEMA-VARIABLER OCH MÖRKT LÄGE
-   ========================================= */
-/* 
- * Detta avsnitt definierar färger och teman för hela sidan.
- * Genom att använda CSS-variabler kan vi enkelt växla mellan
- * ljust och mörkt tema, samt se till att designen är konsekvent.
- */
-
-/* Bas-färgschema för ljust tema (standard) */
-:root {
-  --bg-color: #fff;
-  --text-color: #181818; // darker for better contrast
-  --link-color: #0053a6; // WCAG AA compliant blue
-  --link-hover-color: #003366; // darker blue for hover
-  --border-color: #bdbdbd; // more visible border
-  --light-bg: #f5f5f5;
-  --tag-bg: #e5e5e5;
-  --tag-hover-bg: #cccccc;
-  --meta-color: #555;
-  --focus-outline: #ffbf47; // high-contrast focus color
-}
-
-/* Färgschema för mörkt tema */
-/* 
- * Aktiveras när elementet <html> eller <body> har attributet 
- * data-theme="dark". Skript kan växla detta attribut för att
- * ändra mellan ljust och mörkt tema.
- */
 [data-theme="dark"] {
-  --bg-color: #181818;
-  --text-color: #fff; // white for best contrast
-  --link-color: #8ab4f8; // lighter blue for dark bg
-  --link-hover-color: #e8eaed; // near-white for hover
-  --border-color: #444;
-  --light-bg: #222;
-  --tag-bg: #333;
-  --tag-hover-bg: #444;
-  --meta-color: #bbb;
-  --focus-outline: #ffbf47;
-  --nav-bg: #222;
-  --dropdown-bg: #282828;
-  --dropdown-hover-bg: #333;
+  --bg-color: #121212;
+  --surface-color: #1e1e1e;
+  --text-color: #e0e0e0;
+  --heading-color: #ffffff;
+  --link-color: #8ab4f8;
+  --link-hover-color: #a3c5f9;
+  --border-color: #333333;
+  --meta-color: #bbbbbb;
+  --accent-color: #8ab4f8;
 }
 
-/* Grundläggande stilar som använder tema-variabler */
 body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   background: var(--bg-color);
   color: var(--text-color);
+  line-height: 1.6;
   transition: background 0.3s, color 0.3s;
 }
 
-/* Tema-växlare knapp */
-/*
- * Knapp för att växla mellan ljust och mörkt tema.
- * Placerad i det nedre högra hörnet för enkel åtkomst
- * och för att undvika överlappning med hamburgermenyn.
- */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color);
+  font-weight: 700;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+.wrapper {
+  max-width: 960px;
+}
+
+blockquote {
+  border-left: 4px solid var(--accent-color);
+  padding-left: 1rem;
+  margin-left: 0;
+  color: var(--meta-color);
+  font-style: italic;
+}
+
+/* =========================================
+   2. HEADER OCH NAVIGATION
+   ========================================= */
+
+.site-header {
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--surface-color);
+  padding: 15px 0;
+}
+
+.site-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--heading-color) !important;
+}
+
+.site-nav {
+  .page-link, .dropdown-toggle {
+    color: var(--text-color);
+    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+
+    &:hover {
+      background-color: var(--bg-color);
+      text-decoration: none;
+    }
+  }
+
+  .dropdown-content {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .dropdown-content a {
+    color: var(--text-color);
+    &:hover {
+      background-color: var(--bg-color);
+    }
+  }
+}
+
+/* =========================================
+   3. INNEHÅLL OCH BLOGGKORT
+   ========================================= */
+
+.post-list-heading {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  word-wrap: break-word;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+
+  .post-meta {
+    font-size: 0.85rem;
+    color: var(--meta-color);
+    margin-bottom: 0.5rem;
+  }
+
+  h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  h3 a {
+    text-decoration: none;
+    color: var(--heading-color);
+  }
+  
+  h3 a:hover {
+    color: var(--link-color);
+  }
+
+  .post-excerpt {
+    margin-bottom: 1rem;
+  }
+  
+  .post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .post-categories a {
+    background-color: var(--bg-color);
+    color: var(--meta-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-right: 5px;
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+
+    &:hover {
+      background-color: var(--accent-color);
+      color: var(--surface-color);
+      border-color: var(--accent-color);
+    }
+  }
+
+  .read-more {
+    font-weight: bold;
+    color: var(--link-color);
+    white-space: nowrap;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* =========================================
+   4. SIDNUMRERING (PAGINATION)
+   ========================================= */
+
+.pagination {
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.pagination .page-number, .pagination .current-page, .pagination .previous-page, .pagination .next-page {
+  padding: 8px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  margin: 0 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.pagination a:hover {
+  background-color: var(--accent-color);
+  color: var(--surface-color);
+  text-decoration: none;
+}
+
+.pagination .current-page {
+  background-color: var(--accent-color);
+  color: var(--surface-color);
+  font-weight: bold;
+}
+
 .theme-toggle {
   position: fixed;
   bottom: 1rem;

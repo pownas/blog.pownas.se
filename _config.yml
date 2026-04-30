@@ -26,6 +26,8 @@ plugins:
 
 # Categories
 collections:
+  pages:
+    output: true
   category:
     output: true
 
