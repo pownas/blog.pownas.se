@@ -4,9 +4,9 @@ layout: default
 
 <div class="category-page">
   <h1 class="page-heading">{{ page.title }}</h1>
-  
+
   <p class="category-description">{{ page.description }}</p>
-  
+
   <div class="post-list">
     {% for post in site.posts %}
       {% assign post_categories = post.category | split: "," %}
@@ -26,7 +26,7 @@ layout: default
       {% endfor %}
     {% endfor %}
   </div>
-  
+
   <div class="all-categories">
     <h3>Alla kategorier</h3>
     <ul class="category-list">
@@ -35,6 +35,6 @@ layout: default
       {% endfor %}
     </ul>
   </div>
-  
+
   <a href="{{ site.baseurl }}/" class="home-link">Tillbaka till startsidan</a>
 </div>

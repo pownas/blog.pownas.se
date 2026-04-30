@@ -54,17 +54,17 @@ document.addEventListener('DOMContentLoaded', function() {
       document.documentElement.setAttribute('data-theme', 'dark');
     }
   }
-  
+
   // Kör kontroll av mörkt läge
   checkDarkModePreference();
-  
+
   // Funktion för att stänga menyn när användaren klickar på en länk
   function setupMobileMenu() {
     const navTrigger = document.getElementById('nav-trigger');
     const navLabel = document.querySelector('.nav-toggle-label');
     const menuLinks = document.querySelectorAll('.site-nav .page-link:not(.dropdown-toggle), .dropdown-content a');
     const siteNavigation = document.getElementById('site-navigation');
-    
+
     // Uppdatera aria-label baserat på menyns tillstånd
     navTrigger.addEventListener('change', function() {
       if (this.checked) {
@@ -79,11 +79,11 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = ''; // Återställ scrollning
       }
     });
-    
+
     // Initiera aria-expanded för hamburgermenyn
     navTrigger.setAttribute('aria-expanded', 'false');
     navTrigger.setAttribute('aria-controls', 'site-navigation');
-    
+
     // Stäng meny när en länk klickas
     menuLinks.forEach(function(link) {
       link.addEventListener('click', function() {
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = ''; // Återställ scrollning
       });
     });
-    
+
     // Toggle body class när menyn öppnas/stängs
     navTrigger.addEventListener('change', function() {
       if (this.checked) {
@@ -103,18 +103,18 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.remove('menu-open');
       }
     });
-    
+
     // Hanterar dropdown-menyer på både mobila enheter och desktop
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
     dropdownToggles.forEach(function(toggle) {
       toggle.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
-        
+
         // Toggle aria-expanded attribut
         const isExpanded = this.getAttribute('aria-expanded') === 'true';
         this.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
-        
+
         // Toggle dropdown-innehåll
         const content = this.nextElementSibling;
         if (isExpanded) {
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
           content.style.display = 'block';
           content.classList.add('expanded');
         }
-        
+
         // Stäng andra öppna dropdowns
         dropdownToggles.forEach(function(otherToggle) {
           if (otherToggle !== toggle) {
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         });
       });
-      
+
       // Lägg till tangentbordsnavigering för dropdowns
       toggle.addEventListener('keydown', function(e) {
         // Öppna dropdown vid Enter eller Mellanslag
@@ -145,17 +145,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     });
-    
+
     // Sätt initiala aria-expanded attribut
     dropdownToggles.forEach(toggle => toggle.setAttribute('aria-expanded', 'false'));
-    
+
     // Stäng menyn när användaren klickar utanför
     document.addEventListener('click', function(e) {
       if (navTrigger.checked && !e.target.closest('.site-nav')) {
         navTrigger.checked = false;
         document.body.classList.remove('menu-open');
       }
-      
+
       // Stäng dropdowns när man klickar utanför på desktop
       if (window.innerWidth > 700) {
         const dropdowns = document.querySelectorAll('.dropdown');
@@ -173,16 +173,16 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-  
+
   // Starta setup
   setupMobileMenu();
-  
+
   // Återställ alla dropdowns vid storleksändring av fönstret
   window.addEventListener('resize', function() {
     // Återställ dropdown-visning baserat på skärmstorlek
     const dropdownContents = document.querySelectorAll('.dropdown-content');
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-    
+
     if (window.innerWidth > 700) {
       // Desktop: återställ inline styles men behåll klasser för klick-funktionalitet
       dropdownContents.forEach(dropdown => {
@@ -198,31 +198,31 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       dropdownToggles.forEach(toggle => toggle.setAttribute('aria-expanded', 'false'));
     }
-    
+
     // Stäng hamburgermenyn vid storleksändring
     const navTrigger = document.getElementById('nav-trigger');
     const navLabel = document.querySelector('.nav-toggle-label');
-    
+
     navTrigger.checked = false;
     navTrigger.setAttribute('aria-expanded', 'false');
     navLabel.setAttribute('aria-label', 'Öppna meny');
     document.body.classList.remove('menu-open');
     document.body.style.overflow = ''; // Återställ scrollning
   });
-  
+
   // Lägg till escape-tangent för att stänga menyn
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       const navTrigger = document.getElementById('nav-trigger');
       const navLabel = document.querySelector('.nav-toggle-label');
-      
+
       if (navTrigger.checked) {
         navTrigger.checked = false;
         navTrigger.setAttribute('aria-expanded', 'false');
         navLabel.setAttribute('aria-label', 'Öppna meny');
         document.body.classList.remove('menu-open');
         document.body.style.overflow = '';
-        
+
         // Stäng alla dropdowns
         const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
         dropdownToggles.forEach(toggle => {

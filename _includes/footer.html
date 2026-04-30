@@ -56,23 +56,23 @@
         // Hämta nuvarande tema
         const current = document.documentElement.getAttribute('data-theme') || 'light';
         const next = current === 'dark' ? 'light' : 'dark';
-        
+
         // Uppdatera temainställningen i DOM
         document.documentElement.setAttribute('data-theme', next);
-        
+
         // Spara i localStorage (med felhantering)
         if (window.localStorage) {
           localStorage.setItem('theme', next);
           console.log('Theme toggled and saved:', next);
         }
-        
+
         // Uppdatera knappens ikon
         updateThemeIcon(next);
       } catch (e) {
         console.error('Error toggling theme:', e);
       }
     }
-    
+
     function updateThemeIcon(theme) {
       try {
         const themeIcon = document.querySelector('.theme-icon');
@@ -83,7 +83,7 @@
         console.error('Error updating theme icon:', e);
       }
     }
-    
+
     // Initialisera ikonens utseende vid sidladdning
     (function() {
       try {
@@ -97,7 +97,7 @@
     </script>
 
     <div class="footer-copyright">
-      <p>&copy; {{ site.time | date: '%Y' }} {{ site.author | escape }}. Alla rättigheter reserverade.</p>
+      <p>&copy; 2020–{{ site.time | date: '%Y' }} {{ site.author | escape }}. Alla rättigheter reserverade.</p>
     </div>
   </div>
 </footer>

@@ -17,18 +17,18 @@
       try {
         // Hämta sparad temainställning (garantera att vi faktiskt läser från localStorage)
         const savedTheme = window.localStorage ? localStorage.getItem('theme') : null;
-        
+
         // Kontrollera om vi har ett sparat tema och använd det direkt
         if (savedTheme === 'light' || savedTheme === 'dark') {
           document.documentElement.setAttribute('data-theme', savedTheme);
           console.log('Applied saved theme:', savedTheme);
-        } 
+        }
         // Annars använd systemets inställning
         else {
           const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
           const defaultTheme = prefersDarkMode ? 'dark' : 'light';
           document.documentElement.setAttribute('data-theme', defaultTheme);
-          
+
           // Spara systemets inställning som default
           if (window.localStorage) {
             localStorage.setItem('theme', defaultTheme);
@@ -41,9 +41,9 @@
       }
     })();
   </script>
-  
+
   <link rel="icon" href="https://www.pownas.se/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
   {% if site.google_analytics %}
     {% include google-analytics.html %}
