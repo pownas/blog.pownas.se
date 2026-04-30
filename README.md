@@ -49,13 +49,56 @@ blog.pownas.se/
 
 För att köra denna blogg lokalt behöver du Ruby och Jekyll. Följ dessa steg:
 
-### Förutsättningar
+### För snabb start med Podman Desktop (Rekommenderat)
+
+Det enklaste sättet att köra bloggen lokalt på Windows är via Podman Desktop och den medföljande containerkonfigurationen. Detta kräver ingen lokal installation av Ruby.
+
+1. Installera [Podman Desktop](https://podman-desktop.io/downloads) (eller via winget: `winget install -e --id RedHat.Podman-Desktop`).
+2. Starta/initialisera Podman Machine (görs vanligtvis via Podman Desktop GUI).
+3. Öppna en terminal (t.ex. PowerShell) i projektets rotmapp.
+4. Starta miljön:
+   ```powershell
+   podman-compose up
+   ```
+   *(Har du aktiverat Docker-kompabilitet kan du även använda `podman compose up` eller `docker compose up`).*
+5. Öppna sajten i din webbläsare på [http://localhost:4000](http://localhost:4000).
+
+Alla ändringar du gör i filer återspeglas automatiskt i webbläsaren tack vare volymmontering och live-reloading.
+
+#### Hantera containern via GUI
+
+När containern är startad kan du enkelt övervaka loggar, stoppa eller starta om tjänsten direkt inifrån gränssnittet i **Podman Desktop**.
+
+#### Felsökning: "podman-compose not recognized"
+
+Om du får felmeddelandet att `podman-compose` inte hittas eller att "compose provider failed", beror det på att Compose-tillägget saknas i din PATH.
+
+**Lösning A (Rekommenderat):**
+1. Öppna **Podman Desktop**.
+2. Gå till **Settings** (kugghjulet) -> **Resources**.
+3. Leta upp sektionen för **Compose** och klicka på **Setup** eller **Install**.
+4. Starta om din terminal.
+
+**Lösning B (Kör utan Compose):**
+Om du inte vill installera Compose kan du köra dessa två kommandon manuellt i terminalen:
+```powershell
+podman build -t jekyll-blog .
+podman run --rm -p 4000:4000 -v "${PWD}:/srv/jekyll" jekyll-blog
+```
+
+---
+
+### Alternativ 2: Lokal installation (kräver Ruby)
+
+För att köra denna blogg lokalt utan containrar behöver du Ruby och Jekyll. Följ dessa steg:
+
+#### Förutsättningar
 
 - Ruby (minst version 2.5.0)
 - RubyGems
 - GCC och Make (för att kompilera utökningar)
 
-### Installation
+#### Installation
 
 1. Klona repot:
    ```bash
@@ -79,47 +122,6 @@ För att köra denna blogg lokalt behöver du Ruby och Jekyll. Följ dessa steg:
    ```
 
 4. Besök [http://localhost:4000](http://localhost:4000) i din webbläsare.
-
-### För snabb start med Docker
-
-Om du föredrar Docker:
-
-```bash
-docker run --rm -p 4000:4000 -v $(pwd):/site bretfisher/jekyll-serve
-```
-
-### Windows: PowerShell + Podman (utan Docker Desktop)
-
-Följande steg fungerar på en ren Windows-maskin med PowerShell:
-
-1. Installera Podman Desktop (inkluderar Podman CLI):
-   ```powershell
-   winget install -e --id RedHat.Podman-Desktop
-   ```
-   Om `winget` inte finns, installera manuellt från https://podman-desktop.io/downloads
-
-2. Starta/initialisera Podman Machine:
-   ```powershell
-   podman machine init
-   podman machine start
-   ```
-
-3. Gå till repot i PowerShell och starta bloggen i container:
-   ```powershell
-   cd C:\path\to\blog.pownas.se
-   podman run --rm -it -p 4000:4000 -v "${PWD}:/site" docker.io/bretfisher/jekyll-serve
-   ```
-
-4. Öppna sajten i webbläsaren:
-   - http://localhost:4000
-   - Om porten är upptagen, byt till t.ex. `-p 4001:4000` och öppna http://localhost:4001
-
-#### Vanlig felsökning (Windows/Podman)
-
-- `podman machine` hittas inte: starta om PowerShell efter installation, eller kontrollera att Podman ligger i `PATH`.
-- Fel vid första start av machine: kör `podman machine rm -f` och sedan `podman machine init` igen.
-- Volymmontering fungerar inte: kontrollera att du kör kommandot i rätt mapp och att `${PWD}` pekar på repo-roten.
-- Sidan laddar inte: verifiera att containern körs och att rätt port är publicerad med `podman ps`.
 
 ## Skapa innehåll
 
