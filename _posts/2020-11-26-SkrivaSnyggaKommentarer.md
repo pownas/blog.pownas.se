@@ -6,6 +6,7 @@ category: "Visual Studio,Programmering"
 ---
 
 Ett tips när man kodar i Visual Studio, är att skriva enkla och snygga kommentarer så att andra, och speciellt du själv, kan förstå koden vid senare tillfällen. 
+<!--more-->
 
 Det du gör är helt enkelt att skriva 3st slash: /// på en ny rad innan din metod. 
 
@@ -21,4 +22,4 @@ Däremot är det JÄTTEVIKTIGT, att kolla kommentarerna varje gång du petar på
     /// <returns></returns>
 ```
 
-Ha det gott! 
+Ha det gott!

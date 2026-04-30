@@ -6,6 +6,7 @@ category: "ai,programmering"
 ---
 
 Idag är det väldigt enkelt att skapa snygga animerade ikoner. att bara fråga en AI om att skapa "SVG ikoner, som är animerade i flat ui design", ger ett snyggt resultat.. 
+<!--more-->
 
 Sen är det bara att fantasin sätter gränser. 
 
@@ -355,4 +356,4 @@ Gör en flat ui design SVG ikon som är som en lampa som tonar från släckt til
 </svg>
 ``` 
 
-Hoppas ni kommer på massvis av häftiga animerade ikoner. :) 
+Hoppas ni kommer på massvis av häftiga animerade ikoner. :)

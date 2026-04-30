@@ -6,6 +6,7 @@ category: "HTML-Code,Programmering"
 ---
 
 Info om vilka meta-data taggar man kan använda på en webbsida.
+<!--more-->
 
 Informationen nedan kommer från denna blogg-posten: 
 

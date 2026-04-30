@@ -6,6 +6,7 @@ category: "livsstil"
 ---
 
 *"Varför har ingen berättat detta för mig?"* av Dr. Julie Smith är en bok som verkligen lever upp till sin titel. Det är inte bara en samling psykologiska insikter, utan en handbok för hur man tar hand om sitt mentala välmående — för alla, inte bara de som mår dåligt.
+<!--more-->
 
 Efter att ha läst klart boken satte jag mig ner och skrev ner en händelse från mitt liv där jag insåg hur relevant boken faktiskt är. Här är en reflektion i dagboksform, inspirerad av frågor du kan ställa dig själv när du vill förstå dig själv bättre:
 

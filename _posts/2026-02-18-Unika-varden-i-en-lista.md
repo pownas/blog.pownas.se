@@ -7,6 +7,7 @@ category: "c-sharp,programmering"
 
 
 För att räkna ut hur många unika värden som finns i en lista med hjälp av LINQ i C#, så kan du använda metoden `.Distinct()`.
+<!--more-->
 
 ## Här är lösningen:
 Lösning med `.Distinct().Count()`.  

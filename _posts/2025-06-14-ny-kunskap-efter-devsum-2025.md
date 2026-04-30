@@ -7,6 +7,7 @@ category: "Konferens,Programmering"
 
 ### En inspirerande konferensupplevelse
 Mellan onsdag och fredag deltog jag i min första utvecklare konferens: [DevSum 2025](https://www.devsum.se/), en konferens fylld av kunskap, inspiration och spännande möten. Evenemanget samlade utvecklare, teknologientusiaster och branschledare för att diskutera det senaste inom teknik och programmering. Det blev tre intensiva dagar med både djupdykningar i tekniska ämnen och insikter om framtidens möjligheter.
+<!--more-->
 
 Den här resan blev ännu roligare tack vare mitt fantastiska sällskap – kollegorna Maria, Jonathan, Per och Karin, samt flera andra från olika sektioner på jobbet. Tillsammans delade vi idéer, reflektioner och skratt, vilket gjorde upplevelsen ännu mer minnesvärd.
 

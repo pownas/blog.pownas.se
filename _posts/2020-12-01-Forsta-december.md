@@ -6,6 +6,7 @@ category: "Advent-of-Code,Programmering"
 ---
 
 Idag öppnades julkalendern! Både "Advent of code" (https://adventofcode.com/2020) , samt min goda Johan Bülow Lakrids kalender! 😋
+<!--more-->
 
 Nu får jag äntligen ge mig på lite kodutmaningar via advent of code, samt äta god lakrids varje dag fram till jul! 😀
 

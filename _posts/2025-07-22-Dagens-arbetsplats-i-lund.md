@@ -6,4 +6,5 @@ category: "Dagbok"
 ---
 
 Idag blev det en trevlig "arbetsplats" en hotell morgon på ett hotell i Lund:
-![Dagens arbetsplats i Lund](/img/blogposts/2025-07-22-dagens-arbetsplats.jpeg)  
+<!--more-->
+![Dagens arbetsplats i Lund](/img/blogposts/2025-07-22-dagens-arbetsplats.jpeg)

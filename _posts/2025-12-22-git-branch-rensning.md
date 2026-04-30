@@ -6,6 +6,7 @@ category: "git,github,programmering"
 ---
 
 Här kommer ett enkelt sätt hur man kan rensa upp bland git-brancher lokalt på sin dator, via PowerShell: 
+<!--more-->
 
 ```ps
 git checkout main
@@ -47,4 +48,4 @@ tig
 
 `tig` visar tree view för git historiken.
 
-Hoppas detta var några bra kommandon för dig. 
+Hoppas detta var några bra kommandon för dig.

@@ -6,6 +6,7 @@ category: "JavaScript-Code,Programmering"
 ---
 
 Info om datum och tid, formatering i JavaScript (för t.ex. Api användning):
+<!--more-->
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
 
 Hur man skulle kunna formatera datum i JavaScript format:
@@ -30,4 +31,3 @@ console.log(event.toLocaleDateString(undefined, options));
 // Expected output (varies according to local timezone and default locale): Thursday, December 20, 2012
 
 ```
- 

@@ -6,6 +6,7 @@ category: "c-sharp,.NET,programmering"
 ---
 
 ASP.NET Core utvecklades som den moderna, öppna och plattformsoberoende efterföljaren till klassisk ASP.NET. Nu är det dags att agera för team som fortfarande använder ASP.NET Core 2.3.
+<!--more-->
 
 ## 1. ASP.NET Core 2.3 deprecieras
 

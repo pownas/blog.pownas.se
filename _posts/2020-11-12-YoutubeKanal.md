@@ -6,6 +6,7 @@ category: "Youtube"
 ---
 
 Jag har nu tankar på att bygga upp min Youtube kanal till något som faktiskt går att använda av andra. 
+<!--more-->
 
 De senaste veckorna har jag insett att det är bra att spela in alla de saker jag ska visa för mina vänner. 
 

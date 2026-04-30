@@ -8,6 +8,7 @@ category: "testning,frontend,best-practices,web,programmering"
 CSS-klasser är till för styling, inte för testning – dags att vi använder `data-testid`
 
 ![Visualiserar data-testid](/img/blogposts/2026-02-12-CSS--vs--data-testid.png)
+<!--more-->
 
 Vi har alla varit där. Det är fredag eftermiddag, en ny feature ska deployas, och plötsligt lyser CI/CD-pipelinen rött. Testerna failar.
 

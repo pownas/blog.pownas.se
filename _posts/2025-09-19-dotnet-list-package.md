@@ -6,6 +6,7 @@ category: "c-sharp,.NET,programmering"
 ---
 
 En liten påminnelse om `dotnet list package` som är ett enkelt kommando man kan köra för att kolla om man är på senaste NuGet-paket versioner, är då att använda sig av:   
+<!--more-->
 ```ps
 dotnet list package --outdated
 ```

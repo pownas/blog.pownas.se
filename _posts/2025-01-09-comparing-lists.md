@@ -6,6 +6,7 @@ category: "C#,Programmering"
 ---
 
 Här är ett enkelt sätt att jämföra två listor med varandra för att se vilka objekt som saknas i ena eller andra listan:
+<!--more-->
 
 ```csharp
 
@@ -64,5 +65,5 @@ foreach (var item in differences2)
 
 ``` 
 
-Detta ger en enkel och tydlig jämförelse av de två listorna. 
+Detta ger en enkel och tydlig jämförelse av de två listorna.
 

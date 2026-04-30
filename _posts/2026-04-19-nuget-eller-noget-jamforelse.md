@@ -8,6 +8,7 @@ category: "c-sharp,.NET,programmering"
 Inom modern .NET-utveckling är lösningen ofta ett `dotnet add package` bort. Det är fantastiskt för produktiviteten, men varje ny dependency är också ett långsiktigt åtagande.
 
 Så frågan är inte "NuGet eller NoGet" som ett svartvitt val, utan hur vi gör medvetna val.
+<!--more-->
 
 Inspirerad av:
 

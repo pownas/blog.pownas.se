@@ -6,6 +6,7 @@ category: "c-sharp,.NET,programmering"
 ---
 
 Här kommer en liten guide över hur man kan aktivera och installera IIS fjärr  hanteraren via Windows 11.
+<!--more-->
 
 Det man då behöver göra är att gå in under: Start -> Sök: Kontrollpanelen -> Program -> "Aktivera eller inaktivera Windows-funktioner" -> Bocka först i "Internet Information Services" (IIS).
 

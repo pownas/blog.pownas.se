@@ -6,6 +6,7 @@ category: "Livsstil, Rikedom i livet"
 ---
 
 Hittade en fin artikel på facebook. Tror mycket av det stämmer. 😊  
+<!--more-->
 Trevlig läsning:  
 
 ```

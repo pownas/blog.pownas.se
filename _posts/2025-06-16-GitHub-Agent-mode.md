@@ -8,6 +8,7 @@ category: "Ai,GitHub,Copilot,Programmering"
 ### En inspirerande helg med GitHub Agent Mode
 
 I fredags fick jag en gnista av inspiration från GitHub Agent Mode. Det ledde till att jag spenderade helgen med att testa denna spännande funktion på min privata kodbas, och det hela skedde via min iPad.
+<!--more-->
 
 Att koda genom att skriva vad man ville ha och sedan resonera med agenten visade sig vara en överraskande effektiv metod. Genom att använda en virtuell Kubernetes-miljö i GitHub Codespace kunde jag se resultaten av mina instruktioner på bara några minuter. Det var en fascinerande upplevelse att kunna starta en prompt, vänta 3-5 minuter, och sedan se ett färdigt resultat som jag kunde checka in.
 

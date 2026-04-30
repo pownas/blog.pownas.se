@@ -7,6 +7,7 @@ category: "programmering,github"
 
 Podman desktop är en kontainer-lösning (containers) där man kan köra sina olika kontainrar genom (lite som docker vad jag förstått det som...). 
 Det används för att sätta upp t.ex. lokal utvecklings-miljö där man inte kan ha alla servrar och databaser och liknande publicerade och åtkomliga från sin lokala maskin. 
+<!--more-->
 
 För att installera "Podman Desktop", så fick jag göra följande: 
 
@@ -94,5 +95,5 @@ https://docs.podman.io/en/latest/markdown/podman-machine-init.1.html#user-mode-n
 
 -------------------
 
-Hoppas denna guide kanske kan vara till nytta för någon, och att ni kommer igång med er VM/Docker miljö för att kunna hantera containers från en utvecklingsmiljö. 
+Hoppas denna guide kanske kan vara till nytta för någon, och att ni kommer igång med er VM/Docker miljö för att kunna hantera containers från en utvecklingsmiljö.
 

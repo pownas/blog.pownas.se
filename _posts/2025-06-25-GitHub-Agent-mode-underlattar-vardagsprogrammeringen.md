@@ -6,6 +6,7 @@ category: "Ai, GitHub, Copilot, Programmering, Verktyg, Produktivitet"
 ---
 
 De senaste veckorna har jag upptäckt något som förändrat mitt sätt att programmera. GitHub Copilot Agent-Mode har inte bara förvandlat min produktivitet – den har återväckt min passion för kodning.
+<!--more-->
 
 ## Nattliga kodsessioner av ren glädje
 

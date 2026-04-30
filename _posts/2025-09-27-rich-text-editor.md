@@ -8,6 +8,7 @@ category: "HTML-Code,ai,JavaScript-code,programmering"
 # Hur jag skapade en Rich Text Editor med webbläsarens inbyggda API:er och Copilot
 
 Att bygga en egen rich-text-editor är ett klassiskt webbutvecklarprojekt – men idag är det enklare än någonsin tack vare moderna webbläsar-API:er och smart hjälp från GitHub Copilot.  
+<!--more-->
 Här berättar jag hur jag skapade min editor, som du kan testa här: [Demo – Rich Text Editor](https://www.pownas.se/chat-gpt/rich-text-editor) (eller läs koden 👨‍💻: [rich-text-editor/index.html](https://github.com/pownas/pownas.se-static-github-pages/blob/main/docs/chat-gpt/rich-text-editor/index.html))
 
 ![En rich text editor](/img/blogposts/2025-09-27-rich-text-editor.png)  

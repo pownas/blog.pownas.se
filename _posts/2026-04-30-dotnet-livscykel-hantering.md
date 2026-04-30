@@ -6,6 +6,7 @@ category: "c-sharp,.NET,programmering"
 ---
 
 Från flera röriga .NET 5-8 C#-projekt till en modern .NET 10-arkitektur. 
+<!--more-->
 
 Om du har jobbat med .NET ett tag vet du exakt hur ett versionslyft brukar se ut. När det är dags för Lifecycle Management (LCM) och applikationen ska uppgraderas från .NET 6 till nästa version, börjar den stora jakten. Du måste öppna varenda .csproj-fil för att uppdatera TargetFramework. Sedan måste du leta upp alla NuGet-paket och försöka synka versionerna mellan dina trettio olika projekt för att undvika konflikter. Lägg därtill en klassisk .sln-fil fylld av oändliga GUIDs som skapar merge-konflikter i Git så fort två utvecklare lägger till en fil samtidigt.
 Men det behöver inte vara så här längre.
@@ -94,4 +95,4 @@ Detta är ett nyare tillägg i .NET-ekosystemet. Även om det började som en Pr
  * **Dokumentation via CLI:** dotnet sln command *(Visar hur .NET CLI stödjer migrering och hantering av .slnx istället för .sln)*
  * **Visual Studio Blogg/Video:** Introducing support for the modern .slnx solution file format *(En genomgång av Mads Kristensen kring hur och varför formatet introducerades)*
 
-Lycka till med dina framtida migreringar. 
+Lycka till med dina framtida migreringar.

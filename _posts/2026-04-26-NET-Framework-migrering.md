@@ -6,6 +6,7 @@ category: "c-sharp,.NET,programmering"
 ---
 
 Att hålla koll på livscykeln för sina servrar är en klassisk IT-utmaning. Windows Server styrs av Microsofts **Fixed Lifecycle Policy**, vilket innebär 10 års total support innan systemet når sitt End of Life (EOL) och kranen för säkerhetsuppdateringar stängs helt. 
+<!--more-->
 
 Men det många missar är vad detta innebär för de affärskritiska applikationer som körs på servrarna – i synnerhet de som fortfarande är byggda på det klassiska **.NET Framework (v4.8 och v4.8.1)**. Nu när vi är inne i 2026 har tidsfönstret för att hantera äldre system börjat stängas på riktigt. Den annalkande serverdöden är dock inte bara en risk, det är det perfekta tillfället att modernisera er arkitektur i grunden.
 

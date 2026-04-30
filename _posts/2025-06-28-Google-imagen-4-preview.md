@@ -6,6 +6,7 @@ category: "Ai"
 ---
 
 Idag ramlade jag via [Feber](https://feber.se/internet/google-slapper-imagen-4/481021/) över Googles nya imagen 4 preview. 
+<!--more-->
 Det är galet vad man nu kan skapa med prompts, så som exemplet de hade själva på Google en prompt:
 
 ```
@@ -50,7 +51,7 @@ Gjorde sedan ett andra försök att få texterna att bli lite bättre samt att d
 ```
 A 3-panel cosmic epic comic. 
 Panel 1: A unicorn walking into a Forrest saying 
-         ”what a lovely day for a walk in the Forrest” 
+         "what a lovely day for a walk in the Forrest" 
 Panel 2: The unicorn meets a squirrel and start 
          talking about the weather 
          'It’s so lovely weather today. ' 

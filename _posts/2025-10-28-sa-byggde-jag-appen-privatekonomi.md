@@ -13,6 +13,7 @@ och samtidigt är roligt att använda. Det blev startskottet för Privatekonomi:
 en Blazor Server-applikation med .NET 9, MudBlazor och .NET Aspire som orkestrerar 
 alla tjänster. I den här bloggposten berättar jag hur jag byggde systemet på 1,5 vecka 
 med GitHub copilot, vilka designval jag gjort och visar en massa skärmbilder.
+<!--more-->
 
 Repo: https://github.com/pownas/Privatekonomi
 

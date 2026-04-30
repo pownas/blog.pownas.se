@@ -8,6 +8,7 @@ category: "livsstil,ai,HTML-code,JavaScript-code,css,programmering"
 # Hur jag skapade "Astrid och Isslottens värld" – en AI-genererad bilderbok med bara HTML, JavaScript och CSS
 
 När min tjejs systerbarn upptäckte hur roligt det är att läsa AI-genererade bilderböcker, fick jag en idé: varför inte skapa en egen interaktiv bok direkt på webben? Resultatet blev ["Astrid och Isslottens värld"](https://www.pownas.se/chat-gpt/bilderbok/astrid-och-isslottens-varld) ([https://www.pownas.se/chat-gpt/bilderbok/astrid-och-isslottens-varld](https://www.pownas.se/chat-gpt/bilderbok/astrid-och-isslottens-varld)), en sagobok där både text och bilder är skapade av AI – och allt byggt med bara **en HTML-, en JavaScript- och en CSS-fil** (se: [Pownas - GitHub](https://github.com/pownas/pownas.se-static-github-pages/tree/main/docs/chat-gpt/bilderbok/astrid-och-isslottens-varld)).  
+<!--more-->
 
 ## Idén: En magisk bok som lever på webben
 
