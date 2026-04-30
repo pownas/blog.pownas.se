@@ -353,3 +353,24 @@ MigrationBackup/
 _site/
 vendor/
 node_modules/
+
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Node
+node_modules/
+package-lock.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# jekyll-filer
+.jekyll-metadata
+.jekyll-cache

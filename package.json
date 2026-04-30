@@ -1,0 +1,16 @@
+{
+  "name": "blog-pownas-tests",
+  "version": "1.0.0",
+  "description": "Playwright E2E tests for blog.pownas.se",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:ui": "npx playwright test --ui",
+    "test:report": "npx playwright show-report",
+    "test:prod": "npx playwright test --config=playwright.prod.config.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0"
+  }
+}
