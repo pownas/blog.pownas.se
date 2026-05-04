@@ -11,7 +11,7 @@ url: "https://blog.pownas.se" # the base hostname & protocol for your site
 # Build settings
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
-paginate: 10
+paginate: 12
 paginate_path: "/sida/:num/"
 show_excerpts: true # set to true to show excerpts on the homepage
 excerpt_separator: "<!--more-->"

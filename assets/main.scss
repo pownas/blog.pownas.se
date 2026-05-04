@@ -58,6 +58,30 @@ a:hover {
   max-width: 960px;
 }
 
+.home-page-intro {
+  background: linear-gradient(135deg, var(--accent-color) 0%, rgba(23, 82, 146, 0.05) 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 5px solid var(--accent-color);
+  margin-bottom: 2.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.home-page-intro p {
+  margin: 0.75rem 0;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  color: var(--text-color);
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 blockquote {
   border-left: 4px solid var(--accent-color);
   padding-left: 1rem;
@@ -71,41 +95,62 @@ blockquote {
    ========================================= */
 
 .site-header {
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 2px solid var(--accent-color);
   background-color: var(--surface-color);
-  padding: 15px 0;
+  padding: 1.25rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 .site-title {
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--heading-color) !important;
+  letter-spacing: -0.5px;
 }
 
 .site-nav {
   .page-link, .dropdown-toggle {
     color: var(--text-color);
     font-size: 1rem;
-    padding: 8px 12px;
-    border-radius: 6px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative;
 
     &:hover {
-      background-color: var(--bg-color);
+      background-color: var(--accent-color);
+      color: var(--surface-color);
       text-decoration: none;
+      transform: translateY(-2px);
     }
   }
 
   .dropdown-content {
     background-color: var(--surface-color);
     border: 1px solid var(--border-color);
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    padding: 0.75rem;
   }
 
   .dropdown-content a {
     color: var(--text-color);
+    padding: 10px 14px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: block;
+    border: none;
+    text-decoration: none;
+    margin: 2px 0;
+
     &:hover {
-      background-color: var(--bg-color);
+      background-color: var(--accent-color);
+      color: var(--surface-color);
+      transform: translateX(4px);
     }
   }
 }
@@ -116,10 +161,12 @@ blockquote {
 
 .post-list-heading {
   font-size: 2rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid var(--accent-color);
-  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 3px solid var(--accent-color);
+  padding-bottom: 0.75rem;
   display: inline-block;
+  font-weight: 600;
+  letter-spacing: -0.5px;
 }
 
 .post-list {
@@ -127,8 +174,8 @@ blockquote {
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
 }
 
 .post-card {
@@ -137,26 +184,33 @@ blockquote {
   height: 100%;
   background: var(--surface-color);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 12px;
+  padding: 1.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   word-wrap: break-word;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    border-color: var(--accent-color);
   }
 
   .post-meta {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--meta-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
 
   h3 {
     margin-top: 0;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     margin-bottom: 0.75rem;
+    line-height: 1.35;
+    font-weight: 700;
   }
 
   h3 a {
@@ -169,7 +223,9 @@ blockquote {
   }
 
   .post-excerpt {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    color: var(--text-color);
+    line-height: 1.7;
   }
   
   .post-footer {
@@ -177,35 +233,41 @@ blockquote {
     justify-content: space-between;
     align-items: center;
     margin-top: auto;
-    padding-top: 1rem;
+    padding-top: 1.25rem;
     border-top: 1px solid var(--border-color);
+    gap: 1rem;
   }
 
   .post-categories a {
     background-color: var(--bg-color);
     color: var(--meta-color);
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    margin-right: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    margin-right: 6px;
     border: 1px solid var(--border-color);
     text-decoration: none;
+    transition: all 0.2s ease;
+    font-weight: 500;
 
     &:hover {
       background-color: var(--accent-color);
       color: var(--surface-color);
       border-color: var(--accent-color);
+      transform: scale(1.05);
     }
   }
 
   .read-more {
-    font-weight: bold;
+    font-weight: 600;
     color: var(--link-color);
     white-space: nowrap;
     text-decoration: none;
+    transition: all 0.2s ease;
 
     &:hover {
-      text-decoration: underline;
+      color: var(--link-hover-color);
+      transform: translateX(2px);
     }
   }
 }
@@ -214,29 +276,72 @@ blockquote {
    4. SIDNUMRERING (PAGINATION)
    ========================================= */
 
+.pager {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
 .pagination {
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 0;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pagination li {
+  display: inline;
 }
 
 .pagination .page-number, .pagination .current-page, .pagination .previous-page, .pagination .next-page {
-  padding: 8px 14px;
+  padding: 0.5rem 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--border-color);
-  border-radius: 6px;
-  margin: 0 4px;
-  transition: background-color 0.2s, color 0.2s;
+  border-radius: 8px;
+  margin: 4px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 0.95rem;
+  display: inline-block;
+}
+
+.pagination a {
+  color: var(--link-color);
+  text-decoration: none;
 }
 
 .pagination a:hover {
   background-color: var(--accent-color);
   color: var(--surface-color);
-  text-decoration: none;
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .pagination .current-page {
   background-color: var(--accent-color);
   color: var(--surface-color);
-  font-weight: bold;
+  font-weight: 700;
+  border-color: var(--accent-color);
+}
+
+.pagination .pagination-ellipsis {
+  padding: 10px 8px;
+  color: var(--meta-color);
+  font-weight: 500;
+}
+
+.pagination .pager-edge {
+  padding: 10px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--meta-color);
+  opacity: 0.5;
+  margin: 4px;
 }
 
 .theme-toggle {
@@ -320,15 +425,20 @@ blockquote {
 
 /* Kategori-sektion med listor */
 .categories-section {
-  margin: 20px 0;
-  padding: 15px;
-  background-color: var(--light-bg);
-  border-radius: 5px;
+  margin: 2.5rem 0;
+  padding: 2rem;
+  background-color: var(--surface-color);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .categories-section .categories-heading {
   margin-top: 0;
-  font-size: 1.5em;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  color: var(--heading-color);
 }
 
 .categories-section .categories-list {
@@ -337,23 +447,32 @@ blockquote {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .categories-section .categories-list .category-item {
-  margin: 5px;
+  margin: 0;
 }
 
 .categories-section .categories-list .category-item .category-link {
   display: inline-block;
-  padding: 5px 10px;
-  background-color: var(--tag-bg);
-  border-radius: 3px;
+  padding: 8px 14px;
+  background-color: var(--bg-color);
+  border-radius: 6px;
   text-decoration: none;
   color: var(--text-color);
-}
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
 
-.categories-section .categories-list .category-item .category-link:hover {
-  background-color: var(--tag-hover-bg);
+  &:hover {
+    background-color: var(--accent-color);
+    color: var(--surface-color);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
 }
 
 /* Stil för kategorisidor */
@@ -437,20 +556,80 @@ blockquote {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: var(--dropdown-bg, var(--light-bg));
-  min-width: unquote("min(200px, 90vw)");
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  border-radius: 3px;
-  margin-top: 5px;
+  background-color: var(--surface-color);
+  min-width: unquote("min(220px, 90vw)");
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 1001;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  margin-top: 8px;
+  overflow: hidden;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Två kolumner för kategorier på tablet/desktop */
+#category-dropdown {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  padding: 1rem;
+  min-width: unquote("min(340px, 90vw)");
+}
+
+#category-dropdown.expanded {
+  display: grid;
+}
+
+#category-dropdown a {
+  padding: 10px 12px !important;
+  font-size: 0.95rem;
+  margin: 0 !important;
+  border-radius: 6px;
+  border-bottom: none !important;
+}
+
+/* Senaste inlägg dropdown */
+#recent-posts-dropdown {
+  display: none;
+  padding: 0.75rem;
+  min-width: unquote("min(280px, 90vw)");
+}
+
+#recent-posts-dropdown.expanded {
+  display: block;
+}
+
+#recent-posts-dropdown a {
+  padding: 10px 14px !important;
+  font-size: 0.95rem;
+  margin: 2px 0 !important;
+  border-radius: 6px;
+  border-bottom: none !important;
+  border-left: 3px solid transparent;
+
+  &:hover {
+    border-left-color: var(--accent-color);
+    padding-left: 18px !important;
+  }
 }
 
 .dropdown-content a {
   color: var(--text-color);
-  padding: 12px 16px;
   text-decoration: none;
   display: block;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: none;
+  transition: all 0.2s ease;
 }
 
 .dropdown-content a:last-child {
@@ -458,8 +637,9 @@ blockquote {
 }
 
 .dropdown-content a:hover {
-  background-color: var(--dropdown-hover-bg, var(--tag-hover-bg));
-  color: var(--text-color);
+  background-color: var(--accent-color);
+  color: var(--surface-color);
+  transform: translateX(4px);
 }
 
 /* Desktop hover behavior - endast för större skärmar och när dropdown inte är aktivt klickad */
@@ -476,8 +656,9 @@ blockquote {
 
 .dropdown-toggle::after {
   content: " ▼";
-  font-size: 0.7em;
+  font-size: 0.6em;
   vertical-align: 2px;
+  margin-left: 4px;
 }
 
 /* Huvudnavigeringen */
@@ -704,6 +885,15 @@ p, .post-content p {
     box-shadow: none;
     margin-left: 0;
     background: var(--dropdown-bg, var(--bg-color));
+  }
+
+  /* 1 kolumn för kategorier på mobil */
+  #category-dropdown {
+    grid-template-columns: 1fr !important;
+  }
+
+  #category-dropdown.expanded {
+    display: grid !important;
   }
   
   .dropdown-toggle::after {
