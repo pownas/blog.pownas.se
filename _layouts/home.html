@@ -1,4 +1,4 @@
----
+﻿---
 layout: default
 ---
 
@@ -35,33 +35,38 @@ layout: default
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
       {%- for post in posts -%}
       <li>
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-        <div class="post-footer">
-          {% if post.category %}
-            <div class="post-categories">
-              {% assign categories = post.category | split: "," %}
-              {% for category in categories %}
-                {% assign trimmed_category = category | strip %}
-                {%- assign cat_obj = site.category | where: "category_name", trimmed_category | first -%}
-                {% if cat_obj %}
-                  <a href="{{ cat_obj.url | relative_url }}">{{ trimmed_category }}</a>
-                {% else %}
-                  <a href="{{ site.baseurl }}/kategori/{{ trimmed_category | slugify }}/">{{ trimmed_category }}</a>
-                {% endif %}
-              {% endfor %}
+        <div class="post-card">
+          <span class="post-meta">{{ post.date | date: date_format }}</span>
+          <h3>
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </h3>
+          {%- if site.show_excerpts -%}
+            <div class="post-excerpt">
+              {{ post.excerpt }}
             </div>
-          {% else %}
-            <span></span> {# Empty span to align "Read more" to the right #}
-          {% endif %}
+          {%- endif -%}
+
+          <div class="post-footer">
+            {% if post.category %}
+              <div class="post-categories">
+                {% assign categories = post.category | split: "," %}
+                {% for category in categories %}
+                  {% assign trimmed_category = category | strip %}
+                  {% assign category_slug = trimmed_category | slugify %}
+                  {% if cat_obj %}
+                    <a href="{{ cat_obj.url | relative_url }}">{{ trimmed_category }}</a>
+                  {% else %}
+                    <a href="{{ site.baseurl }}/kategori/{{ trimmed_category | slugify }}/">{{ trimmed_category }}</a>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% else %}
+              <span></span> {# Empty span to align "Read more" to the right #}
+            {% endif %}
+
+            <a href="{{ post.url | relative_url }}" class="read-more">Läs mer &raquo;</a>
+          </div>
         </div>
-        {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
-        {%- endif -%}
       </li>
       {%- endfor -%}
     </ul>
