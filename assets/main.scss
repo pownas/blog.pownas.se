@@ -21,13 +21,13 @@
 [data-theme="dark"] {
   --bg-color: #121212;
   --surface-color: #1e1e1e;
-  --text-color: #e0e0e0;
+  --text-color: #f0f0f0;
   --heading-color: #ffffff;
-  --link-color: #8ab4f8;
-  --link-hover-color: #a3c5f9;
+  --link-color: #9ECBFF;
+  --link-hover-color: #baddff;
   --border-color: #333333;
   --meta-color: #bbbbbb;
-  --accent-color: #8ab4f8;
+  --accent-color: #9ECBFF;
 }
 
 body {
@@ -71,7 +71,7 @@ a:hover {
   margin: 0.75rem 0;
   line-height: 1.8;
   font-size: 1.05rem;
-  color: var(--text-color);
+  color: var(--heading-color);
 
   &:first-child {
     margin-top: 0;
@@ -213,13 +213,13 @@ blockquote {
 /* Två kolumner för kategorier på tablet/desktop */
 #category-dropdown {
   display: none;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.5rem;
   padding: 1rem;
   min-width: unquote("min(340px, 90vw)");
 
   &.expanded {
-    display: grid;
+    display: grid !important;
   }
 
   a {
@@ -261,11 +261,18 @@ blockquote {
   .dropdown:hover .dropdown-content:not(.expanded) {
     display: block;
   }
+  .dropdown:hover #category-dropdown:not(.expanded) {
+    display: grid;
+  }
 }
 
 /* När dropdown är aktivt klickad, visa den */
 .dropdown-content.expanded {
   display: block !important;
+}
+
+#category-dropdown.expanded {
+  display: grid !important;
 }
 
 /* =========================================
