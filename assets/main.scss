@@ -112,6 +112,8 @@ blockquote {
 }
 
 .site-nav {
+  position: relative;
+  
   .page-link, .dropdown-toggle {
     color: var(--text-color);
     font-size: 1rem;
@@ -129,15 +131,53 @@ blockquote {
     }
   }
 
-  .dropdown-content {
-    background-color: var(--surface-color);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    padding: 0.75rem;
+  .nav-trigger {
+    display: none;
   }
 
-  .dropdown-content a {
+  .nav-toggle-label {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2001;
+  }
+
+  .trigger {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}
+
+/* Dropdown-menyer */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle::after {
+  content: " ▼";
+  font-size: 0.6em;
+  vertical-align: 2px;
+  margin-left: 4px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--surface-color);
+  min-width: unquote("min(220px, 90vw)");
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 1001;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  margin-top: 8px;
+  overflow: hidden;
+  animation: slideDown 0.2s ease;
+
+  a {
     color: var(--text-color);
     padding: 10px 14px;
     border-radius: 6px;
@@ -152,7 +192,80 @@ blockquote {
       color: var(--surface-color);
       transform: translateX(4px);
     }
+
+    &:last-child {
+      border-bottom: none;
+    }
   }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Två kolumner för kategorier på tablet/desktop */
+#category-dropdown {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  padding: 1rem;
+  min-width: unquote("min(340px, 90vw)");
+
+  &.expanded {
+    display: grid;
+  }
+
+  a {
+    padding: 10px 12px !important;
+    font-size: 0.95rem;
+    margin: 0 !important;
+    border-radius: 6px;
+    border-bottom: none !important;
+  }
+}
+
+/* Senaste inlägg dropdown */
+#recent-posts-dropdown {
+  display: none;
+  padding: 0.75rem;
+  min-width: unquote("min(280px, 90vw)");
+
+  &.expanded {
+    display: block;
+  }
+
+  a {
+    padding: 10px 14px !important;
+    font-size: 0.95rem;
+    margin: 2px 0 !important;
+    border-radius: 6px;
+    border-bottom: none !important;
+    border-left: 3px solid transparent;
+
+    &:hover {
+      border-left-color: var(--accent-color);
+      padding-left: 18px !important;
+    }
+  }
+}
+
+/* Desktop hover behavior */
+@media (min-width: 701px) {
+  .dropdown:hover .dropdown-content:not(.expanded) {
+    display: block;
+  }
+}
+
+/* När dropdown är aktivt klickad, visa den */
+.dropdown-content.expanded {
+  display: block !important;
 }
 
 /* =========================================
@@ -175,13 +288,21 @@ blockquote {
   margin: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2rem;
+  gap: 2.5rem;
+  grid-auto-rows: 1fr;
+  
+  li {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    display: flex;
+  }
 }
 
 .post-card {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  width: 100%;
   background: var(--surface-color);
   border: 1px solid var(--border-color);
   border-radius: 12px;
@@ -189,6 +310,7 @@ blockquote {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   word-wrap: break-word;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  position: relative;
 
   &:hover {
     transform: translateY(-8px);
@@ -203,6 +325,7 @@ blockquote {
     font-weight: 500;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    display: block;
   }
 
   h3 {
@@ -211,216 +334,73 @@ blockquote {
     margin-bottom: 0.75rem;
     line-height: 1.35;
     font-weight: 700;
-  }
 
-  h3 a {
-    text-decoration: none;
-    color: var(--heading-color);
-  }
-  
-  h3 a:hover {
-    color: var(--link-color);
+    a {
+      text-decoration: none;
+      color: var(--heading-color);
+      &:hover {
+        color: var(--link-color);
+      }
+    }
   }
 
   .post-excerpt {
+    flex-grow: 1;
     margin-bottom: 1.25rem;
     color: var(--text-color);
     line-height: 1.7;
+    margin-top: 10px;
   }
   
   .post-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: auto;
     padding-top: 1.25rem;
     border-top: 1px solid var(--border-color);
     gap: 1rem;
+    margin-top: auto;
   }
 
-  .post-categories a {
-    background-color: var(--bg-color);
-    color: var(--meta-color);
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.75rem;
-    margin-right: 6px;
-    border: 1px solid var(--border-color);
-    text-decoration: none;
-    transition: all 0.2s ease;
-    font-weight: 500;
+  .post-categories {
+    margin-top: 10px;
+    font-size: 0.9em;
 
-    &:hover {
-      background-color: var(--accent-color);
-      color: var(--surface-color);
-      border-color: var(--accent-color);
-      transform: scale(1.05);
+    a {
+      background-color: var(--bg-color);
+      color: var(--meta-color);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.75rem;
+      margin-right: 6px;
+      border: 1px solid var(--border-color);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-weight: 500;
+
+      &:hover {
+        background-color: var(--accent-color);
+        color: var(--surface-color);
+        border-color: var(--accent-color);
+        transform: scale(1.05);
+      }
     }
   }
 
   .read-more {
+    display: inline-block;
     font-weight: 600;
     color: var(--link-color);
     white-space: nowrap;
     text-decoration: none;
     transition: all 0.2s ease;
+    margin-top: 10px;
 
     &:hover {
       color: var(--link-hover-color);
       transform: translateX(2px);
     }
   }
-}
-
-/* =========================================
-   4. SIDNUMRERING (PAGINATION)
-   ========================================= */
-
-.pager {
-  margin-top: 3rem;
-  margin-bottom: 2rem;
-}
-
-.pagination {
-  justify-content: center;
-  margin-top: 0;
-  display: flex;
-  list-style: none;
-  padding: 0;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.pagination li {
-  display: inline;
-}
-
-.pagination .page-number, .pagination .current-page, .pagination .previous-page, .pagination .next-page {
-  padding: 0.5rem 0.8rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  margin: 4px;
-  transition: all 0.2s ease;
-  font-weight: 500;
-  font-size: 0.95rem;
-  display: inline-block;
-}
-
-.pagination a {
-  color: var(--link-color);
-  text-decoration: none;
-}
-
-.pagination a:hover {
-  background-color: var(--accent-color);
-  color: var(--surface-color);
-  border-color: var(--accent-color);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.pagination .current-page {
-  background-color: var(--accent-color);
-  color: var(--surface-color);
-  font-weight: 700;
-  border-color: var(--accent-color);
-}
-
-.pagination .pagination-ellipsis {
-  padding: 10px 8px;
-  color: var(--meta-color);
-  font-weight: 500;
-}
-
-.pagination .pager-edge {
-  padding: 10px 16px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  color: var(--meta-color);
-  opacity: 0.5;
-  margin: 4px;
-}
-
-.theme-toggle {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  background: var(--bg-color);
-  border: 1px solid var(--border-color);
-  color: var(--text-color);
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: 5px;
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  transition: all 0.2s ease;
-}
-
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.theme-toggle::before {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 100%;
-  right: 0;
-  margin-bottom: 5px;
-  background: var(--bg-color);
-  color: var(--text-color);
-  padding: 5px 10px;
-  border-radius: 3px;
-  font-size: 0.8rem;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s;
-  white-space: nowrap;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.theme-toggle:hover::before {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* =========================================
-   2. KATEGORI-SYSTEM
-   ========================================= */
-/*
- * Stilar för kategorisystemet som låter användare bläddra
- * genom bloggposter efter ämne.
- * 
- * Kategorierna visas som taggar och används i:
- * - Listor med bloggposter
- * - Kategori-arkivsidor
- * - Navigeringen
- */
-
-/* Kategorier i bloggpostlistor */
-.post-categories {
-  margin-top: 10px;
-  font-size: 0.9em;
-}
-
-.post-categories a {
-  text-decoration: none;
-  padding: 2px 5px;
-  background-color: var(--tag-bg);
-  border-radius: 3px;
-  color: var(--text-color);
-}
-
-.post-categories a:hover {
-  background-color: var(--tag-hover-bg);
 }
 
 /* Kategori-sektion med listor */
@@ -431,406 +411,211 @@ blockquote {
   border-radius: 12px;
   border: 1px solid var(--border-color);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
 
-.categories-section .categories-heading {
-  margin-top: 0;
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 1.25rem;
-  color: var(--heading-color);
-}
+  .categories-heading {
+    margin-top: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    color: var(--heading-color);
+  }
 
-.categories-section .categories-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
+  .categories-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
 
-.categories-section .categories-list .category-item {
-  margin: 0;
-}
+    .category-item {
+      margin: 0;
+    }
 
-.categories-section .categories-list .category-item .category-link {
-  display: inline-block;
-  padding: 8px 14px;
-  background-color: var(--bg-color);
-  border-radius: 6px;
-  text-decoration: none;
-  color: var(--text-color);
-  font-weight: 500;
-  border: 1px solid var(--border-color);
-  transition: all 0.2s ease;
-  font-size: 0.95rem;
+    .category-link {
+      display: inline-block;
+      padding: 8px 14px;
+      background-color: var(--bg-color);
+      border-radius: 6px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      border: 1px solid var(--border-color);
+      transition: all 0.2s ease;
+      font-size: 0.95rem;
 
-  &:hover {
-    background-color: var(--accent-color);
-    color: var(--surface-color);
-    border-color: var(--accent-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      &:hover {
+        background-color: var(--accent-color);
+        color: var(--surface-color);
+        border-color: var(--accent-color);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+    }
   }
 }
 
 /* Stil för kategorisidor */
-.category-page .post-item {
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border-color);
+.category-page {
+  .post-item {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .category-description {
+    margin-bottom: 30px;
+    font-style: italic;
+    color: var(--meta-color);
+  }
+
+  .all-categories {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+
+    .category-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+
+      li {
+        margin: 5px;
+        a {
+          display: inline-block;
+          padding: 5px 10px;
+          background-color: var(--tag-bg);
+          border-radius: 3px;
+          text-decoration: none;
+          color: var(--text-color);
+          &:hover {
+            background-color: var(--tag-hover-bg);
+          }
+        }
+      }
+    }
+  }
+
+  .home-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 5px 10px;
+    background-color: var(--link-color);
+    color: white;
+    border-radius: 3px;
+    text-decoration: none;
+    &:hover {
+      background-color: var(--link-hover-color);
+    }
+  }
 }
 
-.category-page .category-description {
-  margin-bottom: 30px;
-  font-style: italic;
-  color: var(--meta-color);
+/* =========================================
+   4. SIDNUMRERING (PAGINATION)
+   ========================================= */
+
+.pager {
+  margin: 3rem 0;
+  text-align: center;
 }
 
-.category-page .all-categories {
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border-color);
-}
-
-.category-page .all-categories .category-list {
+.pagination {
+  display: inline-flex;
   list-style: none;
-  margin: 0;
   padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.category-page .all-categories .category-list li {
-  margin: 5px;
-}
-
-.category-page .all-categories .category-list li a {
-  display: inline-block;
-  padding: 5px 10px;
-  background-color: var(--tag-bg);
-  border-radius: 3px;
-  text-decoration: none;
-  color: var(--text-color);
-}
-
-.category-page .all-categories .category-list li a:hover {
-  background-color: var(--tag-hover-bg);
-}
-
-.category-page .home-link {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 5px 10px;
-  background-color: var(--link-color);
-  color: white;
-  border-radius: 3px;
-  text-decoration: none;
-}
-
-.category-page .home-link:hover {
-  background-color: var(--link-hover-color);
-}
-
-/* =========================================
-   3. NAVIGATION OCH DROPDOWNS
-   ========================================= */
-/*
- * Navigeringsmeny och dropdowns för kategorier och senaste inlägg.
- * Skapar en responsiv och användarvänlig navigering som fungerar
- * bra på både skrivbord och mobila enheter.
- *
- * Inkluderar stilar för:
- * - Huvudmenyn
- * - Dropdown-menyer
- * - Mobil navigation (hamburger-meny)
- */
-
-/* Dropdown-menyer */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: var(--surface-color);
-  min-width: unquote("min(220px, 90vw)");
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  z-index: 1001;
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
-  margin-top: 8px;
-  overflow: hidden;
-  animation: slideDown 0.2s ease;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Två kolumner för kategorier på tablet/desktop */
-#category-dropdown {
-  display: none;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-  padding: 1rem;
-  min-width: unquote("min(340px, 90vw)");
-}
-
-#category-dropdown.expanded {
-  display: grid;
-}
-
-#category-dropdown a {
-  padding: 10px 12px !important;
-  font-size: 0.95rem;
-  margin: 0 !important;
-  border-radius: 6px;
-  border-bottom: none !important;
-}
-
-/* Senaste inlägg dropdown */
-#recent-posts-dropdown {
-  display: none;
-  padding: 0.75rem;
-  min-width: unquote("min(280px, 90vw)");
-}
-
-#recent-posts-dropdown.expanded {
-  display: block;
-}
-
-#recent-posts-dropdown a {
-  padding: 10px 14px !important;
-  font-size: 0.95rem;
-  margin: 2px 0 !important;
-  border-radius: 6px;
-  border-bottom: none !important;
-  border-left: 3px solid transparent;
-
-  &:hover {
-    border-left-color: var(--accent-color);
-    padding-left: 18px !important;
-  }
-}
-
-.dropdown-content a {
-  color: var(--text-color);
-  text-decoration: none;
-  display: block;
-  border-bottom: none;
-  transition: all 0.2s ease;
-}
-
-.dropdown-content a:last-child {
-  border-bottom: none;
-}
-
-.dropdown-content a:hover {
-  background-color: var(--accent-color);
-  color: var(--surface-color);
-  transform: translateX(4px);
-}
-
-/* Desktop hover behavior - endast för större skärmar och när dropdown inte är aktivt klickad */
-@media (min-width: 701px) {
-  .dropdown:hover .dropdown-content:not(.expanded) {
-    display: block;
-  }
-}
-
-/* När dropdown är aktivt klickad, visa den */
-.dropdown-content.expanded {
-  display: block !important;
-}
-
-.dropdown-toggle::after {
-  content: " ▼";
-  font-size: 0.6em;
-  vertical-align: 2px;
-  margin-left: 4px;
-}
-
-/* Huvudnavigeringen */
-.site-nav {
-  position: relative;
-}
-
-.nav-trigger {
-  display: none;
-}
-
-.nav-toggle-label {
-  display: none;
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 2001;
-}
-
-.trigger {
-  display: flex;
-  flex-wrap: wrap;
+  margin: 0;
+  justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  li {
+    display: inline;
+    margin: 0.3rem;
+  }
+
+  .page-number, .current-page, .previous-page, .next-page, .pager-edge, .pagination-ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    text-align: center;
+    transition: all 0.2s ease;
+    border: 1px solid var(--border-color);
+    margin: 4px;
+  }
+
+  a {
+    background-color: var(--tag-bg);
+    color: var(--link-color);
+    &:hover {
+      background-color: var(--accent-color);
+      color: var(--surface-color);
+      border-color: var(--accent-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    &:focus {
+      outline: 2px solid var(--focus-outline);
+      outline-offset: 2px;
+    }
+  }
+
+  .current-page {
+    background-color: var(--accent-color);
+    color: var(--surface-color);
+    font-weight: 700;
+    border-color: var(--accent-color);
+  }
+
+  .pagination-ellipsis {
+    border: none;
+    background: transparent;
+    color: var(--meta-color);
+    min-width: 2rem;
+  }
+
+  .pager-edge {
+    color: var(--meta-color);
+    opacity: 0.5;
+    background-color: var(--tag-bg);
+    
+    &.disabled {
+      cursor: not-allowed;
+      background-color: var(--bg-color);
+    }
+  }
+
+  .next-page, .previous-page {
+    min-width: 3rem;
+    padding: 0.5rem 1rem;
+  }
 }
 
-/* =========================================
-   4. BLOGGPOST-LISTOR OCH STILAR
-   ========================================= */
-/*
- * Stilar för visning av bloggposter i olika sammanhang:
- * - På startsidan (senaste inlägg)
- * - På kategori-sidor
- * - På "Alla inlägg"-sidan
- * 
- * Inkluderar stilar för utdrag, metadata, datum och andra
- * element relaterade till bloggposterna.
- */
-
-/* Listor med bloggposter */
-.post-list {
-  margin-left: 0;
-  list-style: none;
+// Responsiva stilar för pagination
+@media (max-width: 576px) {
+  .pagination-text {
+    display: none;
+  }
+  
+  .pagination {
+    .page-number, .current-page, .pager-edge {
+      min-width: 2rem;
+      padding: 0.4rem;
+    }
+  }
 }
-
-.post-list li {
-  margin-bottom: 30px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.post-list li:last-child {
-  border-bottom: none;
-}
-
-.post-meta {
-  font-size: 0.9em;
-  color: var(--meta-color);
-  display: block;
-  margin-bottom: 5px;
-}
-
-.post-excerpt {
-  margin-top: 10px;
-  color: var(--text-color);
-}
-
-/* Alla-inlägg sidan */
-.all-posts .post-list {
-  margin-left: 0;
-}
-
-.all-posts .post-list li {
-  margin-bottom: 25px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border-color);
-}
-
-/* Introduktionssektion på hemsidan */
-.home-page-intro {
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: var(--light-bg);
-  border-radius: 5px;
-  border-left: 4px solid var(--link-color);
-}
-
-/* Framhävda inlägg på startsidan */
-.featured-posts {
-  margin-bottom: 40px;
-}
-
-.featured-post {
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.featured-post:last-child {
-  border-bottom: none;
-}
-
-.featured-post h3 {
-  margin-bottom: 5px;
-}
-
-.featured-post .post-date {
-  font-size: 0.9em;
-  color: var(--meta-color);
-  display: block;
-  margin-bottom: 10px;
-}
-
-.read-more {
-  display: inline-block;
-  margin-top: 10px;
-  color: var(--link-color);
-  font-weight: bold;
-}
-
-.all-posts-link {
-  text-align: center;
-  margin: 40px 0 20px;
-}
-
-/* Knappar */
-.btn {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: var(--link-color);
-  color: white;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.btn:hover {
-  background-color: var(--link-hover-color);
-  text-decoration: none;
-  color: white;
-}
-
-/* Bildhantering i bloggposter */
-article div p img
-{
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 10px auto;
-}
-
-.image-description
-{
-  font-size: 0.9em;
-  color: var(--meta-color);
-  text-align: center;
-  margin-top: 5px;
-}
-
 
 /* =========================================
    5. RESPONSIV DESIGN
    ========================================= */
-/*
- * Alla responsiva stilar som anpassar sidan för olika
- * skärmstorlekar, från mobil till desktop.
- * 
- * Inkluderar:
- * - Mobilnavigeringen (hamburgermenyn)
- * - Textbrytning för små skärmar
- * - Anpassade layouter för olika enheter
- */
 
 /* Responsiv text */
 a, .page-link, .post-link, .category-link, .dropdown-content a {
@@ -844,18 +629,31 @@ p, .post-content p {
 }
 
 /* Responsiv navigering för mobila enheter */
-/* 
- * Media queries och specifika anpassningar för
- * mobila enheter med skärmar upp till 700px bredd.
- * Aktiverar hamburger-menyn och fullskärmsnavigation.
- */
 @media (max-width: 700px) {
   .nav-toggle-label {
     display: block;
     left: 10px;
     right: auto;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+
+    &:hover, &:focus {
+      background-color: var(--tag-hover-bg);
+    }
   }
   
+  .nav-trigger:checked + .nav-toggle-label {
+    background-color: var(--link-color);
+    .menu-icon svg path { fill: white; }
+  }
+
   .trigger {
     display: none;
     flex-direction: column;
@@ -866,13 +664,10 @@ p, .post-content p {
     left: 0;
     width: 100%;
     height: 100vh;
-    max-width: 100%;
-    min-width: 0;
     z-index: 2000;
-    box-shadow: none;
-    border-radius: 0;
     overflow-y: auto;
-    padding-top: 50px;
+    padding-top: 70px;
+    overscroll-behavior: contain;
   }
   
   .nav-trigger:checked ~ .trigger {
@@ -885,20 +680,29 @@ p, .post-content p {
     box-shadow: none;
     margin-left: 0;
     background: var(--dropdown-bg, var(--bg-color));
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+    display: block !important;
+
+    &.expanded {
+      max-height: 500px;
+      opacity: 1;
+    }
+
+    a {
+      padding-left: 30px;
+      border-left: 3px solid var(--border-color);
+    }
   }
 
   /* 1 kolumn för kategorier på mobil */
   #category-dropdown {
     grid-template-columns: 1fr !important;
-  }
-
-  #category-dropdown.expanded {
-    display: grid !important;
+    &.expanded { display: grid !important; }
   }
   
-  .dropdown-toggle::after {
-    content: '';
-  }
+  .dropdown-toggle::after { content: ''; }
   
   .page-link {
     width: 100%;
@@ -906,19 +710,26 @@ p, .post-content p {
     padding: 12px 20px;
     border-bottom: 1px solid var(--border-color);
     font-size: 1.1em;
+
+    &.dropdown-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &::after {
+        content: " ▼";
+        font-size: 0.7em;
+        transition: transform 0.3s ease;
+      }
+      &[aria-expanded="true"]::after {
+        transform: rotate(180deg);
+      }
+    }
   }
 }
 
 /* Desktop-navigering */
-/* 
- * Stilar för navigering på större skärmar (>700px).
- * Återställer mobila anpassningar och säkerställer att
- * menyn alltid visas horisontellt.
- */
 @media (min-width: 701px) {
-  .nav-toggle-label {
-    display: none;
-  }
+  .nav-toggle-label { display: none; }
   
   .trigger {
     display: flex !important;
@@ -926,7 +737,6 @@ p, .post-content p {
     align-items: center;
     background: none;
     position: static;
-    box-shadow: none;
     height: auto;
     width: auto;
   }
@@ -940,222 +750,8 @@ p, .post-content p {
 }
 
 /* =========================================
-   6. PAGINATION
+   6. ACCESSIBILITY ENHANCEMENTS
    ========================================= */
-/*
- * Stilar för sidpaginering.
- * Moderna, responsiva och tillgängliga navigeringsknappar
- * med tydliga indikatorer för aktiv sida och inaktiva tillstånd.
- */
-
-.pager {
-  margin: 2.5rem 0;
-  text-align: center;
-}
-
-.pagination {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.pagination li {
-  margin: 0.3rem;
-}
-
-.pagination a, 
-.pagination .current-page,
-.pagination .pager-edge,
-.pagination .pagination-ellipsis {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 0.8rem;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: 500;
-  min-width: 2.5rem;
-  min-height: 2.5rem;
-  text-align: center;
-  transition: all 0.2s ease;
-}
-
-.pagination a {
-  background-color: var(--tag-bg);
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
-}
-
-.pagination a:hover {
-  background-color: var(--tag-hover-bg);
-  transform: translateY(-2px);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  color: var(--link-color);
-}
-
-.pagination a:focus {
-  outline: 2px solid var(--focus-outline);
-  outline-offset: 2px;
-}
-
-.pagination .current-page {
-  background-color: var(--link-color);
-  color: white;
-  border: 1px solid var(--link-color);
-  font-weight: bold;
-}
-
-.pagination .pager-edge {
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
-  background-color: var(--tag-bg);
-  opacity: 0.7;
-}
-
-.pagination .pager-edge.disabled {
-  color: var(--meta-color);
-  background-color: var(--bg-color);
-  border: 1px solid var(--border-color);
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.pagination .pagination-ellipsis {
-  color: var(--meta-color);
-  min-width: 2rem;
-  border: none;
-  background: transparent;
-}
-
-.pagination .next-page,
-.pagination .previous-page {
-  min-width: 3rem;
-  padding: 0.5rem 1rem;
-}
-
-.pagination .page-number {
-  font-weight: 500;
-}
-
-// Responsiva stilar för pagination
-@media (max-width: 576px) {
-  .pagination-text {
-    display: none;
-  }
-  
-  .pagination a, 
-  .pagination .current-page,
-  .pagination .pager-edge {
-    min-width: 2rem;
-    padding: 0.4rem;
-  }
-}
-
-/* =========================================
-   7. ACCESSIBILITY ENHANCEMENTS
-   ========================================= */
-/*
- * Förbättringar för tillgänglighet enligt WCAG 2 riktlinjer
- * Inkluderar förbättrad fokushantering, kontrast, och
- * tangentbordsnavigering.
- */
-
-// Förbättrad mobil navigeringsmeny
-@media (max-width: 700px) {
-  // Förbättrad hamburger-meny
-  .nav-toggle-label {
-    display: block;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    transition: all 0.3s ease;
-  }
-  
-  .nav-toggle-label:hover, .nav-toggle-label:focus {
-    background-color: var(--tag-hover-bg);
-  }
-  
-  .nav-trigger:checked + .nav-toggle-label {
-    background-color: var(--link-color);
-  }
-  
-  .nav-trigger:checked + .nav-toggle-label .menu-icon svg path {
-    fill: white;
-  }
-  
-  // Förbättrad visning av menyn
-  .trigger {
-    padding-top: 70px;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    color: var(--text-color); // Använd temats textfärg
-  }
-  
-  // Säkerställ korrekt kontrast i mörkt läge
-  [data-theme="dark"] .page-link {
-    color: #ffffff;
-  }
-  
-  // Anpassad stil för dropdown-innehåll på mobil
-  .dropdown-content {
-    max-height: 0;
-    opacity: 0;
-    transition: all 0.3s ease;
-    overflow: hidden;
-    box-shadow: none;
-    display: block !important;
-    background-color: var(--dropdown-bg); // Använd temats bakgrundsfärg
-  }
-  
-  .dropdown-content.expanded {
-    max-height: 500px;
-    opacity: 1;
-  }
-  
-  // Förbättra stil för dropdown-toggle
-  .page-link.dropdown-toggle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    color: var(--text-color); // Använd temats textfärg
-  }
-  
-  [data-theme="dark"] .page-link.dropdown-toggle {
-    color: #ffffff; // Vit text i mörkt läge
-  }
-  
-  .page-link.dropdown-toggle::after {
-    content: " ▼";
-    font-size: 0.7em;
-    transition: transform 0.3s ease;
-  }
-  
-  .page-link.dropdown-toggle[aria-expanded="true"]::after {
-    transform: rotate(180deg);
-  }
-  
-  // Förbättra utseende på dropdown-innehåll på mobil
-  .dropdown-content a {
-    padding-left: 30px;
-    border-left: 3px solid var(--border-color);
-    color: var(--text-color); // Använd temats textfärg
-  }
-  
-  [data-theme="dark"] .dropdown-content a {
-    color: #ffffff; // Vit text i mörkt läge
-    border-left: 3px solid #555; // Synligare border i mörkt läge
-  }
-}
 
 // Fokusindikatorer för tangentbordsnavigering
 .nav-toggle-label:focus-visible, 
@@ -1176,85 +772,35 @@ body.menu-open {
 }
 
 /* 
- * Säkerställer att navigationsmeny har korrekt kontrast i både
- * ljust och mörkt läge enligt WCAG riktlinjer.
- * För mörkt läge används ljusa färger på text och länkar för att
- * uppnå en kontrastkvot på minst 4.5:1
+ * Säkerställer att navigationsmeny har korrekt kontrast i både ljust och mörkt läge.
  */
 
-// Navtext färg i mörkt läge
-[data-theme="dark"] .site-nav .page-link {
-  color: #ffffff; // Vit text i mörkt läge för bästa kontrast
-}
+[data-theme="dark"] {
+  .site-nav .page-link, .dropdown-content a {
+    color: #ffffff;
+  }
 
-[data-theme="dark"] .dropdown-content a {
-  color: #ffffff; // Vit text i mörkt läge för bästa kontrast
-}
+  .site-nav .page-link:hover, .site-nav .page-link:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 
-// Förbättrad synlighet av aktiva/hover-tillstånd i mörkt läge
-[data-theme="dark"] .site-nav .page-link:hover,
-[data-theme="dark"] .site-nav .page-link:focus {
-  color: var(--link-hover-color);
-  background-color: rgba(255, 255, 255, 0.1);
-}
+  .dropdown-content {
+    background-color: #282828;
+    border: 1px solid #444;
+    a:hover, a:focus {
+      background-color: #444;
+      color: #ffffff;
+    }
+  }
 
-[data-theme="dark"] .dropdown-content a:hover,
-[data-theme="dark"] .dropdown-content a:focus {
-  background-color: #444;
-  color: #ffffff;
-}
-
-// Säkerställ att dropdown-bakgrund ger tillräcklig kontrast
-[data-theme="dark"] .dropdown-content {
-  background-color: #282828;
-  border: 1px solid #444;
-}
-
-// Förbättrad kontrast för hamburger-menyn i mörkt läge
-[data-theme="dark"] .menu-icon svg path {
-  fill: #ffffff;
-}
-
-// Säkerställ att triggermenyn i mobilt läge har korrekt färg
-[data-theme="dark"] .trigger {
-  background-color: #222;
-}
-
-// Stilar för tema-växlare i footern
-.footer-toggle-theme {
-  text-align: center;
-  margin-top: 20px;
-  padding-top: 15px;
-  border-top: 1px solid var(--border-color);
-}
-
-// Anpassa tema-knappen
-.theme-toggle {
-  padding: 8px 16px;
-  font-size: 1rem;
-}
-
-.theme-toggle .theme-icon {
-  margin-right: 8px;
-  font-size: 1.2rem;
-}
-
-[data-theme="dark"] .theme-toggle {
-  background-color: #333;
-  color: #fff;
-  border-color: #555;
+  .menu-icon svg path { fill: #ffffff; }
+  .trigger { background-color: #222; }
 }
 
 /* =========================================
-   8. CODE HIGHLIGHTING & SYNTAX
+   7. CODE HIGHLIGHTING & SYNTAX
    ========================================= */
-/*
- * Stilar för kodblock och syntaxmarkering.
- * Förbättrar läsbarheten för kod med lämplig bakgrund och kontrast.
- * Säkerställer att kodblock har god kontrast i både ljust och mörkt läge.
- */
 
-// Grundläggande kodblock stil
 code {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   padding: 0.2em 0.4em;
@@ -1264,12 +810,6 @@ code {
   color: var(--text-color);
 }
 
-// Kod i stycken
-p code {
-  word-break: break-word;
-}
-
-// Kodblock stilar (pre)
 pre {
   padding: 1em;
   overflow-x: auto;
@@ -1277,102 +817,72 @@ pre {
   background-color: var(--light-bg);
   border: 1px solid var(--border-color);
   margin: 1.5em 0;
+
+  code {
+    padding: 0;
+    background-color: transparent;
+    word-break: normal;
+    white-space: pre;
+  }
 }
 
-pre code {
-  padding: 0;
-  background-color: transparent;
-  border-radius: 0;
-  word-break: normal;
-  white-space: pre;
-}
-
-// Rouge highlighter (standardstil för ljust tema)
-.highlighter-rouge {
-  margin: 1em 0;
-}
-
-.highlighter-rouge pre.highlight,
-.highlight {
+.highlighter-rouge pre.highlight, .highlight {
   background-color: #eef;
   color: #333;
   border-radius: 5px;
   overflow-x: auto;
 }
 
-// Språkspecifika stilar
-.language-plaintext {
-  padding: 0.2em 0.4em;
-  background-color: #eef;
-  color: #333;
-  border-radius: 3px;
+[data-theme="dark"] {
+  code, pre, .highlighter-rouge pre.highlight, .highlight, .language-plaintext {
+    background-color: #2d2d2d;
+    color: #e6e6e6;
+  }
+  pre { border-color: #444; }
 }
 
-// Mörkt läge för kodblock
-[data-theme="dark"] code {
-  background-color: #2d2d2d;
-  color: #e6e6e6;
+/* =========================================
+   8. MISC & FOOTER
+   ========================================= */
+
+.footer-toggle-theme {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
 }
 
-[data-theme="dark"] pre {
-  background-color: #2d2d2d;
-  border-color: #444;
-}
-
-[data-theme="dark"] .highlighter-rouge pre.highlight,
-[data-theme="dark"] .highlight {
-  background-color: #2d2d2d;
-  color: #e6e6e6;
-}
-
-[data-theme="dark"] .language-plaintext {
-  background-color: #2d2d2d;
-  color: #e6e6e6;
-}
-
-// Speciellt för plaintext kod
-.language-plaintext.highlighter-rouge {
-  background-color: #eef;
-  color: #333;
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-}
-
-[data-theme="dark"] .language-plaintext.highlighter-rouge {
-  background-color: #2d2d2d;
-  color: #e6e6e6;
-}
-
-// Inline kod
-code.highlighter-rouge {
-  padding: 0.2em 0.4em;
+.theme-toggle {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1rem;
+  z-index: 1000;
+  
+  [data-theme="dark"] & {
+    background-color: #333;
+    color: #fff;
+    border-color: #555;
+  }
 }
 
 /* Dark mode pagination styles */
-[data-theme="dark"] .pagination a {
-  background-color: #333;
-  color: #fff;
-  border-color: #555;
-}
-
-[data-theme="dark"] .pagination a:hover {
-  background-color: #444;
-  color: var(--link-color);
-}
-
-[data-theme="dark"] .pagination .pager-edge {
-  background-color: #333;
-  color: #ccc;
-  border-color: #555;
-}
-
-[data-theme="dark"] .pagination .pager-edge.disabled {
-  background-color: #222;
-  color: #777;
-  border-color: #444;
-}
-
-[data-theme="dark"] .pagination .pagination-ellipsis {
-  color: #aaa;
+[data-theme="dark"] .pagination {
+  a {
+    background-color: #333;
+    color: #fff;
+    border-color: #555;
+    &:hover { background-color: #444; color: var(--link-color); }
+  }
+  .pager-edge {
+    background-color: #333;
+    color: #ccc;
+    border-color: #555;
+    &.disabled {
+      background-color: #222;
+      color: #777;
+      border-color: #444;
+    }
+  }
+  .pagination-ellipsis { color: #aaa; }
 }
