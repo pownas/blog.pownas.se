@@ -7,4 +7,4 @@ services:
       - .:/srv/jekyll
     environment:
       - JEKYLL_ENV=development
-    command: bundle exec jekyll serve --host 0.0.0.0 --incremental --force_polling
+    command: bundle exec jekyll serve --source ./src --host 0.0.0.0 --incremental --force_polling

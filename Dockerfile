@@ -23,4 +23,4 @@ COPY . .
 EXPOSE 4000
 
 # Command to run Jekyll
-CMD ["bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0", "--incremental", "--force_polling"]
+CMD ["bundle", "exec", "jekyll", "serve", "--source", "./src", "--host", "0.0.0.0", "--incremental", "--force_polling"]
