@@ -67,7 +67,7 @@ Vi säger äntligen hejdå till det gamla .sln-formatet. Det nya .slnx-formatet 
 ```
 ## Före och Efter: Hur det faktiskt ser ut
 | Egenskap | Traditionell .NET 5-8 | Modern .NET 10 |
-|---|---|---|
+| --- | --- | --- |
 | **Versionshantering av paket** | Utspritt i varje .csproj | Samlat i Directory.Packages.props |
 | **.NET Ramverksversion** | Hårdkodat i varje .csproj | Centraliserat i Directory.Build.props |
 | **Solution-filen** | Svårläst .sln med GUIDs | Lättläst XML i .slnx |
