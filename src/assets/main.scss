@@ -846,6 +846,26 @@ pre {
     color: #e6e6e6;
   }
   pre { border-color: #444; }
+
+  /* Syntax highlighting for dark mode with improved contrast */
+  .highlight {
+    .c { color: #7f8c8d; } /* Comments */
+    .k { color: #9ecbff; } /* Keywords */
+    .n { color: #d4d4d4; } /* Names/identifiers */
+    .s { color: #6a9955; } /* Strings */
+    .m { color: #b5cea8; } /* Numbers */
+    .p { color: #d4d4d4; } /* Punctuation */
+    .o { color: #d4d4d4; } /* Operators */
+    .nt { color: #4ec9b0; } /* Tag names (XML/HTML) */
+    .na { color: #9cdcfe; } /* Attribute names */
+    .nl { color: #9cdcfe; } /* Names/labels */
+    .nb { color: #d4d4d4; } /* Built-ins */
+    .nc { color: #4ec9b0; } /* Class names */
+    .nf { color: #dcdcaa; } /* Function names */
+    .nx { color: #d4d4d4; } /* Other names */
+    .ss { color: #6a9955; } /* Symbols/string interpolation */
+    .err { color: #f48771; } /* Errors */
+  }
 }
 
 /* =========================================
