@@ -193,6 +193,8 @@ Föregående bloggpost med hela historian runt .NET:
 ---
 
 Källor:
-* [Nyheter i .NET 5 (Svenska)](https://learn.microsoft.com/sv-se/dotnet/core/whats-new/dotnet-5)
-* [What's new in .NET 5 (Engelska)](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-5)
-* [.NET and .NET Core release lifecycle](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core#lifecycle)
+* [Nyheter i .NET 5 (Svenska - Microsoft Learn)](https://learn.microsoft.com/sv-se/dotnet/core/whats-new/dotnet-5)
+* [What's new in .NET 5 (Engelska - Microsoft Learn)](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-5)
+* [Breaking changes in .NET 5 (Microsoft Learn)](https://learn.microsoft.com/en-us/dotnet/core/compatibility/5.0)
+* [Breaking changes in ASP.NET Core 5 (Microsoft Learn)](https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/5/overview)
+* [.NET and .NET Core release lifecycle (.NET platform support)](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core#lifecycle)

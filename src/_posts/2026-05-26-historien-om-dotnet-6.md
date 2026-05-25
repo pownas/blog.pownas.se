@@ -9,7 +9,7 @@ Detta är tredje inlägget i min blogg serie om "Historien om .NET". Här går v
 
 <!--more-->
 
-# .NET 6 – Den mogna LTS-versionen: En djupdykning i C# 10, Minimal APIs och Hot Reload
+## .NET 6 – Den mogna LTS-versionen: En djupdykning i C# 10, Minimal APIs och Hot Reload
 
 Om .NET 5 var startskottet för Microsofts nya, enhetliga era, så var **.NET 6** (som släpptes i slutet av 2021) versionen där allt landade, stabiliserades och blev redo för storskalig produktion. Som en **LTS-version** (Long Term Support) gav den företag den trygghet som krävdes för att slutgiltigt migrera bort från det gamla .NET Framework.
 
@@ -128,17 +128,19 @@ Har du applikationer som fortfarande snurrar på äldre plattformar är steget u
 ---
 
 ## Historien bakom .NET
-*Nu i kommande delar av bloggserien, så tänker jag att vi djupdyker i versionnyheterna, sedan i november 2020. Då startskottet för den moderna eran, dagen då .NET 5 och C# 9 släpptes lös och förändrade hur vi skriver C#-kod för alltid...*
 
-Föregående bloggpost med hela historian runt .NET:
+*I nästa del av bloggserien fortsätter vi resan och kliver in i november 2022. Då släpptes .NET 7 och C# 11 – en release som handlade om kompromisslös innovation och rå prestanda. Vi kommer titta närmare på hur Microsoft kapade starttider i molnet med Native AOT och hur vi äntligen slapp escape-tecken i JSON tack vare råa strängliteraler...*
+
+Föregående inlägg med hela historian runt .NET:
+
 * [Historien bakom .NET](https://blog.pownas.se/2026/05/24/historien-bakom-dotnet)
 * [Historien om .NET 5 – Startskottet för den moderna eran](https://blog.pownas.se/2026/05/25/historien-om-dotnet-5)
 
 ---
 
 Källor:
-* [Nyheter i .NET 6 (Svenska)](https://learn.microsoft.com/sv-se/dotnet/core/whats-new/dotnet-6)
-* [What's new in .NET 6 (Engelska)](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-6)
-* [Breaking changes in .NET 6](https://learn.microsoft.com/en-us/dotnet/core/compatibility/6.0)
-* [Breaking changes in ASP.NET Core 6](https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/6/overview)
-* [.NET and .NET Core release lifecycle](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core#lifecycle)
+* [Nyheter i .NET 6 (Svenska - Microsoft Learn)](https://learn.microsoft.com/sv-se/dotnet/core/whats-new/dotnet-6)
+* [What's new in .NET 6 (Engelska - Microsoft Learn)](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-6)
+* [Breaking changes in .NET 6 (Microsoft Learn)](https://learn.microsoft.com/en-us/dotnet/core/compatibility/6.0)
+* [Breaking changes in ASP.NET Core 6 (Microsoft Learn)](https://learn.microsoft.com/en-us/aspnet/core/breaking-changes/6/overview)
+* [.NET and .NET Core release lifecycle (.NET platform support)](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core#lifecycle)
