@@ -67,7 +67,7 @@ Vi säger äntligen hejdå till det gamla .sln-formatet. Det nya .slnx-formatet 
 ```
 ## Före och Efter: Hur det faktiskt ser ut
 
-<div class="table-container" Whiteout-fix>
+<div class="table-container" markdown="1" Whiteout-fix>
 
 | Egenskap | Traditionell .NET 5-8 | Modern .NET 10 |
 | --- | --- | --- |

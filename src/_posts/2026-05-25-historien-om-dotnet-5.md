@@ -31,7 +31,7 @@ Målet med .NET 5 var att skapa **en** runtime och **ett** ramverk som fungerar 
 ### Ramverksteknikerna som lämnades kvar
 I och med övergången till den moderna arkitekturen valde Microsoft att inte porta vissa äldre tekniker från .NET Framework. Om du migrerar äldre system behöver du titta på moderna alternativ:
 
-<div class="table-container" Whiteout-fix>
+<div class="table-container" markdown="1" Whiteout-fix>
 
 | Gammal teknik (.NET Framework) | Rekommenderat modernt alternativ i .NET 5+ |
 | :--- | :--- |

@@ -29,7 +29,7 @@ För att förstå hur vi hamnade i dagens moderna, plattformsoberoende .NET v5-v
 
 ### Från födelse till den sista Windows-låsta versionen
 
-<div class="table-container" Whiteout-fix>
+<div class="table-container" markdown="1" Whiteout-fix>
 
 | Version | Släpptes (År) | De viktigaste nyheterna |
 | --- | --- | --- |
@@ -61,7 +61,7 @@ Detta var en helt ny, modulär och cross-platform version av .NET skrivet helt s
 
 > **Arkitektur-kaoset:** Under den här perioden var det förvirrande för utvecklare. Vi hade *.NET Framework* (för Windows), *.NET Core* (för cross-platform) och *Mono/Xamarin* (för mobilappar). För att försöka hålla ihop allt skapades *.NET Standard* – ett slags kontrakt som sa vilka funktioner som måste finnas i alla systemen. Det fungerade, men det var rörigt.
 
-<div class="table-container" Whiteout-fix>
+<div class="table-container" markdown="1" Whiteout-fix>
 
 | Version | Släpptes (År) | De viktigaste nyheterna |
 | --- | --- | --- |
@@ -80,7 +80,7 @@ Nu fanns det plötsligt väldigt få anledningar att stanna kvar i det gamla leg
 
 Här raderade Microsoft namnen "Core" och "Framework" för att skapa en enda gemensam plattform för allt från molntjänster och mobilappar till AI och spelutveckling.
 
-<div class="table-container" Whiteout-fix>
+<div class="table-container" markdown="1" Whiteout-fix>
 
 | Version | Släpptes (År) | De viktigaste nyheterna |
 | --- | --- | --- |
