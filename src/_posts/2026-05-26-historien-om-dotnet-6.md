@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Historien om .NET 6 – Den mogna LTS-versionen"
-date: 2026-05-26 00:37 +0200
+date: 2026-05-26 11:37 +0200
 category: "c-sharp,.NET,programmering"
 ---
 
