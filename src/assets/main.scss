@@ -16,6 +16,12 @@
   --border-color: #e0e0e0;
   --meta-color: #555555;
   --accent-color: #007bff;
+  --border-color: #e0e0e0;
+
+  /* Tabell-variabler för ljust läge */
+  --table-header-bg: #eaedf2;       /* Tydlig men mjuk kontrasterande header */
+  --table-zebra-bg: #f8f9fa;        /* Mycket ljusgrå för varannan rad */
+  --table-text: #1a1a1a;            /* Säkerställer WCAG AAA kontrast */
 }
 
 [data-theme="dark"] {
@@ -28,6 +34,12 @@
   --border-color: #333333;
   --meta-color: #bbbbbb;
   --accent-color: #9ECBFF;
+  --border-color: #333333;
+
+  /* Tabell-variabler för mörkt läge (dämpade ytor) */
+  --table-header-bg: #252526;       /* Mjuk mörkgrå, inte för ljus */
+  --table-zebra-bg: #1a1a1a;        /* Subtil skillnad från surface-color (#1e1e1e) */
+  --table-text: #f0f0f0;            /* Hög kontrast mot de mörka ytorna */
 }
 
 body {
@@ -912,4 +924,58 @@ pre {
     }
   }
   .pagination-ellipsis { color: #aaa; }
+}
+
+/* =========================================
+   9. ACCESSIBLE & RESPONSIVE TABLES (WCAG COMPLIANT)
+   ========================================= */
+
+/* Gör så att tabeller kan scrollas horisontellt på mobilen istället för att klippas */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+  background-color: var(--surface-color);
+  color: var(--table-text);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+th, td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  line-height: 1.5;
+}
+
+/* Header-stil med hög kontrast enligt WCAG */
+th {
+  background-color: var(--table-header-bg);
+  color: var(--heading-color);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+/* Zebra-striping (varannan rad) med mjuk övergång */
+tr:nth-child(even) {
+  background-color: var(--table-zebra-bg);
+}
+
+/* Subtil hover-effekt för att lättare följa rader med ögat */
+tr:hover {
+  background-color: rgba(0, 123, 255, 0.04);
+}
+
+/* Anpassning för kodstycken inuti tabeller så de inte blir osynliga */
+table code {
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
 }

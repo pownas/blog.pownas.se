@@ -29,6 +29,8 @@ För att förstå hur vi hamnade i dagens moderna, plattformsoberoende .NET v5-v
 
 ### Från födelse till den sista Windows-låsta versionen
 
+<div class="table-container" Whiteout-fix>
+
 | Version | Släpptes (År) | De viktigaste nyheterna |
 | --- | --- | --- |
 | **.NET Framework 1.0** | 2002 | Startskottet för hela plattformen som introducerade språket C# 1.0 och den gemensamma exekveringsmiljön (CLR). |
@@ -42,6 +44,8 @@ För att förstå hur vi hamnade i dagens moderna, plattformsoberoende .NET v5-v
 | **.NET Framework 4.6** | 2015 | Gav oss den nya, mycket snabbare 64-bitars kompilatorn (RyuJIT) och bättre stöd för moderna krypteringsstandarder, samt nyare Windows-funktioner. |
 | **.NET Framework 4.7** | 2017 | Fokuserade mycket på touch-stöd, kryptografi och bättre hantering av högupplösta skärmar (High DPI) i gamla skrivbordsappar och uppdaterade säkerheten i webbkommunikation. |
 | **.NET Framework 4.8** | 2019 | Den absoluta slutstationen för det klassiska ramverket (.NET Framework). Fokus var på maximal stabilitet, buggfixar, förbättrade säkerheten och cementerades som den sista stora uppdateringen av det gamla ramverket. |
+
+</div>
 
 ---
 
@@ -57,6 +61,7 @@ Detta var en helt ny, modulär och cross-platform version av .NET skrivet helt s
 
 > **Arkitektur-kaoset:** Under den här perioden var det förvirrande för utvecklare. Vi hade *.NET Framework* (för Windows), *.NET Core* (för cross-platform) och *Mono/Xamarin* (för mobilappar). För att försöka hålla ihop allt skapades *.NET Standard* – ett slags kontrakt som sa vilka funktioner som måste finnas i alla systemen. Det fungerade, men det var rörigt.
 
+<div class="table-container" Whiteout-fix>
 
 | Version | Släpptes (År) | De viktigaste nyheterna |
 | --- | --- | --- |
@@ -65,6 +70,8 @@ Detta var en helt ny, modulär och cross-platform version av .NET skrivet helt s
 | [**.NET Core 3.0**](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0) | 2019 | Tog det historiska steget att flytta över stöd för traditionella Windows-skrivbordsappar (WPF och WinForms) till Core-plattformen samt introducerade gRPC för supersnabb API-kommunikation. |
 | [**.NET Core 3.1**](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-1) | 2019 | En stabil långtidssupport-version (LTS) som polerade prestandan och cementerade .NET Core som redo att helt pensionera det gamla .NET ramverket (.NET Framework). |
 
+</div>
+
 Nu fanns det plötsligt väldigt få anledningar att stanna kvar i det gamla legacy .NET Framework...
 
 ---
@@ -72,6 +79,8 @@ Nu fanns det plötsligt väldigt få anledningar att stanna kvar i det gamla leg
 ## Enandet: Den moderna .NET-eran (2020 – Idag)
 
 Här raderade Microsoft namnen "Core" och "Framework" för att skapa en enda gemensam plattform för allt från molntjänster och mobilappar till AI och spelutveckling.
+
+<div class="table-container" Whiteout-fix>
 
 | Version | Släpptes (År) | De viktigaste nyheterna |
 | --- | --- | --- |
@@ -82,6 +91,8 @@ Här raderade Microsoft namnen "Core" och "Framework" för att skapa en enda gem
 | [**.NET 9**](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-9/overview) | 2024 | Integrerade djupa optimeringar för AI-utveckling och bjöd på smarta språktillägg i C# 13, som metoden `.Index()` i loopar och det nya, snabbare `Lock`-objektet. |
 | [**.NET 10**](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/overview) | 2025 | Den senaste LTS-versionen med inbyggt fullskaligt stöd för tunga tensor-beräkningar (AI) och det efterlängtade `field`-nyckelordet i C# 14 för ännu renare kodstruktur. |
 | [**.NET 11** *PREVIEW*](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-11/overview) | 2026 | (nästa STS-release för november 2026) fokuserar på en djupgående modernisering av plattformens fundament genom att aktivera *Runtime Async* som standard, flytta mobil- (MAUI) och WebAssembly-appar helt till *CoreCLR* för en enhetlig exekveringsmiljö, samt leverera kraftfulla JIT- och AI-optimeringar direkt under huven. |
+
+</div>
 
 ---
 

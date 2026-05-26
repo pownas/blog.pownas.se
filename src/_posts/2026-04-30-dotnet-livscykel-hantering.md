@@ -66,6 +66,9 @@ Vi säger äntligen hejdå till det gamla .sln-formatet. Det nya .slnx-formatet 
 
 ```
 ## Före och Efter: Hur det faktiskt ser ut
+
+<div class="table-container" Whiteout-fix>
+
 | Egenskap | Traditionell .NET 5-8 | Modern .NET 10 |
 | --- | --- | --- |
 | **Versionshantering av paket** | Utspritt i varje .csproj | Samlat i Directory.Packages.props |
@@ -73,6 +76,9 @@ Vi säger äntligen hejdå till det gamla .sln-formatet. Det nya .slnx-formatet 
 | **Solution-filen** | Svårläst .sln med GUIDs | Lättläst XML i .slnx |
 | **SDK-version** | Odefinierad (tar senaste på datorn) | Låst via global.json |
 | **LCM Uppgradering** | Dagar av sök-och-ersätt, testning | Minuter av centrala ändringar |
+
+</div>
+
 ## Sammanfattning: Varför du bör göra detta idag
 Att migrera en äldre kodbas till denna struktur tar oftast inte mer än några timmar, men avkastningen (ROI) är enorm. Genom att separera *konfiguration* från *kod* bygger du ett repo som är designat för att leva länge.
 När Lifecycle Management slutar vara ett ångestladdat detektivarbete över dussintals filer och istället reduceras till att uppdatera ett fåtal centrala parametrar, frigör du tid till det som faktiskt spelar roll: att bygga värdeskapande funktioner.
