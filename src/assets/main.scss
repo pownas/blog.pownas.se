@@ -930,52 +930,63 @@ pre {
    9. ACCESSIBLE & RESPONSIVE TABLES (WCAG COMPLIANT)
    ========================================= */
 
-/* Gör så att tabeller kan scrollas horisontellt på mobilen istället för att klippas */
+/* Containern som hanterar mobil-scroll och isolerar tabellstilen */
 .table-container {
   width: 100%;
   overflow-x: auto;
   margin: 1.5rem 0;
   border-radius: 8px;
   border: 1px solid var(--border-color);
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-  font-size: 0.95rem;
   background-color: var(--surface-color);
-  color: var(--table-text);
-  transition: background-color 0.3s, color 0.3s;
-}
 
-th, td {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--border-color);
-  line-height: 1.5;
-}
+  /* Genom att nästla 'table' här inne krossar vi temats hårdkodade färger */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+    background-color: var(--surface-color) !important;
+    color: var(--table-text) !important;
+    transition: background-color 0.3s, color 0.3s;
+    margin-bottom: 0 !important; /* Tar bort temats bottenmarginal */
+    border: none !important;     /* Rensar temats ytterkant */
+  }
 
-/* Header-stil med hög kontrast enligt WCAG */
-th {
-  background-color: var(--table-header-bg);
-  color: var(--heading-color);
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  border-bottom: 2px solid var(--border-color);
-}
+  th, td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color) !important;
+    line-height: 1.5;
+    color: var(--table-text) !important; /* Tvingar texten att hålla kontrasten */
+  }
 
-/* Zebra-striping (varannan rad) med mjuk övergång */
-tr:nth-child(even) {
-  background-color: var(--table-zebra-bg);
-}
+  /* Header-stil med hög kontrast enligt WCAG */
+  th {
+    background-color: var(--table-header-bg) !important;
+    color: var(--heading-color) !important;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border-color) !important;
+  }
 
-/* Subtil hover-effekt för att lättare följa rader med ögat */
-tr:hover {
-  background-color: rgba(0, 123, 255, 0.04);
-}
+  /* Explicita regler för rader så att inte mörkt läge kraschar */
+  tr:nth-child(odd) {
+    background-color: var(--surface-color) !important;
+  }
 
-/* Anpassning för kodstycken inuti tabeller så de inte blir osynliga */
-table code {
-  background-color: var(--bg-color);
-  border: 1px solid var(--border-color);
+  /* Zebra-striping (varannan rad) baserat på dina unika tema-variabler */
+  tr:nth-child(even) {
+    background-color: var(--table-zebra-bg) !important;
+  }
+
+  /* Subtil och snygg hover-effekt anpassad för både ljust och mörkt läge */
+  tr:hover {
+    background-color: rgba(0, 123, 255, 0.08) !important;
+  }
+
+  /* Säkerställer att inline-kod i tabellerna hänger med i färgskiftet */
+  table code {
+    background-color: var(--bg-color) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+  }
 }
