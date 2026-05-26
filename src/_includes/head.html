@@ -5,18 +5,12 @@
   <title>{% if page.title %}{{ page.title | escape }} - {{ site.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
   <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
 
-  <!-- Mermaid diagram support -->
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true });
-  </script>
-
   <!-- Förhindra tema-flimmer genom att använda sparad inställning direkt vid sidladdning -->
   <script>
     (function() {
       try {
         // Hämta sparad temainställning (garantera att vi faktiskt läser från localStorage)
-        const savedTheme = window.localStorage ? localStorage.getItem('theme') : null;
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
         // Kontrollera om vi har ett sparat tema och använd det direkt
         if (savedTheme === 'light' || savedTheme === 'dark') {
@@ -41,6 +35,13 @@
       }
     })();
   </script>
+
+  <!-- Mermaid diagram support -->
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+
 
   <link rel="icon" href="https://www.pownas.se/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
