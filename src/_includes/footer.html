@@ -51,57 +51,57 @@
       </button>
     </div>
     <script>
-    function toggleTheme() {
-      try {
-        const current = document.documentElement.getAttribute('data-theme') || 'light';
-        const next = current === 'dark' ? 'light' : 'dark';
+      function toggleTheme() {
+        try {
+          const current = document.documentElement.getAttribute('data-theme') || 'light';
+          const next = current === 'dark' ? 'light' : 'dark';
 
-        // Uppdatera DOM och spara i localStorage
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
+          // Uppdatera DOM och spara i localStorage
+          document.documentElement.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
 
-        updateThemeIcon(next);
-      } catch (e) {
-        console.error('Error toggling theme:', e);
-      }
-    }
-
-    function updateThemeIcon(theme) {
-      try {
-        const themeIcon = document.querySelector('.theme-icon');
-        if (themeIcon) {
-          themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+          updateThemeIcon(next);
+        } catch (e) {
+          console.error('Error toggling theme:', e);
         }
-      } catch (e) {
-        console.error('Error updating theme icon:', e);
       }
-    }
 
-    // KÖR DIREKT VID SIDLADDNING
-    (function() {
-      try {
-        // 1. Kolla localStorage först
-        let savedTheme = localStorage.getItem('theme');
-
-        // 2. Om tomt, kolla om användaren föredrar mörkt läge i sitt OS (valfritt men snyggt)
-        if (!savedTheme) {
-          const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-          savedTheme = prefersDark ? 'dark' : 'light';
+      function updateThemeIcon(theme) {
+        try {
+          const themeIcon = document.querySelector('.theme-icon');
+          if (themeIcon) {
+            themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+          }
+        } catch (e) {
+          console.error('Error updating theme icon:', e);
         }
-
-        // 3. Applicera temat på documentElement så att CSS-variablerna slår om
-        document.documentElement.setAttribute('data-theme', savedTheme);
-
-        // 4. Uppdatera ikonen (vänta tills DOM:en är redo om skriptet ligger i head)
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', () => updateThemeIcon(savedTheme));
-        } else {
-          updateThemeIcon(savedTheme);
-        }
-      } catch (e) {
-        console.error('Error initializing theme:', e);
       }
-    })();
+
+      // KÖR DIREKT VID SIDLADDNING
+      (function() {
+        try {
+          // 1. Kolla localStorage först
+          let savedTheme = localStorage.getItem('theme');
+
+          // 2. Om tomt, kolla om användaren föredrar mörkt läge i sitt OS (valfritt men snyggt)
+          if (!savedTheme) {
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            savedTheme = prefersDark ? 'dark' : 'light';
+          }
+
+          // 3. Applicera temat på documentElement så att CSS-variablerna slår om
+          document.documentElement.setAttribute('data-theme', savedTheme);
+
+          // 4. Uppdatera ikonen (vänta tills DOM:en är redo om skriptet ligger i head)
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => updateThemeIcon(savedTheme));
+          } else {
+            updateThemeIcon(savedTheme);
+          }
+        } catch (e) {
+          console.error('Error initializing theme:', e);
+        }
+      })();
     </script>
 
     <div class="footer-copyright">
