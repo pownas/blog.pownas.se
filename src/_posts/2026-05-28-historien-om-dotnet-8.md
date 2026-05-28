@@ -1,7 +1,7 @@
-﻿---
+---
 layout: post
 title: "Historien om .NET 8 – Den fulländade Cloud Native-plattformen"
-date: 2026-05-28 09:13 +0200
+date: 2026-05-28 07:01 +0200
 category: "c-sharp,.NET,programmering"
 ---
 
