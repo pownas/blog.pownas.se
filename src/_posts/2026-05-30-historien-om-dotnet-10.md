@@ -1,7 +1,7 @@
 ﻿---
 layout: post
 title: "Historien om .NET 10 – Storskalig kontroll och modern arkitektur"
-date: 2026-05-30 09:07 +0200
+date: 2026-05-30 08:00
 category: "c-sharp,.NET,programmering"
 ---
 
