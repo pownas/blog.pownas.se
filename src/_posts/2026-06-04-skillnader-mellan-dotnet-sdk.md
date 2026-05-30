@@ -1,7 +1,7 @@
 ﻿---
 layout: post
-title: "Skillnaderna mellan SDK 10.0.108, 10.0.204 och 10.0.300"
-date: 2026-06-01 07:15 +0200
+title: "Skillnaderna mellan .NET SDK 10.0.108, 10.0.204 och 10.0.300"
+date: 2026-06-04 07:15 +0200
 category: "c-sharp,.NET,programmering"
 ---
 

@@ -21,9 +21,9 @@ Här går vi igenom de absolut största höjdpunkterna och vad du behöver se up
 
 ## 🚀 1. C# 11 – Ergonomi och smartare kodslimming
 
-C# 11 fortsatte på inslagna spår: att göra språket mer modernt, säkert och mindre tidskrävande att skriva. 
+C# 11 fortsatte på inslagna spår: att göra språket mer modernt, säkert och mindre tidskrävande att skriva.
 
-### Raw String Literals (Råa strängliteraler)
+### 1.1. Raw String Literals (Råa strängliteraler)
 Detta är utan tvekan en av de mest älskade funktionerna i C# 11. Om du någonsin har försökt klistra in ett JSON- eller XML-objekt i en C#-sträng vet du hur frustrerande det är att behöva "escapa" alla citattecken (`\"`).
 
 Nu kan du använda minst tre citattecken (`"""`) i början och slutet. Allt där emellan tolkas exakt som det står – inklusive citattecken och radbrytningar!
@@ -41,7 +41,7 @@ string json = """
 
 Kombinerar du det dessutom med stränginterpolering (`$$"""`) bestämmer antalet dollartecken hur många måsvingar som krävs för att läsa av en variabel, vilket gör det busenkelt att generera dynamisk JSON.
 
-### Required Members (Obligatoriska medlemmar)
+### 1.2. Required Members (Obligatoriska medlemmar)
 
 I C# 9 och 10 blev det populärt att använda `init`-setters och objektinitierare istället för långa konstruktorer. Problemet var att kompilatorn inte kunde tvinga en utvecklare att faktiskt sätta ett värde vid initieringen.
 
@@ -62,7 +62,7 @@ var u1 = new Användare { Epost = "test@pownas.se" };
 
 ```
 
-### List Patterns (Listmönster)
+### 1.3. List Patterns (Listmönster)
 
 Mönstermatchningen tog ytterligare ett kliv. Nu kan du matcha arrayer och listor mot specifika sekvenser av element, och till och med använda "slice-operatorn" (`..`) för att matcha resten av listan.
 
@@ -96,7 +96,7 @@ I vanliga fall kompileras C#-kod till ett mellanspråk (IL) som sedan JIT-kompil
 
 Webbstacken fick två efterlängtade funktioner som löste problem där vi tidigare behövt förlita oss på tredjepartslösningar:
 
-### Inbyggd Rate Limiting (Anropsbegränsning)
+### 3.1. Inbyggd Rate Limiting (Anropsbegränsning)
 
 Att skydda sina API:er mot överbelastning eller brute-force har blivit standard. .NET 7 introducerade en inbyggd middleware för *Rate Limiting*. Du kan enkelt konfigurera algoritmer som *Fixed Window*, *Sliding Window* eller *Token Bucket* direkt i `Program.cs`:
 
@@ -112,7 +112,7 @@ builder.Services.AddRateLimiter(options =>
 
 ```
 
-### Output Caching (Svars-cachning på riktigt)
+### 3.2. Output Caching (Svars-cachning på riktigt)
 
 Tidigare fanns *Response Caching*, som i princip bara skickade med HTTP-headers till webbläsaren. Med nya **Output Caching** cachas API-svaren direkt på servern. Du kan enkelt styra ogiltigförklaring (eviction) av cache och basera cachen på specifika query-parametrar eller headers, vilket sparar enorma mängder databasresurser.
 
@@ -122,15 +122,15 @@ Tidigare fanns *Response Caching*, som i princip bara skickade med HTTP-headers 
 
 Även om .NET 7 har hög bakåtkompatibilitet finns det några förändringar som kan ställa till det om du uppgraderar äldre system:
 
-### 1. Generisk matematik (Generic Math) ändrar interfaces
+### 4.1. Generisk matematik (Generic Math) ändrar interfaces
 
 I och med införandet av *Generic Math* (möjligheten att använda matematiska operatorer som `+` och `-` direkt på generiska typer via `static abstract`-medlemmar i interfaces) har flera av de inbyggda numeriska typerna i .NET strukturerats om. Om du har skrivit egna avancerade matematiska bibliotek eller egna implementationer av `IFormattable`, kan du stöta på kompileringstyper som krockar.
 
-### 2. Auto-genererade Regex-ändringar
+### 4.2. Auto-genererade Regex-ändringar
 
 I .NET 7 introducerades en ny källgenerator (Source Generator) för reguljära uttryck via attributet `[GeneratedRegex]`. Om du migrerar till detta förändras hur din Regex kompileras, vilket är fantastiskt för prestandan men kan i sällsynta fall ge subtila beteendeskillnader vid felaktigt formaterade strängar.
 
-### 3. `BinaryFormatter` stryps ytterligare
+### 4.3. `BinaryFormatter` stryps ytterligare
 
 Fasningen av den osäkra `BinaryFormatter` som påbörjades i .NET 5 fortsatte i .NET 7. Flera interna metoder i underliggande bibliotek har helt slutat att stödja den, vilket gör att gamla legacy-objekt som förlitar sig på binär serialisering nu helt slutar fungera om man inte explicit slår på legacy-flaggor i `.csproj`.
 

@@ -23,14 +23,14 @@ Här går vi igenom de absolut största nyheterna, prestandahoppen och de dolda 
 
 Tillsammans med .NET 6 lanserades C# 10. Om du skapar ett nytt konsolprogram eller webbprojekt i .NET 6 möts du av en radikal förändring: `Program.cs` innehåller nästan ingen kod alls. Detta möjliggjordes genom tre stora språksaker:
 
-### Global Usings & Implicit Usings
+### 1.1. Global Usings & Implicit Usings
 
 Trött på att ha tio rader med `using System;`, `using System.Linq;` längst upp i *varje* fil?
 
 * **Global Usings:** Du kan nu skriva `global using System.Net.Http;` i en enda fil, så är det tillgängligt i hela projektet.
 * **Implicit Usings:** Kompilatorn lägger automatiskt till de vanligaste namespaces baserat på vilken typ av projekt du kör (t.ex. webb eller konsol).
 
-### File-scoped Namespaces
+### 1.2. File-scoped Namespaces
 
 Istället för att omsluta hela din klass med måsvingar för ett namespace (vilket skjuter in all din kod ett snäpp åt höger), kan du nu deklarera ditt namespace på en enda rad med ett semikolon.
 
@@ -53,7 +53,7 @@ public class Kund { }
 
 ```
 
-### Record Structs
+### 1.3. Record Structs
 
 I C# 9 fick vi `record` som var en klass (referenstyp) under huven. C# 10 introducerade **`record struct`**, vilket ger dig samma smidiga fördelar (oföränderlighet och värdebaserad jämförelse) men som en **värdetyp** (struct). Det är perfekt för små, högpresterande datastrukturer där du vill undvika minnesallokeringar på heapen.
 
@@ -95,25 +95,25 @@ app.Run();
 
 När du migrerar ett projekt till .NET 6 från .NET Core 3.1 eller .NET 5 finns det ett par dolda förändringar i beteende som du måste se upp med:
 
-### 1. `System.Drawing.Common` blir Windows-specifik! (Viktigt för Docker/Linux)
+### 4.1. `System.Drawing.Common` blir Windows-specifik! (Viktigt för Docker/Linux)
 
 Detta är den absolut vanligaste fallgropen vid migrering. Om du använder `System.Drawing.Common` för att generera bilder, QR-koder eller hantera grafik på en Linux-server (eller i en Linux-baserad Docker-container), kommer din kod att krascha med en `PlatformNotSupportedException` i .NET 6.
 
 * **Lösning:** Microsoft rekommenderar att man migrerar till plattformsoberoende bibliotek som *ImageSharp*, *SkiaSharp* eller *Microsoft.Maui.Graphics*.
 
-### 2. Ohanterade fel i `BackgroundService` kraschar appen
+### 4.2. Ohanterade fel i `BackgroundService` kraschar appen
 
 I tidigare versioner av .NET kunde en bakgrundstråd (`BackgroundService` eller `IHostedService`) krascha i tysthet utan att huvudapplikationen dog. Från och med .NET 6 följer bakgrundstjänster normal felhanteringsstandard: om en bakgrundstjänst kastar ett ohanterat undantag (unhandled exception), **stängs hela applikationen ner**.
 
 * **Lösning:** Se till att du har robusta `try-catch`-block inuti dina `ExecuteAsync`-metoder i bakgrundstjänsterna.
 
-### 3. `WebRequest` och `WebClient` markeras som föråldrade
+### 4.3. `WebRequest` och `WebClient` markeras som föråldrade
 
 De gamla klasserna `WebRequest`, `WebClient` och `ServicePoint` är nu officiellt markerade som `Obsolete`. De underhålls inte längre och kommer att tas bort helt i framtida versioner.
 
 * **Lösning:** Ersätt dem helt med `HttpClient`.
 
-### 4. `IAsyncEnumerable` i System.Text.Json
+### 4.4. `IAsyncEnumerable` i System.Text.Json
 
 Om du skickar en `IAsyncEnumerable<T>` till `JsonSerializer` kommer .NET 6 nu att serialisera den asynkront som en JSON-array. Det är jättebra för prestandan, men om din äldre kod förväntade sig ett annat beteende kan det bryta integrationer.
 

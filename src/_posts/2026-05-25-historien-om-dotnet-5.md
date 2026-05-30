@@ -19,16 +19,16 @@ För att undvika förvirring med .NET Framework 4.x hoppade man helt över versi
 
 ---
 
-## 🚀 1. Den stora plattformsfusionen
+## 1. 🚀 Den stora plattformsfusionen
 
-Målet med .NET 5 var att skapa **en** runtime och **ett** ramverk som fungerar överallt: webb, moln, skrivbord, mobil, IoT och spelutveckling. 
+Målet med .NET 5 var att skapa **en** runtime och **ett** ramverk som fungerar överallt: webb, moln, skrivbord, mobil, IoT och spelutveckling.
 
-### Slutet för .NET Framework och .NET Standard?
+### 1.1. Slutet för .NET Framework och .NET Standard?
 * **.NET Framework 4.8** blev den sista versionen av det gamla traditionella ramverket. Det underhålls fortfarande för systemsäkerhet men vidareutvecklas inte.
-* **.NET Standard** ersattes i praktiken av den nya **Target Framework Moniker (TFM)** `net5.0`. Istället för att klura på vilken .NET Standard-version ditt klassbibliotek behöver stödja, räcker det nu att specificera `net5.0` för att dela kod sömlöst mellan alla .NET 5-applikationer. 
+* **.NET Standard** ersattes i praktiken av den nya **Target Framework Moniker (TFM)** `net5.0`. Istället för att klura på vilken .NET Standard-version ditt klassbibliotek behöver stödja, räcker det nu att specificera `net5.0` för att dela kod sömlöst mellan alla .NET 5-applikationer.
     *(Obs: Om du fortfarande behöver dela kod med gamla .NET Framework-applikationer är det fortfarande `netstandard2.0` som gäller).*
 
-### Ramverksteknikerna som lämnades kvar
+### 1.2. Ramverksteknikerna som lämnades kvar
 I och med övergången till den moderna arkitekturen valde Microsoft att inte porta vissa äldre tekniker från .NET Framework. Om du migrerar äldre system behöver du titta på moderna alternativ:
 
 <div class="table-container" markdown="1" Whiteout-fix>
@@ -43,13 +43,13 @@ I och med övergången till den moderna arkitekturen valde Microsoft att inte po
 
 ---
 
-## ✍️ 2. Språkuppdateringar: C# 9 och F# 5
+## 2. ✍️ Språkuppdateringar: C# 9 och F# 5
 
 Tillsammans med .NET 5 lanserades C# 9 och F# 5, vilket gav utvecklare kraftfulla verktyg för att kapa onödig kod och skriva mer deklarativt.
 
-### Höjdpunkter i C# 9:
+### 2.1. Höjdpunkter i C# 9:
 
-#### 1. Top-Level Statements (Toppnivå-statements)
+#### 2.1.1. Top-Level Statements (Toppnivå-statements)
 Innan C# 9 krävdes det en hel del ceremonikod bara för att skriva ut en enkel textrad i konsolen. Du behövde ett `namespace`, en `class Program` och en rörig `static void Main`-metod.
 
 **Förr (Boilerplate):**
@@ -80,7 +80,7 @@ Console.WriteLine("Hej världen!");
 
 Kompilatorn skapar automatiskt den underliggande klassen och `Main`-metoden i bakgrunden. Detta gör C# perfekt för mindre mikrotjänster, Azure Functions och skriptliknande kod.
 
-#### 2. Records (Datacentrerade typer)
+#### 2.1.2. Records (Datacentrerade typer)
 
 Nyheten **`record`** introducerade en ny referenstyp som är **oföränderlig (immutable)** som standard och använder **värdebaserad jämförelse**. Det innebär att två helt olika objekt anses vara lika om de innehåller exakt samma data.
 
@@ -99,7 +99,7 @@ var p3 = p1 with { LastName = "Pettersson" };
 
 ```
 
-#### 3. Init-Only Setters
+#### 2.1.3. Init-Only Setters
 
 Om du vill ha properties som är skrivskyddade efter initiering, men ändå vill kunna använda smidiga objektinitierare istället för långa konstruktorer, är `init` lösningen.
 
@@ -116,7 +116,7 @@ p.Namn = "Espresso"; // OK!
 
 ```
 
-#### 4. Avancerad mönstermatchning (Relational & Logical Patterns)
+#### 2.1.4. Avancerad mönstermatchning (Relational & Logical Patterns)
 
 Mönstermatchningen i `switch`-uttryck tog ett jättekliv framåt. Nu kan du använda logiska ord som `and`, `or` och `not`, i kombination med matematiska relationsoperatorer (`<`, `>`, `<=`, `>=`).
 
@@ -133,11 +133,11 @@ string meddelande = speed switch
 
 ```
 
-#### 5. Source Generators (Källgeneratorer)
+#### 2.1.5. Source Generators (Källgeneratorer)
 
 En enorm nyhet under huven var Source Generators. Det gör det möjligt för kompilatorn att inspektera din kod under pågående kompilering och generera extra C#-kod i realtid. Detta har dramatiskt minskat behovet av långsam reflektion (reflection) vid runtime i moderna applikationer.
 
-### Nyheter i F# 5
+### 2.2. Nyheter i F# 5
 
 F# (det funktionella språket i .NET) fick också en stor uppdatering i och med F# 5. Den största nyheten här var introduktionen av **interpolerade strängar** (likt C# och JavaScript), samt **typad interpolering** där formatspecifikationen valideras direkt av kompilatorn:
 
@@ -150,7 +150,7 @@ let message = $"%s{name} is %d{age} years old." // Typsäker formatering!
 
 ---
 
-## ⚡ 3. Prestanda och Runtime-förbättringar
+## 3. ⚡ Prestanda och Runtime-förbättringar
 
 .NET 5 var känt som en utpräglad "prestanda-release". Microsoft optimerade nästan varje hörn av körtidsmiljön:
 
@@ -161,21 +161,30 @@ let message = $"%s{name} is %d{age} years old." // Typsäker formatering!
 
 ---
 
-## ⚠️ 4. Att tänka på vid uppgradering (Breaking Changes)
+## 4. ⚠️ Att tänka på vid uppgradering (Breaking Changes)
 
 Att migrera en applikation från .NET Core 3.1 eller äldre .NET Framework till .NET 5 innebär en del förändringar i applikationsbeteendet som kan leda till buggar om man inte är förberedd. Här är de absolut viktigaste kompatibilitetsaspekterna:
 
-### 🛠️ Kritiska ändringar i Runtime och bibliotek
+## 5. 🛠️ Kritiska ändringar i Runtime och bibliotek
 
-1. **`Thread.Abort` är föråldrat (Obsolete):**
+### 5.1. `Thread.Abort` är föråldrat (Obsolete)
+
 I .NET 5 genererar anrop till `Thread.Abort()` ett kompilatorfel (eller en `PlatformNotSupportedException` vid runtime). Det beror på att metoden är direkt osäker för trådsäkerheten och applikationsstabiliteten. Du bör istället migrera till moderna `CancellationToken`-mönster.
-2. **`BinaryFormatter` fasas ut av säkerhetsskäl:**
+
+### 5.2. `BinaryFormatter` fasas ut av säkerhetsskäl
+
 På grund av allvarliga, fundamentala säkerhetssårbarheter (där skadlig binärdata kan utnyttjas för att exekvera godtycklig kod på servern) har `BinaryFormatter` markerats som föråldrad och blockerats i många flöden. Det rekommenderas starkt att använda `System.Text.Json`, `Protobuf` eller `MessagePack`.
-3. **Skiftet till ICU på Windows (Globalisering):**
+
+### 5.3. Skiftet till ICU på Windows (Globalisering)
+
 Tidigare använde .NET på Windows *National Language Support (NLS)* för globaliseringsfunktioner (såsom strängsortering och kulturspecifika jämförelser). Från och med .NET 5 använder alla operativsystem (inklusive Windows) **ICU (International Components for Unicode)** som standard. Det här kan leda till subtila men märkbara skillnader i hur strängar sorteras eller hur tecken jämförs i dina databaser och listor.
-4. **Inbyggt WinRT-stöd borttaget:**
+
+### 5.4. Inbyggt WinRT-stöd borttaget
+
 Det tidigare inbyggda stödet i runtime för att anropa WinRT-API:er (Windows Runtime) togs bort till förmån för verktygsuppsättningen *C#/WinRT*. Detta gjordes för att göra själva .NET-runtime helt plattformsoberoende och frikopplad från Windows interna arkitektur.
-5. **Stramare `JsonSerializer`:**
+
+### 5.5. Stramare `JsonSerializer`
+
 Deserialiseringen blev mer strikt. Till exempel ignoreras icke-publika eller parameterlösa konstruktorer som standard vid deserialisering, vilket kan bryta äldre DTO-strukturer om de inte annoteras eller konfigureras korrekt.
 
 ---

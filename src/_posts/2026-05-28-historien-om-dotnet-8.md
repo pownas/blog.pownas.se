@@ -23,7 +23,7 @@ Här är de absolut tyngsta nyheterna och fallgroparna du behöver ha koll på f
 
 C# 12 fokuserade på att göra språket mer enhetligt och tog bort ännu mer boilerplate som vi utvecklare har stört oss på i åratal.
 
-### Primary Constructors (Primära konstruktorer för alla!)
+### 1.1. Primary Constructors (Primära konstruktorer för alla!)
 I C# 9 introducerades primära konstruktorer exklusivt för *records*. C# 12 tog den succén vidare till **vanliga klasser och structar**. Nu slipper du deklarera privata fält och tilldela dem manuellt i konstruktorn vid Dependency Injection:
 
 ```csharp
@@ -39,7 +39,7 @@ public class OrderService(IOrderRepository repository, ILogger<OrderService> log
 
 ```
 
-### Collection Expressions (Enhetliga samlingar)
+### 1.2. Collection Expressions (Enhetliga samlingar)
 
 Innan C# 12 skapades arrayer, listor och spans med helt olika syntaxer (`new int[]`, `new List<int>`). Nu finns det **ett** enhetligt sätt att initiera samlingar med raka måsvingar (`[]`), och vi fick dessutom den smidiga *spread-operatorn* (`..`) för att slå ihop listor.
 
@@ -52,7 +52,7 @@ int[] combined = [..row1, 4, 5, 6]; // Innehåller: 1, 2, 3, 4, 5, 6
 
 ```
 
-### Alias any type
+### 1.3. Alias any type
 
 Nu kan du använda `using`-nyckelordet för att skapa alias för i princip vilken typ som helst, inklusive tupler och arrayer. Det är perfekt för att snygga till komplexa datatyper utan att behöva skriva en hel klass:
 
@@ -79,14 +79,14 @@ För högpresterande scenarier introducerades `FrozenDictionary<TKey, TValue>` o
 
 Webb- och arkitekturstacken fick några av sina största uppdateringar på många år.
 
-### Det nya enhetliga Blazor (Full-stack Blazor)
+### 3.1. Det nya enhetliga Blazor (Full-stack Blazor)
 
 Innan .NET 8 tvingades du välja mellan *Blazor Server* eller *Blazor WebAssembly*. .NET 8 raderade ut den gränsen helt. Nu kan du blanda renderingstekniker i samma applikation:
 
 * **Static Server-Side Rendering (SSR):** Renderar ren HTML från servern (snabb starttid, perfekt för publika sidor).
 * **Interactive Auto:** Sidan startar blixtsnabbt via Blazor Server, och i bakgrunden laddas WebAssembly-filer ner så att nästa besök blir helt klientbaserat.
 
-### Inbyggt stöd för Keyed Services
+### 3.2. Inbyggt stöd för Keyed Services
 
 Äntligen! Efter år av att ha förlitat sig på tredjepartsbibliotek som Autofac fick .NET:s inbyggda Dependency Injection stöd för *Keyed Services*. Det betyder att du kan registrera flera olika implementationer av samma interface och skilja dem åt med ett namn (en nyckel):
 
@@ -108,15 +108,15 @@ app.MapGet("/data", ([FromKeyedServices("CloudCache")] ICacheService cache) => {
 
 Att gå till en LTS-version brukar vara smidigt, men .NET 8 har några vassa kanter under huven:
 
-### 1. `System.Text.Json` blir mer strikt med dolda fält
+### 4.1. `System.Text.Json` blir mer strikt med dolda fält
 
 För att förbättra prestanda och motverka säkerhetshål vid AOT-kompilering har JSON-serialiseraren blivit hårdare. Till exempel serialiseras inte längre `init`-only properties på samma sätt om de saknar publika konstruktorer i mer komplexa hierarkier, och hantering av cykliska referenser kräver mer explicit konfigurering.
 
-### 2. Ändrat standardbeteende för HTTPS-portar i Docker
+### 4.2. Ändrat standardbeteende för HTTPS-portar i Docker
 
 När du kör .NET 8 i officiella Ubuntu/Debian-baserade Docker-containers har standardporten ändrats från port `80` till port `8080`. Microsoft gjorde detta för att appen ska kunna köras som en "non-root"-användare i containern (vilket är säkrare). Om du har hårdkodade portmappningar i dina Kubernetes- eller Docker Compose-filer kommer trafiken att brytas om du inte uppdaterar till `8080`.
 
-### 3. DataAnnotations validerar djupare
+### 4.3. DataAnnotations validerar djupare
 
 Om du använder attribut som `[Required]` eller `[Length]` på komplexa objekthierarkier (nästlade objekt), har valideringen i ASP.NET Core skärpts. .NET 8 validerar nu djupare i objekten än tidigare, vilket kan göra att requests som tidigare "slank igenom" nu plötsligt returnerar `400 Bad Request`.
 
