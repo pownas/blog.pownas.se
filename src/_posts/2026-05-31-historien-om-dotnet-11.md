@@ -88,7 +88,7 @@ Sitter du på ett .NET 10-system idag har du en fantastisk grund, och nyheterna 
 *Detta bonusinlägg rundar av vår resa för den här gången. Från .NET Framework arkivens allra första steg år 2000, via revolutionen runt 2020 i .NET 5, till dagens rykande färska Previews av .NET 11. Håll utkik här på bloggen framöver när Previews övergår i skarpa releaser – historien slutar aldrig att skrivas!*
 
 Hela artikelserien samlad på ett ställe:
-* [Historien bakom .NET](https://blog.pownas.se/2026/05/24/historien-bakom-dotnet)
+* [Historien bakom det moderna .NET: Från arv till revolution](https://blog.pownas.se/2026/05/24/historien-bakom-dotnet)
 * [Historien om .NET 5 – Startskottet för den moderna eran](https://blog.pownas.se/2026/05/25/historien-om-dotnet-5)
 * [Historien om .NET 6 – Den mogna LTS-versionen](https://blog.pownas.se/2026/05/26/historien-om-dotnet-6)
 * [Historien om .NET 7 – Fokuserad på extrem prestanda och innovation](https://blog.pownas.se/2026/05/27/historien-om-dotnet-7)
