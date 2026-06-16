@@ -6,13 +6,16 @@ category: "c-sharp,.NET,programmering"
 ---
 
 Det finns ett klassiskt ordspråk inom IT-världen: *"Om det fungerar, rör det inte."* Men när vi pratar om publika webbtjänster och interna API:er som förväntas rulla stabilt, säkert och prestandalätt fram till år 2032, så håller inte det gamla tänket längre.
+
 Står du inför valet att låta dina applikationer ligga kvar på det beprövade .NET Framework 4.8 eller att migrera till det moderna .NET 10? Det korta svaret är att det finns en inbyggd paradox mellan målet att minimera livscykelhantering (LCM) och målet att ha ett modernt, säkert system.
+
 Här bryter vi ner varför steget till .NET 10 är helt rätt väg att gå – särskilt om du kör i en lokal on-prem-miljö med både Windows-servrar och containers.
 
 <!--more-->
 
 ## Paradoxen: Supporttid vs. Aktivt underhåll
 Det starkaste argumentet för att stanna på .NET Framework 4.8 är bekvämlighet. Eftersom 4.8 räknas som en komponent i Windows-operativsystemet har det support så länge själva Windows Server-versionen har support. Det innebär att du kan glida förbi 2032 med noll förändring i kodbasen.
+
 Men det finns en hake. Den moderna .NET-plattformen (.NET 10 och framåt) använder en annan supportmodell. .NET 10 är en **LTS-version (Long Term Support)**, vilket innebär tre års support. För att klara dig till 2032 på den moderna plattformen behöver du acceptera en uppgraderingstrappa:
 
  1. **Nu:** Migrera till .NET 10 LTS (Support till nov 2028).
@@ -28,7 +31,9 @@ Om du driftar publika webbtjänster blir riskerna med .NET Framework 4.8 snabbt 
 
 ## On-Prem Hybrid: Container-revolutionen
 Många som kör lokala Windows-servrar blandat med container-lösningar on-prem missar hur mycket resurser (och därmed pengar i form av hårdvara och licenser) som går att spara på en modernisering.
+
 När du kör .NET Framework 4.8 i en container är du låst till **Windows-containers** (Windows Server Core). Det betyder container-images på mellan 1,5 GB och 4 GB, långsamma starttider på upp till en minut, och tunga Windows-noder i ditt kluster.
+
 Med .NET 10 kan du bygga för **Linux-containers** (t.ex. Alpine eller Ubuntu Chiseled). Skillnaden är monumental:
 
 | Faktor | .NET 4.8 (Windows-container) | .NET 10 (Linux Chiseled) |
@@ -41,10 +46,12 @@ Genom att använda så kallade *Chiseled* containrar i .NET 10 rensas allt över
 
 ## Interna API:er blir "Ultra-Light" med Native AOT
 För interna API:er handlar .NET 10-resan mycket om ren prestanda och resurssnålhet. Med **Native AOT (Ahead-Of-Time)** kompileras din C#-kod direkt till maskinkod.
+
 Applikationen behöver inte längre .NET-runtimen installerad på servern eller i containern. API:et startar på några få millisekunder och minnesavtrycket krymper till ett absolut minimum. Detta gör att dina lokala hypervisors (VMware, Hyper-V) kan utnyttjas betydligt mer effektivt.
 
 ## Slutsats: Välj dina strider
 Att stanna på .NET Framework 4.8 fram till 2032 ger dig till synes "gratis" LCM på pappret. Men i praktiken flyttar du bara kostnaden. Du kommer att tvingas lägga tid på att underhålla tunga Windows-servrar, hantera säkerhetsrisker i gamla bibliotek manuellt, och köpa mer hårdvara för att kompensera för sämre prestanda.
+
 Genom att ta steget till .NET 10 gör du grovjobbet *en gång*. Därefter automatiserar du din pakethantering och dina säkerhetskontroller, flyttar in dina API:er i minimala Linux-containers och kan möta 2032 med en infrastruktur som är snabb, säker och billig i drift.
 
 ## Läs mer på Microsoft Learn
