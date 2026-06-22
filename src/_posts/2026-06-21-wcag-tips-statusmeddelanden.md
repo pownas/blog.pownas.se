@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Fixa de "osynliga" uppdateringarna: Så hanterar du statusmeddelanden enligt WCAG 2.1'
-date: 2026-06-22 20:18 +0200
+date: 2026-06-21 20:18 +0200
 category: "webbutveckling,wcag,css,programmering"
 ---
 

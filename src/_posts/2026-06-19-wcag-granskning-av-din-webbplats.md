@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Tillgänglighet för alla: Så granskar du din webbplats enligt WCAG 2.1"
-date: 2026-06-20 21:47 +0200
+date: 2026-06-19 21:47 +0200
 category: "webbutveckling,wcag,html,programmering"
 ---
 
