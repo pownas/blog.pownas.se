@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Mörkt läge och Tillgänglighet: Lagkrav och Teknisk Magi"
+title: "Mörkt läge/Dark Mode: Inte ett lagkrav, men viktigt för dina användare (Så implementerar du det)"
 date: 2026-06-21 22:52 +0200
 category: "webbutveckling,css,programmering"
 ---
