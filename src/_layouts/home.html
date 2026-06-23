@@ -52,8 +52,8 @@ layout: default
                 {% assign categories = post.category | split: "," %}
                 {% for category in categories %}
                   {% assign trimmed_category = category | strip %}
-                  {%- assign cat_obj = site.category | where: "category_name", trimmed_category | first -%}
                   {% assign category_slug = trimmed_category | slugify %}
+                  {%- assign cat_obj = site.category | where: "category_name", trimmed_category | first -%}
                   {%- if cat_obj == nil -%}
                     {%- assign cat_obj = site.category | where_exp: "item", "item.url contains category_slug" | first -%}
                   {%- endif -%}
