@@ -120,8 +120,8 @@ layout: default
           {%- endfor -%}
 
           {%- if page_end < paginator.total_pages -%}
-            {%- assign penultimate_page = paginator.total_pages | minus: 1 -%}
-            {%- if page_end < penultimate_page -%}
+            {%- assign last_page_minus_one = paginator.total_pages | minus: 1 -%}
+            {%- if page_end < last_page_minus_one -%}
               <li><span class="pagination-ellipsis">&hellip;</span></li>
             {%- endif -%}
             <li><a href="{{ site.paginate_path | relative_url | replace: ':num', paginator.total_pages }}" class="page-number">{{ paginator.total_pages }}</a></li>
