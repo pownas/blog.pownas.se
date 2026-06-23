@@ -1,12 +1,16 @@
 <footer class="site-footer h-card">
   <data class="u-url" href="{{ '/' | relative_url }}"></data>
 
-  <div class="wrapper">
+  <div class="wrapper footer-shell">
+    <div class="footer-brand">
+      <p class="footer-kicker">Pownas blogg</p>
+      <h2 class="footer-heading">{{ site.title | escape }}</h2>
+      <p class="footer-description">{{- site.description | escape -}}</p>
+    </div>
 
-    <h2 class="footer-heading">{{ site.title | escape }}</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
+    <div class="footer-grid">
+      <section class="footer-card footer-col footer-col-1" aria-labelledby="footer-contact-heading">
+        <h3 id="footer-contact-heading">Kontakt</h3>
         <ul class="contact-list">
           <li class="p-name">
             {%- if site.author -%}
@@ -19,9 +23,10 @@
           <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
           {%- endif -%}
         </ul>
-      </div>
+      </section>
 
-      <div class="footer-col footer-col-2">
+      <nav class="footer-card footer-col footer-col-2" aria-labelledby="footer-social-heading">
+        <h3 id="footer-social-heading">Följ bloggen</h3>
         <ul class="social-media-list">
           {%- if site.github_username -%}
           <li>
@@ -38,65 +43,71 @@
           </li>
           {%- endif -%}
         </ul>
-      </div>
+      </nav>
 
-      <div class="footer-col footer-col-3">
-        <p>{{- site.description | escape -}}</p>
-      </div>
+      <section class="footer-card footer-col footer-col-3" aria-labelledby="footer-theme-heading">
+        <h3 id="footer-theme-heading">Visa tema</h3>
+        <p class="footer-theme-text">Växla mellan ljus och mörk vy med bibehållen kontrast.</p>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
+          <span class="theme-icon" aria-hidden="true">☀️</span>
+          <span class="theme-text">Ljust tema aktivt</span>
+        </button>
+      </section>
     </div>
 
-    <div class="footer-toggle-theme">
-      <button class="theme-toggle" onclick="toggleTheme()" data-tooltip="Växla mellan ljust och mörkt tema">
-        <span class="theme-icon">🌓</span> <span class="theme-text">Byt tema</span>
-      </button>
-    </div>
     <script>
+      function updateThemeToggle(theme) {
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle && themeToggle.querySelector('.theme-icon');
+        const themeText = themeToggle && themeToggle.querySelector('.theme-text');
+
+        if (!themeToggle || !themeIcon || !themeText) {
+          return;
+        }
+
+        const isDark = theme === 'dark';
+        themeToggle.setAttribute('aria-pressed', String(isDark));
+        themeIcon.textContent = isDark ? '🌙' : '☀️';
+        themeText.textContent = isDark ? 'Mörkt tema aktivt' : 'Ljust tema aktivt';
+      }
+
       function toggleTheme() {
         try {
           const current = document.documentElement.getAttribute('data-theme') || 'light';
           const next = current === 'dark' ? 'light' : 'dark';
 
-          // Uppdatera DOM och spara i localStorage
           document.documentElement.setAttribute('data-theme', next);
           localStorage.setItem('theme', next);
-
-          updateThemeIcon(next);
+          updateThemeToggle(next);
         } catch (e) {
           console.error('Error toggling theme:', e);
         }
       }
 
-      function updateThemeIcon(theme) {
-        try {
-          const themeIcon = document.querySelector('.theme-icon');
-          if (themeIcon) {
-            themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
-          }
-        } catch (e) {
-          console.error('Error updating theme icon:', e);
-        }
-      }
-
-      // KÖR DIREKT VID SIDLADDNING
       (function() {
         try {
-          // 1. Kolla localStorage först
           let savedTheme = localStorage.getItem('theme');
 
-          // 2. Om tomt, kolla om användaren föredrar mörkt läge i sitt OS (valfritt men snyggt)
           if (!savedTheme) {
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             savedTheme = prefersDark ? 'dark' : 'light';
           }
 
-          // 3. Applicera temat på documentElement så att CSS-variablerna slår om
           document.documentElement.setAttribute('data-theme', savedTheme);
-
-          // 4. Uppdatera ikonen (vänta tills DOM:en är redo om skriptet ligger i head)
           if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => updateThemeIcon(savedTheme));
+            document.addEventListener('DOMContentLoaded', function() {
+              updateThemeToggle(savedTheme);
+              const themeToggle = document.getElementById('theme-toggle');
+              if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+              }
+            });
           } else {
-            updateThemeIcon(savedTheme);
+            updateThemeToggle(savedTheme);
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+              themeToggle.addEventListener('click', toggleTheme);
+            }
           }
         } catch (e) {
           console.error('Error initializing theme:', e);
