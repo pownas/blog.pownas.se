@@ -476,6 +476,12 @@ blockquote {
       font-weight: 500;
     }
 
+    .category-label {
+      border-style: dashed;
+      opacity: 0.88;
+      cursor: default;
+    }
+
     a {
       &:hover {
         background-color: var(--accent-color);
@@ -876,6 +882,9 @@ p, .post-content p {
 // När menyn är öppen på mobil, förhindra att bakgrunden scrollas
 body.menu-open {
   overflow: hidden;
+  position: fixed;
+  inset: 0;
+  width: 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -18,7 +18,7 @@
         <div class="trigger" id="site-navigation">
           <a class="page-link" href="{{ site.baseurl }}/">Hem</a>
           <div class="dropdown">
-            <button class="page-link dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="category-dropdown">Kategorier</button>
+            <button class="page-link dropdown-toggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="category-dropdown">Kategorier</button>
             <div class="dropdown-content" id="category-dropdown">
               {% for category in site.category %}
                 <a href="{{ category.url | relative_url }}">{{ category.title }}</a>
@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="dropdown">
-            <button class="page-link dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="recent-posts-dropdown">Senaste inlägg</button>
+            <button class="page-link dropdown-toggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="recent-posts-dropdown">Senaste inlägg</button>
             <div class="dropdown-content" id="recent-posts-dropdown">
               {% for post in site.posts limit:5 %}
                 <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
