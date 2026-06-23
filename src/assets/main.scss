@@ -882,7 +882,6 @@ p, .post-content p {
 // När menyn är öppen på mobil, förhindra att bakgrunden scrollas
 body.menu-open {
   overflow: hidden;
-  touch-action: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
