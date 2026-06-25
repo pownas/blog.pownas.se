@@ -776,7 +776,9 @@ p, .post-content p {
   .site-nav .trigger {
     display: none;
     flex-direction: column;
+    flex-wrap: nowrap;
     align-items: stretch;
+    justify-content: flex-start;
     gap: 0;
     background: var(--nav-bg);
     position: fixed;
@@ -793,6 +795,29 @@ p, .post-content p {
   .site-nav[data-nav-open="true"] .trigger {
     display: flex;
   }
+
+  .site-nav .nav-close-button {
+    appearance: none;
+    border: 1px solid var(--border-color);
+    background: var(--surface-color);
+    color: var(--heading-color);
+    border-radius: 14px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.75rem 1rem;
+    margin: 0;
+    width: fit-content;
+    position: fixed;
+    top: calc(0.9rem + env(safe-area-inset-top, 0px));
+    right: 1rem;
+    z-index: 2101;
+    cursor: pointer;
+  }
+
+  .site-nav .nav-close-button:hover,
+  .site-nav .nav-close-button:focus-visible {
+    background: var(--tag-bg);
+  }
   
   .dropdown-content {
     position: static;
@@ -800,18 +825,18 @@ p, .post-content p {
     max-width: 100%;
     box-shadow: none;
     background: transparent;
-    max-height: 0;
-    opacity: 0;
-    transition: all 0.3s ease;
-    display: block !important;
+    display: none !important;
+    opacity: 1;
+    max-height: none;
     padding: 0;
     border: 0;
-    width: 100%;
+    width: calc(100% - 0.7rem);
+    margin-left: 0.7rem;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: visible;
 
     a {
-      padding: 0.9rem 1rem 0.9rem 1.25rem;
+      padding: 0.85rem 1rem 0.85rem 1rem;
       border-left: 3px solid var(--border-color);
       border-radius: 0;
       width: 100%;
@@ -820,10 +845,15 @@ p, .post-content p {
   }
 
   .dropdown.is-open .dropdown-content {
-    max-height: 100rem;
-    opacity: 1;
+    display: block !important;
     margin-top: 0.35rem;
-    overflow: visible;
+  }
+
+  #category-dropdown,
+  #recent-posts-dropdown {
+    padding: 0 !important;
+    min-width: 0;
+    max-width: 100%;
   }
 
   #category-dropdown {
@@ -867,6 +897,7 @@ p, .post-content p {
 /* Desktop-navigering */
 @media (min-width: 701px) {
   .site-nav .nav-toggle-button { display: none; }
+  .site-nav .nav-close-button { display: none; }
   
   .site-nav .trigger {
     display: flex !important;
