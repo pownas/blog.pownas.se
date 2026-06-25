@@ -24,7 +24,7 @@ test.describe('Mobilnavigering', () => {
     expect(navPanelBox!.x).toBeGreaterThanOrEqual(0);
     expect(navPanelBox!.x + navPanelBox!.width).toBeLessThanOrEqual(viewportWidth + 1);
 
-    const homeLink = page.getByRole('link', { name: 'Hem' });
+    const homeLink = navPanel.getByRole('link', { name: 'Hem', exact: true });
     const homeLinkBox = await homeLink.boundingBox();
     expect(homeLinkBox).not.toBeNull();
     expect(homeLinkBox!.x).toBeGreaterThanOrEqual(0);
