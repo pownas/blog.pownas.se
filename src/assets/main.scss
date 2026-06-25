@@ -1055,7 +1055,7 @@ pre {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, unquote("minmax(min(220px, 100%), 1fr)"));
   gap: 1.25rem;
   margin-top: 1.75rem;
   align-items: stretch;
@@ -1091,7 +1091,7 @@ pre {
 .site-footer .username,
 .site-footer .u-email {
   word-break: normal;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 .theme-toggle {
