@@ -187,6 +187,7 @@ blockquote {
   margin-left: auto;
   
   .page-link, .dropdown-toggle {
+    box-sizing: border-box;
     appearance: none;
     background: transparent;
     border: 1px solid transparent;
@@ -236,6 +237,7 @@ blockquote {
 .dropdown {
   position: relative;
   display: inline-flex;
+  min-width: 0;
 }
 
 .dropdown-toggle::after {
@@ -252,13 +254,17 @@ blockquote {
   right: 0;
   background-color: var(--dropdown-bg);
   min-width: unquote("min(220px, 90vw)");
+  max-width: unquote("min(26rem, calc(100vw - 2rem))");
+  max-height: unquote("min(70vh, 32rem)");
   box-shadow: 0 20px 45px rgba(15, 23, 42, 0.16);
   z-index: 1001;
   border-radius: 16px;
   border: 1px solid var(--border-color);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   animation: slideDown 0.2s ease;
   padding: 0.5rem;
+  box-sizing: border-box;
 
   a {
     color: var(--text-color);
@@ -299,7 +305,8 @@ blockquote {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.5rem;
   padding: 1rem;
-  min-width: unquote("min(340px, 90vw)");
+  min-width: unquote("min(22rem, calc(100vw - 2rem))");
+  max-width: unquote("min(28rem, calc(100vw - 2rem))");
 
   &.expanded {
     display: grid !important;
@@ -318,7 +325,8 @@ blockquote {
 #recent-posts-dropdown {
   display: none;
   padding: 0.75rem;
-  min-width: unquote("min(280px, 90vw)");
+  min-width: unquote("min(18rem, calc(100vw - 2rem))");
+  max-width: unquote("min(24rem, calc(100vw - 2rem))");
 
   &.expanded {
     display: block;
@@ -327,6 +335,7 @@ blockquote {
   a {
     padding: 10px 14px !important;
     font-size: 0.95rem;
+    line-height: 1.5;
     margin: 2px 0 !important;
     border-radius: 6px;
     border-bottom: none !important;
@@ -772,12 +781,14 @@ p, .post-content p {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
+    max-width: 100vw;
     height: 100vh;
     z-index: 2000;
     overflow-y: auto;
     padding: 5.5rem 1rem 2rem;
     overscroll-behavior: contain;
+    box-sizing: border-box;
   }
   
   .site-nav[data-nav-open="true"] .trigger {
@@ -786,7 +797,8 @@ p, .post-content p {
   
   .dropdown-content {
     position: static;
-    min-width: auto;
+    min-width: 0;
+    max-width: 100%;
     box-shadow: none;
     background: transparent;
     max-height: 0;
@@ -795,11 +807,15 @@ p, .post-content p {
     display: block !important;
     padding: 0;
     border: 0;
+    width: 100%;
+    box-sizing: border-box;
 
     a {
       padding: 0.9rem 1rem 0.9rem 1.25rem;
       border-left: 3px solid var(--border-color);
       border-radius: 0;
+      width: 100%;
+      box-sizing: border-box;
     }
   }
 
@@ -813,8 +829,15 @@ p, .post-content p {
     grid-template-columns: 1fr !important;
   }
 
+  .dropdown {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  }
+
   .page-link {
     width: 100%;
+    max-width: 100%;
     text-align: left;
     padding: 1rem 1.1rem;
     border: 1px solid transparent;
@@ -822,6 +845,7 @@ p, .post-content p {
     font-size: 1rem;
     justify-content: space-between;
     border-radius: 16px;
+    box-sizing: border-box;
 
     &.dropdown-toggle {
       display: flex;
@@ -1002,6 +1026,10 @@ pre {
   padding-bottom: 2rem;
 }
 
+.footer-brand {
+  max-width: 52rem;
+}
+
 .footer-kicker {
   margin-bottom: 0.5rem;
   font-size: 0.85rem;
@@ -1030,9 +1058,10 @@ pre {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
   margin-top: 1.75rem;
+  align-items: stretch;
 }
 
 .footer-card {
@@ -1041,6 +1070,11 @@ pre {
   background: var(--footer-surface);
   border: 1px solid rgba(148, 163, 184, 0.18);
   backdrop-filter: blur(10px);
+  min-width: 0;
+}
+
+.footer-grid > * {
+  min-width: 0;
 }
 
 .contact-list,
@@ -1053,6 +1087,14 @@ pre {
 .social-media-list li + li,
 .contact-list li + li {
   margin-top: 0.6rem;
+}
+
+.site-footer a,
+.site-footer li,
+.site-footer .username,
+.site-footer .u-email {
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .theme-toggle {
