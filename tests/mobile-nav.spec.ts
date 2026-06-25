@@ -24,7 +24,17 @@ test.describe('Mobilnavigering', () => {
     expect(navPanelBox!.x).toBeGreaterThanOrEqual(0);
     expect(navPanelBox!.x + navPanelBox!.width).toBeLessThanOrEqual(viewportWidth + 1);
 
+    const homeLink = page.getByRole('link', { name: 'Hem' });
+    const homeLinkBox = await homeLink.boundingBox();
+    expect(homeLinkBox).not.toBeNull();
+    expect(homeLinkBox!.x).toBeGreaterThanOrEqual(0);
+    expect(homeLinkBox!.x + homeLinkBox!.width).toBeLessThanOrEqual(viewportWidth + 1);
+
     const categoriesToggle = page.getByRole('button', { name: 'Kategorier' });
+    const categoriesToggleBox = await categoriesToggle.boundingBox();
+    expect(categoriesToggleBox).not.toBeNull();
+    expect(categoriesToggleBox!.x).toBeGreaterThanOrEqual(0);
+    expect(categoriesToggleBox!.x + categoriesToggleBox!.width).toBeLessThanOrEqual(viewportWidth + 1);
     await categoriesToggle.click();
 
     const firstCategoryLink = page.locator('#category-dropdown a').first();
