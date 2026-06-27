@@ -171,15 +171,15 @@ Att uppgradera från .NET 8 till .NET 10 handlar i slutändan om mycket mer än 
 * **.slnx och NoBuild-projekt:** Säg för evigt hejdå till ohanterliga merge-konflikter i din solution-fil. Den rena XML-strukturen kombinerat med ett osynligt `.SolutionItems`-projekt ger dig full kontroll över dokumentation och globala konfigurationsfiler direkt i Visual Studio.
 * **Centraliserad struktur:** Med `Directory.Build.props` och Central Package Management (CPM) via `Directory.Packages.props` dikterar du MSBuild-regler och NuGet-versioner från *ett* ställe för hela lösningen.
 * **Tvingande kodkvalitet:** Vi låter kompilatorn göra grovjobbet. Genom att kombinera `.editorconfig`, `<Nullable>enable</Nullable>` och `<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>` vägrar byggservern acceptera slarvig kod.
-* **Ett städat byggflöde:** `<UseArtifactsOutput>true</UseArtifactsOutput>` befriar dina projektkataloger från skräpet i `bin` och `obj`, och det inbyggda container-stödet gör separata Dockerfiles överflödiga.
+* **Ett städat byggflöde:** `<UseArtifactsOutput>true</UseArtifactsOutput>` befriar dina projektkataloger från skräpet i `bin` och `obj` vilket flyttar dem till en central plats `/artifacts/`, och det inbyggda container-stödet gör separata Dockerfiles överflödiga.
 
 ### Avslutande ord
 
 Det krävs en initial investering av tid för att sätta upp den här arkitekturen. Du kommer med största sannolikhet behöva sitta en eftermiddag och brottas med kompilatorvarningar, versionskonflikter och trasiga namnrymder när du drar igång allt detta för första gången på en legacy-applikation.
 
-Men avkastningen på den investeringen är massiv. Du får en kodbas som är trivial att underhålla, CI/CD-pipelines som kapar minuter av varje byggnad, och en arkitektur där du kan fokusera på att bygga nya funktioner istället för att ständigt lappa ihop det gamla.
+Men avkastningen på den investeringen är massiv. Du får en kodbas som är trivial att underhålla, CI/CD-pipelines som kapar minuter av varje bygge, och en arkitektur där du kan fokusera på att bygga nya funktioner istället för att ständigt lappa ihop det gamla.
 
-Så ta ett kliv tillbaka, öppna rotkatalogen, konvertera din solution till `.slnx` och börja städa. Både framtida du och dina teammedlemmar kommer att tacka dig.
+Så ta ett kliv tillbaka, öppna root-katalogen, konvertera din solution, genom att spara om den till `.slnx` och börja städa. Både framtida du och dina teammedlemmar kommer att tacka dig.
 
 Lycka till med uppgraderingen!
 
