@@ -16,7 +16,6 @@
           </span>
         </button>
         <div class="trigger" id="site-navigation">
-          <button class="nav-close-button" type="button">Stäng meny</button>
           <a class="page-link" href="{{ site.baseurl }}/">Hem</a>
           <div class="dropdown">
             <button class="page-link dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="category-dropdown">Kategorier</button>
@@ -54,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   const navToggle = siteNav.querySelector('.nav-toggle-button');
-  const navClose = siteNav.querySelector('.nav-close-button');
   const navToggleText = siteNav.querySelector('.nav-toggle-text');
   const dropdowns = Array.from(siteNav.querySelectorAll('.dropdown'));
   const menuLinks = siteNav.querySelectorAll('.trigger a');
@@ -64,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
     siteNav.setAttribute('data-nav-open', isOpen ? 'true' : 'false');
     navToggle.setAttribute('aria-expanded', String(isOpen));
     navToggleText.textContent = isOpen ? 'Stäng meny' : 'Öppna meny';
-    document.body.classList.toggle('menu-open', isOpen && !desktopMediaQuery.matches);
   }
 
   function closeDropdowns() {
@@ -94,14 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
       closeDropdowns();
     }
   });
-
-  if (navClose) {
-    navClose.addEventListener('click', function() {
-      closeDropdowns();
-      setNavOpen(false);
-      navToggle.focus();
-    });
-  }
 
   dropdowns.forEach(function(dropdown) {
     const toggle = dropdown.querySelector('.dropdown-toggle');
