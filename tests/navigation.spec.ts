@@ -13,6 +13,11 @@ test.describe('Navigation accessibility and responsiveness', () => {
     await expect(navigation).toBeVisible();
     await expect(page.locator('body')).toHaveClass(/menu-open/);
 
+    const navigationBounds = await navigation.boundingBox();
+    expect(navigationBounds).not.toBeNull();
+    expect(navigationBounds?.height ?? 0).toBeGreaterThan(150);
+    expect((navigationBounds?.width ?? 0) - (page.viewportSize()?.width ?? 0)).toBeLessThanOrEqual(1);
+
     const horizontalOverflow = await page.evaluate(() => {
       const { documentElement, body } = document;
       return Math.max(documentElement.scrollWidth, body.scrollWidth) - documentElement.clientWidth;
@@ -38,6 +43,8 @@ test.describe('Navigation accessibility and responsiveness', () => {
     test.skip((page.viewportSize()?.width ?? 0) <= 700, 'Only relevant for non-mobile viewports.');
 
     await page.goto('/');
+
+    await expect(page.locator('.nav-toggle')).not.toBeVisible();
 
     const recentPostsToggle = page.locator('.dropdown-toggle').nth(1);
     await recentPostsToggle.click();
