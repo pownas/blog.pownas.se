@@ -53,6 +53,7 @@ layout: default
                 {% for category in categories %}
                   {% assign trimmed_category = category | strip %}
                   {% assign category_slug = trimmed_category | slugify %}
+                  {% assign cat_obj = site.category | where: "category_name", trimmed_category | first %}
                   {% if cat_obj %}
                     <a href="{{ cat_obj.url | relative_url }}">{{ trimmed_category }}</a>
                   {% else %}

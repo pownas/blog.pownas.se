@@ -2,7 +2,7 @@
 layout: post
 title: 'Migrera dina gamla SSDT-databasprojekt till SDK-style SQL-projekt'
 date: 2026-06-26 22:15 +0200
-category: "c#,sql,programmering"
+category: "C#,sql,programmering"
 ---
 
 För oss som bygger moderna .NET-lösningar – kanske med en Vertical Slice-arkitektur och med siktet inställt på .NET 10 – är smidiga CI/CD-flöden helt avgörande. Ett historiskt smärtområde i våra Azure DevOps-pipelines har varit databasprojekten. Klassiska SQL Server Data Tools (SSDT) `.sqlproj`-filer är ökända för att skapa enorma merge-konflikter eftersom varje enskild fil måste registreras i en gigantisk XML-struktur [1].

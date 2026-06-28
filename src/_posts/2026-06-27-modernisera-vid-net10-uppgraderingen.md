@@ -2,7 +2,7 @@
 layout: post
 title: 'Modernisera din byggstruktur när du uppgraderar till .NET 10'
 date: 2026-06-27 23:15 +0200
-category: "c#,sql,programmering"
+category: "C#,sql,programmering"
 ---
 
 Att kliva från en .NET 8-applikation – speciellt en som bär på legacy-bagage – direkt till .NET 10 är ett fantastiskt tillfälle att inte bara lyfta ramverket, utan att faktiskt städa bort teknisk skuld. För att göra kodbasen mer lätthanterlig, enhetlig och framtidssäker bör fokus ligga på att centralisera inställningar, utnyttja kompilatorn hårdare och implementera moderna arkitekturmönster.
@@ -192,4 +192,3 @@ Lycka till med uppgraderingen!
  * **Artifacts Output (UseArtifactsOutput):** [Microsoft Learn: Artifacts output layout](https://learn.microsoft.com/en-us/dotnet/core/sdk/artifacts-output)
  * **Central Package Management (CPM):** [Microsoft Learn: Central Package Management](https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management)
  * **Inbyggt Container-stöd:** [Microsoft Learn: Containerize a .NET app with dotnet publish](https://learn.microsoft.com/en-us/dotnet/core/containers/sdk-publish) och [Microsoft Learn - Tutorial: Containerize a .NET app](https://learn.microsoft.com/en-us/dotnet/core/docker/build-container)
-
