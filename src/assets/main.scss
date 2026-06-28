@@ -7,46 +7,70 @@
    ========================================= */
 
 :root, [data-theme="light"] {
-  --bg-color: #f4f4f9;
+  --bg-color: #f3f6fb;
   --surface-color: #ffffff;
-  --text-color: #1a1a1a;
-  --heading-color: #000000;
-  --link-color: #0056b3;
-  --link-hover-color: #003d82;
-  --border-color: #e0e0e0;
-  --meta-color: #555555;
-  --accent-color: #007bff;
-  --border-color: #e0e0e0;
+  --surface-elevated: #fbfdff;
+  --text-color: #18212b;
+  --heading-color: #0f172a;
+  --link-color: #0b5ed7;
+  --link-hover-color: #084298;
+  --border-color: #d7dee8;
+  --meta-color: #4b5563;
+  --accent-color: #2563eb;
+  --focus-outline: #1d4ed8;
+  --tag-bg: #eef4ff;
+  --tag-hover-bg: #dbeafe;
+  --light-bg: #f8fafc;
+  --nav-bg: rgba(255, 255, 255, 0.94);
+  --dropdown-bg: #ffffff;
+  --panel-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
 
   /* Tabell-variabler för ljust läge */
-  --table-header-bg: #eaedf2;       /* Tydlig men mjuk kontrasterande header */
-  --table-zebra-bg: #f8f9fa;        /* Mycket ljusgrå för varannan rad */
-  --table-text: #1a1a1a;            /* Säkerställer WCAG AAA kontrast */
+  --table-header-bg: #eaedf2;
+  --table-zebra-bg: #f8f9fa;
+  --table-text: #1a1a1a;
 }
 
 [data-theme="dark"] {
-  --bg-color: #121212;
-  --surface-color: #1e1e1e;
-  --text-color: #f0f0f0;
+  --bg-color: #0f1217;
+  --surface-color: #171c22;
+  --surface-elevated: #202833;
+  --text-color: #edf2f7;
   --heading-color: #ffffff;
-  --link-color: #9ECBFF;
-  --link-hover-color: #baddff;
-  --border-color: #333333;
-  --meta-color: #bbbbbb;
-  --accent-color: #9ECBFF;
-  --border-color: #333333;
+  --link-color: #9ecbff;
+  --link-hover-color: #d6eaff;
+  --border-color: #2c3540;
+  --meta-color: #c4ccd5;
+  --accent-color: #60a5fa;
+  --focus-outline: #dbeafe;
+  --tag-bg: #1c2632;
+  --tag-hover-bg: #253446;
+  --light-bg: #20262d;
+  --nav-bg: rgba(23, 28, 34, 0.94);
+  --dropdown-bg: #1b232d;
+  --panel-shadow: 0 24px 48px rgba(0, 0, 0, 0.42);
 
   /* Tabell-variabler för mörkt läge (dämpade ytor) */
-  --table-header-bg: #252526;       /* Mjuk mörkgrå, inte för ljus */
-  --table-zebra-bg: #1a1a1a;        /* Subtil skillnad från surface-color (#1e1e1e) */
-  --table-text: #f0f0f0;            /* Hög kontrast mot de mörka ytorna */
+  --table-header-bg: #252526;
+  --table-zebra-bg: #1a1a1a;
+  --table-text: #f0f0f0;
+}
+
+html {
+  scroll-padding-top: 6rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   background: var(--bg-color);
   color: var(--text-color);
-  line-height: 1.6;
+  line-height: 1.7;
   transition: background 0.3s, color 0.3s;
 }
 
@@ -67,22 +91,71 @@ a:hover {
 }
 
 .wrapper {
-  max-width: 960px;
+  max-width: 1100px;
+  padding-inline: clamp(1rem, 3vw, 1.5rem);
+}
+
+.page-content {
+  padding: clamp(1.5rem, 4vw, 2.5rem) 0 3.5rem;
+}
+
+.skip-link,
+.visually-hidden {
+  position: absolute;
+}
+
+.skip-link {
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 4000;
+  padding: 0.75rem 1rem;
+  background: var(--heading-color);
+  color: var(--surface-color);
+  border-radius: 999px;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+
+  &:focus {
+    transform: translateY(0);
+  }
+}
+
+.visually-hidden {
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.home {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.page-heading {
+  margin: 0;
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
 }
 
 .home-page-intro {
-  background: linear-gradient(135deg, var(--accent-color) 0%, rgba(23, 82, 146, 0.05) 100%);
-  padding: 2rem;
-  border-radius: 12px;
-  border-left: 5px solid var(--accent-color);
-  margin-bottom: 2.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent-color) 22%, var(--surface-color)) 0%, color-mix(in srgb, var(--surface-elevated) 92%, transparent) 100%);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-radius: 24px;
+  border: 1px solid color-mix(in srgb, var(--accent-color) 22%, var(--border-color));
+  margin-bottom: 0;
+  box-shadow: var(--panel-shadow);
 }
 
 .home-page-intro p {
   margin: 0.75rem 0;
-  line-height: 1.8;
-  font-size: 1.05rem;
+  line-height: 1.85;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   color: var(--heading-color);
 
   &:first-child {
@@ -107,184 +180,170 @@ blockquote {
    ========================================= */
 
 .site-header {
-  border-bottom: 2px solid var(--accent-color);
-  background-color: var(--surface-color);
-  padding: 1.25rem 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent-color) 30%, var(--border-color));
+  background-color: var(--nav-bg);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
   position: sticky;
   top: 0;
   z-index: 999;
 }
 
+.site-header-inner {
+  min-height: 5.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .site-title {
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  line-height: 1;
+  font-weight: 800;
   color: var(--heading-color) !important;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.04em;
+  text-decoration: none;
 }
 
 .site-nav {
   position: relative;
-  
-  .page-link, .dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  .page-link,
+  .dropdown-toggle,
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    background: transparent;
     color: var(--text-color);
-    font-size: 1rem;
-    padding: 10px 14px;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    position: relative;
+    font-size: 0.98rem;
+    line-height: 1.2;
+    font-weight: 600;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    cursor: pointer;
 
     &:hover {
-      background-color: var(--accent-color);
-      color: var(--surface-color);
+      background-color: var(--tag-hover-bg);
+      color: var(--heading-color);
       text-decoration: none;
-      transform: translateY(-2px);
+      transform: translateY(-1px);
     }
-  }
-
-  .nav-trigger {
-    display: none;
-  }
-
-  .nav-toggle-label {
-    display: none;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 2001;
   }
 
   .trigger {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  .trigger[hidden] {
+    display: none;
   }
 }
 
-/* Dropdown-menyer */
+.nav-toggle {
+  display: none;
+  width: 3rem;
+  height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  background: var(--surface-color);
+  color: var(--heading-color);
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.menu-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-icon svg path {
+  fill: currentColor;
+}
+
 .dropdown {
   position: relative;
-  display: inline-block;
 }
 
 .dropdown-toggle::after {
-  content: " ▼";
-  font-size: 0.6em;
-  vertical-align: 2px;
-  margin-left: 4px;
+  content: "";
+  width: 0.55rem;
+  height: 0.55rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-1px);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+}
+
+.dropdown.is-open .dropdown-toggle::after {
+  transform: rotate(-135deg) translateY(-1px);
 }
 
 .dropdown-content {
-  display: none;
   position: absolute;
-  background-color: var(--surface-color);
-  min-width: unquote("min(220px, 90vw)");
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  top: calc(100% + 0.75rem);
+  left: 0;
   z-index: 1001;
-  border-radius: 10px;
+  width: unquote("min(24rem, calc(100vw - 2rem))");
+  max-height: unquote("min(24rem, calc(100vh - 8rem))");
+  padding: 0.75rem;
+  overflow: auto;
+  background-color: var(--dropdown-bg);
   border: 1px solid var(--border-color);
-  margin-top: 8px;
-  overflow: hidden;
-  animation: slideDown 0.2s ease;
+  border-radius: 20px;
+  box-shadow: var(--panel-shadow);
+  overscroll-behavior: contain;
 
   a {
-    color: var(--text-color);
-    padding: 10px 14px;
-    border-radius: 6px;
-    transition: all 0.2s ease;
     display: block;
-    border: none;
+    padding: 0.8rem 0.9rem;
+    border-radius: 14px;
+    color: var(--text-color);
+    font-weight: 500;
     text-decoration: none;
-    margin: 2px 0;
 
     &:hover {
-      background-color: var(--accent-color);
-      color: var(--surface-color);
-      transform: translateX(4px);
+      background-color: var(--tag-hover-bg);
+      color: var(--heading-color);
+      transform: none;
     }
+  }
 
-    &:last-child {
-      border-bottom: none;
-    }
+  .dropdown-content[hidden] {
+    display: none !important;
   }
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.dropdown--align-end .dropdown-content {
+  left: auto;
+  right: 0;
 }
 
-/* Två kolumner för kategorier på tablet/desktop */
 #category-dropdown {
-  display: none;
+  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.5rem;
-  padding: 1rem;
-  min-width: unquote("min(340px, 90vw)");
-
-  &.expanded {
-    display: grid !important;
-  }
-
-  a {
-    padding: 10px 12px !important;
-    font-size: 0.95rem;
-    margin: 0 !important;
-    border-radius: 6px;
-    border-bottom: none !important;
-  }
 }
 
-/* Senaste inlägg dropdown */
 #recent-posts-dropdown {
-  display: none;
-  padding: 0.75rem;
-  min-width: unquote("min(280px, 90vw)");
-
-  &.expanded {
-    display: block;
-  }
-
-  a {
-    padding: 10px 14px !important;
-    font-size: 0.95rem;
-    margin: 2px 0 !important;
-    border-radius: 6px;
-    border-bottom: none !important;
-    border-left: 3px solid transparent;
-
-    &:hover {
-      border-left-color: var(--accent-color);
-      padding-left: 18px !important;
-    }
-  }
-}
-
-/* Desktop hover behavior */
-@media (min-width: 701px) {
-  .dropdown:hover .dropdown-content:not(.expanded) {
-    display: block;
-  }
-  .dropdown:hover #category-dropdown:not(.expanded) {
-    display: grid;
-  }
-}
-
-/* När dropdown är aktivt klickad, visa den */
-.dropdown-content.expanded {
-  display: block !important;
-}
-
-#category-dropdown.expanded {
-  display: grid !important;
+  width: unquote("min(26rem, calc(100vw - 2rem))");
 }
 
 /* =========================================
@@ -292,13 +351,13 @@ blockquote {
    ========================================= */
 
 .post-list-heading {
-  font-size: 2rem;
-  margin-bottom: 2rem;
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  margin: 0;
   border-bottom: 3px solid var(--accent-color);
   padding-bottom: 0.75rem;
   display: inline-block;
-  font-weight: 600;
-  letter-spacing: -0.5px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
 
 .post-list {
@@ -306,8 +365,8 @@ blockquote {
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
   grid-auto-rows: 1fr;
   
   li {
@@ -322,13 +381,13 @@ blockquote {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background: var(--surface-color);
+  background: linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface-color) 100%);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 20px;
   padding: 1.75rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   word-wrap: break-word;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
   position: relative;
 
   &:hover {
@@ -375,6 +434,7 @@ blockquote {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     padding-top: 1.25rem;
     border-top: 1px solid var(--border-color);
     gap: 1rem;
@@ -386,12 +446,14 @@ blockquote {
     font-size: 0.9em;
 
     a {
-      background-color: var(--bg-color);
+      display: inline-flex;
+      align-items: center;
+      background-color: var(--tag-bg);
       color: var(--meta-color);
-      padding: 5px 10px;
-      border-radius: 5px;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
       font-size: 0.75rem;
-      margin-right: 6px;
+      margin: 0 0.45rem 0.45rem 0;
       border: 1px solid var(--border-color);
       text-decoration: none;
       transition: all 0.2s ease;
@@ -424,16 +486,16 @@ blockquote {
 
 /* Kategori-sektion med listor */
 .categories-section {
-  margin: 2.5rem 0;
-  padding: 2rem;
+  margin: 0;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
   background-color: var(--surface-color);
-  border-radius: 12px;
+  border-radius: 24px;
   border: 1px solid var(--border-color);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
 
   .categories-heading {
     margin-top: 0;
-    font-size: 1.5rem;
+    font-size: clamp(1.45rem, 3vw, 2rem);
     font-weight: 700;
     margin-bottom: 1.25rem;
     color: var(--heading-color);
@@ -452,13 +514,15 @@ blockquote {
     }
 
     .category-link {
-      display: inline-block;
-      padding: 8px 14px;
-      background-color: var(--bg-color);
-      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.75rem;
+      padding: 0.65rem 1rem;
+      background-color: var(--tag-bg);
+      border-radius: 999px;
       text-decoration: none;
       color: var(--text-color);
-      font-weight: 500;
+      font-weight: 600;
       border: 1px solid var(--border-color);
       transition: all 0.2s ease;
       font-size: 0.95rem;
@@ -649,122 +713,78 @@ p, .post-content p {
 
 /* Responsiv navigering för mobila enheter */
 @media (max-width: 700px) {
-  .nav-toggle-label {
-    display: block;
-    left: 10px;
-    right: auto;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    transition: all 0.3s ease;
-
-    &:hover, &:focus {
-      background-color: var(--tag-hover-bg);
-    }
+  .site-header-inner {
+    min-height: 5rem;
   }
-  
-  .nav-trigger:checked + .nav-toggle-label {
-    background-color: var(--link-color);
-    .menu-icon svg path { fill: white; }
+
+  .nav-toggle {
+    display: flex;
+    margin-left: auto;
   }
 
   .trigger {
-    display: none;
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    background: var(--nav-bg, var(--bg-color));
+    align-items: stretch;
+    gap: 0.35rem;
+    background: var(--nav-bg);
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
+    inset: 5.5rem 0 0;
     z-index: 2000;
     overflow-y: auto;
-    padding-top: 70px;
+    padding: 1rem;
     overscroll-behavior: contain;
+    border-top: 1px solid var(--border-color);
   }
-  
-  .nav-trigger:checked ~ .trigger {
-    display: flex;
-  }
-  
+
   .dropdown-content {
     position: static;
-    min-width: 100%;
+    width: 100%;
+    max-height: 18rem;
+    margin-top: 0.35rem;
     box-shadow: none;
-    margin-left: 0;
-    background: var(--dropdown-bg, var(--bg-color));
-    max-height: 0;
-    opacity: 0;
-    transition: all 0.3s ease;
-    display: block !important;
-
-    &.expanded {
-      max-height: 500px;
-      opacity: 1;
-    }
+    background: var(--surface-color);
 
     a {
-      padding-left: 30px;
-      border-left: 3px solid var(--border-color);
+      padding-left: 1rem;
+      border-left: 3px solid transparent;
     }
   }
 
-  /* 1 kolumn för kategorier på mobil */
   #category-dropdown {
-    grid-template-columns: 1fr !important;
-    &.expanded { display: grid !important; }
+    grid-template-columns: 1fr;
   }
-  
-  .dropdown-toggle::after { content: ''; }
-  
-  .page-link {
+
+  .site-nav .page-link,
+  .site-nav .dropdown-toggle,
+  .site-nav .theme-toggle {
     width: 100%;
     text-align: left;
-    padding: 12px 20px;
-    border-bottom: 1px solid var(--border-color);
-    font-size: 1.1em;
-
-    &.dropdown-toggle {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      &::after {
-        content: " ▼";
-        font-size: 0.7em;
-        transition: transform 0.3s ease;
-      }
-      &[aria-expanded="true"]::after {
-        transform: rotate(180deg);
-      }
-    }
+    justify-content: space-between;
+    padding: 0.95rem 1rem;
+    border-radius: 18px;
+    border: 1px solid var(--border-color);
+    background: var(--surface-color);
+    font-size: 1rem;
   }
 }
 
 /* Desktop-navigering */
 @media (min-width: 701px) {
-  .nav-toggle-label { display: none; }
-  
   .trigger {
-    display: flex !important;
+    display: flex;
     flex-direction: row;
+    justify-content: flex-end;
     align-items: center;
-    background: none;
+    background: transparent;
     position: static;
     height: auto;
     width: auto;
+    padding: 0;
   }
-  
-  .page-link {
-    padding: 10px 18px;
-    border-bottom: none;
-    width: auto;
-    text-align: center;
+
+  .site-nav .trigger[hidden] {
+    display: flex;
   }
 }
 
@@ -773,47 +793,18 @@ p, .post-content p {
    ========================================= */
 
 // Fokusindikatorer för tangentbordsnavigering
-.nav-toggle-label:focus-visible, 
+.skip-link:focus-visible,
+.nav-toggle:focus-visible,
 .page-link:focus-visible, 
+.theme-toggle:focus-visible,
 .dropdown-toggle:focus-visible, 
 .dropdown-content a:focus-visible {
   outline: 3px solid var(--focus-outline);
-  outline-offset: 2px;
-  position: relative;
-  z-index: 10;
+  outline-offset: 3px;
 }
 
-// När menyn är öppen på mobil, förhindra att bakgrunden scrollas
 body.menu-open {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-}
-
-/* 
- * Säkerställer att navigationsmeny har korrekt kontrast i både ljust och mörkt läge.
- */
-
-[data-theme="dark"] {
-  .site-nav .page-link, .dropdown-content a {
-    color: #ffffff;
-  }
-
-  .site-nav .page-link:hover, .site-nav .page-link:focus {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .dropdown-content {
-    background-color: #282828;
-    border: 1px solid #444;
-    a:hover, a:focus {
-      background-color: #444;
-      color: #ffffff;
-    }
-  }
-
-  .menu-icon svg path { fill: #ffffff; }
-  .trigger { background-color: #222; }
+  overflow: hidden;
 }
 
 /* =========================================
@@ -880,29 +871,13 @@ pre {
   }
 }
 
-/* =========================================
-   8. MISC & FOOTER
-   ========================================= */
-
-.footer-toggle-theme {
-  text-align: center;
-  margin-top: 20px;
-  padding-top: 15px;
-  border-top: 1px solid var(--border-color);
+.theme-toggle {
+  border: 1px solid color-mix(in srgb, var(--accent-color) 24%, var(--border-color)) !important;
+  background: color-mix(in srgb, var(--surface-color) 80%, var(--accent-color) 20%) !important;
 }
 
-.theme-toggle {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  padding: 0.5rem 1rem;
-  z-index: 1000;
-  
-  [data-theme="dark"] & {
-    background-color: #333;
-    color: #fff;
-    border-color: #555;
-  }
+.theme-icon {
+  font-size: 1rem;
 }
 
 /* Dark mode pagination styles */

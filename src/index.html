@@ -8,9 +8,10 @@ list_title: Senaste inläggen
   {% include head.html %}
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Hoppa till innehållet</a>
   {% include header.html %}
   
-  <main class="page-content" aria-label="Content">
+  <main class="page-content" id="main-content" aria-label="Content">
     <div class="wrapper">
       <div class="home">
         <h1 class="page-heading">{{ page.title }}</h1>
@@ -114,7 +115,8 @@ list_title: Senaste inläggen
               {%- endfor -%}
 
               {%- if page_end < paginator.total_pages -%}
-                {%- if page_end < paginator.total_pages | minus: 1 -%}
+                {%- assign final_page_before_last = paginator.total_pages | minus: 1 -%}
+                {%- if page_end < final_page_before_last -%}
                   <li><span class="pagination-ellipsis">&hellip;</span></li>
                 {%- endif -%}
                 <li><a href="{{ site.paginate_path | relative_url | replace: ':num', paginator.total_pages }}" class="page-number">{{ paginator.total_pages }}</a></li>
