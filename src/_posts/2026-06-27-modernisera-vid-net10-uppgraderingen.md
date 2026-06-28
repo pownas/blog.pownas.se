@@ -37,7 +37,7 @@ Så här bör root:en av ditt moderna .NET 10-projekt se ut:
 ```
 
 ## 1. Global.json – Lås SDK-versionen
-Det första steget mot ett förutsägbart byggflöde är att garantera att alla utvecklare och byggservrar använder samma version av .NET SDK. Detta hanteras bäst med en global.json i repots rot.
+Det första steget mot ett förutsägbart byggflöde är att garantera att alla utvecklare och byggservrar använder samma version av .NET SDK. Detta hanteras bäst med en global.json i repots root.
 
 **global.json**
 ```json
@@ -96,6 +96,7 @@ I din nya .slnx-fil lägger du till referensen till detta projekt och sätta `Pr
 
 ## 3. Centraliserad projektkonfiguration (Directory.Build.props)
 Med `Directory.Build.props` samlar du alla MSBuild-inställningar som ska gälla för hela solutionen.
+
 **Directory.Build.props**
 ```xml
 <Project>
@@ -113,10 +114,10 @@ Med `Directory.Build.props` samlar du alla MSBuild-inställningar som ska gälla
 ```
 
 ### Flaggorna i Directory.Build.props förklarade:
- * **<Nullable>enable</Nullable>:** Om legacy-koden inte redan använder detta, är det dags nu. Det utrotar i princip NullReferenceException från din kodbas.
- * **<ImplicitUsings>enable</ImplicitUsings>:** Låter kompilatorn injicera vanliga namespaces automatiskt, vilket rensar upp toppen av alla dina filer.
- * **<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>:** Tvingar fram kodstandarden från din .editorconfig redan vid kompilering.
- * **<UseArtifactsOutput>true</UseArtifactsOutput>:** En fantastisk funktion som slutar skräpa ner varje projektmapp med bin och obj. Istället genereras en gemensam artifacts-mapp i rotkatalogen. Det snabbar upp byggtider, undviker fil-låsningar och gör det otroligt enkelt att rensa solutionen.
+ * **`<Nullable>enable</Nullable>`:** Om legacy-koden inte redan använder detta, är det dags nu. Det utrotar i princip NullReferenceException från din kodbas.
+ * **`<ImplicitUsings>enable</ImplicitUsings>`:** Låter kompilatorn injicera vanliga namespaces automatiskt, vilket rensar upp toppen av alla dina filer.
+ * **`<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>`:** Tvingar fram kodstandarden från din .editorconfig redan vid kompilering.
+ * **`<UseArtifactsOutput>true</UseArtifactsOutput>`:** En fantastisk funktion som slutar skräpa ner varje projektmapp med bin och obj. Istället genereras en gemensam artifacts-mapp i rotkatalogen. Det snabbar upp byggtider, undviker fil-låsningar och gör det otroligt enkelt att rensa solutionen.
 
 ## 4. Central Package Management (CPM)
 Att ha olika NuGet-versioner i olika projekt inom samma solution är en klassisk källa till buggar. Med CPM definierar du versionen av ett paket `<PackageVersion>` på *ett* ställe.
@@ -145,8 +146,8 @@ I dina individuella `.csproj`-filer anger du numera bara paketets referens `<Pac
 ```
 
 ### Flaggorna i CPM förklarade:
- * **<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>:** Detta aktiverar CPM och gör att alla paketversioner styrs från Directory.Packages.props.
- * **<CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>:** Denna flagga är kritisk för modern säkerhetshantering. Den ser till att om ett paket du använder drar in ett underliggande paket (transitivt beroende) med en känd sårbarhet, kan du "pinna" det underliggande paketet till en säker version direkt i din centrala fil, utan att behöva installera det explicit i alla dina projekt.
+ * **`<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>`:** Detta aktiverar CPM och gör att alla paketversioner styrs från Directory.Packages.props.
+ * **`<CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>`:** Denna flagga är kritisk för modern säkerhetshantering. Den ser till att om ett paket du använder drar in ett underliggande paket (transitivt beroende) med en känd sårbarhet, kan du "pinna" det underliggande paketet till en säker version direkt i din centrala fil, utan att behöva installera det explicit i alla dina projekt.
 
 ## 5. Utnyttja moderna C#-funktioner (C# 13 & 14)
 När du går till .NET 10 får du tillgång till finesser som drastiskt minskar "boilerplate"-kod:
