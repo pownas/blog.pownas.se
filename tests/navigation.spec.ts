@@ -12,6 +12,8 @@ test.describe('Navigation accessibility and responsiveness', () => {
     const navigation = page.locator('#site-navigation');
     await expect(navigation).toBeVisible();
     await expect(page.locator('body')).toHaveClass(/menu-open/);
+    await expect(page.locator('#category-dropdown')).toBeHidden();
+    await expect(page.locator('#recent-posts-dropdown')).toBeHidden();
 
     const navigationBounds = await navigation.boundingBox();
     expect(navigationBounds).not.toBeNull();
@@ -34,7 +36,18 @@ test.describe('Navigation accessibility and responsiveness', () => {
 
     await page.keyboard.press('Escape');
     await expect(categoriesToggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(page.locator('#category-dropdown')).toBeHidden();
 
+    const recentPostsToggle = page.locator('.dropdown-toggle').nth(1);
+    await recentPostsToggle.scrollIntoViewIfNeeded();
+    await expect(recentPostsToggle).toBeVisible();
+    await recentPostsToggle.click();
+    await expect(recentPostsToggle).toHaveAttribute('aria-expanded', 'true');
+    await expect(page.locator('#recent-posts-dropdown')).toBeVisible();
+    await expect(page.locator('.theme-toggle--nav')).toBeVisible();
+
+    await page.keyboard.press('Escape');
+    await expect(recentPostsToggle).toHaveAttribute('aria-expanded', 'false');
     await page.keyboard.press('Escape');
     await expect(navToggle).toHaveAttribute('aria-expanded', 'false');
   });
