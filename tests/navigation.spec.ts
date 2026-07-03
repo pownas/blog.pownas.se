@@ -31,8 +31,22 @@ test.describe('Navigation accessibility and responsiveness', () => {
     await page.keyboard.press('Enter');
     await expect(categoriesToggle).toHaveAttribute('aria-expanded', 'true');
 
-    const firstCategoryLink = page.locator('#category-dropdown a').first();
+    const categoryDropdown = page.locator('#category-dropdown');
+    const firstCategoryLink = categoryDropdown.locator('a').first();
     await expect(firstCategoryLink).toBeVisible();
+    const categoryDropdownStyles = await categoryDropdown.evaluate((element) => {
+      const styles = window.getComputedStyle(element);
+      return {
+        overflowY: styles.overflowY,
+        backgroundAttachment: styles.backgroundAttachment,
+        clientHeight: element.clientHeight,
+        scrollHeight: element.scrollHeight
+      };
+    });
+    expect(categoryDropdownStyles.overflowY).toBe('auto');
+    expect(categoryDropdownStyles.backgroundAttachment).toContain('local');
+    expect(categoryDropdownStyles.backgroundAttachment).toContain('scroll');
+    expect(categoryDropdownStyles.scrollHeight).toBeGreaterThanOrEqual(categoryDropdownStyles.clientHeight);
 
     await page.keyboard.press('Escape');
     await expect(categoriesToggle).toHaveAttribute('aria-expanded', 'false');
@@ -43,7 +57,14 @@ test.describe('Navigation accessibility and responsiveness', () => {
     await expect(recentPostsToggle).toBeVisible();
     await recentPostsToggle.click();
     await expect(recentPostsToggle).toHaveAttribute('aria-expanded', 'true');
-    await expect(page.locator('#recent-posts-dropdown')).toBeVisible();
+    const recentPostsDropdown = page.locator('#recent-posts-dropdown');
+    await expect(recentPostsDropdown).toBeVisible();
+    const recentPostsDropdownBounds = await recentPostsDropdown.boundingBox();
+    expect(recentPostsDropdownBounds).not.toBeNull();
+    if (recentPostsDropdownBounds) {
+      const viewport = page.viewportSize();
+      expect(recentPostsDropdownBounds.y + recentPostsDropdownBounds.height).toBeLessThanOrEqual((viewport?.height ?? 0) + 1);
+    }
     await expect(page.locator('.theme-toggle--nav')).toBeVisible();
 
     await page.keyboard.press('Escape');
