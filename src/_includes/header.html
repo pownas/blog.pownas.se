@@ -200,13 +200,18 @@
         }
 
         if (event.key === 'Escape') {
-          closeDropdown(dropdown, { focusToggle: true });
+          if (dropdown.classList.contains('is-open')) {
+            event.preventDefault();
+            event.stopPropagation();
+            closeDropdown(dropdown, { focusToggle: true });
+          }
         }
       });
 
       content.addEventListener('keydown', function(event) {
         if (event.key === 'Escape') {
           event.preventDefault();
+          event.stopPropagation();
           closeDropdown(dropdown, { focusToggle: true });
         }
       });
