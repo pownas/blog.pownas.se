@@ -1,5 +1,7 @@
 import { expect, test } from '@playwright/test';
 
+const VIEWPORT_BOUNDARY_TOLERANCE = 1;
+
 test.describe('Navigation accessibility and responsiveness', () => {
   test('mobile menu stays within the viewport and supports keyboard navigation', async ({ page }) => {
     test.skip((page.viewportSize()?.width ?? 0) > 700, 'Only relevant for narrow viewports.');
@@ -18,7 +20,7 @@ test.describe('Navigation accessibility and responsiveness', () => {
     const navigationBounds = await navigation.boundingBox();
     expect(navigationBounds).not.toBeNull();
     expect(navigationBounds?.height ?? 0).toBeGreaterThan(150);
-    expect((navigationBounds?.width ?? 0) - (page.viewportSize()?.width ?? 0)).toBeLessThanOrEqual(1);
+    expect((navigationBounds?.width ?? 0) - (page.viewportSize()?.width ?? 0)).toBeLessThanOrEqual(VIEWPORT_BOUNDARY_TOLERANCE);
 
     const horizontalOverflow = await page.evaluate(() => {
       const { documentElement, body } = document;
@@ -63,7 +65,7 @@ test.describe('Navigation accessibility and responsiveness', () => {
     expect(recentPostsDropdownBounds).not.toBeNull();
     if (recentPostsDropdownBounds) {
       const viewport = page.viewportSize();
-      expect(recentPostsDropdownBounds.y + recentPostsDropdownBounds.height).toBeLessThanOrEqual((viewport?.height ?? 0) + 1);
+      expect(recentPostsDropdownBounds.y + recentPostsDropdownBounds.height).toBeLessThanOrEqual((viewport?.height ?? 0) + VIEWPORT_BOUNDARY_TOLERANCE);
     }
     await expect(page.locator('.theme-toggle--nav')).toBeVisible();
 
@@ -90,7 +92,7 @@ test.describe('Navigation accessibility and responsiveness', () => {
     if (dropdownBounds) {
       const viewport = page.viewportSize();
       expect(dropdownBounds.x).toBeGreaterThanOrEqual(0);
-      expect(dropdownBounds.x + dropdownBounds.width).toBeLessThanOrEqual((viewport?.width ?? 0) + 1);
+      expect(dropdownBounds.x + dropdownBounds.width).toBeLessThanOrEqual((viewport?.width ?? 0) + VIEWPORT_BOUNDARY_TOLERANCE);
     }
 
     await page.keyboard.press('Escape');
