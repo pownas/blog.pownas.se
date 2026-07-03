@@ -308,13 +308,8 @@ blockquote {
 
 .nav-toggle__text {
   display: inline-block;
-  min-width: 4ch;
   text-align: left;
-  transition: opacity 0.2s ease, transform 0.25s ease;
-}
-
-.nav-toggle.is-open .nav-toggle__text {
-  transform: translateY(-0.02rem);
+  transition: opacity 0.2s ease;
 }
 
 .nav-toggle.is-open .menu-icon__line:nth-child(1) {
