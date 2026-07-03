@@ -259,15 +259,18 @@ blockquote {
 
 .nav-toggle {
   display: none;
-  width: 3.3rem;
-  height: 3.3rem;
+  min-width: 7.2rem;
+  height: 3.2rem;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  gap: 0.6rem;
+  padding: 0 0.9rem;
   border: 1px solid color-mix(in srgb, var(--accent-color) 28%, var(--border-color));
-  border-radius: 1.1rem;
+  border-radius: 999px;
   background: linear-gradient(180deg, color-mix(in srgb, var(--surface-color) 90%, white), color-mix(in srgb, var(--surface-color) 92%, var(--tag-bg)));
   color: var(--heading-color);
+  font-size: 0.93rem;
+  font-weight: 700;
   cursor: pointer;
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
@@ -285,26 +288,33 @@ blockquote {
 
 .menu-icon {
   display: inline-flex;
-  width: 1.45rem;
+  width: 1.35rem;
   height: 1.1rem;
   flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
+  flex-shrink: 0;
 }
 
 .menu-icon__line {
   display: block;
   width: 100%;
-  height: 0.17rem;
+  height: 0.16rem;
   border-radius: 999px;
   background: currentColor;
   transform-origin: center;
   transition: transform 0.25s ease, opacity 0.2s ease, width 0.25s ease;
 }
 
-.menu-icon__line:nth-child(2) {
-  width: 82%;
-  align-self: center;
+.nav-toggle__text {
+  display: inline-block;
+  min-width: 4ch;
+  text-align: left;
+  transition: opacity 0.2s ease, transform 0.25s ease;
+}
+
+.nav-toggle.is-open .nav-toggle__text {
+  transform: translateY(-0.02rem);
 }
 
 .nav-toggle.is-open .menu-icon__line:nth-child(1) {

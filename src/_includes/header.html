@@ -12,7 +12,7 @@
             <span class="menu-icon__line"></span>
             <span class="menu-icon__line"></span>
           </span>
-          <span class="visually-hidden">Meny</span>
+          <span class="nav-toggle__text">Meny</span>
         </button>
         <div class="trigger" id="site-navigation" hidden>
           <a class="page-link" href="{{ site.baseurl }}/">Hem</a>
@@ -54,6 +54,7 @@
     const body = document.body;
     const nav = document.querySelector('.site-nav');
     const navToggle = document.querySelector('.nav-toggle');
+    const navToggleText = navToggle ? navToggle.querySelector('.nav-toggle__text') : null;
     const navPanel = document.getElementById('site-navigation');
     const dropdowns = Array.from(document.querySelectorAll('.dropdown'));
     const themeButtons = Array.from(document.querySelectorAll('[data-theme-toggle]'));
@@ -158,12 +159,20 @@
       }
     }
 
+    function updateNavToggleLabel(isOpen) {
+      navToggle.setAttribute('aria-label', isOpen ? 'Stäng meny' : 'Öppna meny');
+
+      if (navToggleText) {
+        navToggleText.textContent = isOpen ? 'Stäng' : 'Meny';
+      }
+    }
+
     function setMenuOpen(nextState) {
       menuOpen = nextState;
       nav.classList.toggle('is-open', nextState);
       navToggle.classList.toggle('is-open', nextState);
       navToggle.setAttribute('aria-expanded', String(nextState));
-      navToggle.setAttribute('aria-label', nextState ? 'Stäng meny' : 'Öppna meny');
+      updateNavToggleLabel(nextState);
       navPanel.hidden = isMobileViewport() ? !nextState : false;
       body.classList.toggle('menu-open', isMobileViewport() && nextState);
 
@@ -267,7 +276,7 @@
         nav.classList.remove('is-open');
         navToggle.classList.remove('is-open');
         navToggle.setAttribute('aria-expanded', 'false');
-        navToggle.setAttribute('aria-label', 'Öppna meny');
+        updateNavToggleLabel(false);
         return;
       }
 
@@ -276,6 +285,7 @@
       nav.classList.toggle('is-open', menuOpen);
       navToggle.classList.toggle('is-open', menuOpen);
       body.classList.toggle('menu-open', menuOpen);
+      updateNavToggleLabel(menuOpen);
     }
 
     window.addEventListener('resize', function() {
