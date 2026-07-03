@@ -52,7 +52,7 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'bundle exec jekyll serve --port 4000',
+    command: 'bundle exec jekyll serve --source ./src --port 4000',
     url: 'http://localhost:4000',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,

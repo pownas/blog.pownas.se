@@ -1,32 +1,32 @@
 <header class="site-header" role="banner">
-  <div class="wrapper">
+  <div class="wrapper site-header-inner">
     {%- assign default_paths = site.pages | map: "path" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
     <a class="site-title" rel="author" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
 
     {%- if page_paths -%}
-      <nav class="site-nav">
-        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-        <label for="nav-trigger" class="nav-toggle-label" aria-label="Öppna meny">
-          <span class="menu-icon">
-            <svg viewBox="0 0 18 15" width="18px" height="15px" aria-hidden="true" focusable="false">
-              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
-            </svg>
+      <nav class="site-nav" aria-label="Huvudnavigering">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Öppna meny">
+          <span class="menu-icon" aria-hidden="true">
+            <span class="menu-icon__line"></span>
+            <span class="menu-icon__line"></span>
+            <span class="menu-icon__line"></span>
           </span>
-        </label>
-        <div class="trigger" id="site-navigation">
+          <span class="visually-hidden">Meny</span>
+        </button>
+        <div class="trigger" id="site-navigation" hidden>
           <a class="page-link" href="{{ site.baseurl }}/">Hem</a>
           <div class="dropdown">
-            <a class="page-link dropdown-toggle" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="category-dropdown">Kategorier</a>
-            <div class="dropdown-content" id="category-dropdown">
+            <button class="page-link dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="category-dropdown">Kategorier</button>
+            <div class="dropdown-content dropdown-content--grid" id="category-dropdown" hidden>
               {% for category in site.category %}
                 <a href="{{ category.url | relative_url }}">{{ category.title }}</a>
               {% endfor %}
             </div>
           </div>
           <div class="dropdown">
-            <a class="page-link dropdown-toggle" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="recent-posts-dropdown">Senaste inlägg</a>
-            <div class="dropdown-content" id="recent-posts-dropdown">
+            <button class="page-link dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="recent-posts-dropdown">Senaste inlägg</button>
+            <div class="dropdown-content" id="recent-posts-dropdown" hidden>
               {% for post in site.posts limit:5 %}
                 <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
               {% endfor %}
@@ -39,199 +39,249 @@
               <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
             {%- endif -%}
           {%- endfor -%}
+          <button class="theme-toggle theme-toggle--nav" type="button" data-theme-toggle aria-label="Byt färgtema">
+            <span class="theme-icon" aria-hidden="true">☀️</span>
+            <span class="theme-text">Byt tema</span>
+          </button>
         </div>
       </nav>
     {%- endif -%}
   </div>
 </header>
 <script>
-  // Vänta på att DOM laddas
-document.addEventListener('DOMContentLoaded', function() {
-  // Kontrollera om användaren föredrar mörkt läge
-  function checkDarkModePreference() {
-    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (prefersDarkMode) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-  }
+  document.addEventListener('DOMContentLoaded', function() {
+    const root = document.documentElement;
+    const body = document.body;
+    const nav = document.querySelector('.site-nav');
+    const navToggle = document.querySelector('.nav-toggle');
+    const navPanel = document.getElementById('site-navigation');
+    const dropdowns = Array.from(document.querySelectorAll('.dropdown'));
+    const themeButtons = Array.from(document.querySelectorAll('[data-theme-toggle]'));
+    const mobileMedia = window.matchMedia('(max-width: 700px)');
+    let menuOpen = false;
 
-  // Kör kontroll av mörkt läge
-  checkDarkModePreference();
+    function applyTheme(theme) {
+      const nextTheme = theme === 'dark' ? 'dark' : 'light';
+      root.setAttribute('data-theme', nextTheme);
+      localStorage.setItem('theme', nextTheme);
 
-  // Funktion för att stänga menyn när användaren klickar på en länk
-  function setupMobileMenu() {
-    const navTrigger = document.getElementById('nav-trigger');
-    const navLabel = document.querySelector('.nav-toggle-label');
-    const menuLinks = document.querySelectorAll('.site-nav .page-link:not(.dropdown-toggle), .dropdown-content a');
-    const siteNavigation = document.getElementById('site-navigation');
+      themeButtons.forEach(function(button) {
+        const icon = button.querySelector('.theme-icon');
+        const text = button.querySelector('.theme-text');
+        const nextLabel = nextTheme === 'dark' ? 'Byt till ljust tema' : 'Byt till mörkt tema';
 
-    // Uppdatera aria-label baserat på menyns tillstånd
-    navTrigger.addEventListener('change', function() {
-      if (this.checked) {
-        navLabel.setAttribute('aria-label', 'Stäng meny');
-        navTrigger.setAttribute('aria-expanded', 'true');
-        document.body.classList.add('menu-open');
-        document.body.style.overflow = 'hidden'; // Förhindra scrollning när menyn är öppen
-      } else {
-        navLabel.setAttribute('aria-label', 'Öppna meny');
-        navTrigger.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('menu-open');
-        document.body.style.overflow = ''; // Återställ scrollning
-      }
-    });
-
-    // Initiera aria-expanded för hamburgermenyn
-    navTrigger.setAttribute('aria-expanded', 'false');
-    navTrigger.setAttribute('aria-controls', 'site-navigation');
-
-    // Stäng meny när en länk klickas
-    menuLinks.forEach(function(link) {
-      link.addEventListener('click', function() {
-        navTrigger.checked = false;
-        navTrigger.setAttribute('aria-expanded', 'false');
-        navLabel.setAttribute('aria-label', 'Öppna meny');
-        document.body.classList.remove('menu-open');
-        document.body.style.overflow = ''; // Återställ scrollning
-      });
-    });
-
-    // Toggle body class när menyn öppnas/stängs
-    navTrigger.addEventListener('change', function() {
-      if (this.checked) {
-        document.body.classList.add('menu-open');
-      } else {
-        document.body.classList.remove('menu-open');
-      }
-    });
-
-    // Hanterar dropdown-menyer på både mobila enheter och desktop
-    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-    dropdownToggles.forEach(function(toggle) {
-      toggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        // Toggle aria-expanded attribut
-        const isExpanded = this.getAttribute('aria-expanded') === 'true';
-        this.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
-
-        // Toggle dropdown-innehåll
-        const content = this.nextElementSibling;
-        if (isExpanded) {
-          content.style.display = 'none';
-          content.classList.remove('expanded');
-        } else {
-          content.style.display = 'block';
-          content.classList.add('expanded');
+        button.setAttribute('aria-label', nextLabel);
+        if (icon) {
+          icon.textContent = nextTheme === 'dark' ? '🌙' : '☀️';
         }
-
-        // Stäng andra öppna dropdowns
-        dropdownToggles.forEach(function(otherToggle) {
-          if (otherToggle !== toggle) {
-            otherToggle.setAttribute('aria-expanded', 'false');
-            const otherContent = otherToggle.nextElementSibling;
-            otherContent.style.display = 'none';
-            otherContent.classList.remove('expanded');
-          }
-        });
-      });
-
-      // Lägg till tangentbordsnavigering för dropdowns
-      toggle.addEventListener('keydown', function(e) {
-        // Öppna dropdown vid Enter eller Mellanslag
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          this.click();
+        if (text) {
+          text.textContent = 'Byt tema';
         }
       });
-    });
-
-    // Sätt initiala aria-expanded attribut
-    dropdownToggles.forEach(toggle => toggle.setAttribute('aria-expanded', 'false'));
-
-    // Stäng menyn när användaren klickar utanför
-    document.addEventListener('click', function(e) {
-      if (navTrigger.checked && !e.target.closest('.site-nav')) {
-        navTrigger.checked = false;
-        document.body.classList.remove('menu-open');
-      }
-
-      // Stäng dropdowns när man klickar utanför på desktop
-      if (window.innerWidth > 700) {
-        const dropdowns = document.querySelectorAll('.dropdown');
-        dropdowns.forEach(dropdown => {
-          if (!dropdown.contains(e.target)) {
-            const toggle = dropdown.querySelector('.dropdown-toggle');
-            const content = dropdown.querySelector('.dropdown-content');
-            if (toggle && content) {
-              toggle.setAttribute('aria-expanded', 'false');
-              content.style.display = 'none';
-              content.classList.remove('expanded');
-            }
-          }
-        });
-      }
-    });
-  }
-
-  // Starta setup
-  setupMobileMenu();
-
-  // Återställ alla dropdowns vid storleksändring av fönstret
-  window.addEventListener('resize', function() {
-    // Återställ dropdown-visning baserat på skärmstorlek
-    const dropdownContents = document.querySelectorAll('.dropdown-content');
-    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-
-    if (window.innerWidth > 700) {
-      // Desktop: återställ inline styles men behåll klasser för klick-funktionalitet
-      dropdownContents.forEach(dropdown => {
-        dropdown.style.display = '';
-        // Behåll expanded class för klick-funktionalitet på desktop
-      });
-      dropdownToggles.forEach(toggle => toggle.setAttribute('aria-expanded', 'false'));
-    } else {
-      // Mobil: stäng alla dropdowns
-      dropdownContents.forEach(dropdown => {
-        dropdown.style.display = 'none';
-        dropdown.classList.remove('expanded');
-      });
-      dropdownToggles.forEach(toggle => toggle.setAttribute('aria-expanded', 'false'));
     }
 
-    // Stäng hamburgermenyn vid storleksändring
-    const navTrigger = document.getElementById('nav-trigger');
-    const navLabel = document.querySelector('.nav-toggle-label');
+    function getTheme() {
+      return root.getAttribute('data-theme') || 'light';
+    }
 
-    navTrigger.checked = false;
-    navTrigger.setAttribute('aria-expanded', 'false');
-    navLabel.setAttribute('aria-label', 'Öppna meny');
-    document.body.classList.remove('menu-open');
-    document.body.style.overflow = ''; // Återställ scrollning
-  });
+    themeButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        applyTheme(getTheme() === 'dark' ? 'light' : 'dark');
+      });
+    });
 
-  // Lägg till escape-tangent för att stänga menyn
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      const navTrigger = document.getElementById('nav-trigger');
-      const navLabel = document.querySelector('.nav-toggle-label');
+    applyTheme(getTheme());
 
-      if (navTrigger.checked) {
-        navTrigger.checked = false;
-        navTrigger.setAttribute('aria-expanded', 'false');
-        navLabel.setAttribute('aria-label', 'Öppna meny');
-        document.body.classList.remove('menu-open');
-        document.body.style.overflow = '';
+    if (!nav || !navToggle || !navPanel) {
+      return;
+    }
 
-        // Stäng alla dropdowns
-        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-        dropdownToggles.forEach(toggle => {
-          toggle.setAttribute('aria-expanded', 'false');
-          toggle.nextElementSibling.style.display = 'none';
-          toggle.nextElementSibling.classList.remove('expanded');
-        });
+    function isMobileViewport() {
+      return mobileMedia.matches;
+    }
+
+    function closeDropdown(dropdown, options) {
+      const settings = options || {};
+      const toggle = dropdown.querySelector('.dropdown-toggle');
+      const content = dropdown.querySelector('.dropdown-content');
+
+      dropdown.classList.remove('is-open', 'dropdown--align-end');
+      toggle.setAttribute('aria-expanded', 'false');
+      content.hidden = true;
+
+      if (settings.focusToggle) {
+        toggle.focus();
       }
     }
+
+    function closeAllDropdowns(except) {
+      dropdowns.forEach(function(dropdown) {
+        if (dropdown !== except) {
+          closeDropdown(dropdown);
+        }
+      });
+    }
+
+    function updateDropdownPosition(dropdown) {
+      if (isMobileViewport()) {
+        dropdown.classList.remove('dropdown--align-end');
+        return;
+      }
+
+      const content = dropdown.querySelector('.dropdown-content');
+      requestAnimationFrame(function() {
+        dropdown.classList.remove('dropdown--align-end');
+        const bounds = content.getBoundingClientRect();
+
+        if (bounds.right > window.innerWidth - 16) {
+          dropdown.classList.add('dropdown--align-end');
+        }
+      });
+    }
+
+    function openDropdown(dropdown, options) {
+      const settings = options || {};
+      const toggle = dropdown.querySelector('.dropdown-toggle');
+      const content = dropdown.querySelector('.dropdown-content');
+
+      closeAllDropdowns(dropdown);
+      dropdown.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      content.hidden = false;
+      updateDropdownPosition(dropdown);
+
+      if (settings.focusFirstLink) {
+        const firstLink = content.querySelector('a');
+        if (firstLink) {
+          firstLink.focus();
+        }
+      }
+    }
+
+    function setMenuOpen(nextState) {
+      menuOpen = nextState;
+      nav.classList.toggle('is-open', nextState);
+      navToggle.classList.toggle('is-open', nextState);
+      navToggle.setAttribute('aria-expanded', String(nextState));
+      navToggle.setAttribute('aria-label', nextState ? 'Stäng meny' : 'Öppna meny');
+      navPanel.hidden = isMobileViewport() ? !nextState : false;
+      body.classList.toggle('menu-open', isMobileViewport() && nextState);
+
+      if (!nextState) {
+        closeAllDropdowns();
+      }
+    }
+
+    dropdowns.forEach(function(dropdown) {
+      const toggle = dropdown.querySelector('.dropdown-toggle');
+      const content = dropdown.querySelector('.dropdown-content');
+
+      toggle.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (dropdown.classList.contains('is-open')) {
+          closeDropdown(dropdown);
+          return;
+        }
+
+        openDropdown(dropdown);
+      });
+
+      toggle.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggle.click();
+        }
+
+        if (event.key === 'ArrowDown') {
+          event.preventDefault();
+          openDropdown(dropdown, { focusFirstLink: true });
+        }
+
+        if (event.key === 'Escape') {
+          closeDropdown(dropdown, { focusToggle: true });
+        }
+      });
+
+      content.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeDropdown(dropdown, { focusToggle: true });
+        }
+      });
+    });
+
+    navToggle.addEventListener('click', function() {
+      setMenuOpen(!menuOpen);
+    });
+
+    navPanel.addEventListener('click', function(event) {
+      const clickedLink = event.target.closest('a[href]');
+      if (clickedLink && isMobileViewport()) {
+        setMenuOpen(false);
+      }
+    });
+
+    document.addEventListener('click', function(event) {
+      if (!nav.contains(event.target)) {
+        closeAllDropdowns();
+
+        if (isMobileViewport() && menuOpen) {
+          setMenuOpen(false);
+        }
+      }
+    });
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key !== 'Escape') {
+        return;
+      }
+
+      const openDropdown = dropdowns.find(function(dropdown) {
+        return dropdown.classList.contains('is-open');
+      });
+
+      if (openDropdown) {
+        closeDropdown(openDropdown, { focusToggle: true });
+        return;
+      }
+
+      if (isMobileViewport() && menuOpen) {
+        setMenuOpen(false);
+        navToggle.focus();
+      }
+    });
+
+    function syncNavigation() {
+      if (!isMobileViewport()) {
+        navPanel.hidden = false;
+        body.classList.remove('menu-open');
+        closeAllDropdowns();
+        menuOpen = false;
+        nav.classList.remove('is-open');
+        navToggle.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Öppna meny');
+        return;
+      }
+
+      navPanel.hidden = !menuOpen;
+      closeAllDropdowns();
+      nav.classList.toggle('is-open', menuOpen);
+      navToggle.classList.toggle('is-open', menuOpen);
+      body.classList.toggle('menu-open', menuOpen);
+    }
+
+    window.addEventListener('resize', function() {
+      syncNavigation();
+      dropdowns.forEach(function(dropdown) {
+        if (dropdown.classList.contains('is-open')) {
+          updateDropdownPosition(dropdown);
+        }
+      });
+    });
+
+    syncNavigation();
   });
-});
 </script>

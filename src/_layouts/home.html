@@ -53,6 +53,7 @@ layout: default
                 {% for category in categories %}
                   {% assign trimmed_category = category | strip %}
                   {% assign category_slug = trimmed_category | slugify %}
+                  {% assign cat_obj = site.category | where: "category_name", trimmed_category | first %}
                   {% if cat_obj %}
                     <a href="{{ cat_obj.url | relative_url }}">{{ trimmed_category }}</a>
                   {% else %}
@@ -116,7 +117,8 @@ layout: default
           {%- endfor -%}
 
           {%- if page_end < paginator.total_pages -%}
-            {%- if page_end < paginator.total_pages | minus: 1 -%}
+            {%- assign final_page_before_last = paginator.total_pages | minus: 1 -%}
+            {%- if page_end < final_page_before_last -%}
               <li><span class="pagination-ellipsis">&hellip;</span></li>
             {%- endif -%}
             <li><a href="{{ site.paginate_path | relative_url | replace: ':num', paginator.total_pages }}" class="page-number">{{ paginator.total_pages }}</a></li>
