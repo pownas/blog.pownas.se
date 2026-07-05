@@ -78,5 +78,5 @@ Du hittar infografiken här:
 ## Vill du läsa mer? (Källor & Inspiration)
 
 * **Originalessän av Paul Graham (2009):** [Maker's Schedule, Manager's Schedule](http://www.paulgraham.com/makersschedule.html) – Den ursprungliga texten som startade hela diskussionen.
-* **Fördjupning inom djupt arbete:** Konceptet rimmar även väl med Cal Newports teorier om *Deep Work* och vikten av att skydda hjärnan från distraktioner.
+* **Fördjupning inom djupt arbete:** Konceptet rimmar även väl med [Cal Newports teorier om *Deep Work*](https://youtu.be/p4ZfkezDTXQ?is=uGODDaUC_IP2ZMO9) och vikten av att skydda hjärnan från distraktioner.
 * **Interaktiv visualisering:** Glöm inte att testa och dela vår simulator: [pownas.se/makers-vs-manager/infografik](https://pownas.se/chat-gpt/makers-vs-manager/infografik).
