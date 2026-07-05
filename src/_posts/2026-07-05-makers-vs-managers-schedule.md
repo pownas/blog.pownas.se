@@ -18,20 +18,6 @@ I den här artikeln djupdyker vi i detta genomslagskraftiga koncept – ursprung
 
 För att förstå varför din energi dräneras måste vi först titta på hur olika yrkesroller ser på tid. Paul Graham delar in arbetslivet i två huvudsakliga scheman:
 
-
-```
-                      HUR VI STRUKTURERAR TID
-
-     Skaparens Schema                        Administratörens Schema
-  ┌──────────────────────┐                  ┌───┬───┬───┬───┬───┬───┐
-  │                      │                  │ M │ E │ B │ M │ A │ M │
-  │    4+ Timmar Djup    │                  │ ö │ j │ e │ ö │ v │ ö │
-  │    Koncentration     │                  │ t │ l │ s │ t │ s │ t │
-  │                      │                  │ e │   │ l │ e │   │ e │
-  └──────────────────────┘                  └───┴───┴───┴───┴───┴───┘
-   Stora, obrutna block                      Uppstyckat i korta pass
-```
-
 ![Infografik Makers vs. Managers schedule](/img/blogposts/2026-07-05-Infografik_Makers_vs_Managers_schedule.png)
 
 ---
