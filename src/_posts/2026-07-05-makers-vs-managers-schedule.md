@@ -2,7 +2,7 @@
 layout: post
 title: 'Skaparens vs. Administratörens Schema: Nyckeln till att Återta din Mentala Energi och Flow'
 date: 2026-07-05 21:15 +0200
-category: "C#,sql,programmering"
+category: "agilt,ledarskap,programmering"
 ---
 
 Har du någonsin avslutat en arbetsdag med känslan av att vara helt utmattad, men när du tittar tillbaka på dagen inser du att du knappt har hunnit producera något konkret?
