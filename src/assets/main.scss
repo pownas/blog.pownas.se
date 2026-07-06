@@ -212,6 +212,9 @@ blockquote {
   color: var(--heading-color) !important;
   letter-spacing: -0.04em;
   text-decoration: none;
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
 }
 
 .site-nav {
@@ -829,6 +832,28 @@ a, .page-link, .post-link, .category-link, .dropdown-content a {
 p, .post-content p {
   word-break: break-word;
   overflow-wrap: anywhere;
+}
+
+@media (min-width: 701px) and (max-width: 1080px) {
+  .site-header-inner {
+    gap: 0.65rem;
+  }
+
+  .site-title {
+    flex: 0 1 auto;
+    font-size: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .site-nav {
+    gap: 0.4rem;
+  }
+
+  .site-nav .page-link,
+  .site-nav .dropdown-toggle,
+  .site-nav .theme-toggle {
+    padding: 0.5rem 0.72rem;
+    font-size: 0.9rem;
+  }
 }
 
 /* Responsiv navigering för mobila enheter */
