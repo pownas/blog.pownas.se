@@ -1056,6 +1056,52 @@ p, .post-content p {
   .site-nav .trigger[hidden] {
     display: flex;
   }
+
+  .site-nav .page-link,
+  .site-nav .dropdown-toggle,
+  .site-nav .theme-toggle {
+    min-height: 2.5rem;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.92rem;
+  }
+
+  .dropdown-content {
+    padding: 0.5rem;
+    border-radius: 16px;
+
+    a {
+      padding: 0.5rem 0.65rem;
+      border-radius: 10px;
+      line-height: 1.35;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+  }
+
+  #category-dropdown {
+    width: unquote("min(42rem, calc(100vw - 2rem))");
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.35rem;
+  }
+
+  #recent-posts-dropdown {
+    width: unquote("min(32rem, calc(100vw - 2rem))");
+    padding: 0.4rem;
+    max-height: unquote("min(22rem, calc(100vh - 8rem))");
+  }
+
+  #recent-posts-dropdown a {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1200px) {
+  #category-dropdown {
+    width: unquote("min(34rem, calc(100vw - 2rem))");
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 /* =========================================
