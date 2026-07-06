@@ -7,7 +7,9 @@ test.describe('Navigation accessibility and responsiveness', () => {
     await page.goto('/');
 
     const navToggle = page.locator('.nav-toggle');
+    await expect(navToggle).toContainText('Meny');
     await navToggle.click();
+    await expect(navToggle).toContainText('Stäng');
 
     const navigation = page.locator('#site-navigation');
     await expect(navigation).toBeVisible();
@@ -50,6 +52,7 @@ test.describe('Navigation accessibility and responsiveness', () => {
     await expect(recentPostsToggle).toHaveAttribute('aria-expanded', 'false');
     await page.keyboard.press('Escape');
     await expect(navToggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(navToggle).toContainText('Meny');
   });
 
   test('desktop dropdown stays inside the viewport and theme toggle remains accessible', async ({ page }) => {
