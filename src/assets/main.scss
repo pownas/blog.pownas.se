@@ -346,7 +346,7 @@ blockquote {
 }
 
 .menu-icon__line:nth-child(2) {
-  top: 50%;
+  top: 56%;
   transform: translate(-50%, -50%);
 }
 
@@ -966,12 +966,26 @@ p, .post-content p {
     width: 100%;
     max-width: 100%;
     min-width: 0;
+    padding: 0.4rem;
+    max-height: unquote("min(52vh, 18rem)");
     box-sizing: border-box;
   }
 
   #recent-posts-dropdown a {
     width: 100%;
     max-width: 100%;
+    padding: 0.68rem 0.7rem;
+    min-height: 2.6rem;
+    border-radius: 10px;
+    border-left: 0;
+    line-height: 1.35;
+    font-size: 0.93rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
   .site-nav .page-link,
