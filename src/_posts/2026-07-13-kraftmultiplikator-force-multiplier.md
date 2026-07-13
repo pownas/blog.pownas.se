@@ -15,6 +15,7 @@ Du måste bli en **Force Multiplier** (kraftmultiplikator).
 
 <!--more-->
 ---
+  
 
 ![Infografik för Force Multiplier - kraftmultiplikator](/img/blogposts/2026-07-13-kraftmultiplikator-force-multiplier.png)  
 Infografik för Force Multiplier - kraftmultiplikator
@@ -71,7 +72,6 @@ Att be om tid för att "refaktorera" eller "fixa med verktyg" möts ofta av en s
 
 Nern du börjar prata om hur mycket tid du sparar åt *andra*, hur mycket snabbare organisationen kan leverera, och hur mycket stabilare systemen blir, då slutar du betraktas som en ren kodare. Det är då du kliver fram som en systemarkitekt, en ledare och en sann **Force Multiplier** (kraftmultiplikator).
 
----
 
 *Vad är det största hindret i din nuvarande organisation för att utvecklare ska kunna leverera i flow? Är det onboarding, sega testsviter eller splittrade paketversioner? Börja där – din organisation kommer att tacka dig.*
 
@@ -79,8 +79,6 @@ Nern du börjar prata om hur mycket tid du sparar åt *andra*, hur mycket snabba
 
 ## Källor och vidare läsning
 Här är några av de mest inflytelserika och vetenskapligt grundade källorna, artiklarna och rapporterna som styrker argumenten för att minska kognitiv belastning, optimera DX och arbeta som en *Force Multiplier*:
-
----
 
 ### 1. Ursprunget till 10x-begreppet & Utvecklarvariation
 
