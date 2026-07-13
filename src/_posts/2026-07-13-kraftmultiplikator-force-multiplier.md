@@ -90,7 +90,7 @@ Här är några av de mest inflytelserika och vetenskapligt grundade källorna, 
 
 * **Steve McConnells analys:** Författaren till *Code Complete* har sammanställt en utmärkt historisk genomgång av forskningen kring utvecklardivergens och varför "10x"-begreppet ofta missförstås.
 * [Construx – Productivity Variations Among Software Developers and Teams](https://www.construx.com/blog/productivity-variations-among-software-developers-and-teams-the-origin-of-10x/)
-
+* [Construx – The Origins of 10x: How Valid Is the Underlying Research?](https://www.construx.com/blog/the-origins-of-10x-how-valid-is-the-underlying-research/)
 
 
 ### 2. DevOps-forskning & Automationsvinster (DORA)
