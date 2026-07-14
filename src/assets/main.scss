@@ -173,6 +173,63 @@ a:hover {
   }
 }
 
+.post-content :is(h1, h2, h3, h4, h5)[id] {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+
+  .heading-anchor-text {
+    min-width: 0;
+  }
+}
+
+.post-content .heading-anchor {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0;
+  height: 1.35em;
+  overflow: hidden;
+  opacity: 0;
+  color: var(--meta-color);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: width 0.2s ease, opacity 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+
+  svg {
+    width: 1em;
+    height: 1em;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+  }
+
+  &:hover,
+  &:focus-visible {
+    width: 1.35em;
+    opacity: 1;
+    color: var(--link-hover-color);
+    background-color: color-mix(in srgb, var(--accent-color) 14%, transparent);
+    text-decoration: none;
+  }
+}
+
+.post-content :is(h1, h2, h3, h4, h5)[id]:hover > .heading-anchor,
+.post-content :is(h1, h2, h3, h4, h5)[id]:focus-within > .heading-anchor {
+  width: 1.35em;
+  opacity: 1;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .post-content .heading-anchor {
+    width: 1.35em;
+    opacity: 1;
+  }
+}
+
 blockquote {
   border-left: 4px solid var(--accent-color);
   padding-left: 1rem;
