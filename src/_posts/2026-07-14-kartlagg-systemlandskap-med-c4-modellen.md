@@ -114,7 +114,7 @@ graph TD
 <details>
 <summary>Mermaid koden för Nivå 0: System Landscape Diagram</summary>
 
-```
+<pre><code>
 graph TD
     %% Styling - WCAG AA-säkrade klasser (Tydlig kontrast och färgstyrning för alla teman)
     classDef blueTeam fill:#1e3a8a,stroke:#172554,stroke-width:2px,color:#ffffff;
@@ -185,7 +185,7 @@ graph TD
     App41 -->|"Hämtar folkbokföring"| Navet
     App22 -->|"Skickar säkra myndighetsmeddelanden"| SDK
 
-```
+</code></pre>
 
 </details>
 <br />
@@ -240,7 +240,7 @@ graph TD
 <details>
 <summary>Mermaid koden för Nivå 1: System Context Diagram</summary>
 
-```
+<pre><code>
 graph TD
     %% Styling - WCAG AA-säkrade klasser (Tydlig kontrast i både Light & Dark Mode)
     classDef mainSystem fill:#15803d,stroke:#14532d,stroke-width:3px,color:#ffffff;
@@ -275,7 +275,7 @@ graph TD
     App22 -->|"Slår upp personnummer för att koppla person till ärende"| App41
     App22 -->|"Skickar säkra meddelanden till andra myndigheter"| SDK
 
-```
+</code></pre>
 
 </details>
 
@@ -347,7 +347,8 @@ graph TD
 <details>
 <summary>Mermaid koden för Nivå 2: Container Diagram</summary>
 
-```
+<pre><code>
+
 graph TD
     %% Styling - WCAG AA-säkrade klasser (kontrast och färg hårdkodade för att klara både Light & Dark)
     classDef externalSystem fill:#1f4068,stroke:#162447,stroke-width:2px,color:#ffffff;
@@ -398,7 +399,7 @@ graph TD
     API -.->|"Lägger i kö"| Worker
     Worker -->|"Långtidsarkiverar & uppdaterar fil<br/>SMB / HTTPS"| DocStorage
 
-```
+</code></pre>
 
 </details>
 
@@ -459,7 +460,7 @@ graph TD
 <details>
 <summary>Mermaid koden för Nivå 3: Component Diagram</summary>
 
-```
+<pre><code>
 
 graph TD
     %% Styling (class definitioner)
@@ -501,7 +502,7 @@ graph TD
     DbRepo -->|SQL / TCP Port 5432| Db
     FileAdapter -->|HTTPS / SMB| FileSys
 
-```
+</code></pre>
 
 </details>
 
