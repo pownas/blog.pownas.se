@@ -29,6 +29,6 @@ test.describe('Heading anchors', () => {
     await expect(anchor).toHaveCSS('opacity', '1');
 
     await anchor.click();
-    await expect(page).toHaveURL(new RegExp(`#${headingId.replace('på', 'p%C3%A5')}$`));
+    await expect(page).toHaveURL(new RegExp(`#${encodeURIComponent(headingId)}$`));
   });
 });

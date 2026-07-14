@@ -184,12 +184,13 @@ a:hover {
 }
 
 .post-content .heading-anchor {
+  --heading-anchor-size: 1.35em;
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 0;
-  height: 1.35em;
+  height: var(--heading-anchor-size);
   overflow: hidden;
   opacity: 0;
   color: var(--meta-color);
@@ -209,7 +210,7 @@ a:hover {
 
   &:hover,
   &:focus-visible {
-    width: 1.35em;
+    width: var(--heading-anchor-size);
     opacity: 1;
     color: var(--link-hover-color);
     background-color: color-mix(in srgb, var(--accent-color) 14%, transparent);
@@ -219,13 +220,13 @@ a:hover {
 
 .post-content :is(h1, h2, h3, h4, h5)[id]:hover > .heading-anchor,
 .post-content :is(h1, h2, h3, h4, h5)[id]:focus-within > .heading-anchor {
-  width: 1.35em;
+  width: var(--heading-anchor-size);
   opacity: 1;
 }
 
 @media (hover: none) and (pointer: coarse) {
   .post-content .heading-anchor {
-    width: 1.35em;
+    width: var(--heading-anchor-size);
     opacity: 1;
   }
 }
