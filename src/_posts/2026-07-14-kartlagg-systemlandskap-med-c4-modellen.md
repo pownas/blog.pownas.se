@@ -13,7 +13,7 @@ Att dokumentera allt i tunga textdokument tröttar ut vem som helst och leder ti
 
 ## Hemligheten bakom en lyckad kartläggning: Gör det till en workshop
 
-Låt inte en enskild arkitekt sitta på sin kammare och rita en perfekt, men steril karta. Sätt istället ihop personer från era olika utvecklingsteam (exempelvis fördelat på 4 fasta team) i tvärfunktionella grupper.
+Låt inte en enskild arkitekt sitta på sin kammare och rita en perfekt, men steril karta. Sätt istället ihop personer från era olika utvecklingsteam i tvärfunktionella grupper.
 
 * **Samlas kring en digital rityta:** Använd flexibla, visuella verktyg som Miro, FigJam eller Mural där alla kan bidra samtidigt.
 * **Mappa beroenden tillsammans:** När utvecklarna gemensamt diskuterar hur systemen faktiskt integrerar med varandra, uppstår de där ovärderliga "Aha!"-ögonblicken som bygger en sann gemensam vision.
@@ -26,6 +26,12 @@ För att en portfölj med tiotals applikationer inte ska explodera i en oläslig
 Här är den konkreta guiden för hur ni steg för steg tar er an systemlandskapet:
 
 ### Nivå 0: System Landscape Diagram (Hela landet)
+
+Innan ni kastar er in i de officiella C4-nivåerna, måste ni börja med en övergripande systemkartläggning. Har ni ett stort landskap på upp emot 25+ applikationer är detta er absolut viktigaste startpunkt.
+
+* **Vad det visar:** Alla era applikationer visualiseras som höglevellådor, tillsammans med era primära användargrupper och kritiska externa system (såsom BankID, externa API:er eller betalväxlar).
+* **Regel:** Håll det på en strikt makronivå! Gå inte in på databaser, mikrotjänster eller kodspråk här. En låda representerar en logisk applikation (t.ex. "Kundportal" eller "Faktureringsmotor").
+* **Hur ni gör det:** Skriv upp applikationerna på digitala lappar, gruppera dem grovt efter domän eller affärsområde (t.ex. Ekonomi, Logistik, Kundresa) och rita enbart ut de absolut viktigaste integrationslinjerna. Fokusera på de kritiska flödenna.
 
 ![Nivå 0: System Landscape Diagram](/img/blogposts/2026-07-14-c4-modellen--level-0-1.png)
 Nivå 0: System Landscape Diagram - Myndighetsperspektiv
@@ -184,13 +190,13 @@ graph TD
 </details>
 <br />
 
-Innan ni kastar er in i de officiella C4-nivåerna, måste ni börja med en övergripande systemkartläggning. Har ni ett stort landskap på upp emot 80 applikationer är detta er absolut viktigaste startpunkt.
-
-* **Vad det visar:** Alla era applikationer visualiseras som höglevellådor, tillsammans med era primära användargrupper och kritiska externa system (såsom BankID, externa API:er eller betalväxlar).
-* **Regel:** Håll det på en strikt makronivå! Gå inte in på databaser, mikrotjänster eller kodspråk här. En låda representerar en logisk applikation (t.ex. "Kundportal" eller "Faktureringsmotor").
-* **Hur ni gör det:** Skriv upp applikationerna på digitala lappar, gruppera dem grovt efter domän eller affärsområde (t.ex. Ekonomi, Logistik, Kundresa) och rita enbart ut de absolut viktigaste integrationslinjerna. Fokusera på de kritiska flödenna.
-
 ### Nivå 1: System Context Diagram (Staden)
+
+När helhetskartan är på plats zoomar ni in på ett system i taget. System Context-diagrammet sätter en specifik applikation i absolut centrum.
+
+* **Vad det visar:** Applikationen i mitten, vilka specifika användare som interagerar med den, samt vilka andra interna eller externa system den pratar direkt med.
+* **Målgrupp:** Detta diagram är ett fantastiskt verktyg för produktägare, nya utvecklare och externa intressenter eftersom det snabbt förklarar *varför* systemet finns och *vem* det hjälper.
+
 
 ![Nivå 1: System Context Diagram](/img/blogposts/2026-07-14-c4-modellen--level-1.png)
 Nivå 1: System Context Diagram
@@ -272,14 +278,16 @@ graph TD
 ```
 
 </details>
-<br />
 
-När helhetskartan är på plats zoomar ni in på ett system i taget. System Context-diagrammet sätter en specifik applikation i absolut centrum.
-
-* **Vad det visar:** Applikationen i mitten, vilka specifika användare som interagerar med den, samt vilka andra interna eller externa system den pratar direkt med.
-* **Målgrupp:** Detta diagram är ett fantastiskt verktyg för produktägare, nya utvecklare och externa intressenter eftersom det snabbt förklarar *varför* systemet finns och *vem* det hjälper.
 
 ### Nivå 2: Container Diagram (Kvarteret)
+
+Det är på den här nivån som det blir riktigt intressant för utvecklarna i era team. Nu öppnar ni upp lådan från Nivå 1 för att titta på insidan.
+
+* **Vad är en "Container"?** Glöm Docker för en sekund. I C4-modellen är en container en fristående körbar enhet eller en datadepå. Det kan vara en React SPA, ett .NET-API, en SQL-databas eller en meddelandekö.
+* **Vad det visar:** Hur applikationen är uppdelad rent tekniskt, vilka teknologier som används (t.ex. C# / .NET 10, PostgreSQL) och hur dessa kommunicerar med varandra (t.ex. via HTTPS/JSON eller gRPC).
+* **Varför det löser team-problemet:** Det tar bort all magi kring hur ett system fungerar. Om Team A behöver göra en ändring i Team B:s system ser de direkt på Nivå 2 exakt vilka delar som påverkas och hur data flödar.
+
 
 ![Nivå 2: Container Diagram](/img/blogposts/2026-07-14-c4-modellen--level-2.png)
 Nivå 2: Container Diagram
@@ -393,18 +401,18 @@ graph TD
 ```
 
 </details>
-<br />
 
-Det är på den här nivån som det blir riktigt intressant för utvecklarna i era team. Nu öppnar ni upp lådan från Nivå 1 för att titta på insidan.
-
-* **Vad är en "Container"?** Glöm Docker för en sekund. I C4-modellen är en container en fristående körbar enhet eller en datadepå. Det kan vara en React SPA, ett .NET-API, en SQL-databas eller en meddelandekö.
-* **Vad det visar:** Hur applikationen är uppdelad rent tekniskt, vilka teknologier som används (t.ex. C# / .NET 10, PostgreSQL) och hur dessa kommunicerar med varandra (t.ex. via HTTPS/JSON eller gRPC).
-* **Varför det löser team-problemet:** Det tar bort all magi kring hur ett system fungerar. Om Team A behöver göra en ändring i Team B:s system ser de direkt på Nivå 2 exakt vilka delar som påverkas och hur data flödar.
 
 ### Nivå 3: Component Diagram (Huset) – *Använd sparsamt! Mest för utvecklarteamet*
 
+Här zoomar ni in ytterligare ett steg, rakt in i en specifik container (som t.ex. backend-API:et).
+
+* **Vad det visar:** Hur koden är strukturerad internt i form av kontrollers, tjänster (services) och repositories, samt hur de beror på varandra.
+* **Varning:** Att rita och manuellt underhålla Nivå 3 för 80 applikationer är ett sisyfosarbete. Gör bara detta för era 3–5 mest komplexa, kritiska eller missförstådda applikationer. Låt resten stanna på Nivå 2.
+
+
 ![Nivå 3: Component Diagram](/img/blogposts/2026-07-14-c4-modellen--level-3.png)
-Nivå 3: Component Diagram
+Nivå 3: Component Diagram (AI-genererad bild)
 
 ```mermaid
 graph TD
@@ -496,12 +504,7 @@ graph TD
 ```
 
 </details>
-<br />
 
-Här zoomar ni in ytterligare ett steg, rakt in i en specifik container (som t.ex. backend-API:et).
-
-* **Vad det visar:** Hur koden är strukturerad internt i form av kontrollers, tjänster (services) och repositories, samt hur de beror på varandra.
-* **Varning:** Att rita och manuellt underhålla Nivå 3 för 80 applikationer är ett sisyfosarbete. Gör bara detta för era 3–5 mest komplexa, kritiska eller missförstådda applikationer. Låt resten stanna på Nivå 2.
 
 ### Nivå 4: Code Diagram (Rummet) – *Skippa detta! Väldigt tekniskt*
 
