@@ -114,7 +114,7 @@ graph TD
 <details>
 <summary>Mermaid koden för Nivå 0: System Landscape Diagram</summary>
 
-```text
+```
 graph TD
     %% Styling - WCAG AA-säkrade klasser (Tydlig kontrast och färgstyrning för alla teman)
     classDef blueTeam fill:#1e3a8a,stroke:#172554,stroke-width:2px,color:#ffffff;
@@ -240,7 +240,7 @@ graph TD
 <details>
 <summary>Mermaid koden för Nivå 1: System Context Diagram</summary>
 
-```text
+```
 graph TD
     %% Styling - WCAG AA-säkrade klasser (Tydlig kontrast i både Light & Dark Mode)
     classDef mainSystem fill:#15803d,stroke:#14532d,stroke-width:3px,color:#ffffff;
@@ -347,7 +347,7 @@ graph TD
 <details>
 <summary>Mermaid koden för Nivå 2: Container Diagram</summary>
 
-```text
+```
 graph TD
     %% Styling - WCAG AA-säkrade klasser (kontrast och färg hårdkodade för att klara både Light & Dark)
     classDef externalSystem fill:#1f4068,stroke:#162447,stroke-width:2px,color:#ffffff;
@@ -459,7 +459,7 @@ graph TD
 <details>
 <summary>Mermaid koden för Nivå 3: Component Diagram</summary>
 
-```text
+```
 
 graph TD
     %% Styling (class definitioner)
