@@ -543,24 +543,24 @@ Boka en halvdag där representanter från alla era team möts. Ge dem i uppdrag 
 
 För att ge bloggposten hög trovärdighet och ge läsarna möjlighet att fördjupa sig, kan du lägga till följande källhänvisningar längst ner i inlägget:
 
-* **The C4 Model (Officiell webbplats)**
+### The C4 Model (Officiell webbplats)
 * *Källa:* [c4model.com](https://c4model.com/)
 * *Beskrivning:* Skaparen Simon Browns officiella guide till de fyra nivåerna (Context, Containers, Components och Code) samt hur man ritar effektiva systemkartor.
 
 
-* **Mermaid.js – Architecture as Code**
+### Mermaid.js – Architecture as Code
 * *Källa:* [mermaid.js.org](https://mermaid.js.org/)
 * *Beskrivning:* Dokumentation för hur man renderar arkitekturdiagram direkt i Markdown-filer på GitHub och Azure DevOps med ren textkod.
 
 
-* **The C4 Model: Visualizing Software Architecture (Bok)**
+### The C4 Model: Visualizing Software Architecture (Bok)
 * *Författare:* Simon Brown
 * *Youtube:* [Visualizing Software Architecture](https://www.youtube.com/watch?v=sfqHggWY5Ds)
 * *Amazon:* [amazon.com/Visualizing-Software-Architecture](https://www.amazon.com/C4-Model-Visualizing-Software-Architecture/dp/B0GC5YKYFD)
 * *Beskrivning:* En handbok i hur man kommunicerar programvaruarkitektur på ett agilt och visuellt sätt utan att fastna i gamla tunga UML-strukturer.
 
 
-* **InnerSource Commons**
+### InnerSource Commons
 * *Källa:* [innersourcecommons.org](https://innersourcecommons.org/)
 * *Beskrivning:* Resurser kring hur man tillämpar principer från öppen källkod internt mellan olika team för att minska flaskhalsar och öka koddelning i stora applikationsportföljer.
 
