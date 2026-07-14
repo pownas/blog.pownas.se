@@ -37,9 +37,97 @@
   </script>
 
   <!-- Mermaid diagram support -->
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true });
+  <script src="{{ '/assets/js/mermaid.min.js' | relative_url }}"></script>
+  <script>
+    let mermaidInitialized = false;
+
+    function getMermaidTheme() {
+      return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default';
+    }
+
+    function getMermaid() {
+      if (!window.mermaid) {
+        throw new Error('Mermaid is not available on the page.');
+      }
+
+      if (!mermaidInitialized) {
+        window.mermaid.initialize({
+          startOnLoad: false,
+          suppressErrorRendering: true,
+          securityLevel: 'antiscript',
+          theme: getMermaidTheme()
+        });
+        mermaidInitialized = true;
+      }
+
+      return window.mermaid;
+    }
+
+    function findMermaidBlocks(root = document) {
+      return Array.from(root.querySelectorAll('pre.mermaid:not([data-mermaid-failed]), pre:not([data-mermaid-failed]) > code.language-mermaid'))
+        .map((node) => {
+          if (node.matches('pre.mermaid')) {
+            return {
+              sourceNode: node,
+              blockNode: node,
+              source: node.innerHTML.trim()
+            };
+          }
+
+          const blockNode = node.parentElement;
+          return blockNode ? {
+            sourceNode: node,
+            blockNode,
+            source: node.textContent?.trim() || ''
+          } : null;
+        })
+        .filter((block) => block && block.source);
+    }
+
+    async function renderMermaidDiagrams(root = document) {
+      const mermaidBlocks = findMermaidBlocks(root);
+
+      if (!mermaidBlocks.length) {
+        return;
+      }
+
+      const mermaid = getMermaid();
+
+      for (const [index, mermaidBlock] of mermaidBlocks.entries()) {
+        const { blockNode, source } = mermaidBlock;
+        const fallbackNode = blockNode.cloneNode(true);
+        const diagramNode = document.createElement('div');
+        diagramNode.className = 'mermaid-diagram';
+        blockNode.replaceWith(diagramNode);
+
+        try {
+          const renderId = `mermaid-diagram-${Date.now()}-${index}`;
+          const { svg, bindFunctions } = await mermaid.render(renderId, source);
+          diagramNode.innerHTML = svg;
+          bindFunctions?.(diagramNode);
+        } catch (error) {
+          fallbackNode.setAttribute('data-mermaid-failed', 'true');
+          diagramNode.replaceWith(fallbackNode);
+
+          const errorMessage = document.createElement('p');
+          errorMessage.className = 'mermaid-error';
+          errorMessage.textContent = 'Mermaid-diagrammet kunde inte renderas. Visar källkoden i stället.';
+          fallbackNode.insertAdjacentElement('beforebegin', errorMessage);
+
+          console.error('Failed to render Mermaid diagram:', error);
+        }
+      }
+    }
+
+    window.renderMermaidDiagrams = renderMermaidDiagrams;
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        void renderMermaidDiagrams();
+      }, { once: true });
+    } else {
+      void renderMermaidDiagrams();
+    }
   </script>
 
 

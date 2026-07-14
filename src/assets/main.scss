@@ -1151,6 +1151,28 @@ pre {
   }
 }
 
+.mermaid-diagram {
+  margin: 1.5em 0;
+  padding: 1em;
+  overflow-x: auto;
+  border-radius: 5px;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+
+  svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+}
+
+.mermaid-error {
+  margin: 1.5em 0 0.75em;
+  font-weight: 600;
+  color: #b91c1c;
+}
+
 .highlighter-rouge pre.highlight, .highlight {
   background-color: #eef;
   color: #333;
@@ -1164,6 +1186,8 @@ pre {
     color: #e6e6e6;
   }
   pre { border-color: #444; }
+  .mermaid-diagram { background-color: #1d232b; }
+  .mermaid-error { color: #fca5a5; }
 
   /* Syntax highlighting for dark mode with improved contrast */
   .highlight {
