@@ -242,6 +242,120 @@ blockquote {
   font-style: italic;
 }
 
+.post-layout {
+  position: relative;
+  display: block;
+}
+
+.post-toc {
+  display: none;
+}
+
+.post-toc__panel {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 0.65rem 0.55rem;
+  box-shadow: var(--panel-shadow);
+}
+
+.post-toc__heading {
+  margin: 0;
+  padding: 0 0.35rem 0.45rem;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  border-bottom: 2px solid color-mix(in srgb, var(--accent-color) 70%, var(--border-color));
+}
+
+.post-toc__list {
+  list-style: none;
+  margin: 0;
+  padding: 0.35rem 0 0;
+  display: grid;
+  gap: 0.08rem;
+}
+
+.post-toc__item {
+  margin: 0;
+}
+
+.post-toc__link {
+  display: block;
+  padding: 0.22rem 0.35rem 0.22rem calc(0.35rem + ((var(--toc-level, 1) - 1) * 0.62rem));
+  border-radius: 8px;
+  border-left: 2px solid transparent;
+  color: var(--meta-color);
+  font-size: 0.86rem;
+  line-height: 1.28;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.post-toc__link:visited {
+  color: var(--meta-color);
+}
+
+.post-toc__link:focus-visible {
+  outline: 2px solid var(--focus-outline);
+  outline-offset: 1px;
+  text-decoration: none;
+}
+
+.post-toc__link:hover {
+  color: var(--heading-color);
+  text-decoration: none;
+  background-color: color-mix(in srgb, var(--accent-color) 16%, var(--surface-color));
+}
+
+.post-toc__link.is-active,
+.post-toc__link.is-active:visited {
+  border-left-color: var(--accent-color);
+  background-color: color-mix(in srgb, var(--accent-color) 20%, var(--surface-color));
+  color: var(--heading-color);
+  font-weight: 700;
+}
+
+@media (min-width: 1280px) {
+  .post-layout .post {
+    max-width: 54rem;
+    margin-right: auto;
+  }
+
+  .post-layout .post-toc {
+    display: block;
+    position: fixed;
+    top: calc(5.5rem + 0.9rem);
+    right: 0.65rem;
+    left: auto;
+    width: clamp(14rem, 16vw, 18rem);
+    max-width: 18rem;
+    z-index: 700;
+  }
+
+  .post-layout .post-toc[hidden] {
+    display: none;
+  }
+
+  .post-toc__panel {
+    position: relative;
+    max-height: calc(100vh - 7rem);
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+  }
+
+  .post-toc__list {
+    overflow-x: hidden;
+  }
+
+  .post-toc__link {
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+}
+
 /* =========================================
    2. HEADER OCH NAVIGATION
    ========================================= */
