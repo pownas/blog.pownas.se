@@ -174,9 +174,7 @@ a:hover {
 }
 
 .post-content :is(h1, h2, h3, h4, h5)[id] {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.35rem;
+  position: relative;
 
   .heading-anchor-text {
     min-width: 0;
@@ -184,19 +182,21 @@ a:hover {
 }
 
 .post-content .heading-anchor {
-  --heading-anchor-size: 1.35em;
-  flex: 0 0 auto;
+  --heading-anchor-size: 1.3em;
+  --heading-anchor-offset: 1.8em;
+  position: absolute;
+  left: calc(-1 * var(--heading-anchor-offset));
+  top: 0.12em;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 0;
+  width: var(--heading-anchor-size);
   height: var(--heading-anchor-size);
-  overflow: hidden;
   opacity: 0;
   color: var(--meta-color);
   border-radius: 999px;
   text-decoration: none;
-  transition: width 0.2s ease, opacity 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+  transition: opacity 0.2s ease, color 0.2s ease, background-color 0.2s ease;
 
   svg {
     width: 1em;
@@ -205,12 +205,11 @@ a:hover {
     stroke: currentColor;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke-width: 1.8;
+    stroke-width: 2.2;
   }
 
   &:hover,
   &:focus-visible {
-    width: var(--heading-anchor-size);
     opacity: 1;
     color: var(--link-hover-color);
     background-color: color-mix(in srgb, var(--accent-color) 14%, transparent);
@@ -219,14 +218,18 @@ a:hover {
 }
 
 .post-content :is(h1, h2, h3, h4, h5)[id]:hover > .heading-anchor,
-.post-content :is(h1, h2, h3, h4, h5)[id]:focus-within > .heading-anchor {
-  width: var(--heading-anchor-size);
+.post-content :is(h1, h2, h3, h4, h5)[id]:focus-within > .heading-anchor,
+.post-content :is(h1, h2, h3, h4, h5)[id]:active > .heading-anchor {
   opacity: 1;
 }
 
 @media (hover: none) and (pointer: coarse) {
   .post-content .heading-anchor {
-    width: var(--heading-anchor-size);
+    top: 0.08em;
+  }
+
+  .post-content :is(h1, h2, h3, h4, h5)[id]:active > .heading-anchor,
+  .post-content :is(h1, h2, h3, h4, h5)[id]:focus-within > .heading-anchor {
     opacity: 1;
   }
 }
