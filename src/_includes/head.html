@@ -121,12 +121,63 @@
 
     window.renderMermaidDiagrams = renderMermaidDiagrams;
 
+    function enhanceHeadingAnchors(root = document) {
+      const postContents = [];
+
+      if (root instanceof Element && root.matches('.post.h-entry .post-content')) {
+        postContents.push(root);
+      }
+
+      if (typeof root.querySelectorAll === 'function') {
+        postContents.push(...root.querySelectorAll('.post.h-entry .post-content'));
+      }
+
+      postContents.forEach((postContent) => {
+        postContent.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id]').forEach((heading) => {
+          if (heading.dataset.headingAnchorEnhanced === 'true') {
+            return;
+          }
+
+          const headingText = heading.textContent?.trim();
+
+          if (!heading.id || !headingText) {
+            return;
+          }
+
+          const textWrapper = document.createElement('span');
+          textWrapper.className = 'heading-anchor-text';
+
+          while (heading.firstChild) {
+            textWrapper.appendChild(heading.firstChild);
+          }
+
+          const anchor = document.createElement('a');
+          anchor.className = 'heading-anchor';
+          anchor.href = `#${heading.id}`;
+          anchor.setAttribute('aria-label', `Länka till rubriken "${headingText}"`);
+          anchor.innerHTML = `
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M10.59 13.41a1.996 1.996 0 0 0 2.82 0l3.18-3.18a2 2 0 1 0-2.82-2.82l-1.06 1.06" />
+              <path d="M13.41 10.59a1.996 1.996 0 0 0-2.82 0l-3.18 3.18a2 2 0 1 0 2.82 2.82l1.06-1.06" />
+            </svg>
+          `;
+
+          heading.append(anchor, textWrapper);
+          heading.dataset.headingAnchorEnhanced = 'true';
+        });
+      });
+    }
+
+    window.enhanceHeadingAnchors = enhanceHeadingAnchors;
+
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', () => {
         void renderMermaidDiagrams();
+        enhanceHeadingAnchors();
       }, { once: true });
     } else {
       void renderMermaidDiagrams();
+      enhanceHeadingAnchors();
     }
   </script>
 
