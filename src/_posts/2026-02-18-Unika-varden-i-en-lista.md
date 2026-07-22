@@ -12,7 +12,7 @@ För att räkna ut hur många unika värden som finns i en lista med hjälp av L
 ## Här är lösningen:
 Lösning med `.Distinct().Count()`.  
 Metoden `Distinct()` filtrerar listan så att alla dubbletter försvinner. Därefter använder du `Count()` för att se hur många som är kvar.
-```cs
+```csharp
 using System;
 using System.Collections.Generic;
 using System.Linq; // Viktigt! Krävs för LINQ
@@ -36,7 +36,7 @@ Om du vill göra en kontroll (If-sats)
 Om du vill skriva logik baserat på detta, till exempel "Om det bara finns 1 unikt ID, gör X, annars gör Y":
 `var antalUnika = lista.Distinct().Count();`
 
-```cs
+```csharp
 if (antalUnika == 1)
 {
     Console.WriteLine("Alla värden i listan är likadana (eller listan har bara 1 element).");
@@ -51,7 +51,7 @@ else if (antalUnika > 1)
 C# skiljer på stora och små bokstäver som standard.  
 "Id1" och "id1" räknas som 2 unika värden.  
 Om du vill ignorera stora/små bokstäver gör du så här:  
-```cs
+```csharp
 // Detta ignorerar om det är "ID1" eller "id1"
 int antal = lista.Distinct(StringComparer.OrdinalIgnoreCase).Count();
 ```
@@ -65,7 +65,7 @@ Här är två vanliga scenarion:
 ### 1. Se hur många det finns av varje ID
 Detta ger dig en lista på varje unikt ID och antalet gånger det förekommer.
 
-```cs
+```csharp
 var lista = new List<string> { "Id1", "Id2", "Id1", "Id3", "Id2", "Id1" };
 
 // Gruppera på själva värdet (x => x)
@@ -89,7 +89,7 @@ foreach (var grupp in grupper)
 ### 2. Hitta BARA de som är dubbletter
 Om du vill filtrera bort de som är unika och bara se de som ställer till problem (finns mer än 1 gång):
 
-```cs
+```csharp
 var dubbletter = lista.GroupBy(x => x)
                       .Where(g => g.Count() > 1) // Filtrera: Bara de med mer än 1
                       .Select(g => g.Key);       // Plocka ut själva ID:t

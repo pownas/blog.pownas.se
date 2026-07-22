@@ -115,7 +115,7 @@ record Vulnerability([property: JsonPropertyName("severity")] int Severity, [pro
 ### Exempelkod för komplett körning
 eller hela exemplet där base också laddas ned:
 
-```cs
+```csharp
 using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
