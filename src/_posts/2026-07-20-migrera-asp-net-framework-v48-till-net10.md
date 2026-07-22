@@ -2,7 +2,7 @@
 layout: post
 title: 'Migrera din ASP.NET MVC 4.8 till .NET 10 – En komplett guide'
 date: 2026-07-20 12:40 +0200
-category: "programmering, csharp, dotnet"
+category: "programmering, csharp, dotnet, mvc, arkitektur, migrering"
 ---
 
 Att migrera en ASP.NET MVC-applikation från gamla .NET Framework 4.8 till det moderna **.NET 10** är inte bara en uppgradering – det är ett generationsskifte. Du lämnar det tunga, Windows-bundna IIS-ekosystemet och kliver in i en värld av blixtsnabb prestanda, plattformsoberoende och otroligt ren kod.
