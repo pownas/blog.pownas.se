@@ -10,7 +10,7 @@ Det var lördagen den 4 april 2026 – dagen innan påskdagen – och vi hade be
 
 Idén var väckt. Jag satte mig vid datorn, öppnade kodeditorn och började bygga. Resultatet blev **Liggi**!
 
-Du kan testa att spela det själv direkt i din webbläsare (det fungerar såklart på både dator och surfplatta): [https://pownas.se/liggi](https://pownas.se/liggi)
+Du kan testa att spela det själv direkt i din webbläsare (det fungerar såklart på både dator och surfplatta): [https://pownas.se/spel/liggi](https://pownas.se/spel/liggi)
 
 ## Spelmekaniken: Ägg, kycklingar och en väldigt arg tupp 🐓
 
@@ -36,6 +36,6 @@ Här är några höjdpunkter från hur spelet växte fram under timmarna:
 
 Efter några intensiva timmars kodande, pillande med kollisionsdetektorer och finjustering av tuppens hastighet hade spelet en helt fungerande loop från bana ett till vinstskärmen. Det var fantastiskt roligt att se hur snabbt man kan gå från en spontan idé vid frukostbordet till ett fullt spelbart, färgglatt webbspel.
 
-Gå in och [spela 🐥 Liggi 🐤](https://pownas.se/liggi) du också, och se om du kan överlista den arga tuppen och knipa chokladägget!
+Gå in och [spela 🐥 Liggi 🐤](https://pownas.se/spel/liggi) du också, och se om du kan överlista den arga tuppen och knipa chokladägget!
 
 Glad påsk! 🐣
