@@ -7,7 +7,7 @@ category: "programmering, csharp, dotnet, mvc, arkitektur"
 
 Att bygga e-tjänster och flerstegsflöden (wizards) i ASP.NET Core MVC är en vanlig uppgift i företagsapplikationer. Men när ett flöde växer från tre till tio steg blir det snabbt en utmaning att hålla ordning på vyer, specifika valideringsmodeller och tillståndshantering (state management). Om allt sprids ut i generiska mappar tappar utvecklare snabbt överblicken.
 
-Genom att kombinera principer från **Vertical Slice Architecture** med en strikt **sekventiell namngivningsstandard** kan vi skapa en struktur som är självförklarande, högpresterande och extremt underhållsvänlig.
+Genom att kombinera principer från **Vertical Slice Architecture** med en strikt **sekventiell namngivningsstandard** och en robust distribuerad sessionsarkitektur, kan vi skapa en struktur som är självförklarande, högpresterande, extremt underhållsvänlig och redo för produktion i molnet.
 
 <!--more-->
 ---
@@ -54,7 +54,97 @@ Features/
 
 ---
 
-## 2. Smart Datamodellering för Flerstegsflöden
+## 2. Central Konfiguration i Program.cs (.NET 10)
+
+För att kunna använda sessioner i applikationen måste vi registrera rätt tjänster samt lägga till rätt middleware i vår request-pipeline. Sessionstate i ASP.NET Core är i grunden uppbyggt ovanpå ett cache-gränssnitt (`IDistributedCache`).
+
+När vi utvecklar lokalt räcker det oftast med en in-memory-cache. Så här sätter du upp en säker och optimerad session i `Program.cs` med modern .NET 10-syntax:
+
+```csharp
+// Fil: Program.cs
+var builder = WebApplication.CreateBuilder(args);
+
+// 1. Registrera en lagringsplats för cachen (In-memory under lokal utveckling)
+builder.Services.AddDistributedMemoryCache();
+
+// 2. Konfigurera sessionshanteringen med strikta säkerhetsinställningar
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Tidsgräns för inaktivitet
+    options.Cookie.HttpOnly = true;                 // Skyddar mot XSS-attacker genom att dölja cookien för JavaScript
+    options.Cookie.IsEssential = true;               // Gör att sessionen fungerar även om användaren inte godkänt cookies (GDPR essential)
+});
+
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+// 3. Aktivera sessions-middleware i rätt ordning (MÅSTE ligga före routing/endpoints)
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseSession(); // Aktiverar sessionen för inkommande requests
+
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();
+
+```
+
+---
+
+## 3. Skalbarhet i Web Farms (Out-of-Process Session State)
+
+Standardkonfigurationen med `AddDistributedMemoryCache()` sparar sessionstillståndet i den specifika webbserverns arbetsminne. Om din applikation växer och distribueras över flera servrar (en så kallad Web Farm / lastbalanserad miljö) uppstår ett problem: om användaren skickar Steg 1 till Server A, och nästa klick (Steg 2) styrs om till Server B av lastbalanseraren, kommer servern inte att hitta användarens session. Användaren slängs då ut eller tvingas börja om.
+
+För att lösa detta flyttar vi sessionen **Out-of-Process (OutProc)** till en delad, central datakälla. Då blir applikationen helt tillståndslös (stateless) och kan enkelt skalas linjärt.
+
+### Alternativ A: Persistent lagring i SQL Server
+
+Om du vill att sessionerna ska överleva applikationsomstarter, serverdriftsättningar samt ha en extremt stabil lagring är en SQL-databas ett utmärkt val.
+
+1. Skapa cache-tabellen i din SQL-databas via .NET CLI med verktyget `sql-cache`:
+
+```bash
+dotnet tool install --global dotnet-sql-cache
+dotnet sql-cache create "Data Source=DITT_SERVER_NAMN;Initial Catalog=SessionsDb;Integrated Security=True;" dbo AppSessionCache
+
+```
+
+2. Byt ut `AddDistributedMemoryCache()` i `Program.cs` mot SQL-cachen:
+
+```csharp
+builder.Services.AddDistributedSqlServerCache(options =>
+{
+    options.ConnectionString = builder.Configuration.GetConnectionString("SqlCacheConnection");
+    options.SchemaName = "dbo";
+    options.TableName = "AppSessionCache";
+});
+
+```
+
+### Alternativ B: Högpresterande lagring i Redis
+
+För extremt högpresterande e-tjänster med miljontals samtidiga klick rekommenderas en in-memory-nyckel-värdedatabas som Redis. Konfigurationen görs enkelt via NuGet-paketet `Microsoft.Extensions.Caching.StackExchangeRedis`:
+
+```csharp
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("RedisConnection");
+    options.InstanceName = "E Tjanster_";
+});
+
+```
+
+---
+
+## 4. Smart Datamodellering för Flerstegsflöden
 
 När en användare navigerar genom stegen vill vi inte tappa bort information från tidigare steg, samtidigt som vi vill behålla en stark och träffsäker validering per skärm.
 
@@ -100,7 +190,7 @@ public class BygglovWizardState
 
 ---
 
-## 3. Renodlad Flödesstyrning i Controllern
+## 5. Renodlad Flödesstyrning i Controllern
 
 Tack vare den nya namngivningen och uppdelningen blir koden i din controller otroligt logisk, linjär och lättläst. Du hämtar tillståndet, mappar till vyn och slussar sedan användaren vidare till nästa vy i sekvensen:
 
@@ -153,12 +243,14 @@ Att arkitektera dina e-tjänster på det här sättet ger omedelbara fördelar i
 
 1. **Noll söktid vid buggfixar:** När en handläggare eller testare rapporterar att *"Det blir fel i granskningen på Bygglovs-tjänsten"*, vet du exakt vilken fil du ska öppna i hela repot på en sekund: `AnsokanOmBygglov/Steg4_Granskning.cshtml`. Inget letande, ingen förvirring.
 2. **Kapslad komplexitet:** Förändringar i validering eller logik för ett enskilt steg är isolerat och riskerar inte att förstöra funktionalitet i andra delar av användarresan.
-3. **Visuell Storyboard:** Mappstrukturen fungerar som en direkt visuell kartläggning av e-tjänstens flöde, vilket förenklar onboarding av nya utvecklare markant.
+3. **Web Farm-ready:** Genom att frikoppla sessionen från det lokala serverminnet till SQL Server eller Redis kan ditt system enkelt hantera trafikspikar utan dataförluster under deploy eller vid serverkrascher.
+4. **Visuell Storyboard:** Mappstrukturen fungerar som en direkt visuell kartläggning av e-tjänstens flöde, vilket förenklar onboarding av nya utvecklare markant.
 
 ---
 
 ## Referenser & Vidare Läsning
 
-* **Microsoft Learn:** [Session and state management in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/app-state)
-* **Vertical Slice Architecture:** [Jimmy Bogard - Vertical Slice Architecture](https://www.google.com/search?q=https://jimmybogard.com/vertical-slice-architecture/)
+* **Microsoft Learn:** [Session and state management in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/app-state?view=aspnetcore-10.0)
+* **Microsoft Learn:** [Distributed caching in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-10.0)
+* **Vertical Slice Architecture:** [Jimmy Bogard - Vertical Slice Architecture](https://jimmybogard.com/vertical-slice-architecture/)
 * **Martin Fowler:** [Patterns of Enterprise Application Architecture (State Patterns)](https://martinfowler.com/eaaCatalog/)
