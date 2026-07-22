@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Migrera din ASP.NET MVC 4.8 till .NET 10 – En komplett guide'
-date: 2026-07-20 12:40 +0200
+date: 2026-07-22 12:40 +0200
 category: "programmering, csharp, dotnet, mvc, arkitektur, migrering"
 ---
 
