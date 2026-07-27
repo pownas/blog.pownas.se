@@ -16,8 +16,7 @@ Skapa filen [docs/Check-CategoryCoverage.ps1](Check-CategoryCoverage.ps1) och kl
 [CmdletBinding()]
 param(
     [string]$PostsPath = "./src/_posts",
-    [string]$CategoryPath = "./src/_category",
-    [switch]$CaseSensitive
+    [string]$CategoryPath = "./src/_category"
 )
 
 Set-StrictMode -Version Latest
@@ -27,16 +26,10 @@ function Get-CategoryAudit {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)] [string]$PostsPath,
-        [Parameter(Mandatory)] [string]$CategoryPath,
-        [switch]$CaseSensitive
+        [Parameter(Mandatory)] [string]$CategoryPath
     )
 
-    $comparer = if ($CaseSensitive) {
-        [System.StringComparer]::Ordinal
-    }
-    else {
-        [System.StringComparer]::OrdinalIgnoreCase
-    }
+    $comparer = [System.StringComparer]::Ordinal
 
     $postCategoryEntries = New-Object System.Collections.Generic.List[object]
 
@@ -107,7 +100,7 @@ function Get-CategoryAudit {
     }
 }
 
-$result = Get-CategoryAudit -PostsPath $PostsPath -CategoryPath $CategoryPath -CaseSensitive:$CaseSensitive
+$result = Get-CategoryAudit -PostsPath $PostsPath -CategoryPath $CategoryPath
 
 if ($result.MissingInCategoryFiles.Count -eq 0 -and $result.UnusedCategoryFiles.Count -eq 0) {
     Write-Host "OK: Alla kategorier matchar mellan bloggposter och category-mappen." -ForegroundColor Green
@@ -160,16 +153,10 @@ Describe "Category coverage" {
 
 ## 3) Sa kor du scriptet
 
-Fran root i repot:
+Fran root i repot (alltid case-sensitive):
 
 ~~~powershell
 pwsh ./docs/Check-CategoryCoverage.ps1
-~~~
-
-Valfritt med case-sensitive matchning:
-
-~~~powershell
-pwsh ./docs/Check-CategoryCoverage.ps1 -CaseSensitive
 ~~~
 
 ## 4) Sa kor du testet

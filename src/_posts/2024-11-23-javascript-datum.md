@@ -2,7 +2,7 @@
 layout: post
 title: "JavaScript formatering av datum med toLocaleDateString()"
 date: 2024-11-23
-category: "JavaScript-Code,Programmering"
+category: "JavaScript-code, programmering"
 ---
 
 Info om datum och tid, formatering i JavaScript (för t.ex. Api användning):
@@ -31,3 +31,4 @@ console.log(event.toLocaleDateString(undefined, options));
 // Expected output (varies according to local timezone and default locale): Thursday, December 20, 2012
 
 ```
+

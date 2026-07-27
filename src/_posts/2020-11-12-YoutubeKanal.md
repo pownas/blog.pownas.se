@@ -2,7 +2,7 @@
 layout: post
 title: "Youtube kanal"
 date: 2020-11-12
-category: "Youtube"
+category: "youtube"
 ---
 
 Jag har nu tankar på att bygga upp min Youtube kanal till något som faktiskt går att använda av andra. 
@@ -19,3 +19,4 @@ Något program som var riktigt grymt och enkelt är i vart fall:
 I denna gick det busenkelt att spela in skärmbilden och skapa korta små komprimerade filmer. 🙂
 
 Får se om jag får någon framtida karriär som Youtube stjärna... 🌟
+

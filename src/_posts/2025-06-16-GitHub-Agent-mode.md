@@ -2,7 +2,7 @@
 layout: post
 title: "GitHub Agent mode inspiration i helgen"
 date: 2025-06-16
-category: "Ai,GitHub,Copilot,Programmering"
+category: "ai, GitHub, copilot, programmering"
 ---
 
 ### En inspirerande helg med GitHub Agent Mode
@@ -20,3 +20,4 @@ Denna helg har verkligen visat mig potentialen i GitHub Agent Mode och hur det k
 
 Hur har din erfarenhet med GitHub Agent Mode varit? Har du några tips eller insikter att dela med dig av?
 Hoppas detta hjälper! Finns det något annat du vill lägga till eller ändra?
+

@@ -2,7 +2,7 @@
 layout: post
 title: "Google imagen 4 public preview"
 date: 2025-06-28 09:12:32 +0200
-category: "Ai"
+category: "ai"
 ---
 
 Idag ramlade jag via [Feber](https://feber.se/internet/google-slapper-imagen-4/481021/) över Googles nya imagen 4 preview. 
@@ -87,3 +87,4 @@ Länk till Google imagen 4 preview:
 
 Källa från Feber:  
 [https://feber.se/internet/google-slapper-imagen-4/481021](https://feber.se/internet/google-slapper-imagen-4/481021)
+

@@ -2,7 +2,7 @@
 layout: post
 title: "Tillgänglighet för alla: Så granskar du din webbplats enligt WCAG 2.1"
 date: 2026-06-19 21:47 +0200
-category: "webbutveckling,wcag,html-code,programmering"
+category: "webbutveckling, wcag, HTML-code, programmering"
 ---
 
 Oavsett om plattformen du bygger är en komplex .NET-lösning, ett interaktivt webbaserat spel, eller en inbjudande informationssida för den lokala dansklubben, finns det en gemensam nämnare som aldrig får ignoreras: **tillgänglighet**.
@@ -69,3 +69,4 @@ För att fördjupa dig i riktlinjerna och hitta verktyg för din egen granskning
 
 * **Deque Systems (axe):** Skaparna av axe-core, industristandarden för automatiserad tillgänglighetstestning. Deras dokumentation är ovärderlig för utvecklare.
 * *Länk:* [Deque Accessibility Resources](https://www.deque.com/resources/)
+

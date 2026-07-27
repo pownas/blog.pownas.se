@@ -2,7 +2,7 @@
 layout: post
 title: "Använda HTML attribut data-* och dess DOM dataset.property"
 date: 2024-12-03
-category: "HTML-Code,JavaScript-Code,Programmering"
+category: "HTML-code, JavaScript-code, programmering"
 ---
 
 Info om hur man kan använda HTML attributen ```data-*``` och dess DOM property ```dataset.property```.
@@ -121,5 +121,6 @@ if (el.dataset.someDataAttr === undefined) {
 
 
 Hoppas dessa artiklarna i sin helhet kan hjälpa till att förstå dataset och data-* attribut som jag nu började förstå dessa bättre själv.
+
 
 

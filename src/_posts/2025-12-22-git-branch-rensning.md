@@ -2,7 +2,7 @@
 layout: post
 title: "Git branch rensning"
 date: 2025-12-22 20:07:10 +0200
-category: "git,github,programmering"
+category: "git, GitHub, programmering"
 ---
 
 Här kommer ett enkelt sätt hur man kan rensa upp bland git-brancher lokalt på sin dator, via PowerShell: 
@@ -49,3 +49,4 @@ tig
 `tig` visar tree view för git historiken.
 
 Hoppas detta var några bra kommandon för dig.
+

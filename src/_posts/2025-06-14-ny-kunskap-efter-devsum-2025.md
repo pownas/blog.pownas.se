@@ -2,7 +2,7 @@
 layout: post
 title: "Massor av ny kunskap och inspiration efter DevSum 2025"
 date: 2025-06-14
-category: "Konferens,Programmering"
+category: "konferens, programmering"
 ---
 
 ### En inspirerande konferensupplevelse
@@ -52,4 +52,5 @@ Jag vill rikta ett stort tack till arrangörerna, talarna och alla deltagare som
 ---
 
 Fler detaljer om talarna och specifika sessioner finns genom att besöka deras agenda på [www.devsum.se/agenda](https://www.devsum.se/agenda).
+
 

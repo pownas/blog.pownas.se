@@ -2,7 +2,7 @@
 layout: post
 title: "SEO - Search Engine Optimizing - Metadata taggar"
 date: 2025-01-06
-category: "HTML-Code,Programmering"
+category: "HTML-code, programmering"
 ---
 
 Info om vilka meta-data taggar man kan använda på en webbsida.
@@ -400,3 +400,4 @@ https://www.codewithfaraz.com/article/96/the-complete-list-of-meta-tags-in-html-
 Detta om någon skulle radera den sidan i framtiden, så vill jag ändå kunna läsa informationen. 
 
 /Jonas
+

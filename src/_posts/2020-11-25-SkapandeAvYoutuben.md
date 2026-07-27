@@ -2,7 +2,7 @@
 layout: post
 title: "Första steget mot Youtube stjärna 🌟"
 date: 2020-11-25
-category: "Youtube"
+category: "youtube"
 ---
 
 Idag tog jag och gjorde det. Jag skapade min egna Youtube kanal: "Pownas lär dig". 
@@ -18,3 +18,4 @@ På denna kanalen kommer jag att publicera olika tips och trix, som kan vara bra
 Hoppas ni lär er något av att kolla på mina filmer. 😊
 
 Ha det gott!
+

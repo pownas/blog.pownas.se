@@ -2,7 +2,7 @@
 layout: post
 title: "Installera Podman Desktop i Windows 11"
 date: 2025-12-13 14:07:10 +0200
-category: "programmering,github"
+category: "programmering, GitHub"
 ---
 
 Podman desktop är en kontainer-lösning (containers) där man kan köra sina olika kontainrar genom (lite som docker vad jag förstått det som...). 
@@ -96,4 +96,5 @@ https://docs.podman.io/en/latest/markdown/podman-machine-init.1.html#user-mode-n
 -------------------
 
 Hoppas denna guide kanske kan vara till nytta för någon, och att ni kommer igång med er VM/Docker miljö för att kunna hantera containers från en utvecklingsmiljö.
+
 

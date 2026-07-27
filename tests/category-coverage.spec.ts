@@ -1,6 +1,7 @@
+/// <reference types="node" />
 import { test, expect } from '@playwright/test';
-import fs from 'node:fs';
-import path from 'node:path';
+import * as fs from 'fs';
+import * as path from 'path';
 
 type PostCategoryRef = {
   postFile: string;
@@ -24,7 +25,7 @@ function stripWrappingQuotes(value: string): string {
 
 function readPostCategoryRefs(postsDir: string): PostCategoryRef[] {
   const refs: PostCategoryRef[] = [];
-  const postFiles = fs.readdirSync(postsDir).filter((name) => name.endsWith('.md'));
+  const postFiles = fs.readdirSync(postsDir).filter((name: string) => name.endsWith('.md'));
 
   for (const postFile of postFiles) {
     const fullPath = path.join(postsDir, postFile);
@@ -36,7 +37,7 @@ function readPostCategoryRefs(postsDir: string): PostCategoryRef[] {
 
     const categories = categoryMatch[1]
       .split(',')
-      .map((entry) => stripWrappingQuotes(entry))
+      .map((entry: string) => stripWrappingQuotes(entry))
       .filter(Boolean);
 
     for (const category of categories) {
@@ -49,7 +50,7 @@ function readPostCategoryRefs(postsDir: string): PostCategoryRef[] {
 
 function readCategoryPages(categoryDir: string): CategoryPage[] {
   const pages: CategoryPage[] = [];
-  const files = fs.readdirSync(categoryDir).filter((name) => name.endsWith('.md'));
+  const files = fs.readdirSync(categoryDir).filter((name: string) => name.endsWith('.md'));
 
   for (const file of files) {
     const fullPath = path.join(categoryDir, file);
