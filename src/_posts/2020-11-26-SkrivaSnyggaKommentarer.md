@@ -2,7 +2,7 @@
 layout: post
 title: "Skriva snygga kod-kommentarer"
 date: 2020-11-26
-category: "visual studio, programmering"
+category: "visual-studio, programmering"
 ---
 
 Ett tips när man kodar i Visual Studio, är att skriva enkla och snygga kommentarer så att andra, och speciellt du själv, kan förstå koden vid senare tillfällen. 
