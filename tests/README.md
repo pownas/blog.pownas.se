@@ -58,6 +58,13 @@ Tar skärmdumpar av viktiga sidor och jämför dem med tidigare versioner för a
 ### `crawler.spec.ts`
 Startar på startsidan och följer alla interna länkar. Testet misslyckas om någon länk leder till en sida med ett felmeddelande (t.ex. 404 Not Found).
 
+### `category-coverage.spec.ts`
+Jamfor kategorier i bloggposternas metadata mot `category_name` i `src/_category/`.
+Testet visar tydliga felmeddelanden om:
+- en kategori i en bloggpost saknas i category-mappen
+- en kategori i category-mappen inte har nagon bloggpost kopplad till sig
+Testet verifierar ocksa att varje kategorisida svarar med HTTP < 400.
+
 ## CI/CD Integration
 
 För att köra testerna i GitHub Actions, lägg till denna workflow i `.github/workflows/`:
