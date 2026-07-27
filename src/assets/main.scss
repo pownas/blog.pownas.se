@@ -26,9 +26,11 @@
   --panel-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
 
   /* Tabell-variabler för ljust läge */
-  --table-header-bg: #eaedf2;
-  --table-zebra-bg: #f8f9fa;
-  --table-text: #1a1a1a;
+  --table-header-bg: #e9eef5;
+  --table-zebra-bg: #f7f9fc;
+  --table-border-color: #d5dce6;
+  --table-hover-bg: #eef4ff;
+  --table-text: #1a1f2b;
 }
 
 [data-theme="dark"] {
@@ -51,9 +53,11 @@
   --panel-shadow: 0 24px 48px rgba(0, 0, 0, 0.42);
 
   /* Tabell-variabler för mörkt läge (dämpade ytor) */
-  --table-header-bg: #252526;
-  --table-zebra-bg: #1a1a1a;
-  --table-text: #f0f0f0;
+  --table-header-bg: #2a3442;
+  --table-zebra-bg: #1a222d;
+  --table-border-color: #384556;
+  --table-hover-bg: #263446;
+  --table-text: #eaf1fb;
 }
 
 html {
@@ -1425,57 +1429,69 @@ pre {
   overflow-x: auto;
   margin: 1.5rem 0;
   border-radius: 8px;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--table-border-color);
   background-color: var(--surface-color);
 
-  /* Genom att nästla 'table' här inne krossar vi temats hårdkodade färger */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-    font-size: 0.95rem;
-    background-color: var(--surface-color) !important;
-    color: var(--table-text) !important;
-    transition: background-color 0.3s, color 0.3s;
-    margin-bottom: 0 !important; /* Tar bort temats bottenmarginal */
-    border: none !important;     /* Rensar temats ytterkant */
-  }
+}
 
-  th, td {
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--border-color) !important;
-    line-height: 1.5;
-    color: var(--table-text) !important; /* Tvingar texten att hålla kontrasten */
-  }
+/* Samma läsbarhet för både vanliga markdown-tabeller och tabeller i .table-container */
+.table-container table,
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+  background-color: var(--surface-color) !important;
+  color: var(--table-text) !important;
+  transition: background-color 0.3s, color 0.3s;
+  margin: 1.5rem 0 !important;
+  border: 1px solid var(--table-border-color) !important;
+}
 
-  /* Header-stil med hög kontrast enligt WCAG */
-  th {
-    background-color: var(--table-header-bg) !important;
-    color: var(--heading-color) !important;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    border-bottom: 2px solid var(--border-color) !important;
-  }
+.table-container th,
+.table-container td,
+.post-content th,
+.post-content td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--table-border-color) !important;
+  line-height: 1.5;
+  color: var(--table-text) !important;
+}
 
-  /* Explicita regler för rader så att inte mörkt läge kraschar */
-  tr:nth-child(odd) {
-    background-color: var(--surface-color) !important;
-  }
+.table-container th:not(:last-child),
+.table-container td:not(:last-child),
+.post-content th:not(:last-child),
+.post-content td:not(:last-child) {
+  border-right: 1px solid var(--table-border-color) !important;
+}
 
-  /* Zebra-striping (varannan rad) baserat på dina unika tema-variabler */
-  tr:nth-child(even) {
-    background-color: var(--table-zebra-bg) !important;
-  }
+.table-container th,
+.post-content th {
+  background-color: var(--table-header-bg) !important;
+  color: var(--heading-color) !important;
+  font-weight: 650;
+  letter-spacing: 0.3px;
+  border-bottom: 2px solid var(--table-border-color) !important;
+}
 
-  /* Subtil och snygg hover-effekt anpassad för både ljust och mörkt läge */
-  tr:hover {
-    background-color: rgba(0, 123, 255, 0.08) !important;
-  }
+.table-container tbody tr:nth-child(odd),
+.post-content tbody tr:nth-child(odd) {
+  background-color: var(--surface-color) !important;
+}
 
-  /* Säkerställer att inline-kod i tabellerna hänger med i färgskiftet */
-  table code {
-    background-color: var(--bg-color) !important;
-    border: 1px solid var(--border-color) !important;
-    color: var(--text-color) !important;
-  }
+.table-container tbody tr:nth-child(even),
+.post-content tbody tr:nth-child(even) {
+  background-color: var(--table-zebra-bg) !important;
+}
+
+.table-container tbody tr:hover,
+.post-content tbody tr:hover {
+  background-color: var(--table-hover-bg) !important;
+}
+
+.table-container table code,
+.post-content table code {
+  background-color: var(--bg-color) !important;
+  border: 1px solid var(--table-border-color) !important;
+  color: var(--text-color) !important;
 }

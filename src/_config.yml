@@ -15,7 +15,7 @@ paginate: 12
 paginate_path: "/sida/:num/"
 show_excerpts: true # set to true to show excerpts on the homepage
 excerpt_separator: "<!--more-->"
-incremental: true # aktiverar inkrementell byggning
+incremental: false # undviker stale startsida/paginering lokalt
 
 # Plugins
 plugins:

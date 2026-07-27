@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Att tämja felhanteringen: Så bygger du ett smart, delat felbibliotek i .NET'
-date: 2026-07-26 23:55 +0200
+date: 2026-07-27 23:55 +0200
 category: "programmering,csharp,dotnet,arkitektur,felhantering"
 ---
 
