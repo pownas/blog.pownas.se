@@ -1359,6 +1359,97 @@ pre {
   overflow-x: auto;
 }
 
+/* VS Code-liknande C#-syntax i ljust läge */
+.language-csharp .highlight {
+  .k,
+  .kt {
+    color: #005fb8 !important;
+    font-weight: 600;
+  }
+
+  .nn {
+    color: #267f99 !important;
+  }
+
+  .c,
+  .c1,
+  .cm {
+    color: #0b7a28 !important;
+    font-style: italic;
+  }
+
+  .s,
+  .s1,
+  .s2,
+  .sa,
+  .sb,
+  .sc,
+  .sd,
+  .se,
+  .sh,
+  .si,
+  .sx {
+    color: #b85e00 !important;
+  }
+}
+
+/* VS Code-liknande JavaScript-syntax i ljust läge */
+.language-js .highlight,
+.language-javascript .highlight {
+  .c,
+  .c1,
+  .cm {
+    color: #0b7a28 !important;
+    font-style: italic;
+  }
+
+  .k,
+  .kd,
+  .kr,
+  .kt,
+  .kc {
+    color: #005fb8 !important;
+    font-weight: 600;
+  }
+
+  .nb,
+  .nx,
+  .nn {
+    color: #1f3a5f !important;
+  }
+
+  .nf {
+    color: #795e26 !important;
+  }
+
+  .s,
+  .s1,
+  .s2,
+  .sa,
+  .sb,
+  .sc,
+  .sd,
+  .se,
+  .sh,
+  .si,
+  .sx,
+  .dl {
+    color: #b85e00 !important;
+  }
+
+  .m {
+    color: #0f766e !important;
+  }
+}
+
+/* VS Code-liknande kommentarer i JSON-block.
+   Rouge markerar // i language-json som .err, inte .c1. */
+.language-json .highlight .err {
+  color: #008000 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
 [data-theme="dark"] {
   code, pre, .highlighter-rouge pre.highlight, .highlight, .language-plaintext {
     background-color: #2d2d2d;
@@ -1386,6 +1477,98 @@ pre {
     .nx { color: #d4d4d4; } /* Other names */
     .ss { color: #6a9955; } /* Symbols/string interpolation */
     .err { color: #f48771; } /* Errors */
+  }
+
+  .language-json .highlight .err {
+    color: #6a9955 !important;
+    background: transparent !important;
+    border: 0 !important;
+  }
+
+  /* VS Code-liknande C#-syntax i mörkt läge */
+  .language-csharp .highlight {
+    .k,
+    .kt {
+      color: #79c0ff !important;
+      font-weight: 600;
+    }
+
+    .nn {
+      color: #4ec9b0 !important;
+    }
+
+    .c,
+    .c1,
+    .cm {
+      color: #6a9955 !important;
+      font-style: italic;
+    }
+
+    .s,
+    .s1,
+    .s2,
+    .sa,
+    .sb,
+    .sc,
+    .sd,
+    .se,
+    .sh,
+    .si,
+    .sx {
+      color: #ce9178 !important;
+    }
+  }
+
+  /* VS Code-liknande JavaScript-syntax i mörkt läge */
+  .language-js .highlight,
+  .language-javascript .highlight {
+    .c,
+    .c1,
+    .cm {
+      color: #6a9955 !important;
+      font-style: italic;
+    }
+
+    .k,
+    .kd,
+    .kr,
+    .kt,
+    .kc {
+      color: #79c0ff !important;
+      font-weight: 600;
+    }
+
+    .nb,
+    .nn {
+      color: #9cdcfe !important;
+    }
+
+    .nx {
+      color: #d4d4d4 !important;
+    }
+
+    .nf {
+      color: #dcdcaa !important;
+    }
+
+    .s,
+    .s1,
+    .s2,
+    .sa,
+    .sb,
+    .sc,
+    .sd,
+    .se,
+    .sh,
+    .si,
+    .sx,
+    .dl {
+      color: #ce9178 !important;
+    }
+
+    .m {
+      color: #b5cea8 !important;
+    }
   }
 }
 
