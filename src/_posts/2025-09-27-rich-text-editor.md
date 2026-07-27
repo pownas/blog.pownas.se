@@ -2,7 +2,7 @@
 layout: post
 title: "Rich text editor - document.execCommand()"
 date: 2025-09-27 21:40:22 +0200
-category: "HTML-code, ai, JavaScript-code, programmering"
+category: "html, ai, javascript, programmering"
 ---
 
 # Hur jag skapade en Rich Text Editor med webbläsarens inbyggda API:er och Copilot

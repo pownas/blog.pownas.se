@@ -2,13 +2,14 @@
 layout: post
 title: "SEO - Search Engine Optimizing - Metadata taggar"
 date: 2025-01-06
-category: "HTML-code, programmering"
+category: "html, programmering"
 ---
 
-Info om vilka meta-data taggar man kan använda på en webbsida.
+Info om vilka meta-data taggar man kan använda på en webbsida för att optimera den för sökmotorer (SEO).
+
 <!--more-->
 
-Informationen nedan kommer från denna blogg-posten: 
+Informationen nedan kommer från denna blogg-posten:
 
 https://www.codewithfaraz.com/article/96/the-complete-list-of-meta-tags-in-html-2023
 
