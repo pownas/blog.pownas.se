@@ -2,7 +2,7 @@
 layout: post
 title: 'Modernisera din byggstruktur när du uppgraderar till .NET 10'
 date: 2026-06-27 23:15 +0200
-category: "C#,sql,programmering"
+category: "csharp,sql,programmering"
 ---
 
 Att kliva från en .NET 8-applikation – speciellt en som bär på legacy-bagage – direkt till .NET 10 är ett fantastiskt tillfälle att inte bara lyfta ramverket, utan att faktiskt städa bort teknisk skuld. För att göra kodbasen mer lätthanterlig, enhetlig och framtidssäker bör fokus ligga på att centralisera inställningar, utnyttja kompilatorn hårdare och implementera moderna arkitekturmönster.

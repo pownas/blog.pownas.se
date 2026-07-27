@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Historien om .NET 9 – AI-åldern och nästa generations caching"
 date: 2026-05-29 09:15 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 Detta är sjätte inlägget i min bloggserie om "Historien om .NET". Idag kliver vi in i november 2024 då **.NET 9** och **C# 13** släpptes lös. Som en funktionsrik STS-version (Standard-Term Support) tog Microsoft plattformen rakt in i AI-eran, samtidigt som de revolutionerade hur vi hanterar distribuerad data med det nya HybridCache-systemet. Fokus på smartare trådsäkerhet, molnoptimering och efterlängtad kodsyntax.

@@ -2,7 +2,7 @@
 layout: post
 title: "Jämföra 2st listor med varandra"
 date: 2025-01-09
-category: "C#,Programmering"
+category: "csharp,programmering"
 ---
 
 Här är ett enkelt sätt att jämföra två listor med varandra för att se vilka objekt som saknas i ena eller andra listan:

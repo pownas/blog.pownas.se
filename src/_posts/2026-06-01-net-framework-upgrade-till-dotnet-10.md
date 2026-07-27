@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Är det dags att lämna .NET Framework för .NET 10?"
 date: 2026-06-01 07:15 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 Sitter er organisation fortfarande med system byggda på det klassiska .NET Framework (t.ex. version 4.8)? Ni är inte ensamma. Det har varit en otroligt stabil plattform som har tjänat företag väl i över ett decennium. Men tekniklandskapet har förändrats...

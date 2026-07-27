@@ -2,7 +2,7 @@
 layout: post
 title: "🔐 Säkra din Software Supply Chain: Så automatiserar du SBOM med Microsoft Sbom Tool och CycloneDX"
 date: 2026-05-24 14:00 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 I en tid där cyberattacker allt oftare riktas mot mjukvarukedjan (Software Supply Chain) har begreppet **SBOM (Software Bill of Materials)** gått från att vara ett "bra att ha" till ett absolut krav. Att veta exakt vilka komponenter, öppna källkodspaket och beroenden din applikation består av är grundbulten i modern applikationssäkerhet.

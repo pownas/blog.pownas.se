@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: ".NET-versionsförvirring? Så styr `global.json` och `*.runtimeconfig.json`"
 date: 2026-06-12 23:15 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 Har du någon gång kliat dig i huvudet när pipelinen kraschar för att en .NET SDK saknas, eller funderat på om din app faktiskt kommer att starta på produktionsservern efter den senaste säkerhetspatchen?

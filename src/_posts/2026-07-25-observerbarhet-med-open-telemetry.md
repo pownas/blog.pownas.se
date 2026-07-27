@@ -2,7 +2,7 @@
 layout: post
 title: 'Observerbarhet med .NET 10 och OpenTelemetry: Från Noll till Aspire-Ready'
 date: 2026-07-25 12:20 +0200
-category: "programmering, csharp, dotnet, arkitektur, observerbarhet"
+category: "programmering,csharp,dotnet,arkitektur,observerbarhet"
 ---
 
 Att bygga distribuerade system och mikrotjänster utan ordentlig insyn är som att köra bil med förbundna ögon. När något går fel vill du inte leta febrilt i isolerade textfiler på fem olika servrar. Du vill ha en sammanhängande berättelse som visar *vem* som gjorde anropet, *vad* som hände och *varför* det tog tid.

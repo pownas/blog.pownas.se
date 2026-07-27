@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Förstå .NET SDK-versioner: Vad är skillnaden på 10.0.108, 10.0.204 och 10.0.300?"
 date: 2026-06-04 07:15 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 Har du någon gång tittat på versionsnumret för en .NET SDK och undrat varför det hoppar från `10.0.108` till `10.0.204` istället för att följa vanlig semantisk versionshantering (SemVer)?

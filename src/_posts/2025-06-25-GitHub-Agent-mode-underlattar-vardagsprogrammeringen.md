@@ -2,7 +2,7 @@
 layout: post
 title: "GitHub Agent-mode underlättar vardagsprogrammeringen - Kodglädje in på småtimmarna"
 date: 2025-06-25 00:57:32 +0200
-category: "Ai, GitHub, Copilot, Programmering, Verktyg, Produktivitet"
+category: "ai,github,copilot,programmering,verktyg,produktivitet"
 ---
 
 De senaste veckorna har jag upptäckt något som förändrat mitt sätt att programmera. GitHub Copilot Agent-Mode har inte bara förvandlat min produktivitet – den har återväckt min passion för kodning.

@@ -2,7 +2,7 @@
 layout: post
 title: "Kvinnor speglar den energi och närvaro män ger"
 date: 2025-06-27 12:26:32 +0200
-category: "Livsstil, Rikedom i livet"
+category: "livsstil,rikedom i livet"
 ---
 
 Hittade en fin artikel på facebook. Tror mycket av det stämmer. 😊  

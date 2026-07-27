@@ -2,7 +2,7 @@
 layout: post
 title: "🚀 Framtidssäkra din kodbas"
 date: 2026-04-26 07:37:14 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 Från flera röriga .NET 5-8 C#-projekt till en modern .NET 10-arkitektur. 

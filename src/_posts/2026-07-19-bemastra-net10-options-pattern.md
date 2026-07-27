@@ -2,7 +2,7 @@
 layout: post
 title: 'Bemästra .NET 10 Options Pattern — IOptions vs. IOptionsSnapshot vs. IOptionsMonitor'
 date: 2026-07-19 20:56 +0200
-category: "programmering, csharp, dotnet"
+category: "programmering,csharp,dotnet"
 ---
 
 Att hantera konfiguration i ett modernt enterprise-system handlar om betydligt mer än att bara läsa en sträng från `appsettings.json`. I storskaliga system – som ofta bygger på arkitekturer som Vertical Slice Architecture, distribuerade mikrotjänster och molnbaserad infrastruktur – blir hanteringen av inställningningarnas livscykel (lifetime) helt kritisk.

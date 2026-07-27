@@ -2,7 +2,7 @@
 layout: post
 title: "ASP.NET Core 2.3 deprecieras – planera migration innan 2027-04-13"
 date: 2026-04-18 09:00:00 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 ASP.NET Core utvecklades som den moderna, öppna och plattformsoberoende efterföljaren till klassisk ASP.NET. Nu är det dags att agera för team som fortfarande använder ASP.NET Core 2.3.

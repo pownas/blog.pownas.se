@@ -2,7 +2,7 @@
 layout: post
 title: "Få koll på din kod: En guide till OpenTelemetry, Traces och Spans i .NET 10"
 date: 2026-06-16 22:52 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 I moderna, distribuerade system räcker det sällan med traditionell felloggning. När ett anrop från en användare studsar genom en API-gateway, två mikrotjänster och en databas, och något går fel – hur vet du var flaskhalsen eller kraschen uppstod?

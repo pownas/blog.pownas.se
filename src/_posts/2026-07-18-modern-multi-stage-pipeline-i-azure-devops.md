@@ -2,7 +2,7 @@
 layout: post
 title: 'Från Classic till Kod: Så bygger du en Modern Multi-stage Pipeline i Azure DevOps'
 date: 2026-07-18 22:31 +0200
-category: "programmering, csharp, .net, azure, devops, ci/cd, release-pipelines"
+category: "programmering,csharp,dotnet,azure,devops,ci/cd,release-pipelines"
 ---
 
 I den moderna DevOps-världen räcker det inte längre med att bara ha applikationskoden under versionshantering. Att klicka sig fram i grafiska gränssnitt för att bygga bygg- och driftsättningsflöden – så kaldade *Classic Release Pipelines* – är ett föråldrat arbetssätt som skapar underhållsskulder, bristande spårbarhet och konfigurationsavvikelser (configuration drift).

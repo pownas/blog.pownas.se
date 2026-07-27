@@ -2,7 +2,7 @@
 layout: post
 title: "NuGet eller NoGet: En policy för hantering av paketberoenden i .NET-projekt"
 date: 2026-04-19 10:37:14 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 Inom modern .NET-utveckling är lösningen ofta ett `dotnet add package` bort. Det är fantastiskt för produktiviteten, men varje ny dependency är också ett långsiktigt åtagande.

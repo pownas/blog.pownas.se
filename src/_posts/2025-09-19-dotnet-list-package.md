@@ -2,7 +2,7 @@
 layout: post
 title: "dotnet list package"
 date: 2025-09-19 22:22:22 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 En liten påminnelse om `dotnet list package` som är ett enkelt kommando man kan köra för att kolla om man är på senaste NuGet-paket versioner, är då att använda sig av:   

@@ -2,7 +2,7 @@
 layout: post
 title: "Hur många unika värden har vi i en lista?"
 date: 2026-02-18
-category: "c-sharp,programmering"
+category: "csharp,programmering"
 ---
 
 

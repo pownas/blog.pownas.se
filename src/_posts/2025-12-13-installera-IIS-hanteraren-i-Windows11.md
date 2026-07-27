@@ -2,7 +2,7 @@
 layout: post
 title: "Installera IIS Hanteraren i Windows 11"
 date: 2025-12-13 14:07:10 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 Här kommer en liten guide över hur man kan aktivera och installera IIS fjärr  hanteraren via Windows 11.

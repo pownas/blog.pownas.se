@@ -2,7 +2,7 @@
 layout: post
 title: "Så här skapade jag påskspelet **Liggi 🐤** på en enda dag"
 date: 2026-04-04 09:58:52 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 Det var lördagen den 4 april 2026 – dagen innan påskdagen – och vi hade besök hemma. Jag lade märke till hur min sambos systerdotter mest satt klistrad vid sin surfplatta, och då slog det mig plötsligt: varför inte kanalisera den där skärmtiden till något unikt? Varför inte bygga ett eget, litet påskspel till henne direkt på webben?

@@ -2,7 +2,7 @@
 layout: post
 title: 'Flerstegsflöden i .NET: Sekventiella Vyer och Isolerad State Management'
 date: 2026-07-21 13:56 +0200
-category: "programmering, csharp, dotnet, mvc, arkitektur"
+category: "programmering,csharp,dotnet,mvc,arkitektur"
 ---
 
 Att bygga e-tjänster och flerstegsflöden (wizards) i ASP.NET Core MVC är en vanlig uppgift i företagsapplikationer. Men när ett flöde växer från tre till tio steg blir det snabbt en utmaning att hålla ordning på vyer, specifika valideringsmodeller och tillståndshantering (state management). Om allt sprids ut i generiska mappar tappar utvecklare snabbt överblicken.

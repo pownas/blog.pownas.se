@@ -2,7 +2,7 @@
 layout: post
 title: "Historien om .NET 5 – Startskottet för den moderna eran"
 date: 2026-05-25 23:57 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 Detta är andra inlägget i min blogg serie om "Historien om .NET". Vi hoppar dock över de tidigaste skedena av .NET Framework och .NET Core, de kan du läsa om i första bloggposten. Istället så hoppar vi rakt in i den moderna .NET5.0 och C# 9. Det var här den moderna dotNET (.NET) äntligen sammanfogade allt sedan november 2020.

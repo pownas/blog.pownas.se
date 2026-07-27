@@ -2,7 +2,7 @@
 layout: post
 title: "Historien bakom det moderna .NET: Från arv till revolution"
 date: 2026-05-24 22:45 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 Jag tänkte börja en liten blogg serie, om historian bakom det moderna dotNET (.NET). Vad var det som hände när man gick från den gamla "legacy" .NET Framework v1-v4 till en sväng förbi .NET Core v1-v3, vidare med den moderna .NET5 som sedan inkrementerat ett nummer varje år i november, till dagens .NET10. Där vi har landat idag (sedan 2025-11).

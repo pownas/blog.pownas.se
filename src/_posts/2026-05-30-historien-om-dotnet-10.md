@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Historien om .NET 10 – Storskalig kontroll och modern arkitektur"
 date: 2026-05-30 08:00 +02:00
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 Detta är det sjunde inlägget i min bloggserie om "Historien om .NET". Idag har vi nått fram till den absoluta nutiden och kliver in i november 2025 då **.NET 10** och **C# 14** gjorde sin storslagna entré. Som en efterlängtad LTS-release (Long Term Support) cementerade den plattformens mognad och gav mjukvaruarkitekter verktygen som krävs för att tygla storskaliga mikrotjänststrukturer och monorepos med järnhand.

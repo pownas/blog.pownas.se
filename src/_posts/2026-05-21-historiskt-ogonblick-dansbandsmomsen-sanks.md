@@ -2,7 +2,7 @@
 layout: post
 title: "HISTORISKT: Nu skrotas den orättvisa dansbandsmomsen! 💃🕺"
 date: 2026-05-21 19:26:32 +0200
-category: "Dagbok, Dans, Livsstil, Rikedom i livet"
+category: "dagbok,dans,livsstil,rikedom i livet"
 ---
 
 Vilken dag det var igår! Den 20 maj 2026 kommer gå till historien som dagen då dansbands-Sverige äntligen fick upprättelse. Efter decennier av kamp, demonstrationer och politiska turer klubbades beslutet igenom i riksdagen: Dansbandsmomsen sänks från 25 % till 6 %!

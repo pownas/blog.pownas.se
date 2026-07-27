@@ -2,7 +2,7 @@
 layout: post
 title: "Historien om .NET 6 – Den mogna LTS-versionen"
 date: 2026-05-26 11:37 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 Detta är tredje inlägget i min blogg serie om "Historien om .NET". Här går vi in på nyheternba i moderna .NET6.0 och C# 10, som släpptes noveber 2021. En enorm prestandabomb till LTS-version som revolutionerade webbutvecklingen genom introduktionen av Minimala API:er.

@@ -2,7 +2,7 @@
 layout: post
 title: ".NET Framework 4.8 eller .NET 10? Arkitekturvalet fram till 2032"
 date: 2026-06-15 22:52 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 Det finns ett klassiskt ordspråk inom IT-världen: *"Om det fungerar, rör det inte."* Men när vi pratar om publika webbtjänster och interna API:er som förväntas rulla stabilt, säkert och prestandalätt fram till år 2032, så håller inte det gamla tänket längre.

@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
 title: "Historien om .NET 7 – Fokuserad på extrem prestanda och innovation"
 date: 2026-05-27 11:23 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 Detta är fjärde inlägget i min bloggserie om "Historien om .NET". Idag tar vi steget in i november 2022 då .NET 7 och C# 11 släpptes. Även om det var en STS-version (Short Term Support), blev det en av de mest innovationsrika releaserna där Microsoft banade väg för molnbaserad mikroprestanda med Native AOT och inbyggda Enterprise-verktyg.

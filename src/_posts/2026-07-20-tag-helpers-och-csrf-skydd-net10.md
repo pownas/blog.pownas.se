@@ -2,7 +2,7 @@
 layout: post
 title: 'Från kaos till Clean Code: Tag Helpers och skottsäkert CSRF-skydd i .NET 10'
 date: 2026-07-19 20:56 +0200
-category: "programmering, csharp, dotnet"
+category: "programmering,csharp,dotnet"
 ---
 
 När du kliver in i modern webbutveckling med .NET 10 och ASP.NET Core MVC är det en specifik rad i din `_ViewImports.cshtml`-fil som lägger fundamentet för hela din frontend-arkitektur:

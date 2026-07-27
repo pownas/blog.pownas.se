@@ -2,7 +2,7 @@
 layout: post
 title: "Bygg en egen blixtsnabb (och gratis) SBOM- och Sårbarhetsscanner för .NET"
 date: 2026-05-24 13:52 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 I dagens landskap av "Supply Chain Security" är kraven på kontroll över tredjepartsberoenden högre än någonsin. Att veta exakt vilka paket dina applikationer använder – och om de innehåller kända säkerhetshål – är inte längre valfritt. Många företag betalar dyra licenser för tredjepartstjänster och API:er för att lösa detta.

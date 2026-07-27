@@ -2,7 +2,7 @@
 layout: post
 title: "Historien om .NET 8 – Den fulländade Cloud Native-plattformen"
 date: 2026-05-28 07:01 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 Detta är femte inlägget i min bloggserie om "Historien om .NET". Idag spolar vi fram till november 2023 då **.NET 8** och **C# 12** dundrade in på scenen. Som en stabil LTS-release (Long Term Support) knöt den ihop säcken för Microsofts vision om en modern, plattformsoberoende miljö och introducerade funktioner som gjorde plattformen redo för framtidens molnarkitekturer och AI. Fokus på "Cloud Native", fullfjädrad Blazor och efterlängtad kodsyntax.

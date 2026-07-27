@@ -2,7 +2,7 @@
 layout: post
 title: "Historien om .NET 11 – En tjuvtitt på framtidens Previews"
 date: 2026-05-31 07:15 +0200
-category: "c-sharp,.NET,programmering"
+category: "csharp,dotnet,programmering"
 ---
 
 Detta är ett exklusivt bonusinlägg i min bloggserie \"Historien om .NET\". Efter att ha nått hela vägen fram till dagens nutid med .NET 10 igår, kan vi inte låta bli att vända blicken mot horisonten. Just nu pågår utvecklingen för fullt av **.NET 11** och **C# 15**. I den här posten går vi igenom vad Microsoft hittills har släppt i sina tidiga Previews och vad vi kan förvänta oss av nästa stora plattformssteg.
