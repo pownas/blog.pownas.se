@@ -2,7 +2,7 @@
 layout: post
 title: 'Från kodknackare till Force Multiplier: Hur du skalar din påverkan i en stor organisation'
 date: 2026-07-13 16:31 +0200
-category: "agilt,ledarskap,programmering"
+category: "agilt,ledarskap,programmering, produktivitet, systemutveckling"
 ---
 
 I en mindre startup eller ett litet autonomt team mäts din framgång ofta i hur mycket kod du producerar. Ju snabbare du stänger dina Jira-tickets och ju fler rader kod du trycker ur dig, desto mer värdefull är du.

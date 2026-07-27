@@ -2,7 +2,7 @@
 layout: post
 title: "📖 Sammanfattning av boken: Someday is Today"
 date: 2026-05-23 14:48:22 +0200
-category: "livsstil,rikedom i livet"
+category: "livsstil, rikedom i livet, produktivitet"
 ---
 
 Här kommer en sammanfattning av boken [Someday Is Today: 22 Simple, Actionable Ways to Propel Your Creative Life – June 7, 2022 by Matthew Dicks (Author)](https://www.amazon.com/Someday-Today-Simple-Actionable-Creative/dp/1608687503), som jag fick ett tips från [youtube.com - Gabe Bult - I'm begging you to manage your time](https://www.youtube.com/watch?v=xbv-KUWB0pU&t=90s). Bra tips för hur man kan hitta kreativ tid i vardagen.

@@ -1,7 +1,7 @@
 ---
 layout: category
 title: Verktyg
-category_name: Verktyg
+category_name: verktyg
 permalink: /kategori/verktyg/
-description: Inlagg om verktyg for utvecklare och team.
+description: Inlagg om verktyg för utvecklare och team.
 ---
