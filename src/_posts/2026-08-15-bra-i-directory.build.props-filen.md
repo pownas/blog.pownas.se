@@ -10,7 +10,7 @@ När en .NET-lösning växer från ett fåtal mikrotjänster till tiotals eller 
 Lösningen heter Directory.Build.props. Genom att placera denna fil i roten av ert repository importerar MSBuild automatiskt dess innehåll i samtliga underliggande projekt.
 Här är de viktigaste inställningarna du bör införa i Directory.Build.props för att säkra kodkvalitet, säkerhet och deterministiska byggen i en enterprisemiljö.
 
-<!-- More -->
+<!--more-->
 
 ## 1. Kodkvalitet utan kompromisser
 I stora team räcker det inte med skrivna riktlinjer för kodkvalitet; reglerna måste tvingas fram av kompilatorn. Genom att centralisera kodanalysen i MSBuild säkerställer ni att alla utvecklare och byggservrar arbetar mot exakt samma standard.
