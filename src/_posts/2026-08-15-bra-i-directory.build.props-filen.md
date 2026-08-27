@@ -14,6 +14,7 @@ Här är de viktigaste inställningarna du bör införa i Directory.Build.props 
 
 ## 1. Kodkvalitet utan kompromisser
 I stora team räcker det inte med skrivna riktlinjer för kodkvalitet; reglerna måste tvingas fram av kompilatorn. Genom att centralisera kodanalysen i MSBuild säkerställer ni att alla utvecklare och byggservrar arbetar mot exakt samma standard.
+
 ```xml
 <PropertyGroup>
   <Nullable>enable</Nullable>
@@ -31,6 +32,7 @@ I stora team räcker det inte med skrivna riktlinjer för kodkvalitet; reglerna 
 
 ## 2. Automatisk säkerhetsaudit av NuGet-beroenden
 Sårbarheter i tredjepartsbibliotek (Supply Chain Attacks) är ett av de största hoten mot modern programvara. Från och med .NET 8/9 har .NET SDK inbyggt stöd för att granska NuGet-paket mot kända CVE-databaser under sjäva byggskedet.
+
 ```xml
 <PropertyGroup>
   <NuGetAudit>true</NuGetAudit>
@@ -47,6 +49,7 @@ Sårbarheter i tredjepartsbibliotek (Supply Chain Attacks) är ett av de störst
 I en CI/CD-pipeline vill du uppnå två saker:
  * Identiska binärer: Samma källkod ska ge exakt samma byte-för-byte-output oavsett vilken agent som bygger den.
  * Säkerhet & Renhet: Absoluta sökvägar från byggagenten (t.ex. D:\a\1\s\src\...) ska inte läcka ut i publicerade binärer, PDB-filer eller stack traces.
+
 ```xml
 <PropertyGroup>
   <Deterministic>true</Deterministic>
@@ -60,6 +63,7 @@ I en CI/CD-pipeline vill du uppnå två saker:
 
 ## 4. Renare projektstruktur med .NET Artifacts Output
 Klassiska .NET-lösningar skräpar ner kodbasen genom att skapa bin/ och obj/ i varje enskilt underprojekt. För stora lösningar försvårar detta städning, git-hantering och CI-skript.
+
 ```xml
 <PropertyGroup>
   <UseArtifactsOutput>true</UseArtifactsOutput>
@@ -67,11 +71,12 @@ Klassiska .NET-lösningar skräpar ner kodbasen genom att skapa bin/ och obj/ i 
 ```
 
 Med UseArtifactsOutput aktiverat samlas all bygg-output i en gemensam struktur i lösningens rot:
-./artifacts/bin/, ./artifacts/obj/ och ./artifacts/package/. Detta gör det extremt enkelt i t.ex. Azure Pipelines att peka ut var artefakter och testresultat finns utan att behöva söka igenom hela trädstrukturen.
+`./artifacts/bin/`, `./artifacts/obj/` och `./artifacts/package/`. Detta gör det extremt enkelt i t.ex. Azure Pipelines att peka ut var artefakter och testresultat finns utan att behöva söka igenom hela trädstrukturen.
 🔗 Läs mer: Microsoft Learn: Artifacts output layout
 
 ## 5. SourceLink: Sömlös felsökning av interna NuGet-paket
-Om företaget delar källkod internt via egna NuGet-paket drabbas utvecklare ofta av mardrömmen att inte kunna stega sig in i kod som ligger i ett internt bibliotek. SourceLink löser detta genom att bädda in kopplingar till er Git-repository direkt i symbolfilerna (.snupkg).
+Om företaget delar källkod internt via egna NuGet-paket drabbas utvecklare ofta av mardrömmen att inte kunna stega sig in i kod som ligger i ett internt bibliotek. SourceLink löser detta genom att bädda in kopplingar till er Git-repository direkt i symbolfilerna (`.snupkg`).
+
 ```xml
 <PropertyGroup>
   <PublishRepositoryUrl>true</PublishRepositoryUrl>
