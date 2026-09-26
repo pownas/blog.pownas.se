@@ -49,19 +49,17 @@ Använd inte ett vanligt `Guid.ToString("D")` direkt som W3C `trace-id`: D-forma
 
 `traceparent` är inte bara ett trace-ID. Det är W3C Trace Context-headern som bär information så att nästa komponent kan fortsätta tracen och skapa en egen span.
 
-```text
-traceparent: {version}-{trace-id}-{parent-id}-{trace-flags}
-```
+traceparent:  
+`{version}`-`{trace-id}`-`{parent-id}`-`{trace-flags}`
 
 Exempel:
-
 ```text
 traceparent: 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01
 ```
 
 | Fält | Betydelse |
 | --- | --- |
-| `version` | Formatversion. Den vanligaste och nuvarande versionen är `00`. |
+| `version` | W3C `traceparent` formatversion. Den vanligaste och nuvarande versionen är `00`. |
 | `trace-id` | 16 byte (32 hextecken), samma genom tracen så länge tracen inte uttryckligen startas om. Nollvärdet är ogiltigt. |
 | `parent-id` | 8 byte (16 hextecken), ID:t för anroparens span. Det ändras när en ny komponent skapar och propagerar sin span. |
 | `trace-flags` | Flaggor. I version `00` anger biten `01` att anroparen har markerat tracen som samplad; det är inte en garanti för att all telemetri finns lagrad. |
