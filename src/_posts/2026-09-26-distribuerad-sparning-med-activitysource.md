@@ -405,6 +405,34 @@ public class Worker3
 
 ---
 
+## 7. Loggar som går att koppla till traces
+
+En loggrad beskriver en händelse; en span beskriver en tidsatt arbetsenhet. För att hitta loggar från rätt del av ett flöde behöver loggen kopplas till den Activity som var aktiv när loggen skrevs.
+
+Med OpenTelemetrys .NET-loggprovider fylls loggpostens inbyggda `TraceId`, `SpanId` och `TraceFlags` automatiskt från `Activity.Current`, om en Activity finns. Aspire-exemplet använder `AddServiceDefaults()` och `IncludeScopes = true`; dess `UseTraceContextLogScope()` lägger även till `trace_id`, `span_id`, `service.name`, `timestamp_utc` och `correlation_id` som strukturerade scope-värden. Workern loggar motsvarande värden direkt i sina logganrop.
+
+| Fält | Ska det med? | Rekommendation |
+| --- | --- | --- |
+| `trace_id` | Ja, när loggen hör till en trace. | OpenTelemetry-loggprovidern lägger det normalt i loggpostens trace-context-fält. Lägg inte också till ett duplicerat attribut om du kan söka på det inbyggda fältet. |
+| `span_id` | Ja, när loggen hör till en specifik span. | Ger den exakta arbetsenheten för logghändelsen. Det följer normalt automatiskt med OpenTelemetry-providern. |
+| `parent_span_id` | Vanligen nej i varje loggrad. | Det är spanens föräldrarelation och hör hemma i trace-data. OpenTelemetrys loggpost har inte `ParentSpanId` som ett standardfält. Lägg till det som ett eget strukturerat fält om du behöver felsöka från vanliga textloggar eller ett system utan trace-vy. Rötter saknar dessutom en meningsfull förälder. |
+| `correlation_id` | Ja, om applikationen har ett separat ärende-/flödes-ID. | Logga det som ett eget strukturerat attribut. Det kan samla flera traces och ersätter inte `TraceId`. |
+| `service.name` | Ja, för att skilja tjänster åt. | Med OpenTelemetry bör det normalt sättas en gång som Resource-attribut, inte upprepas i varje logganrop. Ett scope kan vara användbart för enklare loggutdata. |
+| tidsstämpel | Ja, men normalt automatiskt. | Loggprovider och OpenTelemetry-loggpost har en tidsstämpel. Skapa inte en extra `timestamp_utc` om inte formatet eller loggmottagaren behöver den. |
+
+Logga strukturerat och medan rätt Activity är aktiv. Med Aspire/OpenTelemetry räcker det vanligen att skriva applikationens egna fält; providern kopplar loggen till Activity:n:
+
+```csharp
+logger.LogInformation(
+    "Worker processing job {job_id} with correlation {correlation_id}",
+    job.JobId,
+    job.CorrelationId);
+```
+
+Om loggarna går till en provider som inte har automatisk trace-korrelation kan du, som i exemplen, lägga till `Activity.Current?.TraceId`, `SpanId` och vid behov `ParentSpanId` som strukturerade fält. Kontrollera först hur loggmottagaren mappar dessa fält så att de inte hamnar som dubbletter bredvid OpenTelemetrys inbyggda trace-fält. `Activity.Current` är bara tillförlitlig medan Activity:n är aktiv; bakgrundsarbete måste få sin trace-context överlämnad och starta en egen Activity innan det loggar.
+
+I exemplet med `Task.Run` fångas `traceparent` innan HTTP-requesten avslutas. Det är samma princip: logga inte senare med en request-Activity som redan har avslutats, utan propagera kontexten och skapa rätt Activity i bakgrundsarbetet.
+
 ## Källor och vidare läsning
 
 För att läsa mer och fördjupa dig i koncepten och de bakomliggande standarderna finns officiella källor nedan:
@@ -421,6 +449,12 @@ För att läsa mer och fördjupa dig i koncepten och de bakomliggande standarder
 * [W3C Trace Context Specification](https://www.w3.org/TR/trace-context/) – Den officiella standarden för `traceparent` och `tracestate`.
 * [OpenTelemetry .NET SDK på GitHub](https://github.com/open-telemetry/opentelemetry-dotnet) – Dokumentation och exporterare för OTLP, Jaeger, Zipkin med flera.
 
-### Loggning & Serilog
+### Loggning & kodexempel
+* [API: Program.cs](https://github.com/pownas/AspireAppExampleApiServices/blob/master/AspireApp1.ApiService/Program.cs) – Loggar i API:t med trace- och korrelationsfält.
+* [WorkerService2: Program.cs](https://github.com/pownas/AspireAppExampleApiServices/blob/master/AspireApp1.WorkerService2/Program.cs) – Trace-context och loggscope vid mottagning och köläggning.
+* [WorkerService2: Worker.cs](https://github.com/pownas/AspireAppExampleApiServices/blob/master/AspireApp1.WorkerService2/Worker.cs) – Loggar under worker-Activity och vidarepropagering.
+* [ServiceDefaults: Extensions.cs](https://github.com/pownas/AspireAppExampleApiServices/blob/master/AspireApp1.ServiceDefaults/Extensions.cs) – OpenTelemetry-loggprovider och `UseTraceContextLogScope()`.
+* [Log correlation in OpenTelemetry .NET](https://opentelemetry.io/docs/languages/dotnet/logs/correlation/) – Automatisk koppling av `TraceId` och `SpanId` till loggposter.
+* [OpenTelemetry Logs Data Model](https://opentelemetry.io/docs/specs/otel/logs/data-model/) – Standardfält i OpenTelemetry-loggposter.
 * [Serilog Enrichers for OpenTelemetry / Activity](https://github.com/serilog/serilog-enrichers-span) – Hur du automatiskt berikar dina Serilog-loggar med `TraceId` och `SpanId`.
 * [SerilogTracing](https://github.com/serilog-tracing/serilog-tracing) – Bibliotek för att skriva ut spårningsdata direkt via Serilog.
