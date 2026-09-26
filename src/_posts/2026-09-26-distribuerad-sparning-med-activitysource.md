@@ -128,6 +128,29 @@ Om applikationen också tar emot ett eget `X-Correlation-ID` kan du spara det so
 
 Varje tjänst skapar en Activity för sitt arbete. När arbetet går vidare över en processgräns skickas kontexten med i HTTP-headern eller meddelandets metadata. Mottagaren läser kontexten och startar sin Activity som barn till den Activity som skickade arbetet.
 
+### Vertikal översikt
+
+Diagrammet följer huvudflödet uppifrån och ned. `TraceId` följer normalt med genom kedjan, medan varje Activity skapar ett eget `SpanId`.
+
+```mermaid
+flowchart TD
+    Client["Klient"] --> API["Web API<br/>Server-Activity<br/>ny TraceId om traceparent saknas"]
+    API --> Producer["Producer-Activity<br/>traceparent + X-Correlation-ID"]
+    Producer --> Queue1["Meddelandekö 1"]
+    Queue1 --> Worker1["Worker 1<br/>extrahera kontext<br/>starta Consumer-Activity"]
+    Worker1 --> Outbox["Outbox<br/>spara payload och kontext atomärt"]
+    Outbox --> Dispatcher["Outbox-processor<br/>återställ kontext"]
+    Dispatcher --> External["Extern tjänst<br/>HttpClient propagerar traceparent"]
+    External --> Inbox["Callback / Inbox"]
+    Inbox --> Worker2["Worker 2<br/>extrahera kontext<br/>starta Consumer-Activity"]
+    Worker2 --> Queue2["Meddelandekö 2"]
+    Queue2 --> Worker3["Worker 3<br/>extrahera kontext<br/>starta Consumer-Activity"]
+```
+
+En callback fortsätter samma trace bara om den externa tjänsten propagerar spårningskontexten. Annars startar callbacken en ny trace; använd vid behov en `ActivityLink` för att knyta ihop flödena.
+
+### Sekvensdiagram
+
 ```mermaid
 sequenceDiagram
     autonumber
