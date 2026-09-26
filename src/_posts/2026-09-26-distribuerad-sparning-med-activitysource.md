@@ -149,6 +149,8 @@ En callback fortsätter samma trace bara om den externa tjänsten propagerar sp�
 
 ### Sekvensdiagram
 
+Ett sekvensdiagram som visar flödet av spårningskontext genom en distribuerad applikation:
+
 ```mermaid
 sequenceDiagram
     autonumber
