@@ -5,13 +5,10 @@ date: 2026-09-26 06:00 +0200
 category: "programmering,csharp,dotnet,opentelemetry"
 ---
 
-När vi bygger mikrotjänster, händelsestyrda system och bakgrundsarbetare i .NET räcker det inte med vanliga loggar. Vi behöver Distributed Tracing för att kunna följa exakt hur en förfrågan rör sig från ett externt HTTP-anrop, genom meddelandeköer, mönster som Outbox/Inbox, externa tjänster och slutligen behandlas av asynkrona 
+När vi bygger mikrotjänster, händelsestyrda system och bakgrundsarbetare i .NET räcker det inte med vanliga loggar. Vi behöver **Distributed Tracing** för att kunna följa exakt hur en förfrågan rör sig från ett externt HTTP-anrop, genom meddelandeköer, mönster som Outbox/Inbox, externa tjänster och slutligen behandlas av asynkrona workers.
 
 <!--more-->
 ---
-# Distributerad spårning i C# med `ActivitySource`: Från Web API till asynkrona workers enligt DIGG-standard
-
-När vi bygger mikrotjänster, händelsestyrda system och bakgrundsarbetare i .NET räcker det inte med vanliga loggar. Vi behöver **Distributed Tracing** för att kunna följa exakt hur en förfrågan rör sig från ett externt HTTP-anrop, genom meddelandeköer, mönster som Outbox/Inbox, externa tjänster och slutligen behandlas av asynkrona workers.
 
 I hjärtat av modern spårning i .NET (.NET 5+) hittar vi **`ActivitySource`**. Det är själva motorn och startpunkten för all spårning i koden.
 
