@@ -174,7 +174,7 @@ sequenceDiagram
     Note over W1: Extrahera kontext och starta<br/>Consumer-Activity som barn
     W1->>Outbox: Spara payload och spårningsheaders atomärt
 
-    Outbox->>Ext: HTTP-anrop; HttpClient propagerar kontexten
+    Outbox->>Ext: HTTP-anrop där HttpClient propagerar kontexten
     Ext-->>Inbox: Callback eller händelse med sin traceparent
 
     Inbox->>W2: Konsumera från Inbox
