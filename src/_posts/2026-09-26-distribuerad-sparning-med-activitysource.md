@@ -9,16 +9,29 @@ När vi bygger mikrotjänster, händelsestyrda system och bakgrundsarbetare i .N
 
 <!--more-->
 ---
+# Distributerad spårning i C# med `ActivitySource`: Från Web API till asynkrona workers enligt DIGG-standard
 
-I hjärtat av modern spårning i .NET (.NET 5+) hittar vi ActivitySource. Det är själva motorn och startpunkten för all spårning i koden.
-I denna artikel går vi igenom hur du använder ActivitySource som utgångspunkt för spårning, hur W3C Trace Context fungerar över meddelandeköer, samt hur du uppfyller DIGG:s REST API-profil.
-1. ActivitySource – Startpunkten för all spårning i .NET
-Många utvecklare är vana vid begreppet Span från OpenTelemetry. I .NET-världen motsvaras en Span av klassen Activity, men du skapar aldrig en Activity direkt med new Activity().
-Istället är ActivitySource din startpunkt (motsvarande OpenTelemetrys Tracer). Den fungerar som en fabrik som skapar och startar dina aktiviteter.
-Varför är ActivitySource så viktig?
- * Startpunkt i koden: Det är genom ActivitySource.StartActivity() som du startar en ny spårningsenhet.
- * Prestanda: Om ingen lyssnar på dina spår (t.ex. om OpenTelemetry SDK inte är aktiverat) returnerar StartActivity() helt enkelt null. Det innebär noll minnesallokering och minimal prestandapåverkan!
- * Namnområde (Tracing Source): Du skapar oftast en statisk instans per modul/tjänst, vilket gör det enkelt att filtrera och konfigurera vilka delar av din applikation som ska spåras.
+När vi bygger mikrotjänster, händelsestyrda system och bakgrundsarbetare i .NET räcker det inte med vanliga loggar. Vi behöver **Distributed Tracing** för att kunna följa exakt hur en förfrågan rör sig från ett externt HTTP-anrop, genom meddelandeköer, mönster som Outbox/Inbox, externa tjänster och slutligen behandlas av asynkrona workers.
+
+I hjärtat av modern spårning i .NET (.NET 5+) hittar vi **`ActivitySource`**. Det är själva motorn och startpunkten för all spårning i koden.
+
+I denna artikel går vi igenom hur du använder `ActivitySource` som utgångspunkt för spårning, hur W3C Trace Context fungerar över meddelandeköer, samt hur du uppfyller **DIGG:s REST API-profil**.
+
+---
+
+## 1. `ActivitySource` – Startpunkten för all spårning i .NET
+
+Många utvecklare är vana vid begreppet *Span* från OpenTelemetry. I .NET-världen motsvaras en *Span* av klassen `Activity`, men du skapar **aldrig** en `Activity` direkt med `new Activity()`. 
+
+Istället är **`ActivitySource`** din startpunkt (motsvarande OpenTelemetrys `Tracer`). Den fungerar som en fabrik som skapar och startar dina aktiviteter.
+
+### Varför är `ActivitySource` så viktig?
+
+1. **Startpunkt i koden:** Det är genom `ActivitySource.StartActivity()` som du startar en ny spårningsenhet.
+2. **Prestanda:** Om ingen lyssnar på dina spår (t.ex. om OpenTelemetry SDK inte är aktiverat) returnerar `StartActivity()` helt enkelt `null`. Det innebär noll minnesallokering och minimal prestandapåverkan.
+3. **Namnområde (Tracing Source):** Du skapar oftast en statisk instans per modul/tjänst, vilket gör det enkelt att filtrera och konfigurera vilka delar av din applikation som ska spåras.
+
+```csharp
 // 1. Skapa din ActivitySource (startpunkten för komponenten)
 private static readonly ActivitySource MyActivitySource = new("MyCompany.OrderService");
 
@@ -32,25 +45,44 @@ public async Task ProcessOrder()
 
     // Utför arbete...
 } // 3. När activity avyttras (dispose) stängs tidsmätningen automatiskt!
+```
 
-2. Vad säger DIGG:s REST API-profil?
+---
+
+## 2. Vad säger DIGG:s REST API-profil?
+
 Myndigheten för digital förvaltning (DIGG) ställer tydliga krav på spårbarhet i offentlig sektors API:er.
- * W3C Trace Context som primär standard:
-   Skicka och ta emot spårningskontext via den officiella W3C-headern traceparent.
- * Hantering av X-Correlation-ID:
-   Om externa klienter skickar ett äldre eller anpassat X-Correlation-ID, ska detta fångas upp i ditt Web API och läggas till som en tagg (correlation.id) på din Activity. Själva spårningskedjan driver du dock vidare internt via W3C traceparent.
- * Respons-headers:
-   Returnera alltid spårnings-ID (traceparent och/eller X-Correlation-ID) i HTTP-responsen så att konsumenten kan uppge ID:t vid felrapportering.
-3. ID-formatet: W3C traceparent
-När ActivitySource.StartActivity() anropas genereras automatiskt unika ID:n enligt W3C-standarden. Formatet som skickas mellan köer och tjänster ser ut så här:
-Exempel:
-00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01
- * version: 00 (W3C-standard).
- * traceid: 128-bitars unikt ID. Förblir exakt samma genom Web API, alla workers och externa tjänster.
- * parentid: 64-bitars ID för den specifika delaktiviteten (SpanId) som skickade meddelandet.
- * traceflags: 01 anger att spåret samlas in/samplas.
-4. Arkitektur & Flödesdiagram
-Sekvensdiagrammet nedan visar hur ActivitySource i varje steg skapar nya underaktiviteter (child spans) med hjälp av den spårningskontext (traceparent) som skickas med i meddelandenas metadata:
+
+1. **W3C Trace Context som primär standard:**
+   Skicka och ta emot spårningskontext via den officiella W3C-headern `traceparent`.
+2. **Hantering av `X-Correlation-ID`:**
+   Om externa klienter skickar ett äldre eller anpassat `X-Correlation-ID`, ska detta fångas upp i ditt Web API och läggas till som en tagg (`correlation.id`) på din `Activity`. Själva spårningskedjan driver du dock vidare internt via W3C `traceparent`.
+3. **Respons-headers:**
+   Returnera alltid spårnings-ID (`traceparent` och/eller `X-Correlation-ID`) i HTTP-responsen så att konsumenten kan uppge ID:t vid felrapportering.
+
+---
+
+## 3. ID-formatet: W3C `traceparent`
+
+När `ActivitySource.StartActivity()` anropas genereras automatiskt unika ID:n enligt W3C-standarden. Formatet som skickas mellan köer och tjänster ser ut så här:
+
+$$\text{version}-\text{traceid}-\text{parentid}-\text{traceflags}$$
+
+**Exempel:**
+`00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01`
+
+* **`version`**: `00` (W3C-standard).
+* **`traceid`**: 128-bitars unikt ID. Förblir **exakt samma** genom Web API, alla workers och externa tjänster.
+* **`parentid`**: 64-bitars ID för den specifika delaktiviteten (SpanId) som skickade meddelandet.
+* **`traceflags`**: `01` anger att spåret samlas in/samplas.
+
+---
+
+## 4. Arkitektur & Flödesdiagram
+
+Sekvensdiagrammet nedan visar hur `ActivitySource` i varje steg skapar nya underaktiviteter (child spans) med hjälp av den spårningskontext (`traceparent`) som skickas med i meddelandenas metadata:
+
+```mermaid
 sequenceDiagram
     autonumber
     actor Client as Klient / Konsument
@@ -83,10 +115,17 @@ sequenceDiagram
     Q2->>W3: Konsumera meddelande
     Note over W3: Worker3ActivitySource.StartActivity(...)<br/>Child Activity (Span 6)
     Note over W3: Utför arbete och avslutar Activity
+```
 
-5. Implementering i C#
-Låt oss se hur vi bygger detta i koden. Vi skapar först en hjälpklass för Context Propagation (Inject & Extract).
-Hjälpklass för spårningskontext
+---
+
+## 5. Implementering i C#
+
+Låt oss se hur vi bygger detta i koden. Vi skapar först en hjälpklass för **Context Propagation** (Inject & Extract).
+
+### Hjälpklass för spårningskontext
+
+```csharp
 using System.Diagnostics;
 
 public static class TracingHelpers
@@ -118,9 +157,15 @@ public static class TracingHelpers
         return default;
     }
 }
+```
 
-Steg 1: Web API (Mottagning & DIGG-stöd)
-ASP.NET Core har en inbyggd ActivitySource för HTTP-anrop. Vi lägger till ett middleware för att hantera X-Correlation-ID samt sätta svar-headers enligt DIGG.
+---
+
+### Steg 1: Web API (Mottagning & DIGG-stöd)
+
+ASP.NET Core har en inbyggd `ActivitySource` för HTTP-anrop. Vi lägger till ett middleware för att hantera `X-Correlation-ID` samt sätta svar-headers enligt DIGG.
+
+```csharp
 public class DiggTracingMiddleware
 {
     private readonly RequestDelegate _next;
@@ -154,9 +199,11 @@ public class DiggTracingMiddleware
         await _next(context);
     }
 }
+```
 
-När Web API skickar meddelandet vidare till Meddelandekö 1:
-```cs
+När Web API skickar meddelandet vidare till **Meddelandekö 1**:
+
+```csharp
 [ApiController]
 [Route("api/[controller]")]
 public class OrdersController : ControllerBase
@@ -180,9 +227,13 @@ public class OrdersController : ControllerBase
 }
 ```
 
+---
+
 ### Steg 2 & 3: Worker 1 & Outbox-mönstret
-I Worker 1 definierar vi vår egen ActivitySource som startpunkt för arbetarens spårning. När meddelandet konsumeras skickar vi med den extraherade ActivityContext till StartActivity.
-```cs
+
+I Worker 1 definierar vi vår egen `ActivitySource` som startpunkt för arbetarens spårning. När meddelandet konsumeras skickar vi med den extraherade `ActivityContext` till `StartActivity`.
+
+```csharp
 public class Worker1
 {
     // ActivitySource är startpunkten för Worker 1:s spårning
@@ -217,54 +268,73 @@ public class Worker1
 }
 ```
 
-### Steg 4, 5 & 6: Outbox \rightarrow Extern Tjänst \rightarrow Inbox \rightarrow Worker 2 \rightarrow Worker 3
+---
+
+### Steg 4, 5 & 6: Outbox $\rightarrow$ Extern Tjänst $\rightarrow$ Inbox $\rightarrow$ Worker 2 $\rightarrow$ Worker 3
+
 Samma mönster upprepas genom hela den asynkrona kedjan:
- * Outbox Processor: Läser Outbox-tabellen, skickar HTTP-anrop till den Externa Tjänsten med traceparent i HTTP-headern.
- * Worker 2 (Inbox Consumer): Har sin egen ActivitySource:
-   private static readonly ActivitySource Worker2Source = new("MyCompany.Services.Worker2");
 
-   public async Task ProcessInboxMessage(InboxMessage message)
-   {
-       var parentContext = TracingHelpers.ExtractTraceContext(message.Headers);
+1. **Outbox Processor:** Läser Outbox-tabellen, skickar HTTP-anrop till den **Externa Tjänsten** med `traceparent` i HTTP-headern.
+2. **Worker 2 (Inbox Consumer):** Har sin egen `ActivitySource`:
 
-       using var activity = Worker2Source.StartActivity("Worker2.ProcessInbox", ActivityKind.Consumer, parentContext);
+```csharp
+public class Worker2
+{
+    private static readonly ActivitySource Worker2Source = new("MyCompany.Services.Worker2");
 
-       // Utför arbete...
-       
-       var queue2Headers = new Dictionary<string, string>();
-       TracingHelpers.InjectTraceContext(queue2Headers);
-       await _queue2.PublishAsync(message.Body, queue2Headers);
-   }
-   
+    public async Task ProcessInboxMessage(InboxMessage message)
+    {
+        var parentContext = TracingHelpers.ExtractTraceContext(message.Headers);
 
- * Worker 3 (Slutlig behandling):
-   ```cs
-   private static readonly ActivitySource Worker3Source = new("MyCompany.Services.Worker3");
+        using var activity = Worker2Source.StartActivity("Worker2.ProcessInbox", ActivityKind.Consumer, parentContext);
 
-   public async Task CompleteProcess(QueueMessage message)
-   {
-       var parentContext = TracingHelpers.ExtractTraceContext(message.Headers);
+        // Utför arbete...
+        
+        var queue2Headers = new Dictionary<string, string>();
+        TracingHelpers.InjectTraceContext(queue2Headers);
+        await _queue2.PublishAsync(message.Body, queue2Headers);
+    }
+}
+```
 
-       using var activity = Worker3Source.StartActivity("Worker3.Finalize", ActivityKind.Consumer, parentContext);
+3. **Worker 3 (Slutlig behandling):**
 
-       // Slutgiltigt arbete utförs här
-       activity?.SetTag("status", "success");
-   }
-   ```
+```csharp
+public class Worker3
+{
+    private static readonly ActivitySource Worker3Source = new("MyCompany.Services.Worker3");
 
-## Källor och vidare läsning
+    public async Task CompleteProcess(QueueMessage message)
+    {
+        var parentContext = TracingHelpers.ExtractTraceContext(message.Headers);
+
+        using var activity = Worker3Source.StartActivity("Worker3.Finalize", ActivityKind.Consumer, parentContext);
+
+        // Slutgiltigt arbete utförs här
+        activity?.SetTag("status", "success");
+    }
+}
+```
+
+---
+
+## 6. Källor och vidare läsning
+
 För att läsa mer och fördjupa dig i koncepten och de bakomliggande standarderna finns officiella källor nedan:
-Microsoft Learn
- * Distributed Tracing Concepts (.NET) – Översikt över hur ActivitySource och Activity fungerar i .NET.
- * Distributed Tracing Instrumentation Walkthrough – Officiell guide för hur du skapar och använder ActivitySource i dina egna klasser och bibliotek.
- * DistributedContextPropagator API Reference – Dokumentation av klassen i .NET som hanterar Inject och Extract av W3C-headers.
-DIGG (Myndigheten för digital förvaltning)
- * DIGG:s Riktlinjer för REST API:er – DIGG:s ramverk för standardisering och spårbarhet i offentlig sektors gränssnitt.
- * Sveriges Dataportal – API-profil – Specifikationer och riktlinjer gällande API-design och interoperabilitet.
-Standarder & OpenTelemetry
- * W3C Trace Context Specification – Den officiella standarden för traceparent och tracestate.
- * OpenTelemetry .NET SDK på GitHub – Dokumentation och exporterare för OTLP, Jaeger, Zipkin med flera.
-Loggning & Serilog
- * Serilog Enrichers for OpenTelemetry / Activity – Hur du automatiskt berikar dina Serilog-loggar med TraceId och SpanId.
- * SerilogTracing – Bibliotek för att skriva ut spårningsdata direkt via Serilog.
 
+### Microsoft Learn
+* [Distributed Tracing Concepts (.NET)](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-concepts) – Översikt över hur `ActivitySource` och `Activity` fungerar i .NET.
+* [Distributed Tracing Instrumentation Walkthrough](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs) – Officiell guide för hur du skapar och använder `ActivitySource` i dina egna klasser och bibliotek.
+* [DistributedContextPropagator API Reference](https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.distributedcontextpropagator) – Dokumentation av klassen i .NET som hanterar Inject och Extract av W3C-headers.
+
+### DIGG (Myndigheten för digital förvaltning)
+* [DIGG:s Riktlinjer för REST API:er](https://www.digg.se/utveckling-och-innovation/oppna-data-och-oppen-kod/ramverk-och-riktlinjer) – DIGG:s ramverk för standardisering och spårbarhet i offentlig sektors gränssnitt.
+* [Sveriges Dataportal – API-profil](https://dataportal.se/) – Specifikationer och riktlinjer gällande API-design och interoperabilitet.
+
+### Standarder & OpenTelemetry
+* [W3C Trace Context Specification](https://www.w3.org/TR/trace-context/) – Den officiella standarden för `traceparent` och `tracestate`.
+* [OpenTelemetry .NET SDK på GitHub](https://github.com/open-telemetry/opentelemetry-dotnet) – Dokumentation och exporterare för OTLP, Jaeger, Zipkin med flera.
+
+### Loggning & Serilog
+* [Serilog Enrichers for OpenTelemetry / Activity](https://github.com/serilog/serilog-enrichers-span) – Hur du automatiskt berikar dina Serilog-loggar med `TraceId` och `SpanId`.
+* [SerilogTracing](https://github.com/serilog-tracing/serilog-tracing) – Bibliotek för att skriva ut spårningsdata direkt via Serilog.
