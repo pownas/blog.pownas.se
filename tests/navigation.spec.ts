@@ -89,7 +89,7 @@ test.describe('Navigation accessibility and responsiveness', () => {
     await expect(page.locator('html')).toHaveAttribute('data-theme', /dark|light/);
 
     await recentPostsToggle.click();
-    await page.locator('.page-heading').click();
+    await page.locator('main').click({ position: { x: 10, y: 300 } });
     await expect(recentPostsToggle).toHaveAttribute('aria-expanded', 'false');
     await expect(page.locator('#recent-posts-dropdown')).toBeHidden();
   });
