@@ -676,6 +676,11 @@ blockquote {
   }
 }
 
+.home .post-list {
+  grid-auto-rows: auto;
+  align-items: start;
+}
+
 .post-card {
   display: flex;
   flex-direction: column;
@@ -781,6 +786,14 @@ blockquote {
       transform: translateX(2px);
     }
   }
+}
+
+.home .post-card .post-excerpt {
+  flex-grow: 0;
+}
+
+.home .post-card .post-footer {
+  margin-top: 0;
 }
 
 /* Kategori-sektion med listor */

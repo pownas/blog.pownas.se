@@ -42,9 +42,13 @@ test.describe('Navigation accessibility and responsiveness', () => {
 
     const recentPostsToggle = page.locator('.dropdown-toggle').nth(1);
     await recentPostsToggle.scrollIntoViewIfNeeded();
+    await categoriesToggle.click();
+    await expect(page.locator('#category-dropdown')).toBeVisible();
     await expect(recentPostsToggle).toBeVisible();
     await recentPostsToggle.click();
     await expect(recentPostsToggle).toHaveAttribute('aria-expanded', 'true');
+    await expect(categoriesToggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(page.locator('#category-dropdown')).toBeHidden();
     await expect(page.locator('#recent-posts-dropdown')).toBeVisible();
     await expect(page.locator('.theme-toggle--nav')).toBeVisible();
 
@@ -83,5 +87,24 @@ test.describe('Navigation accessibility and responsiveness', () => {
     await themeToggle.focus();
     await page.keyboard.press('Enter');
     await expect(page.locator('html')).toHaveAttribute('data-theme', /dark|light/);
+
+    await recentPostsToggle.click();
+    await page.locator('main').click({ position: { x: 10, y: 300 } });
+    await expect(recentPostsToggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(page.locator('#recent-posts-dropdown')).toBeHidden();
+  });
+
+  test('homepage post cards keep excerpts and metadata compactly grouped', async ({ page }) => {
+    await page.goto('/');
+
+    const largestExcerptToFooterGap = await page.locator('.home .post-card').evaluateAll(cards =>
+      Math.max(...cards.map(card => {
+        const excerpt = card.querySelector('.post-excerpt');
+        const footer = card.querySelector('.post-footer');
+        return footer.getBoundingClientRect().top - excerpt.getBoundingClientRect().bottom;
+      }))
+    );
+
+    expect(largestExcerptToFooterGap).toBeLessThan(100);
   });
 });
