@@ -82,6 +82,8 @@ html,
 body {
   max-width: 100%;
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -801,6 +803,16 @@ blockquote {
 
 .home .post-card .post-footer {
   margin-top: 0;
+}
+
+@media (max-width: 700px) {
+  .post-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .post-card {
+    padding: clamp(1rem, 4vw, 1.5rem);
+  }
 }
 
 /* Kategori-sektion med listor */
