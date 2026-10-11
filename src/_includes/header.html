@@ -233,6 +233,10 @@
     if (recentPostsDropdown) {
       recentPostsDropdown.addEventListener('pointerdown', function(event) {
         if (event.pointerType === 'touch') {
+          if (recentPostsScrollReset) {
+            window.clearTimeout(recentPostsScrollReset);
+            recentPostsScrollReset = null;
+          }
           recentPostsTouchStart = { x: event.clientX, y: event.clientY };
           recentPostsScrollGesture = false;
         }
@@ -251,6 +255,10 @@
       });
 
       function finishRecentPostsTouch() {
+        if (!recentPostsTouchStart) {
+          return;
+        }
+
         recentPostsTouchStart = null;
         if (recentPostsScrollReset) {
           window.clearTimeout(recentPostsScrollReset);

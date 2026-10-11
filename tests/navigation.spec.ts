@@ -56,6 +56,11 @@ test.describe('Navigation accessibility and responsiveness', () => {
       dropdown.scrollHeight > dropdown.clientHeight
     );
     expect(recentPostsCanScroll).toBe(true);
+    const recentPostsScrolled = await recentPostsDropdown.evaluate(dropdown => {
+      dropdown.scrollTop = dropdown.scrollHeight;
+      return dropdown.scrollTop > 0;
+    });
+    expect(recentPostsScrolled).toBe(true);
     const scrollGestureClickPrevented = await recentPostsDropdown.evaluate(dropdown => {
       const pointerEvent = (type: string, clientY: number) =>
         new PointerEvent(type, {
