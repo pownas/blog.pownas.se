@@ -49,7 +49,33 @@ test.describe('Navigation accessibility and responsiveness', () => {
     await expect(recentPostsToggle).toHaveAttribute('aria-expanded', 'true');
     await expect(categoriesToggle).toHaveAttribute('aria-expanded', 'false');
     await expect(page.locator('#category-dropdown')).toBeHidden();
-    await expect(page.locator('#recent-posts-dropdown')).toBeVisible();
+    const recentPostsDropdown = page.locator('#recent-posts-dropdown');
+    await expect(recentPostsDropdown).toBeVisible();
+    await expect(recentPostsDropdown.locator('a')).toHaveCount(11);
+    const recentPostsCanScroll = await recentPostsDropdown.evaluate(dropdown =>
+      dropdown.scrollHeight > dropdown.clientHeight
+    );
+    expect(recentPostsCanScroll).toBe(true);
+    const scrollGestureClickPrevented = await recentPostsDropdown.evaluate(dropdown => {
+      const pointerEvent = (type: string, clientY: number) =>
+        new PointerEvent(type, {
+          bubbles: true,
+          cancelable: true,
+          pointerType: 'touch',
+          clientX: 20,
+          clientY,
+        });
+      dropdown.dispatchEvent(pointerEvent('pointerdown', 100));
+      dropdown.dispatchEvent(pointerEvent('pointermove', 70));
+      dropdown.dispatchEvent(pointerEvent('pointerup', 70));
+
+      const click = new MouseEvent('click', { bubbles: true, cancelable: true });
+      dropdown.querySelector('a')?.dispatchEvent(click);
+      return click.defaultPrevented;
+    });
+    expect(scrollGestureClickPrevented).toBe(true);
+    await expect(recentPostsToggle).toHaveAttribute('aria-expanded', 'true');
+    await expect(page.locator('body')).toHaveClass(/menu-open/);
     await expect(page.locator('.theme-toggle--nav')).toBeVisible();
 
     await page.keyboard.press('Escape');
@@ -69,6 +95,13 @@ test.describe('Navigation accessibility and responsiveness', () => {
     const recentPostsToggle = page.locator('.dropdown-toggle').nth(1);
     await recentPostsToggle.click();
     await expect(recentPostsToggle).toHaveAttribute('aria-expanded', 'true');
+
+    const recentPostsDropdown = page.locator('#recent-posts-dropdown');
+    await expect(recentPostsDropdown.locator('a')).toHaveCount(11);
+    const recentPostsCanScroll = await recentPostsDropdown.evaluate(dropdown =>
+      dropdown.scrollHeight > dropdown.clientHeight
+    );
+    expect(recentPostsCanScroll).toBe(true);
 
     const dropdownBounds = await page.locator('#recent-posts-dropdown').boundingBox();
     expect(dropdownBounds).not.toBeNull();

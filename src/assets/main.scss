@@ -643,6 +643,13 @@ blockquote {
 
 #recent-posts-dropdown {
   width: unquote("min(26rem, calc(100vw - 2rem))");
+  max-height: unquote("min(22rem, calc(100vh - 8rem))");
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+  touch-action: pan-y;
 }
 
 /* =========================================
@@ -1200,6 +1207,7 @@ p, .post-content p {
     min-width: 0;
     padding: 0.4rem;
     max-height: unquote("min(52vh, 18rem)");
+    overflow-y: auto;
     box-sizing: border-box;
   }
 

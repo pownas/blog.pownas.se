@@ -27,7 +27,7 @@
           <div class="dropdown">
             <button class="page-link dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="recent-posts-dropdown">Senaste inlägg</button>
             <div class="dropdown-content" id="recent-posts-dropdown" hidden>
-              {% for post in site.posts limit:5 %}
+              {% for post in site.posts limit:10 %}
                 <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
               {% endfor %}
               <a href="{{ site.baseurl }}/alla-inlagg/">Alla inlägg</a>
@@ -57,9 +57,13 @@
     const navToggleText = navToggle ? navToggle.querySelector('.nav-toggle__text') : null;
     const navPanel = document.getElementById('site-navigation');
     const dropdowns = Array.from(document.querySelectorAll('.dropdown'));
+    const recentPostsDropdown = document.getElementById('recent-posts-dropdown');
     const themeButtons = Array.from(document.querySelectorAll('[data-theme-toggle]'));
     const mobileMedia = window.matchMedia('(max-width: 700px)');
     let menuOpen = false;
+    let recentPostsTouchStart = null;
+    let recentPostsScrollGesture = false;
+    let recentPostsScrollReset = null;
 
     function applyTheme(theme) {
       const nextTheme = theme === 'dark' ? 'dark' : 'light';
@@ -226,11 +230,55 @@
       });
     });
 
+    if (recentPostsDropdown) {
+      recentPostsDropdown.addEventListener('pointerdown', function(event) {
+        if (event.pointerType === 'touch') {
+          recentPostsTouchStart = { x: event.clientX, y: event.clientY };
+          recentPostsScrollGesture = false;
+        }
+      });
+
+      recentPostsDropdown.addEventListener('pointermove', function(event) {
+        if (!recentPostsTouchStart || event.pointerType !== 'touch') {
+          return;
+        }
+
+        const deltaX = Math.abs(event.clientX - recentPostsTouchStart.x);
+        const deltaY = Math.abs(event.clientY - recentPostsTouchStart.y);
+        if (deltaY > 10 && deltaY > deltaX) {
+          recentPostsScrollGesture = true;
+        }
+      });
+
+      function finishRecentPostsTouch() {
+        recentPostsTouchStart = null;
+        if (recentPostsScrollReset) {
+          window.clearTimeout(recentPostsScrollReset);
+        }
+        recentPostsScrollReset = window.setTimeout(function() {
+          recentPostsScrollGesture = false;
+        }, 500);
+      }
+
+      recentPostsDropdown.addEventListener('pointerup', finishRecentPostsTouch);
+      recentPostsDropdown.addEventListener('pointercancel', finishRecentPostsTouch);
+    }
+
     navToggle.addEventListener('click', function() {
       setMenuOpen(!menuOpen);
     });
 
     navPanel.addEventListener('click', function(event) {
+      if (recentPostsScrollGesture && event.target.closest('#recent-posts-dropdown a[href]')) {
+        event.preventDefault();
+        recentPostsScrollGesture = false;
+        if (recentPostsScrollReset) {
+          window.clearTimeout(recentPostsScrollReset);
+          recentPostsScrollReset = null;
+        }
+        return;
+      }
+
       const clickedLink = event.target.closest('a[href]');
       if (clickedLink && isMobileViewport()) {
         setMenuOpen(false);
