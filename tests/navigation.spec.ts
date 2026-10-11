@@ -42,10 +42,45 @@ test.describe('Navigation accessibility and responsiveness', () => {
 
     const recentPostsToggle = page.locator('.dropdown-toggle').nth(1);
     await recentPostsToggle.scrollIntoViewIfNeeded();
+    await categoriesToggle.click();
+    await expect(page.locator('#category-dropdown')).toBeVisible();
     await expect(recentPostsToggle).toBeVisible();
     await recentPostsToggle.click();
     await expect(recentPostsToggle).toHaveAttribute('aria-expanded', 'true');
-    await expect(page.locator('#recent-posts-dropdown')).toBeVisible();
+    await expect(categoriesToggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(page.locator('#category-dropdown')).toBeHidden();
+    const recentPostsDropdown = page.locator('#recent-posts-dropdown');
+    await expect(recentPostsDropdown).toBeVisible();
+    await expect(recentPostsDropdown.locator('a')).toHaveCount(11);
+    const recentPostsCanScroll = await recentPostsDropdown.evaluate(dropdown =>
+      dropdown.scrollHeight > dropdown.clientHeight
+    );
+    expect(recentPostsCanScroll).toBe(true);
+    const recentPostsScrolled = await recentPostsDropdown.evaluate(dropdown => {
+      dropdown.scrollTop = dropdown.scrollHeight;
+      return dropdown.scrollTop > 0;
+    });
+    expect(recentPostsScrolled).toBe(true);
+    const scrollGestureClickPrevented = await recentPostsDropdown.evaluate(dropdown => {
+      const pointerEvent = (type: string, clientY: number) =>
+        new PointerEvent(type, {
+          bubbles: true,
+          cancelable: true,
+          pointerType: 'touch',
+          clientX: 20,
+          clientY,
+        });
+      dropdown.dispatchEvent(pointerEvent('pointerdown', 100));
+      dropdown.dispatchEvent(pointerEvent('pointermove', 70));
+      dropdown.dispatchEvent(pointerEvent('pointerup', 70));
+
+      const click = new MouseEvent('click', { bubbles: true, cancelable: true });
+      dropdown.querySelector('a')?.dispatchEvent(click);
+      return click.defaultPrevented;
+    });
+    expect(scrollGestureClickPrevented).toBe(true);
+    await expect(recentPostsToggle).toHaveAttribute('aria-expanded', 'true');
+    await expect(page.locator('body')).toHaveClass(/menu-open/);
     await expect(page.locator('.theme-toggle--nav')).toBeVisible();
 
     await page.keyboard.press('Escape');
@@ -66,6 +101,13 @@ test.describe('Navigation accessibility and responsiveness', () => {
     await recentPostsToggle.click();
     await expect(recentPostsToggle).toHaveAttribute('aria-expanded', 'true');
 
+    const recentPostsDropdown = page.locator('#recent-posts-dropdown');
+    await expect(recentPostsDropdown.locator('a')).toHaveCount(11);
+    const recentPostsCanScroll = await recentPostsDropdown.evaluate(dropdown =>
+      dropdown.scrollHeight > dropdown.clientHeight
+    );
+    expect(recentPostsCanScroll).toBe(true);
+
     const dropdownBounds = await page.locator('#recent-posts-dropdown').boundingBox();
     expect(dropdownBounds).not.toBeNull();
 
@@ -83,5 +125,24 @@ test.describe('Navigation accessibility and responsiveness', () => {
     await themeToggle.focus();
     await page.keyboard.press('Enter');
     await expect(page.locator('html')).toHaveAttribute('data-theme', /dark|light/);
+
+    await recentPostsToggle.click();
+    await page.locator('main').click({ position: { x: 10, y: 300 } });
+    await expect(recentPostsToggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(page.locator('#recent-posts-dropdown')).toBeHidden();
+  });
+
+  test('homepage post cards keep excerpts and metadata compactly grouped', async ({ page }) => {
+    await page.goto('/');
+
+    const largestExcerptToFooterGap = await page.locator('.home .post-card').evaluateAll(cards =>
+      Math.max(...cards.map(card => {
+        const excerpt = card.querySelector('.post-excerpt');
+        const footer = card.querySelector('.post-footer');
+        return footer.getBoundingClientRect().top - excerpt.getBoundingClientRect().bottom;
+      }))
+    );
+
+    expect(largestExcerptToFooterGap).toBeLessThan(100);
   });
 });
