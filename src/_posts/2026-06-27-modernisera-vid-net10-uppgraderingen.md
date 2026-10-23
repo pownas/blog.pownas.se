@@ -187,8 +187,7 @@ Lycka till med uppgraderingen!
 ### Referenser och vidare läsning
  * **Exempel på NoBuild Solution Items:** [Se en implementation av .SolutionItems.csproj i ArvidsonFoto-MVC-NET-web](https://github.com/pownas/ArvidsonFoto-MVC-NET-web/blob/dev/.SolutionItems.csproj)
  * **Exempel på modern .slnx:** [Se hur .slnx introduceras i Visual Studio](https://devblogs.microsoft.com/dotnet/introducing-slnx-support-dotnet-cli/)
- * **Directory.Build.props och struktur:** [Microsoft Learn: Customize your build]
-(https://learn.microsoft.com/en-us/visualstudio/msbuild/customize-your-build?view=visualstudio)
+ * **Directory.Build.props och struktur:** [Microsoft Learn: Customize your build](https://learn.microsoft.com/en-us/visualstudio/msbuild/customize-your-build?view=visualstudio)
  * **Artifacts Output (UseArtifactsOutput):** [Microsoft Learn: Artifacts output layout](https://learn.microsoft.com/en-us/dotnet/core/sdk/artifacts-output)
  * **Central Package Management (CPM):** [Microsoft Learn: Central Package Management](https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management)
  * **Inbyggt Container-stöd:** [Microsoft Learn: Containerize a .NET app with dotnet publish](https://learn.microsoft.com/en-us/dotnet/core/containers/sdk-publish) och [Microsoft Learn - Tutorial: Containerize a .NET app](https://learn.microsoft.com/en-us/dotnet/core/docker/build-container)
