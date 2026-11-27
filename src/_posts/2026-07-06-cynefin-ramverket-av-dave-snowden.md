@@ -31,25 +31,25 @@ Infografik för Cynefin-ramverket av Dave Snowden
 ## 1. Det uppenbara (Clear / Simple) – "Best Practice"
 I den här domänen är allt förutsägbart. Orsak och verkan är tydliga för alla och det finns ett facit.
 * **I din kod:** Att uppdatera en statisk textsträng, ändra en färg i en CSS-fil eller köra en standardiserad uppgradering av ett paket.
-* **Ditt angreppssätt:** *Känna in $\rightarrow$ Kategorisera $\rightarrow$ Agera.* Du ser problemet, vet direkt vilken kategori det tillhör och applicerar en färdig lösning (Best Practice).
+* **Ditt angreppssätt:** *Känna in -> Kategorisera -> Agera.* Du ser problemet, vet direkt vilken kategori det tillhör och applicerar en färdig lösning (Best Practice).
 * **Faran:** Att överanalysera. Lägg inte timmar på att bygga en generisk mikrotjänst för något som kunnat lösas med en enkel hårdkodad funktion här och nu.
 
 ## 2. Det komplicerade (Complicated) – "Good Practice"
 Här är orsak och verkan fortfarande linjärt, men det kräver analys eller expertkunskap för att se sambandet. Det finns sällan *ett* perfekt svar, utan flera bra vägar framåt.
 * **I din kod:** Att optimera en långsam SQL-fråga, designa ett API-kontrakt eller felsöka ett minnesläckage i applikationen.
-* **Ditt angreppssätt:** *Känna in $\rightarrow$ Analysera $\rightarrow$ Agera.* Här briljerar din tekniska expertis. Du samlar data, väger arkitektoniska för- och nackdelar mot varandra och fattar ett beslut.
+* **Ditt angreppssätt:** *Känna in -> Analysera -> Agera.* Här briljerar din tekniska expertis. Du samlar data, väger arkitektoniska för- och nackdelar mot varandra och fattar ett beslut.
 * **Faran – Analysparalys:** Eftersom det går att analysera sig fram till ett svar, fastnar utvecklare ofta här i jakten på den "perfekta" arkitekturen, trots att en "tillräckligt bra" lösning hade räckt.
 
 ## 3. Det komplexa (Complex) – "Emergent Practice"
 Här förändras spelreglerna. Orsak och verkan kan bara förstås *i efterhand*. Variablerna är för många, kraven är flytande och systemet (ofta kombinationen av kod och människor) är levande.
 * **I din vardag:** Att bygga en helt ny funktion för en kundgrupp som inte själva vet vad de vill ha, eller att navigera dynamiken och kommunikationen i ett nyformerat utvecklarteam.
-* **Ditt angreppssätt:** *Pröva (Undersöka) $\rightarrow$ Känna in $\rightarrow$ Agera.* Här fungerar inte traditionell, rigid vattenfallsplanering. Du måste bygga en MVP (Minimum Viable Product), driftsätta, se hur användarna eller systemet reagerar, och justera baserat på empirisk data. Lösningen *växer fram*.
+* **Ditt angreppssätt:** *Pröva (Undersöka) -> Känna in -> Agera.* Här fungerar inte traditionell, rigid vattenfallsplanering. Du måste bygga en MVP (Minimum Viable Product), driftsätta, se hur användarna eller systemet reagerar, och justera baserat på empirisk data. Lösningen *växer fram*.
 * **Faran:** Att försöka tvinga fram en "Best Practice". Om du behandlar ett komplext problem som om det vore komplicerat, kommer du att skriva specifikationer i månader – bara för att inse att ingen vill ha produkten när den väl är klar.
 
 ## 4. Det kaotiska (Chaotic) – "Novel Practice"
 Här brinner det. Orsak och verkan går inte att utskilja. Det finns ingen tid för analys eller snygga arkitekturritningar.
 * **I din vardag:** Produktionsdatabasen är korrupt, sajten ligger nere, kunderna rasar och supporten går varm.
-* **Ditt angreppssätt:** *Agera $\rightarrow$ Känna in $\rightarrow$ Svara.* Fokus ligger till 100 % på att stoppa blödningen. Skriv den där fula "quick-fixen", starta om servern manuellt. När systemet är stabilt igen har du flyttat problemet till den *komplicerade* domänen, och först då kan du göra den riktiga rotfelsanalysen.
+* **Ditt angreppssätt:** *Agera -> Känna in -> Svara.* Fokus ligger till 100 % på att stoppa blödningen. Skriv den där fula "quick-fixen", starta om servern manuellt. När systemet är stabilt igen har du flyttat problemet till den *komplicerade* domänen, och först då kan du göra den riktiga rotfelsanalysen.
 
 ## 5. Förvirring (Confusion / Aporetic)
 Detta är mittzonen. Du vet inte vilken domän du befinner dig i. När vi är här tenderar vi att agera utifrån vår personliga komfortzon. En utvecklare som älskar struktur (det komplicerade) kommer att försöka analysera sönder ett kaotiskt haveri istället för att bara agera, medan en utvecklare som älskar snabba ryck (det kaotiska) kanske börjar skriva ad-hoc-kod i ett projekt som egentligen krävde djup arkitektonisk analys.
