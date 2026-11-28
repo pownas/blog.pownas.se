@@ -2,7 +2,7 @@
 layout: post
 title: 'Navigera i utvecklarvardagens kaos: Cynefin-ramverket som din mentala kompass'
 date: 2026-07-06 21:30 +0200
-category: "agilt,ledarskap,programmering"
+category: "agilt,arkitektur,ledarskap,programmering"
 ---
 
 Har du någonsin börjat dagen med att lugnt konfigurera en CI/CD-pipeline, kastats in i ett akut produktionshaveri före lunch, spenderat eftermiddagen i ett luddigt möte om "framtida användarbehov", för i att avslutat dagen med att ändra en textsträng i ett UI?
